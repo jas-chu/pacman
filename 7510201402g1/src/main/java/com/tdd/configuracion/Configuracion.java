@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
@@ -17,7 +18,7 @@ import org.json.simple.parser.ParseException;
 public class Configuracion {
 
     private final URL filePath;
-    private final Map<String, String> transiciones;
+    private final Map<String, Integer> transiciones;
     private static Configuracion configuracion = null;
 
     private Configuracion() {
@@ -37,7 +38,7 @@ public class Configuracion {
                 while (iter.hasNext()) {
                     Map.Entry entry = (Map.Entry) iter.next();
                     String key = (String) entry.getKey();
-                    String value = (String) entry.getValue();
+                    Integer value = new Integer((String) entry.getValue());
                     configuracion.getTransiciones().put(key, value);
                 }
 
@@ -50,7 +51,7 @@ public class Configuracion {
         return configuracion;
     }
 
-    private Map<String, String> getTransiciones() {
+    private Map<String, Integer> getTransiciones() {
         return configuracion.transiciones;
     }
 
@@ -58,11 +59,15 @@ public class Configuracion {
         return configuracion.filePath.getPath();
     }
     
-    public String getTransicion(String transicion){
+    public Integer getTransicion(String transicion){
         return configuracion.getTransiciones().get(transicion);
     }
     
-    public String getTicks(){
+    public Collection<Integer> getTiemposEspera(){
+        return configuracion.getTransiciones().values();
+    }
+    
+    public Integer getTicks(){
         return configuracion.getTransiciones().get("ticks");
     }
 }
