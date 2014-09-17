@@ -12,7 +12,7 @@ public class Cazador implements Estado {
 	private Timer temporizador;
 	private int nivelIra;
 	private int cantidadNivelesIra;
-	private int[] delays;
+	private int[] tiemposDeEspera;
 	
 	public Cazador (Enemigo e) {
 		this.configurarCazador();
@@ -21,8 +21,11 @@ public class Cazador implements Estado {
 		this.nivelIra = 0;
 		
 		this.temporizador = new Timer();
-		for (int i = this.nivelIra ; i < delays.length ; ++i)
-			this.temporizador.schedule(new IncrementadorDeIra(this), delays[i]);
+		int acumulado = 0;
+		for (int i = this.nivelIra ; i < tiemposDeEspera.length ; ++i) {
+			acumulado += tiemposDeEspera[i];
+			this.temporizador.schedule(new IncrementadorDeIra(this), acumulado);
+		}
 	}
 	
 	@Override
@@ -38,9 +41,9 @@ public class Cazador implements Estado {
 	private void configurarCazador() {
 		// TODO: Usar clase Configuracion
 		this.cantidadNivelesIra = 3;
-		delays[0] = 1000; //milliseconds
-		delays[1] = 1000;
-		delays[2] = 1000;
+		tiemposDeEspera[0] = 1000; //millisegundos
+		tiemposDeEspera[1] = 1000;
+		tiemposDeEspera[2] = 1000;
 	}
 	
 }
