@@ -1,7 +1,7 @@
 package com.tdd.personajesAbstractos;
 
-public interface Enemigo {
+public abstract class Enemigo extends Personaje {
 	
-	public void convertirEnPresa();
-	public void matar();
+	public abstract void convertirEnPresa();
+	
 }

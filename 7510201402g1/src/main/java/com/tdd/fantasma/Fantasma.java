@@ -3,7 +3,7 @@ package com.tdd.fantasma;
 import com.tdd.estados.*;
 import com.tdd.personajesAbstractos.*;
 
-public class Fantasma extends Personaje implements Enemigo {
+public class Fantasma extends Enemigo {
     private Estado estado;
     
     public Fantasma(){
@@ -19,5 +19,10 @@ public class Fantasma extends Personaje implements Enemigo {
 	public void convertirEnPresa() {
 		this.estado = new Presa(this);
     }
+
+	@Override
+	public void revivir() {
+		this.estado = new Cazador(this);
+	}
 	
 }
