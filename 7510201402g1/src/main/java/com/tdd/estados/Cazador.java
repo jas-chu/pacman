@@ -5,8 +5,6 @@ import com.tdd.fantasma.IncrementadorDeIra;
 import com.tdd.personajesAbstractos.Enemigo;
 import com.tdd.personajesAbstractos.Personaje;
 import java.util.Timer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Cazador implements Estado {
 	

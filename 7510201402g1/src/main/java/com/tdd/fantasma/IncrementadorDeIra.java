@@ -1,6 +1,5 @@
 package com.tdd.fantasma;
 
-import com.tdd.fantasma.Estado;
 import java.util.TimerTask;
 
 public class IncrementadorDeIra extends TimerTask {
