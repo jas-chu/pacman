@@ -1,18 +1,17 @@
 package com.tdd.estados;
 
-import com.tdd.fantasma.Fantasma;
+import com.tdd.personajesAbstractos.Enemigo;
+import com.tdd.personajesAbstractos.Personaje;
 
 public class Muerto extends Pasivo{
     
-    public Muerto(Fantasma fantasma){
-        super(fantasma);
-    }
-    public void incrementarIra() {
+    public Muerto(Enemigo enemigo){
+        super(enemigo);
     }
     
-    public void serComido() {
-    }
-    
-    public void convertirEnPresa() {
-    }
+	@Override
+	public void serComido(Personaje p) {
+		// por el momento no hace nada
+		// permite agregar funcionalidad
+	}
 }

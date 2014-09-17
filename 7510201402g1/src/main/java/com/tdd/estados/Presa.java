@@ -1,23 +1,17 @@
 package com.tdd.estados;
 
-import com.tdd.fantasma.Fantasma;
+import com.tdd.personajesAbstractos.Enemigo;
+import com.tdd.personajesAbstractos.Personaje;
 
 public class Presa extends Pasivo {
     
-    public Presa(Fantasma fantasma){
-        super(fantasma);
+    public Presa(Enemigo enemigo){
+        super(enemigo);
     }
     
     @Override
-    public void incrementarIra() {
-    }
+	public void serComido(Personaje p) {
+		this.enemigo.matar();
+	}
     
-    @Override
-    public void serComido() {
-        
-    }
-    
-    @Override
-    public void convertirEnPresa() {
-    }
 }
