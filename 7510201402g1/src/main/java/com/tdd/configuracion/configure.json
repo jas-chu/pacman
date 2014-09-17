@@ -1,4 +1,8 @@
 {
-    "time": "10",
-    "transicion": "2"
+    "ticks": "10",
+    "transicion1": "1",
+    "transicion2": "2",
+    "transicion3": "3",
+    "transicion4": "4",
+    "transicion5": "5"
 }
