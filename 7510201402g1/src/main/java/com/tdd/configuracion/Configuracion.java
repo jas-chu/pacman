@@ -16,26 +16,29 @@ import java.util.logging.Logger;
 import org.json.simple.parser.ContainerFactory;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 /**
  * Clase encargada de administrar los valores configurables
- * @author agu
  */
 public class Configuracion {
-    
+
     private final String filePath;
     private final Map transiciones;
     private static Configuracion configuracion = null;
     private static final String prePath = "/src/main/java/com/tdd/configuracion/";
+
     /**
      * Constructor privado para aplicar el patron singleton
      */
     private Configuracion() {
         this.transiciones = new TreeMap<>();
-        this.filePath = new File("").getAbsolutePath()+prePath+"configure.json";
+        this.filePath = new File("").getAbsolutePath() + prePath + "configure.json";
         System.out.println(this.filePath);
     }
+
     /**
      * Metodo que retorna la instancia
+     *
      * @return nueva instancia de configuracion
      */
     static public Configuracion getConfiguracion() {
@@ -61,10 +64,7 @@ public class Configuracion {
         }
         return configuracion;
     }
-    /**
-     * 
-     * @return 
-     */
+
     private Map getTransiciones() {
         return configuracion.transiciones;
     }
@@ -97,7 +97,6 @@ public class Configuracion {
             public Map createObjectContainer() {
                 return new LinkedHashMap();
             }
-
         };
         return containerFactory;
     }

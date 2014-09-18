@@ -12,13 +12,12 @@ public class Presa extends Pasivo {
     }
 
     @Override
-	public void serComido(Personaje p) {
-		this.enemigo.matar();
-	}
-    
-	private static int obtenerTiempoPresa() {
-		// TODO: usar la clase de configuracion
-		return Configuracion.getConfiguracion().getTiempoPresa().intValue();
-	}
+    public void serComido(Personaje p) {
+        this.enemigo.matar();
+    }
+
+    private static int obtenerTiempoPresa() {
+        return Configuracion.getConfiguracion().getTiempoPresa().intValue();
+    }
 
 }

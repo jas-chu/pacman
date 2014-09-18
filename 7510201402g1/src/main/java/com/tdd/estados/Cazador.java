@@ -44,7 +44,6 @@ public class Cazador implements Estado {
     }
 
     private void configurarCazador() {
-        // TODO: Usar clase Configuracion
         this.tiemposDeEspera = new ArrayList<>();
         this.cantidadNivelesIra = 3;
         Configuracion configuracion = Configuracion.getConfiguracion();

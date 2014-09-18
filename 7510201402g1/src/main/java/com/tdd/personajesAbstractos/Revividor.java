@@ -4,16 +4,16 @@ import java.util.TimerTask;
 
 public class Revividor extends TimerTask {
 
-	private Personaje personaje;
+    private Personaje personaje;
 
-	public Revividor (Personaje p) {
-		super();
-		this.personaje = p;
-	}
+    public Revividor(Personaje p) {
+        super();
+        this.personaje = p;
+    }
 
-	@Override
-	public void run() {
-		this.personaje.revivir();
-	}
-	
+    @Override
+    public void run() {
+        this.personaje.revivir();
+    }
+
 }
