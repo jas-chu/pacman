@@ -1,5 +1,6 @@
 package com.tdd.estados;
 
+import com.tdd.configuracion.Configuracion;
 import com.tdd.personajesAbstractos.Enemigo;
 import com.tdd.personajesAbstractos.Personaje;
 import com.tdd.personajesAbstractos.Revividor;
@@ -17,7 +18,7 @@ public class Presa extends Pasivo {
     
 	private static int obtenerTiempoPresa() {
 		// TODO: usar la clase de configuracion
-		return 1000;
+		return Configuracion.getConfiguracion().getTiempoPresa();
 	}
 	
 }

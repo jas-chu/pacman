@@ -49,8 +49,8 @@ public class Cazador implements Estado {
         this.tiemposDeEspera = new ArrayList<>();
         this.cantidadNivelesIra = 3;
         Configuracion configuracion = Configuracion.getConfiguracion();
-        for (Iterator<Integer> it = configuracion.getTiemposEspera().iterator(); it.hasNext();) {
-            tiemposDeEspera.add(it.next());
+        for (Integer tiempo : configuracion.getTiemposCazador()) {
+            tiemposDeEspera.add(tiempo);
         }
     }
 
