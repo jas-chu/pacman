@@ -1,9 +1,9 @@
 package com.tdd.configuracion;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -16,18 +16,28 @@ import java.util.logging.Logger;
 import org.json.simple.parser.ContainerFactory;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
+/**
+ * Clase encargada de administrar los valores configurables
+ * @author agu
+ */
 public class Configuracion {
-
-    private final URL filePath;
+    
+    private final String filePath;
     private final Map transiciones;
     private static Configuracion configuracion = null;
-
+    private static final String prePath = "/src/main/java/com/tdd/configuracion/";
+    /**
+     * Constructor privado para aplicar el patron singleton
+     */
     private Configuracion() {
         this.transiciones = new TreeMap<>();
-        this.filePath = getClass().getResource("configure.json");
+        this.filePath = new File("").getAbsolutePath()+prePath+"configure.json";
+        System.out.println(this.filePath);
     }
-
+    /**
+     * Metodo que retorna la instancia
+     * @return nueva instancia de configuracion
+     */
     static public Configuracion getConfiguracion() {
         if (configuracion == null) {
             configuracion = new Configuracion();
@@ -35,6 +45,7 @@ public class Configuracion {
             ContainerFactory containerFactory = configuracion.createContainer();
             try {
                 FileReader fileReader = new FileReader(configuracion.getFilePath());
+                System.out.print(fileReader.toString());
                 Map json = (Map) parser.parse(fileReader, containerFactory);
                 Iterator iter = json.entrySet().iterator();
                 while (iter.hasNext()) {
@@ -50,13 +61,16 @@ public class Configuracion {
         }
         return configuracion;
     }
-
+    /**
+     * 
+     * @return 
+     */
     private Map getTransiciones() {
         return configuracion.transiciones;
     }
 
     private String getFilePath() {
-        return configuracion.filePath.getPath();
+        return configuracion.filePath;
     }
 
     public Collection<Long> getTiemposCazador() {
@@ -69,27 +83,6 @@ public class Configuracion {
 
     public Long getTiempoPresa() {
         return (Long) configuracion.getTransiciones().get("tiempoPresa");
-    }
-
-    private ContainerFactory createContainer() {
-        ContainerFactory containerFactory;
-        containerFactory = new ContainerFactory() {
-            @Override
-            public List creatArrayContainer() {
-                return new LinkedList();
-            }
-
-            @Override
-            public Map createObjectContainer() {
-                return new LinkedHashMap();
-            }
-
-        };
-        return containerFactory;
-    }
-
-    public Integer getTiempoPresa() {
-        return (Integer) configuracion.getTransiciones().get("tiemposPresa");
     }
 
     private ContainerFactory createContainer() {
