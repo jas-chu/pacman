@@ -10,19 +10,22 @@ public class Fantasma extends Enemigo {
         this.estado = new Cazador(this);
     }
 
-	@Override
-	public void matar() {
-		this.estado = new Muerto(this);
-	}
-    
-	@Override
-	public void convertirEnPresa() {
-		this.estado = new Presa(this);
+    @Override
+    public void matar() {
+            this.estado = new Muerto(this);
     }
 
-	@Override
-	public void revivir() {
-		this.estado = new Cazador(this);
-	}
-	
+    @Override
+    public void convertirEnPresa() {
+            this.estado = new Presa(this);
+    }
+
+    @Override
+    public void revivir() {
+            this.estado = new Cazador(this);
+    }
+    
+    public Estado obtenerEstado(){
+        return this.estado;
+    }	
 }
