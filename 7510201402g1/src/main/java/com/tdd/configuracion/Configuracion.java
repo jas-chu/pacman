@@ -59,12 +59,33 @@ public class Configuracion {
         return configuracion.filePath.getPath();
     }
 
-    public Collection<Integer> getTiemposCazador() {
-        return (Collection<Integer>) configuracion.getTransiciones().get("tiemposCazador");
+    public Collection<Long> getTiemposCazador() {
+        return (Collection<Long>) configuracion.getTransiciones().get("tiemposCazador");
     }
 
-    public Integer getTiempoMuerto() {
-        return (Integer) configuracion.getTransiciones().get("tiempoMuerto");
+    public Long getTiempoMuerto() {
+        return (Long) configuracion.getTransiciones().get("tiempoMuerto");
+    }
+
+    public Long getTiempoPresa() {
+        return (Long) configuracion.getTransiciones().get("tiempoPresa");
+    }
+
+    private ContainerFactory createContainer() {
+        ContainerFactory containerFactory;
+        containerFactory = new ContainerFactory() {
+            @Override
+            public List creatArrayContainer() {
+                return new LinkedList();
+            }
+
+            @Override
+            public Map createObjectContainer() {
+                return new LinkedHashMap();
+            }
+
+        };
+        return containerFactory;
     }
 
     public Integer getTiempoPresa() {
