@@ -52,5 +52,9 @@ public class Cazador implements Estado {
             tiemposDeEspera.add(tiempo);
         }
     }
+    
+    public int obtenerNivelIra(){
+        return this.nivelIra;
+    }
 
 }

@@ -86,26 +86,5 @@ public class Configuracion {
 
         };
         return containerFactory;
-    }
-
-    public Integer getTiempoPresa() {
-        return (Integer) configuracion.getTransiciones().get("tiemposPresa");
-    }
-
-    private ContainerFactory createContainer() {
-        ContainerFactory containerFactory;
-        containerFactory = new ContainerFactory() {
-            @Override
-            public List creatArrayContainer() {
-                return new LinkedList();
-            }
-
-            @Override
-            public Map createObjectContainer() {
-                return new LinkedHashMap();
-            }
-
-        };
-        return containerFactory;
-    }
+    }    
 }
