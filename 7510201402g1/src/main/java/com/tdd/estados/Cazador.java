@@ -6,7 +6,6 @@ import com.tdd.fantasma.IncrementadorDeIra;
 import com.tdd.personajesAbstractos.Enemigo;
 import com.tdd.personajesAbstractos.Personaje;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
 
@@ -16,7 +15,7 @@ public class Cazador implements Estado {
     private Timer temporizador;
     private int nivelIra;
     private int cantidadNivelesIra;
-    private List<Integer> tiemposDeEspera;
+    private List<Long> tiemposDeEspera;
 
     public Cazador(Enemigo e) {
         this.configurarCazador();
@@ -26,7 +25,7 @@ public class Cazador implements Estado {
 
         this.temporizador = new Timer();
         int acumulado = 0;
-        for (Integer tiempo : tiemposDeEspera) {
+        for (Long tiempo : tiemposDeEspera) {
             acumulado += tiempo;
             this.temporizador.schedule(new IncrementadorDeIra(this), acumulado);
         }
@@ -49,7 +48,7 @@ public class Cazador implements Estado {
         this.tiemposDeEspera = new ArrayList<>();
         this.cantidadNivelesIra = 3;
         Configuracion configuracion = Configuracion.getConfiguracion();
-        for (Integer tiempo : configuracion.getTiemposCazador()) {
+        for (Long tiempo : configuracion.getTiemposCazador()) {
             tiemposDeEspera.add(tiempo);
         }
     }

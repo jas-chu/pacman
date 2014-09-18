@@ -18,7 +18,7 @@ public class Presa extends Pasivo {
     
 	private static int obtenerTiempoPresa() {
 		// TODO: usar la clase de configuracion
-		return Configuracion.getConfiguracion().getTiempoPresa();
+		return Configuracion.getConfiguracion().getTiempoPresa().intValue();
 	}
 	
 }

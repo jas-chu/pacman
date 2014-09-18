@@ -19,6 +19,6 @@ public class Muerto extends Pasivo{
 	
 	private static int obtenerTiempoMuerto() {
 		// TODO: usar la clase de configuracion
-		return Configuracion.getConfiguracion().getTiempoMuerto();
+		return Configuracion.getConfiguracion().getTiempoMuerto().intValue();
 	}
 }
