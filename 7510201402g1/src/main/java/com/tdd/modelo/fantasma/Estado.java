@@ -1,6 +1,6 @@
-package com.tdd.fantasma;
+package com.tdd.modelo.fantasma;
 
-import com.tdd.personajesAbstractos.Personaje;
+import com.tdd.modelo.escenarioAbstracciones.Personaje;
 
 public interface Estado {
 

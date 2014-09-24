@@ -1,8 +1,8 @@
-package com.tdd.estados;
+package com.tdd.modelo.estados;
 
-import com.tdd.fantasma.Estado;
-import com.tdd.personajesAbstractos.Enemigo;
-import com.tdd.personajesAbstractos.Personaje;
+import com.tdd.modelo.fantasma.Estado;
+import com.tdd.modelo.escenarioAbstracciones.Enemigo;
+import com.tdd.modelo.escenarioAbstracciones.Personaje;
 import java.util.Timer;
 import java.util.TimerTask;
 

@@ -1,7 +1,8 @@
-package com.tdd.fantasma;
+package com.tdd.modelo.fantasma;
 
-import com.tdd.estados.Muerto;
-import com.tdd.estados.Presa;
+import com.tdd.modelo.fantasma.Fantasma;
+import com.tdd.modelo.estados.Muerto;
+import com.tdd.modelo.estados.Presa;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 

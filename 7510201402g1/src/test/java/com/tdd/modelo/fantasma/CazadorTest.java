@@ -1,7 +1,8 @@
-package com.tdd.fantasma;
+package com.tdd.modelo.fantasma;
 
-import com.tdd.estados.Cazador;
-import com.tdd.estados.Muerto;
+import com.tdd.modelo.fantasma.Fantasma;
+import com.tdd.modelo.estados.Cazador;
+import com.tdd.modelo.estados.Muerto;
 import static org.junit.Assert.*;
 import org.junit.Test;
 

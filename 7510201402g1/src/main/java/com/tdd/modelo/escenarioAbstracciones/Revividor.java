@@ -1,4 +1,4 @@
-package com.tdd.personajesAbstractos;
+package com.tdd.modelo.escenarioAbstracciones;
 
 import java.util.TimerTask;
 

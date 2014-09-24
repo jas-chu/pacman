@@ -1,9 +1,9 @@
-package com.tdd.estados;
+package com.tdd.modelo.estados;
 
-import com.tdd.configuracion.Configuracion;
-import com.tdd.personajesAbstractos.Enemigo;
-import com.tdd.personajesAbstractos.Personaje;
-import com.tdd.personajesAbstractos.Revividor;
+import com.tdd.modelo.configuracion.Configuracion;
+import com.tdd.modelo.escenarioAbstracciones.Enemigo;
+import com.tdd.modelo.escenarioAbstracciones.Personaje;
+import com.tdd.modelo.escenarioAbstracciones.Revividor;
 
 public class Muerto extends Pasivo {
 

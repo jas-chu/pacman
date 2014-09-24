@@ -1,10 +1,10 @@
-package com.tdd.estados;
+package com.tdd.modelo.estados;
 
-import com.tdd.configuracion.Configuracion;
-import com.tdd.fantasma.Estado;
-import com.tdd.fantasma.IncrementadorDeIra;
-import com.tdd.personajesAbstractos.Enemigo;
-import com.tdd.personajesAbstractos.Personaje;
+import com.tdd.modelo.configuracion.Configuracion;
+import com.tdd.modelo.fantasma.Estado;
+import com.tdd.modelo.fantasma.IncrementadorDeIra;
+import com.tdd.modelo.escenarioAbstracciones.Enemigo;
+import com.tdd.modelo.escenarioAbstracciones.Personaje;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;

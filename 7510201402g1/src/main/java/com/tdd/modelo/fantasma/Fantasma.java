@@ -1,7 +1,9 @@
-package com.tdd.fantasma;
+package com.tdd.modelo.fantasma;
 
-import com.tdd.estados.*;
-import com.tdd.personajesAbstractos.*;
+import com.tdd.modelo.estados.Muerto;
+import com.tdd.modelo.estados.Presa;
+import com.tdd.modelo.estados.Cazador;
+import com.tdd.modelo.escenarioAbstracciones.Enemigo;
 
 public class Fantasma extends Enemigo {
     private Estado estado;

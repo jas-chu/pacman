@@ -1,4 +1,4 @@
-package com.tdd.fantasma;
+package com.tdd.modelo.fantasma;
 
 import java.util.TimerTask;
 

@@ -1,5 +1,6 @@
-package com.tdd.configuracion;
+package com.tdd.modelo.configuracion;
 
+import com.tdd.modelo.configuracion.Configuracion;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

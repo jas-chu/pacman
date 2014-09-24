@@ -1,4 +1,4 @@
-package com.tdd.configuracion;
+package com.tdd.modelo.configuracion;
 
 import java.io.File;
 import java.io.FileNotFoundException;
