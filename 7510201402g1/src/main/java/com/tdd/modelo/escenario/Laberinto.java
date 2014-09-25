@@ -10,6 +10,7 @@ public class Laberinto {
 	
 	private ArrayList<Item> items;
 	private ArrayList<Enemigo> enemigos;
+	private ArrayList<Pared> paredes;
 	private Pacman pacman;
 	
 	public Laberinto(String rutaXML) {
