@@ -4,11 +4,13 @@ import com.tdd.modelo.estados.Muerto;
 import com.tdd.modelo.estados.Presa;
 import com.tdd.modelo.estados.Cazador;
 import com.tdd.modelo.escenarioAbstracciones.Enemigo;
+import com.tdd.modelo.escenarioAbstracciones.Punto;
 
 public class Fantasma extends Enemigo {
     private Estado estado;
     
-    public Fantasma(){
+    public Fantasma(Punto posicionRecibida){
+		super(posicionRecibida);
         this.estado = new Cazador(this);
     }
 

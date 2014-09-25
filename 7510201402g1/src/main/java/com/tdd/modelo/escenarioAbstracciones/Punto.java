@@ -1,4 +1,4 @@
-package com.tdd.modelo.escenario;
+package com.tdd.modelo.escenarioAbstracciones;
 
 public class Punto {
 	

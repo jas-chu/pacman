@@ -1,4 +1,6 @@
-package com.tdd.modelo.escenario;
+package com.tdd.modelo.escenarioAbstracciones;
+
+import com.tdd.modelo.escenarioAbstracciones.Punto;
 
 public class AreaCuadrada {
 	
