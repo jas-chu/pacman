@@ -1,18 +1,12 @@
 package com.tdd.modelo.escenarioAbstracciones;
 
-public abstract class Personaje {
-	
-	protected Punto posicion;
+public abstract class Personaje extends ElementoDeEscenario {
 	
 	public Personaje(Punto posicionRecibida) {
-		this.posicion = new Punto(posicionRecibida);
+		super(posicionRecibida);
 	}
 	
     public abstract void matar();
     public abstract void revivir();
-
-	public boolean estoyEnArea(AreaCuadrada area) {
-		return area.puntoFormaParte(this.posicion);
-	}
 	
 }

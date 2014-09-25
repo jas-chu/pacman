@@ -32,4 +32,9 @@ public class Fantasma extends Enemigo {
     public Estado obtenerEstado(){
         return this.estado;
     }	
+
+	@Override
+	public void mover() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
 }
