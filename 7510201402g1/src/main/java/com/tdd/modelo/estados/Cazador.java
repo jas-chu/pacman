@@ -1,6 +1,7 @@
 package com.tdd.modelo.estados;
 
 import com.tdd.modelo.configuracion.Configuracion;
+import com.tdd.modelo.escenarioAbstracciones.Direccion;
 import com.tdd.modelo.fantasma.Estado;
 import com.tdd.modelo.fantasma.IncrementadorDeIra;
 import com.tdd.modelo.escenarioAbstracciones.Enemigo;
@@ -55,5 +56,10 @@ public class Cazador implements Estado {
     public int obtenerNivelIra(){
         return this.nivelIra;
     }
+
+	@Override
+	public Direccion getDireccion(Direccion direccionRecibida) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
 
 }
