@@ -22,7 +22,7 @@ public class MuertoTest {
 	}
 	
     @Test
-    public void testSerComido() {
+    public void SerComido() {
         Fantasma enemigo = new Fantasma(posicion);
         Cazador cazador = new Cazador(enemigo);
         fantasma.kill();

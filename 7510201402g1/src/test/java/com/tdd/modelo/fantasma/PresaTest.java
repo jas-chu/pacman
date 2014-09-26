@@ -9,21 +9,21 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class PresaTest {
-	
-	private Position posicion;
-	private Fantasma fantasma;
-	
+
+    private Position posicion;
+    private Fantasma fantasma;
+
     public PresaTest() {
     }
-	
-	@Before
-	public void setUp() {
-		posicion = new Position(0,0);
-		fantasma = new Fantasma(posicion);
-	}
-	
+
+    @Before
+    public void setUp() {
+        posicion = new Position(0, 0);
+        fantasma = new Fantasma(posicion);
+    }
+
     @Test
-    public void testSerComido() {
+    public void SerComido() {
         Presa presa = new Presa(fantasma);
         presa.serComido(fantasma);
         assertEquals(Muerto.class, fantasma.obtenerEstado().getClass());

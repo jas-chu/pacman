@@ -23,24 +23,24 @@ public class FantasmaTest {
 	}
 	
     @Test
-    public void testCrearComoCazador() {
+    public void CrearComoCazador() {
         assertEquals(Cazador.class, fantasma.obtenerEstado().getClass());
     }
 
     @Test
-    public void testMatar() {
+    public void Matar() {
         fantasma.kill();
         assertEquals(Muerto.class, fantasma.obtenerEstado().getClass());
     }
 
     @Test
-    public void testConvertirEnPresa() {
+    public void ConvertirEnPresa() {
         fantasma.turnToPrey();
         assertEquals(Presa.class, fantasma.obtenerEstado().getClass());
     }
 
     @Test
-    public void testRevivirComoCazador() {
+    public void RevivirComoCazador() {
         fantasma.kill();
         fantasma.revive();
         assertEquals(Cazador.class, fantasma.obtenerEstado().getClass());

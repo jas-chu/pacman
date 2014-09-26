@@ -23,7 +23,7 @@ public class CazadorTest {
 	}
 	
     @Test
-    public void testNivelIra() {
+    public void NivelIra() {
         Cazador cazador = new Cazador(fantasma);
         assertEquals(cazador.obtenerNivelIra(), 0);
         cazador.incrementarIra();
@@ -31,7 +31,7 @@ public class CazadorTest {
     }
 
     @Test
-    public void testSerComido() {
+    public void SerComido() {
         Fantasma enemigo = new Fantasma(posicion);
         Cazador cazador = new Cazador(enemigo);
         fantasma.turnToPrey();
