@@ -10,8 +10,7 @@ public class ConfiguracionTest {
     }
 
     @Test
-    public void testGetTiemposCazador() {
-        System.out.println("getTiemposCazador");
+    public void GetTiemposCazador() {
         Configuracion instance = Configuracion.getConfiguracion();
         int expResult = 3;
         int result = instance.getTiemposCazador().size();
@@ -19,8 +18,7 @@ public class ConfiguracionTest {
     }
 
     @Test
-    public void testGetTiempoMuerto() {
-        System.out.println("getTiempoMuerto");
+    public void GetTiempoMuerto() {
         Configuracion instance = Configuracion.getConfiguracion();
         Long expResult = (long) 1000;
         Long result = instance.getTiempoMuerto();
@@ -28,8 +26,7 @@ public class ConfiguracionTest {
     }
 
     @Test
-    public void testGetTiempoPresa() {
-        System.out.println("getTiempoPresa");
+    public void TiempoPresa() {        
         Configuracion instance = Configuracion.getConfiguracion();
         Long expResult = (long) 1000;
         Long result = instance.getTiempoPresa();
