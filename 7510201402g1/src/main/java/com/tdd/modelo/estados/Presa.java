@@ -1,20 +1,20 @@
 package com.tdd.modelo.estados;
 
 import com.tdd.modelo.configuracion.Configuracion;
-import com.tdd.modelo.escenarioAbstracciones.Direccion;
-import com.tdd.modelo.escenarioAbstracciones.Enemigo;
-import com.tdd.modelo.escenarioAbstracciones.Personaje;
-import com.tdd.modelo.escenarioAbstracciones.Revividor;
+import com.tdd.model.stageAbstractions.Direction;
+import com.tdd.model.stageAbstractions.Enemy;
+import com.tdd.model.stageAbstractions.StageCharacter;
+import com.tdd.model.stageAbstractions.Revividor;
 
 public class Presa extends Pasivo {
 
-    public Presa(Enemigo enemigo) {
+    public Presa(Enemy enemigo) {
         super(enemigo, new Revividor(enemigo), Presa.obtenerTiempoPresa());
     }
 
     @Override
-    public void serComido(Personaje p) {
-        this.enemigo.matar();
+    public void serComido(StageCharacter p) {
+        this.enemigo.kill();
     }
 
     private static int obtenerTiempoPresa() {
@@ -22,7 +22,7 @@ public class Presa extends Pasivo {
     }
 
 	@Override
-	public Direccion getDireccion(Direccion direccionRecibida) {
+	public Direction getDireccion(Direction direccionRecibida) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 

@@ -1,24 +1,24 @@
 package com.tdd.modelo.estados;
 
 import com.tdd.modelo.configuracion.Configuracion;
-import com.tdd.modelo.escenarioAbstracciones.Direccion;
+import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.modelo.fantasma.Estado;
 import com.tdd.modelo.fantasma.IncrementadorDeIra;
-import com.tdd.modelo.escenarioAbstracciones.Enemigo;
-import com.tdd.modelo.escenarioAbstracciones.Personaje;
+import com.tdd.model.stageAbstractions.Enemy;
+import com.tdd.model.stageAbstractions.StageCharacter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 
 public class Cazador implements Estado {
 
-    private Enemigo enemigo;
+    private Enemy enemigo;
     private Timer temporizador;
     private int nivelIra;
     private int cantidadNivelesIra;
     private List<Long> tiemposDeEspera;
 
-    public Cazador(Enemigo e) {
+    public Cazador(Enemy e) {
         this.configurarCazador();
 
         this.enemigo = e;
@@ -40,8 +40,8 @@ public class Cazador implements Estado {
     }
 
     @Override
-    public void serComido(Personaje p) {
-        p.matar();
+    public void serComido(StageCharacter p) {
+        p.kill();
     }
 
     private void configurarCazador() {
@@ -58,7 +58,7 @@ public class Cazador implements Estado {
     }
 
 	@Override
-	public Direccion getDireccion(Direccion direccionRecibida) {
+	public Direction getDireccion(Direction direccionRecibida) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 

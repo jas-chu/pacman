@@ -1,6 +1,6 @@
 package com.tdd.modelo.fantasma;
 
-import com.tdd.modelo.escenarioAbstracciones.Punto;
+import com.tdd.model.stageAbstractions.Position;
 import com.tdd.modelo.fantasma.Fantasma;
 import com.tdd.modelo.estados.Cazador;
 import com.tdd.modelo.estados.Muerto;
@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class CazadorTest {
 	
-	private Punto posicion;
+	private Position posicion;
 	private Fantasma fantasma;
 	
     public CazadorTest() {
@@ -18,7 +18,7 @@ public class CazadorTest {
 	
 	@Before
 	public void setUp() {
-		posicion = new Punto(0,0);
+		posicion = new Position(0,0);
 		fantasma = new Fantasma(posicion);
 	}
 	
@@ -34,7 +34,7 @@ public class CazadorTest {
     public void testSerComido() {
         Fantasma enemigo = new Fantasma(posicion);
         Cazador cazador = new Cazador(enemigo);
-        fantasma.convertirEnPresa();
+        fantasma.turnToPrey();
         cazador.serComido(fantasma);
         assertEquals(Muerto.class, fantasma.obtenerEstado().getClass());
     }

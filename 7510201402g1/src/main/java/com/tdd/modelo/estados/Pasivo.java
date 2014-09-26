@@ -1,17 +1,17 @@
 package com.tdd.modelo.estados;
 
 import com.tdd.modelo.fantasma.Estado;
-import com.tdd.modelo.escenarioAbstracciones.Enemigo;
-import com.tdd.modelo.escenarioAbstracciones.Personaje;
+import com.tdd.model.stageAbstractions.Enemy;
+import com.tdd.model.stageAbstractions.StageCharacter;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public abstract class Pasivo implements Estado {
 
-    protected Enemigo enemigo;
+    protected Enemy enemigo;
     private Timer temporizador;
 
-    public Pasivo(Enemigo enemigo, TimerTask tarea, int tiempoDeEspera) {
+    public Pasivo(Enemy enemigo, TimerTask tarea, int tiempoDeEspera) {
         this.enemigo = enemigo;
         this.temporizador = new Timer();
         this.temporizador.schedule(tarea, tiempoDeEspera);
@@ -24,6 +24,6 @@ public abstract class Pasivo implements Estado {
     }
 
     @Override
-    public abstract void serComido(Personaje p);
+    public abstract void serComido(StageCharacter p);
 
 }

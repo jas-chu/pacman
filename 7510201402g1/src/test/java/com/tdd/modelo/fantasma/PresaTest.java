@@ -1,6 +1,6 @@
 package com.tdd.modelo.fantasma;
 
-import com.tdd.modelo.escenarioAbstracciones.Punto;
+import com.tdd.model.stageAbstractions.Position;
 import com.tdd.modelo.fantasma.Fantasma;
 import com.tdd.modelo.estados.Muerto;
 import com.tdd.modelo.estados.Presa;
@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class PresaTest {
 	
-	private Punto posicion;
+	private Position posicion;
 	private Fantasma fantasma;
 	
     public PresaTest() {
@@ -18,7 +18,7 @@ public class PresaTest {
 	
 	@Before
 	public void setUp() {
-		posicion = new Punto(0,0);
+		posicion = new Position(0,0);
 		fantasma = new Fantasma(posicion);
 	}
 	

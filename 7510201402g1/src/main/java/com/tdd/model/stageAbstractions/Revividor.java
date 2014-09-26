@@ -1,19 +1,19 @@
-package com.tdd.modelo.escenarioAbstracciones;
+package com.tdd.model.stageAbstractions;
 
 import java.util.TimerTask;
 
 public class Revividor extends TimerTask {
 
-    private Personaje personaje;
+    private StageCharacter personaje;
 
-    public Revividor(Personaje p) {
+    public Revividor(StageCharacter p) {
         super();
         this.personaje = p;
     }
 
     @Override
     public void run() {
-        this.personaje.revivir();
+        this.personaje.revive();
     }
 
 }

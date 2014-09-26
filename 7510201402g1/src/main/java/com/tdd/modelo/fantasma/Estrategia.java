@@ -1,10 +1,10 @@
 package com.tdd.modelo.fantasma;
 
-import com.tdd.modelo.escenarioAbstracciones.Direccion;
+import com.tdd.model.stageAbstractions.Direction;
 
 public abstract class Estrategia {
 	
-	public abstract Direccion getDireccion();
+	public abstract Direction getDireccion();
 	
 	public abstract void avanzarCiclo();
 	

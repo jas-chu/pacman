@@ -1,14 +1,14 @@
 package com.tdd.modelo.fantasma;
 
-import com.tdd.modelo.escenarioAbstracciones.Direccion;
-import com.tdd.modelo.escenarioAbstracciones.Personaje;
+import com.tdd.model.stageAbstractions.Direction;
+import com.tdd.model.stageAbstractions.StageCharacter;
 
 public interface Estado {
 
     public void incrementarIra();
 
-    public void serComido(Personaje p);
+    public void serComido(StageCharacter p);
 	
-	public Direccion getDireccion(Direccion direccionRecibida);
+	public Direction getDireccion(Direction direccionRecibida);
 
 }

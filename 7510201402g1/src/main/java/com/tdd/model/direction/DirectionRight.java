@@ -1,16 +1,17 @@
-package com.tdd.modelo.direcciones;
+package com.tdd.model.direction;
 
-import com.tdd.modelo.escenarioAbstracciones.Direccion;
+import com.tdd.model.stageAbstractions.Direction;
+import com.tdd.model.stageAbstractions.Position;
 
-public class DireccionDerecha extends Direccion {
+public class DirectionRight extends Direction {
 
 	@Override
-	public int getNuevaPosicion(int posicion) {
+	public int getNewPosition(Position position) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
 	@Override
-	public Direccion invertir() {
+	public Direction invert() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 	

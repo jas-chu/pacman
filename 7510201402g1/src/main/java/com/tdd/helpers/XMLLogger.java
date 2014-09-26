@@ -1,5 +1,5 @@
 package com.tdd.helpers;
 
-public class LoggerXML {
+public class XMLLogger {
 	
 }

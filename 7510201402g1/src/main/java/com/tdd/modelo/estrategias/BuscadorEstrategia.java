@@ -1,12 +1,12 @@
 package com.tdd.modelo.estrategias;
 
-import com.tdd.modelo.escenarioAbstracciones.Direccion;
+import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.modelo.fantasma.Estrategia;
 
 public class BuscadorEstrategia extends Estrategia {
 
 	@Override
-	public Direccion getDireccion() {
+	public Direction getDireccion() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
