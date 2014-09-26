@@ -1,6 +1,6 @@
 package com.tdd.modelo.configuracion;
 
-import com.tdd.modelo.configuracion.Configuracion;
+import com.tdd.model.configuration.Configuration;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -10,26 +10,26 @@ public class ConfiguracionTest {
     }
 
     @Test
-    public void GetTiemposCazador() {
-        Configuracion instance = Configuracion.getConfiguracion();
+    public void GetHunterTimes() {
+        Configuration instance = Configuration.getConfiguration();
         int expResult = 3;
-        int result = instance.getTiemposCazador().size();
+        int result = instance.getHunterTimes().size();
         assertEquals(expResult, result);
     }
 
     @Test
-    public void GetTiempoMuerto() {
-        Configuracion instance = Configuracion.getConfiguracion();
+    public void GetDeadTime() {
+        Configuration instance = Configuration.getConfiguration();
         Long expResult = (long) 1000;
-        Long result = instance.getTiempoMuerto();
+        Long result = instance.getDeadTime();
         assertEquals(expResult, result);
     }
 
     @Test
-    public void TiempoPresa() {        
-        Configuracion instance = Configuracion.getConfiguracion();
+    public void PreyTime() {        
+        Configuration instance = Configuration.getConfiguration();
         Long expResult = (long) 1000;
-        Long result = instance.getTiempoPresa();
+        Long result = instance.getPreyTime();
         assertEquals(expResult, result);
     }
 
