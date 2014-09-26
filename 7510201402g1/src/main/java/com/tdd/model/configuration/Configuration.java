@@ -73,15 +73,15 @@ public class Configuration {
         return configuration.filePath;
     }
 
-    public Collection<Long> getTiemposCazador() {
+    public Collection<Long> getHunterTimes() {
         return (Collection<Long>) configuration.getTransitions().get("hunterTimes");
     }
 
-    public Long getTiempoMuerto() {
+    public Long getDeadTime() {
         return (Long) configuration.getTransitions().get("deadTime");
     }
 
-    public Long getTiempoPresa() {
+    public Long getPreyTime() {
         return (Long) configuration.getTransitions().get("preyTime");
     }
 

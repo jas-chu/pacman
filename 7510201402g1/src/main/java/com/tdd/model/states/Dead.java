@@ -19,7 +19,7 @@ public class Dead extends Passive {
     }
 
     private static int getDeadTime() {
-        return Configuration.getConfiguracion().getTiempoMuerto().intValue();
+        return Configuration.getConfiguration().getDeadTime().intValue();
     }
 
     @Override

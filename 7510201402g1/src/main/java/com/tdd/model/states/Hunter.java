@@ -47,8 +47,8 @@ public class Hunter implements State {
     private void setHunterConfiguration() {
         this.waitingTimes = new ArrayList<>();
         this.numberOfAngerLevels = 3;
-        Configuration configuration = Configuration.getConfiguracion();
-        for (Long tiempo : configuration.getTiemposCazador()) {
+        Configuration configuration = Configuration.getConfiguration();
+        for (Long tiempo : configuration.getHunterTimes()) {
             waitingTimes.add(tiempo);
         }
     }

@@ -18,7 +18,7 @@ public class Prey extends Passive {
     }
 
     private static int getPreyTime() {
-        return Configuration.getConfiguracion().getTiempoPresa().intValue();
+        return Configuration.getConfiguration().getPreyTime().intValue();
     }
 
 	@Override

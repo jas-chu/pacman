@@ -1,17 +1,17 @@
 package com.tdd.modelo.estrategias;
 
 import com.tdd.model.stageAbstractions.Direction;
-import com.tdd.modelo.fantasma.Estrategia;
+import com.tdd.model.ghost.Strategy;
 
-public class PerezosoEstrategia extends Estrategia {
+public class PerezosoEstrategia extends Strategy {
 
 	@Override
-	public Direction getDireccion() {
+	public Direction getDirection() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
 	@Override
-	public void avanzarCiclo() {
+	public void nextCycle() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 	
