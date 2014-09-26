@@ -1,12 +1,12 @@
-package com.tdd.modelo.configuracion;
+package com.tdd.model.configuration;
 
 import com.tdd.model.configuration.Configuration;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class ConfiguracionTest {
+public class ConfigurationTest {
 
-    public ConfiguracionTest() {
+    public ConfigurationTest() {
     }
 
     @Test

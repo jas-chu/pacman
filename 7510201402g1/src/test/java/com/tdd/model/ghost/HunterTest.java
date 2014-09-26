@@ -1,19 +1,19 @@
-package com.tdd.modelo.fantasma;
+package com.tdd.model.ghost;
 
-import com.tdd.model.ghost.Ghost;
 import com.tdd.model.stageAbstractions.Position;
+import com.tdd.model.ghost.Ghost;
 import com.tdd.model.states.Hunter;
 import com.tdd.model.states.Dead;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DeadTest {
+public class HunterTest {
 
     private Position position;
     private Ghost ghost;
 
-    public DeadTest() {
+    public HunterTest() {
     }
 
     @Before
@@ -23,10 +23,18 @@ public class DeadTest {
     }
 
     @Test
+    public void AngerLevel() {
+        Hunter hunter = new Hunter(ghost);
+        assertEquals(hunter.getAngerLevel(), 0);
+        hunter.increaseAnger();
+        assertEquals(hunter.getAngerLevel(), 1);
+    }
+
+    @Test
     public void BeEaten() {
         Ghost enemy = new Ghost(position);
         Hunter hunter = new Hunter(enemy);
-        ghost.kill();
+        ghost.turnToPrey();
         hunter.beEaten(ghost);
         assertEquals(Dead.class, ghost.getState().getClass());
     }

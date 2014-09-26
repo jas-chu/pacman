@@ -1,9 +1,9 @@
-package com.tdd.modelo.estrategias;
+package com.tdd.model.strategy;
 
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.ghost.Strategy;
 
-public class PerezosoEstrategia extends Strategy {
+public class LazyStrategy extends Strategy {
 
 	@Override
 	public Direction getDirection() {

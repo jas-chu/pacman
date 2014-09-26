@@ -1,4 +1,4 @@
-package com.tdd.modelo.fantasma;
+package com.tdd.model.ghost;
 
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.ghost.Ghost;
