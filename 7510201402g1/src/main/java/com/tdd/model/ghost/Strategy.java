@@ -6,6 +6,6 @@ public abstract class Strategy {
 	
 	public abstract Direction getDirection();
 	
-	public abstract void nextCycle();
+	public abstract void advanceCycle();
 	
 }

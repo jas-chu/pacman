@@ -11,7 +11,7 @@ public class StrategyTemperamentSearcher extends Strategy {
 	}
 
 	@Override
-	public void nextCycle() {
+	public void advanceCycle() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 	
