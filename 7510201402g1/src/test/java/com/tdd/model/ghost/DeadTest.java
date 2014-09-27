@@ -8,8 +8,9 @@ public class DeadTest extends GenericGhostTest {
 
 	@Test
     public void beEaten() {
+		Class estado = ghost.getState().getClass();
         Dead dead = this.factory.createDead(ghost);
         dead.beEaten(anotherGhost);
-        assertEquals(Dead.class, ghost.getState().getClass());
+        assertEquals(estado, ghost.getState().getClass());
     }
 }
