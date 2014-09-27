@@ -20,11 +20,11 @@ public class Game {
 		ArrayList<Item> items = this.labyrinth.getItems();
 		
 		this.controller = new PlayerController(this.pacman);
-		this.createViews(items);
+		//this.createViews(items); queda para la siguiente iteracion
 	}
 
 	private void createViews(ArrayList<Item> items) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
 	
 	public void gameloop() {
@@ -32,19 +32,20 @@ public class Game {
 		while (!continuePlaying) {
 			this.controller.processMovement();
 			this.updateEnemies();
-			this.updateViews();
+			//this.updateViews(); queda para la siguiente iteracion
 			continuePlaying = (this.labyrinth.hasItems() && this.pacman.isAlive());
 		}
 	}
 
 	private void updateEnemies() {
-		for (Enemy enemigo : this.enemies) {
-			enemigo.move();
+		for (Enemy enemy : this.enemies) {
+			enemy.move();
+			enemy.advanceCycle();
 		}
 	}
 
 	private void updateViews() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
 	
 }
