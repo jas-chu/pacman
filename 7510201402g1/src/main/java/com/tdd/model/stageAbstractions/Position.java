@@ -41,6 +41,25 @@ public class Position {
 		return this.getY() - value;
 	}
 	
+	public Position createPositionAddingX(int givenX) {
+		int newX = this.calculateXAddingValue(givenX);
+		return new Position(newX, this.getY());
+	}
+	
+	public Position createPositionSubstractingX(int givenX) {
+		int newX = this.calculateXSubstractingValue(givenX);
+		return new Position(newX, this.getY());
+	}
+
+	public Position createPositionAddingY(int givenY) {
+		int newY = this.calculateYAddingValue(givenY);
+		return new Position(this.getX(), newY);
+	}
+	
+	public Position createPositionSubstractingY(int givenY) {
+		int newY = this.calculateYSubstractingValue(givenY);
+		return new Position(this.getX(), newY);
+	}
 	
 	public boolean hasEqualX(int anotherX) {
 		return (this.getX() == anotherX);

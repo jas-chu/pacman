@@ -6,13 +6,13 @@ import com.tdd.model.stageAbstractions.Position;
 public class DirectionDown extends Direction {
 
 	@Override
-	public int getNewPosition(Position position) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public Position getNewPosition(Position position) {
+		return position.createPositionAddingY(1);
 	}
 
 	@Override
 	public Direction invert() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return new DirectionUp();
 	}
 	
 }
