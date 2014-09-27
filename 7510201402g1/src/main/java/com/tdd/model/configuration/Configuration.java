@@ -24,8 +24,9 @@ public class Configuration {
 
     private final String filePath;
     private final Map transitions;
+	private static boolean initialized = false;
     private static Configuration configuration = null;
-    private static final String prePath = "/src/main/java/com/tdd/configuracion/";
+    private static final String prePath = "/src/main/java/com/tdd/model/configuration/";
 
     /**
      * Constructor privado para aplicar el patron singleton
@@ -33,6 +34,7 @@ public class Configuration {
     private Configuration() {
         this.transitions = new TreeMap<>();
         this.filePath = new File("").getAbsolutePath() + prePath + "configure.json";
+		Configuration.initialized = true;
         System.out.println(this.filePath);
     }
 
@@ -42,7 +44,7 @@ public class Configuration {
      * @return nueva instancia de configuration
      */
     static public Configuration getConfiguration() {
-        if (configuration == null) {
+        if (!Configuration.initialized) {
             configuration = new Configuration();
             JSONParser parser = new JSONParser();
             ContainerFactory containerFactory = configuration.createContainer();
