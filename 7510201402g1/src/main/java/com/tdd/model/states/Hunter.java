@@ -1,40 +1,31 @@
 package com.tdd.model.states;
 
-import com.tdd.model.configuration.Configuration;
-import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.ghost.State;
-import com.tdd.model.ghost.AngerIncreaser;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.StageCharacter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
-public class Hunter implements State {
+public class Hunter extends State {
 
-    private Enemy enemy;
-    private Timer timer;
     private int angerLevel;
-    private int numberOfAngerLevels;
-    private List<Long> waitingTimes;
+    private List<Long> waitingCycles;
 
-    public Hunter(Enemy e) {
-        this.setHunterConfiguration();
-
-        this.enemy = e;
+    public Hunter(Enemy givenEnemy, List<Long> angerWaitingCycles) {
+		super(givenEnemy);
         this.angerLevel = 0;
-
-        this.timer = new Timer();
-        int accumulatedTime = 0;
-        for (Long time : waitingTimes) {
-            accumulatedTime += time;
-            this.timer.schedule(new AngerIncreaser(this), accumulatedTime);
-        }
-    }
+		
+		this.waitingCycles = new ArrayList<Long>();
+		Long accumulated = new Long (0);
+		for (int i = 0 ; i < angerWaitingCycles.size() ; ++i) {
+			accumulated += angerWaitingCycles.get(i);
+			this.waitingCycles.add(accumulated);
+		}
+	}
 
     @Override
     public void increaseAnger() {
-        if (this.angerLevel < this.numberOfAngerLevels) {
+        if (this.angerLevel < this.waitingCycles.size()) {
             this.angerLevel++;
         }
     }
@@ -44,22 +35,20 @@ public class Hunter implements State {
         p.kill();
     }
 
-    private void setHunterConfiguration() {
-        this.waitingTimes = new ArrayList<>();
-        this.numberOfAngerLevels = 3;
-        Configuration configuration = Configuration.getConfiguration();
-        for (Long tiempo : configuration.getHunterTimes()) {
-            waitingTimes.add(tiempo);
-        }
-    }
-
     public int getAngerLevel() {
         return this.angerLevel;
     }
 
-    @Override
-    public Direction getDirection(Direction givenDirection) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	protected boolean shouldChangeState() {
+		if (this.waitingCycles.isEmpty())
+			return false;
+		return (this.countedCycles == this.waitingCycles.get(angerLevel));
+	}
 
+	@Override
+	protected void changeState() {
+		this.increaseAnger();
+	}
+	
 }

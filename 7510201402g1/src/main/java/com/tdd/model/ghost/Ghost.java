@@ -1,32 +1,31 @@
 package com.tdd.model.ghost;
 
-import com.tdd.model.states.Dead;
-import com.tdd.model.states.Prey;
-import com.tdd.model.states.Hunter;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
 
 public class Ghost extends Enemy {
     private State state;
+	private StateFactory factory;
     
-    public Ghost(Position givenPosition){
+    public Ghost(Position givenPosition, StateFactory givenFactory){
 		super(givenPosition);
-        this.state = new Hunter(this);
+		this.factory = givenFactory;
+        this.state = this.factory.createHunter(this);
     }
 
     @Override
     public void kill() {
-            this.state = new Dead(this);
+        this.state = this.factory.createDead(this);
     }
 
     @Override
     public void turnToPrey() {
-            this.state = new Prey(this);
+            this.state = this.factory.createPrey(this);
     }
 
     @Override
     public void revive() {
-            this.state = new Hunter(this);
+            this.state = this.factory.createHunter(this);
     }
     
     public State getState(){
@@ -36,5 +35,10 @@ public class Ghost extends Enemy {
 	@Override
 	public void move() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public void advanceCycle() {
+		this.state.advanceCycle();
 	}
 }

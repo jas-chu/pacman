@@ -1,29 +1,18 @@
 package com.tdd.model.states;
 
-import com.tdd.model.configuration.Configuration;
-import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.StageCharacter;
-import com.tdd.model.stageAbstractions.Revividor;
 
 public class Dead extends Passive {
 
-    public Dead(Enemy enemigo) {
-        super(enemigo, new Revividor(enemigo), Dead.getDeadTime());
+    public Dead(Enemy enemy, int deadCycles) {
+        super(enemy, deadCycles);
     }
 
     @Override
     public void beEaten(StageCharacter p) {
-        // por el momento no hace nada
-        // permite agregar funcionalidad
+        // for the moment, it doesn't do anything
+        // it allows functionality addition
     }
-
-    private static int getDeadTime() {
-        return Configuration.getConfiguration().getDeadTime().intValue();
-    }
-
-    @Override
-    public Direction getDirection(Direction givenDirection) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	
 }

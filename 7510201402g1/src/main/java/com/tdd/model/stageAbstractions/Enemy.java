@@ -9,5 +9,7 @@ public abstract class Enemy extends StageCharacter {
     public abstract void turnToPrey();
 
 	public abstract void move();
-
+	
+	public abstract void advanceCycle();
+	
 }
