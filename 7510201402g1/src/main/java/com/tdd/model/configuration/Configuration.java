@@ -24,7 +24,7 @@ public class Configuration {
 
     private final String filePath;
     private final Map transitions;
-    private static boolean initialized = false;
+	private static boolean initialized = false;
     private static Configuration configuration = null;
     private static final String prePath = "/src/main/java/com/tdd/model/configuration/";
 
@@ -34,7 +34,7 @@ public class Configuration {
     private Configuration() {
         this.transitions = new TreeMap<>();
         this.filePath = new File("").getAbsolutePath() + prePath + "configure.json";
-	Configuration.initialized = true;
+		Configuration.initialized = true;
         System.out.println(this.filePath);
     }
 
