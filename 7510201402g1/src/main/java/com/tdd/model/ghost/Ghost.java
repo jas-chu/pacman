@@ -1,16 +1,20 @@
 package com.tdd.model.ghost;
 
+import com.tdd.model.stage.Labyrinth;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
+import com.tdd.model.stageAbstractions.Stage;
 
 public class Ghost extends Enemy {
     private State state;
 	private StateFactory factory;
+	private Strategy strategy;
     
-    public Ghost(Position givenPosition, StateFactory givenFactory){
-		super(givenPosition);
+    public Ghost(Stage stage, Position givenPosition, StateFactory givenFactory, Strategy givenStrategy){
+		super(stage, givenPosition);
 		this.factory = givenFactory;
         this.state = this.factory.createHunter(this);
+		this.strategy = givenStrategy;
     }
 
     @Override
@@ -34,11 +38,12 @@ public class Ghost extends Enemy {
 
 	@Override
 	public void move() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		
 	}
 
 	@Override
 	public void advanceCycle() {
 		this.state.advanceCycle();
+		this.strategy.advanceCycle();
 	}
 }

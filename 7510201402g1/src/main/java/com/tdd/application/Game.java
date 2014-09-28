@@ -40,7 +40,6 @@ public class Game {
 	private void updateEnemies() {
 		for (Enemy enemy : this.enemies) {
 			enemy.move();
-			enemy.advanceCycle();
 		}
 	}
 

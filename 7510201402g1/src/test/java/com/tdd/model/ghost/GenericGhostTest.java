@@ -1,6 +1,7 @@
 package com.tdd.model.ghost;
 
 import com.tdd.model.stageAbstractions.Position;
+import com.tdd.model.stageAbstractions.Stage;
 import java.util.ArrayList;
 import org.junit.Before;
 
@@ -19,8 +20,8 @@ public class GenericGhostTest {
 		angerWaitingCycles.add(new Long(2));
 		angerWaitingCycles.add(new Long(5));
 		this.factory = new StateFactory(angerWaitingCycles, 4, 7);
-		this.ghost = new Ghost(position, this.factory);
-		this.anotherGhost = new Ghost(position, this.factory);
+		this.ghost = new Ghost(null, position, this.factory, null);
+		this.anotherGhost = new Ghost(null, position, this.factory, null);
 	}
 	
 }

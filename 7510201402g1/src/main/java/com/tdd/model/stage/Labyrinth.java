@@ -3,10 +3,11 @@ package com.tdd.model.stage;
 import com.tdd.helpers.XMLReader;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Item;
+import com.tdd.model.stageAbstractions.Stage;
 import java.util.ArrayList;
 import org.w3c.dom.Node;
 
-public class Labyrinth {
+public class Labyrinth implements Stage {
 	
 	private ArrayList<Item> items;
 	private ArrayList<Enemy> enemies;
