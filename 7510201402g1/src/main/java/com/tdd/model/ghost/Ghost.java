@@ -1,6 +1,8 @@
 package com.tdd.model.ghost;
 
+import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.stage.Labyrinth;
+import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Stage;
@@ -38,7 +40,18 @@ public class Ghost extends Enemy {
 
 	@Override
 	public void move() {
-		
+		int i = 4; // four possible directions
+		while (i > 0) {
+			Direction firstDirection = this.strategy.getDirection();
+			Direction finalDirection = this.state.getDirection(firstDirection);
+			Position nextPosition = finalDirection.getNewPosition(this.position);
+			try {
+				this.stage.placeElement(nextPosition, this);
+			} catch (BlockedCellException error) {
+				i--; // must look another way
+			}
+		}
+		this.advanceCycle();
 	}
 
 	@Override
