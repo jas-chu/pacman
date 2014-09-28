@@ -1,0 +1,5 @@
+<juego   posicionPacman="0412" fila="04" columna="12" sentido="arriba" puntaje="122" finJuego="false">
+  <fantasma id="1" nodo="0110" fila="01" columna="10" sentido="abajo" personalidad="zonzo" estado="cazador" />
+  <fantasma id="2" nodo="0401" fila="04" columna="01" sentido="izquierda" personalidad="zonzo" estado="cazador" />
+  <fantasma id="3" nodo="1009" fila="10" columna="09" sentido="derecha" personalidad="zonzo" estado="cazador" />
+</juego>
