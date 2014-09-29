@@ -2,6 +2,7 @@ package com.tdd.model.stage;
 
 import com.tdd.helpers.XMLReader;
 import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.ghost.Ghost;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Position;
@@ -53,6 +54,11 @@ public class Labyrinth implements Stage {
 	@Override
 	public void placeElement(Position position, StageElement element) throws BlockedCellException {
 		this.testPlaceElement(position);
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public void placeEnemyAtHome(Enemy givenEnemy) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 	

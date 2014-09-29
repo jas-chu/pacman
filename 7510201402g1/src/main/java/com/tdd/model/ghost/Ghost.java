@@ -1,7 +1,6 @@
 package com.tdd.model.ghost;
 
 import com.tdd.model.exceptions.BlockedCellException;
-import com.tdd.model.stage.Labyrinth;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
@@ -22,16 +21,17 @@ public class Ghost extends Enemy {
     @Override
     public void kill() {
         this.state = this.factory.createDead(this);
+		this.stage.placeEnemyAtHome(this);
     }
 
     @Override
     public void turnToPrey() {
-            this.state = this.factory.createPrey(this);
+		this.state = this.factory.createPrey(this);
     }
 
     @Override
     public void revive() {
-            this.state = this.factory.createHunter(this);
+		this.state = this.factory.createHunter(this);
     }
     
     public State getState(){
