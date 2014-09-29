@@ -15,6 +15,7 @@ public class Labyrinth {
 	
 	public Labyrinth(String XMLpath) {
 		Node firstNode = XMLReader.getFirstNode(XMLpath);
+                
 		/* TODO:
 			Recorrer el nodo y por cada elemento llamar a una instancia factory
 			para que me cree la entidad que corresponda y lo agregue a la lista

@@ -1,25 +1,52 @@
 package com.tdd.helpers;
 
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 public class XMLReader {
-	
-	
-	public static Node getFirstNode(String XMLpath) {
-		try {
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document document = builder.parse(ClassLoader.getSystemResourceAsStream(XMLpath));
-			return document.getDocumentElement();
-		} catch (Exception ex) {
-			Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
-			return null;
-		}
-	}
-	
+    /**
+     * 
+     * @param XMLpath
+     * @return 
+     */
+    public static Node getFirstNode(String XMLpath) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            //TODO: Ojo con el ClassLoader que en los test suele no andar
+            Document document = builder.parse(ClassLoader.getSystemResourceAsStream(XMLpath));
+            return document.getDocumentElement();
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+            Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    /**
+     * 
+     * @param XMLpath
+     * @param tagName
+     * @return list of nodes with name=tagName
+     */
+    public static NodeList getNodeByName(String XMLpath, String tagName) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            //TODO: Ojo con el ClassLoader que en los test suele no andar
+            Document document = builder.parse(ClassLoader.getSystemResourceAsStream(XMLpath));
+            return document.getElementsByTagName(tagName);
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+            Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+
 }
