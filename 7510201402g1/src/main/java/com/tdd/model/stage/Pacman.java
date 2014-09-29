@@ -3,13 +3,14 @@ package com.tdd.model.stage;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.StageCharacter;
 import com.tdd.model.stageAbstractions.Position;
+import com.tdd.model.stageAbstractions.Stage;
 
 public class Pacman extends StageCharacter {
 	
 	private boolean alive;
 	
-	public Pacman(Position posicionRecibida) {
-		super(posicionRecibida);
+	public Pacman(Stage givenStage, Position givenPosition) {
+		super(givenStage, givenPosition);
 	}
 	
 	@Override

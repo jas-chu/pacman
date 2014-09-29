@@ -4,20 +4,21 @@ import com.tdd.model.stage.Labyrinth;
 import com.tdd.model.stage.Pacman;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Item;
+import com.tdd.model.stageAbstractions.Stage;
 import java.util.ArrayList;
 
 public class Game {
 	
-	private Labyrinth labyrinth;
+	private Stage stage;
 	private ArrayList<Enemy> enemies;
 	private Pacman pacman;
 	private PlayerController controller;
 	
 	public Game(String XMLpath) {
-		this.labyrinth = new Labyrinth(XMLpath);
-		this.enemies = this.labyrinth.getEnemies();
-		this.pacman = this.labyrinth.getPacman();
-		ArrayList<Item> items = this.labyrinth.getItems();
+		this.stage = new Labyrinth(XMLpath);
+		this.enemies = this.stage.getEnemies();
+		this.pacman = this.stage.getPacman();
+		ArrayList<Item> items = this.stage.getItems();
 		
 		this.controller = new PlayerController(this.pacman);
 		//this.createViews(items); queda para la siguiente iteracion
@@ -33,14 +34,13 @@ public class Game {
 			this.controller.processMovement();
 			this.updateEnemies();
 			//this.updateViews(); queda para la siguiente iteracion
-			continuePlaying = (this.labyrinth.hasItems() && this.pacman.isAlive());
+			continuePlaying = (this.stage.hasItems() && this.pacman.isAlive());
 		}
 	}
 
 	private void updateEnemies() {
 		for (Enemy enemy : this.enemies) {
 			enemy.move();
-			enemy.advanceCycle();
 		}
 	}
 

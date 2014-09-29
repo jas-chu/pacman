@@ -1,31 +1,37 @@
 package com.tdd.model.ghost;
 
+import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
+import com.tdd.model.stageAbstractions.Stage;
 
 public class Ghost extends Enemy {
     private State state;
 	private StateFactory factory;
+	private Strategy strategy;
     
-    public Ghost(Position givenPosition, StateFactory givenFactory){
-		super(givenPosition);
+    public Ghost(Stage stage, Position givenPosition, StateFactory givenFactory, Strategy givenStrategy){
+		super(stage, givenPosition);
 		this.factory = givenFactory;
         this.state = this.factory.createHunter(this);
+		this.strategy = givenStrategy;
     }
 
     @Override
     public void kill() {
         this.state = this.factory.createDead(this);
+		this.stage.placeEnemyAtHome(this);
     }
 
     @Override
     public void turnToPrey() {
-            this.state = this.factory.createPrey(this);
+		this.state = this.factory.createPrey(this);
     }
 
     @Override
     public void revive() {
-            this.state = this.factory.createHunter(this);
+		this.state = this.factory.createHunter(this);
     }
     
     public State getState(){
@@ -34,11 +40,23 @@ public class Ghost extends Enemy {
 
 	@Override
 	public void move() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		int i = 4; // four possible directions
+		while (i > 0) {
+			Direction firstDirection = this.strategy.getDirection();
+			Direction finalDirection = this.state.getDirection(firstDirection);
+			Position nextPosition = finalDirection.getNewPosition(this.position);
+			try {
+				this.stage.placeElement(nextPosition, this);
+			} catch (BlockedCellException error) {
+				i--; // must look another way
+			}
+		}
+		this.advanceCycle();
 	}
 
 	@Override
 	public void advanceCycle() {
 		this.state.advanceCycle();
+		this.strategy.advanceCycle();
 	}
 }

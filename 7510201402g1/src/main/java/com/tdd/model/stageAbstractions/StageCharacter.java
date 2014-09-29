@@ -2,8 +2,8 @@ package com.tdd.model.stageAbstractions;
 
 public abstract class StageCharacter extends StageElement {
 	
-	public StageCharacter(Position passedPosition) {
-		super(passedPosition);
+	public StageCharacter(Stage givenStage, Position givenPosition) {
+		super(givenStage, givenPosition);
 	}
 	
     public abstract void kill();
