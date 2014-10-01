@@ -14,14 +14,14 @@ public class Game {
 	private Pacman pacman;
 	private PlayerController controller;
 	
-	public Game(String XMLpath) {
-		this.stage = new Labyrinth(XMLpath);
+	public Game(String XMLStagePath, String XMLPacmanDirectory) {
+		this.stage = new Labyrinth(XMLStagePath);
 		this.enemies = this.stage.getEnemies();
 		this.pacman = this.stage.getPacman();
 		ArrayList<Item> items = this.stage.getItems();
 		
-		this.controller = new PlayerController(this.pacman);
-		//this.createViews(items); queda para la siguiente iteracion
+		this.controller = new PlayerController(XMLPacmanDirectory, this.pacman);
+		//this.createViews(items); until now, left for next iteration
 	}
 
 	private void createViews(ArrayList<Item> items) {
@@ -33,7 +33,7 @@ public class Game {
 		while (!continuePlaying) {
 			this.controller.processMovement();
 			this.updateEnemies();
-			//this.updateViews(); queda para la siguiente iteracion
+			//this.updateViews(); until now, left for next iteration
 			continuePlaying = (this.stage.hasItems() && this.pacman.isAlive());
 		}
 	}

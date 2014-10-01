@@ -15,7 +15,6 @@ public class Labyrinth implements Stage {
 	
 	private ArrayList<Item> items;
 	private ArrayList<Enemy> enemies;
-	private ArrayList<Wall> walls;
 	private Pacman pacman;
 	
 	public Labyrinth(String XMLpath) {

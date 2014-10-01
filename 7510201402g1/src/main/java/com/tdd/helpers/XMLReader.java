@@ -13,23 +13,32 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class XMLReader {
-
+	
+	/**
+	 *
+	 * @param XMLpath
+	 * @return
+	 */
+	private static Document getDocument(String XMLpath) {
+		try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            //TODO: Ojo con el ClassLoader que en los test suele no andar
+            return  builder.parse(ClassLoader.getSystemResourceAsStream(XMLpath));
+        } catch (ParserConfigurationException | SAXException | IOException ex) {
+            Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+	}
+	
     /**
      *
      * @param XMLpath
      * @return
      */
     public static Node getFirstNode(String XMLpath) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            //TODO: Ojo con el ClassLoader que en los test suele no andar
-            Document document = builder.parse(ClassLoader.getSystemResourceAsStream(XMLpath));
-            return document.getDocumentElement();
-        } catch (ParserConfigurationException | SAXException | IOException ex) {
-            Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+        Document document = getDocument(XMLpath);
+		return document.getDocumentElement();
     }
 
     /**
@@ -39,16 +48,8 @@ public class XMLReader {
      * @return list of nodes with name=tagName
      */
     public static NodeList getNodeByName(String XMLpath, String tagName) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            //TODO: Ojo con el ClassLoader que en los test suele no andar
-            Document document = builder.parse(ClassLoader.getSystemResourceAsStream(XMLpath));
-            return document.getElementsByTagName(tagName);
-        } catch (ParserConfigurationException | SAXException | IOException ex) {
-            Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+        Document document = getDocument(XMLpath);
+		return document.getElementsByTagName(tagName);
     }
 
     /**
@@ -70,4 +71,5 @@ public class XMLReader {
         }
         return attribute;
     }
+	
 }
