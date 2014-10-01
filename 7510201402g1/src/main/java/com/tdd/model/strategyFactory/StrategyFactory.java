@@ -1,6 +1,9 @@
 package com.tdd.model.strategyFactory;
 
+import com.tdd.model.ghost.Strategy;
+
 public interface StrategyFactory {
-//    Cada factory particular tiene un metodo que devuelve una instancia de la strategy correspondiente.
+    // Devuelve una instancia de la estrategia correspondiente.
+    public Strategy getStrategy();
     
 }
