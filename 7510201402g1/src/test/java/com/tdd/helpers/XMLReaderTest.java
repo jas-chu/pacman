@@ -6,6 +6,7 @@
 
 package com.tdd.helpers;
 
+import javax.management.AttributeNotFoundException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -72,7 +73,7 @@ public class XMLReaderTest {
     /**
      * Test of getAttributeValue method, of class XMLReader.
      */
-    @Test
+    @Test(expected = AttributeNotFoundException.class)
     public void testGetAttributeValue() throws Exception {
         System.out.println("getAttributeValue");
         Node node = null;
