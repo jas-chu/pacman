@@ -57,8 +57,9 @@ public class XMLReader {
      * @param node
      * @param attributeName
      * @return value
+     * @throws javax.management.AttributeNotFoundException
      */
-    public static String getAttributeValue(Node node, String attributeName) throws Exception {
+    public static String getAttributeValue(Node node, String attributeName) throws AttributeNotFoundException {
         String attribute = "";
         if (node.hasAttributes()) {
             Node attr = node.getAttributes().getNamedItem(attributeName);
