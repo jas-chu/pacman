@@ -1,5 +1,5 @@
 package com.tdd.model.strategyFactory;
 
-public class SillyStrategyFactory {
+public class SillyStrategyFactory implements StrategyFactory{
 
 }
