@@ -1,5 +1,6 @@
-package com.tdd.application;
+package com.tdd.application.gameAbstractions;
 
+import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.stage.Labyrinth;
 import com.tdd.model.stage.Pacman;
 import com.tdd.model.stageAbstractions.Enemy;
@@ -7,28 +8,29 @@ import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Stage;
 import java.util.ArrayList;
 
-public class Game {
+public abstract class Game {
 	
 	private Stage stage;
 	private ArrayList<Enemy> enemies;
-	private Pacman pacman;
-	private PlayerController controller;
+	protected Pacman pacman;
+	protected PlayerController controller;
 	
-	public Game(String XMLStagePath, String XMLPacmanDirectory) {
+	public Game(String XMLStagePath) {
 		this.stage = new Labyrinth(XMLStagePath);
 		this.enemies = this.stage.getEnemies();
 		this.pacman = this.stage.getPacman();
 		ArrayList<Item> items = this.stage.getItems();
-		
-		this.controller = new PlayerController(XMLPacmanDirectory, this.pacman);
 		//this.createViews(items); until now, left for next iteration
 	}
-
+	
+	protected abstract PlayerController createPlayerController();
+	
 	private void createViews(ArrayList<Item> items) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 	
 	public void gameloop() {
+		this.controller = createPlayerController();
 		boolean continuePlaying = false;
 		while (!continuePlaying) {
 			this.controller.processMovement();
