@@ -1,5 +1,7 @@
 package com.tdd.model.cell;
 
-public class TeleportCell {
+import com.tdd.model.stageAbstractions.Cell;
+
+public class TeleportCell extends Cell {
 
 }

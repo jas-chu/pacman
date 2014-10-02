@@ -23,8 +23,9 @@ import org.json.simple.parser.ParseException;
 public class Configuration {
 
     private final String filePath;
+    private final String fileLabyrinthPath;
     private final Map transitions;
-	private static boolean initialized = false;
+    private static boolean initialized = false;
     private static Configuration configuration = null;
     private static final String prePath = "/src/main/java/com/tdd/model/configuration/";
 
@@ -34,7 +35,8 @@ public class Configuration {
     private Configuration() {
         this.transitions = new TreeMap<>();
         this.filePath = new File("").getAbsolutePath() + prePath + "configure.json";
-		Configuration.initialized = true;
+        this.fileLabyrinthPath = new File("").getAbsolutePath() + prePath + "configure.json";
+        Configuration.initialized = true;
         System.out.println(this.filePath);
     }
 
@@ -73,6 +75,10 @@ public class Configuration {
 
     private String getFilePath() {
         return configuration.filePath;
+    }
+
+    public String getLabyrinthFilePath() {
+        return configuration.fileLabyrinthPath;
     }
 
     public Collection<Long> getHunterTimes() {

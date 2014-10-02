@@ -1,6 +1,7 @@
-
 package com.tdd.model.cell;
 
-public class ClearCell {
-    
+import com.tdd.model.stageAbstractions.Cell;
+
+public class ClearCell extends Cell {
+
 }

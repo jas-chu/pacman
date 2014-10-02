@@ -1,6 +1,7 @@
-
 package com.tdd.model.cell;
 
-public class BlockedCell {
-    
+import com.tdd.model.stageAbstractions.Cell;
+
+public class BlockedCell extends Cell {
+
 }
