@@ -37,7 +37,7 @@ public class XMLReader {
      * @return
      */
     public static Node getFirstNode(String XMLpath) {
-        Document document = getDocument(XMLpath);
+        Document document = XMLReader.getDocument(XMLpath);
 		return document.getDocumentElement();
     }
 
@@ -48,7 +48,7 @@ public class XMLReader {
      * @return list of nodes with name=tagName
      */
     public static NodeList getNodeByName(String XMLpath, String tagName) {
-        Document document = getDocument(XMLpath);
+        Document document = XMLReader.getDocument(XMLpath);
 		return document.getElementsByTagName(tagName);
     }
 
