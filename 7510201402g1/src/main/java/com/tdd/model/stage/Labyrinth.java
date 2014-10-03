@@ -3,6 +3,7 @@ package com.tdd.model.stage;
 import com.tdd.helpers.XMLReader;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.ghost.Ghost;
+import com.tdd.model.stageAbstractions.Area;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Position;
@@ -60,6 +61,10 @@ public class Labyrinth implements Stage {
 	@Override
 	public void placeEnemyAtHome(Enemy givenEnemy) {
 		throw new UnsupportedOperationException("Not supported yet.");
+	}
+	
+	public boolean pacmanIsInArea(Area area) {
+		return this.pacman.isInArea(area);
 	}
 	
 }
