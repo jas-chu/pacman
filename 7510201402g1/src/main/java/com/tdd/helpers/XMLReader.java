@@ -13,24 +13,24 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class XMLReader {
-	
-	/**
-	 *
-	 * @param XMLpath
-	 * @return
-	 */
-	private static Document getDocument(String XMLpath) {
-		try {
+
+    /**
+     *
+     * @param XMLpath
+     * @return
+     */
+    private static Document getDocument(String XMLpath) {
+        try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             //TODO: Ojo con el ClassLoader que en los test suele no andar
-            return  builder.parse(ClassLoader.getSystemResourceAsStream(XMLpath));
+            return builder.parse(ClassLoader.getSystemResourceAsStream(XMLpath));
         } catch (ParserConfigurationException | SAXException | IOException ex) {
             Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-	}
-	
+    }
+
     /**
      *
      * @param XMLpath
@@ -38,7 +38,7 @@ public class XMLReader {
      */
     public static Node getFirstNode(String XMLpath) {
         Document document = XMLReader.getDocument(XMLpath);
-		return document.getDocumentElement();
+        return document.getDocumentElement();
     }
 
     /**
@@ -49,7 +49,7 @@ public class XMLReader {
      */
     public static NodeList getNodeByName(String XMLpath, String tagName) {
         Document document = XMLReader.getDocument(XMLpath);
-		return document.getElementsByTagName(tagName);
+        return document.getElementsByTagName(tagName);
     }
 
     /**
@@ -65,11 +65,39 @@ public class XMLReader {
             Node attr = node.getAttributes().getNamedItem(attributeName);
             if (attr != null) {
                 attribute = attr.getNodeValue();
-            }else{
-                throw new  AttributeNotFoundException("No existe el atributo "+attributeName);
+            } else {
+                throw new AttributeNotFoundException("No existe el atributo " + attributeName);
             }
         }
         return attribute;
     }
-	
+
+    /**
+     * TODO REFACTORIZAR
+     *
+     * @param nodeList
+     * @param nodeId
+     * @return
+     */
+    public static Node getNodeById(NodeList nodeList, Integer nodeId) {
+        Node node = null;
+        int i = 0;
+        boolean exists = false;
+        while ((i < nodeList.getLength()) && !exists) {
+            node = nodeList.item(i);
+            try {
+
+                if (Integer.getInteger(XMLReader.getAttributeValue(node, "id")).equals(nodeId)) {
+                    exists = true;
+                }
+            } catch (AttributeNotFoundException ex) {
+                Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            i++;
+
+        }
+
+        return node;
+    }
+
 }
