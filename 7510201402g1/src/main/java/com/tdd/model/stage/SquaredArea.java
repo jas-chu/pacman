@@ -1,19 +1,15 @@
-package com.tdd.model.stageAbstractions;
+package com.tdd.model.stage;
 
+import com.tdd.model.stageAbstractions.Area;
 import com.tdd.model.stageAbstractions.Position;
 
-public class SquaredArea {
+public class SquaredArea extends Area {
 	
-	private Position center;
 	private int distance;
 	
-	public SquaredArea(Position passedCenter, int distanceToEdge) {
-		this.center = new Position(passedCenter);
+	public SquaredArea(Position givenCenter, int distanceToEdge) {
+		super(givenCenter);
 		this.distance = distanceToEdge;
-	}
-	
-	public void centerOn(Position position) {
-		this.center = new Position(position);
 	}
 	
 	private boolean positionIsWithinHorizontalRange(Position position) {
@@ -32,6 +28,7 @@ public class SquaredArea {
 			 && position.hasGreaterOrEqualY(lesserHorizontalEdge));
 	}
 	
+	@Override
 	public boolean positionIsWithinArea(Position position) {
 		return (this.positionIsWithinHorizontalRange(position)
 			 && this.positionIsWithinVerticalRange(position));
