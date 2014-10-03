@@ -1,7 +1,7 @@
 package com.tdd.model.stage;
 
 import com.tdd.helpers.XMLReader;
-import com.tdd.model.cell.cellFactory.CellFactory;
+import com.tdd.model.cell.cellFactory.CellFactorySearcher;
 import com.tdd.model.configuration.Configuration;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.ghost.Ghost;
@@ -32,7 +32,7 @@ public class Labyrinth implements Stage {
 
     public Labyrinth(String XMLpath) {
         Configuration conf = Configuration.getConfiguration();
-        loadLabyrinthConfigurations(conf);
+        loadInitialLabyrinthConfigurations(conf);
         loadCells(conf);
     }
 
@@ -40,27 +40,42 @@ public class Labyrinth implements Stage {
         NodeList nodes = XMLReader.getNodeByName(conf.getLabyrinthFilePath(), "nodo");
         for (int i = 0; i < nodes.getLength(); i++) {
             Node node = nodes.item(i);
-//            cells.add();
+            cells.add(createCell(node));
         }
     }
 
-    private void loadLabyrinthConfigurations(Configuration conf) throws NumberFormatException {
+    private Cell createCell(Node node) {
+        
+        try {
+            String nodeContent = XMLReader.getAttributeValue(node, "contiene");
+        } catch (AttributeNotFoundException ex) {
+            Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        CellFactorySearcher cellFactory = new CellFactorySearcher();
+        return cellFactory.getFactory(CellFactorySearcher.CellName.CLEAR).getCell();
+    }
+
+    private void loadInitialLabyrinthConfigurations(Configuration conf) throws NumberFormatException {
         Node headerNode = XMLReader.getNodeByName(conf.getLabyrinthFilePath(), "laberinto").item(0);
         try {
             this.width = new Integer(XMLReader.getAttributeValue(headerNode, "ancho"));
             this.heigth = new Integer(XMLReader.getAttributeValue(headerNode, "alto"));
-            this.pacmanStart = new Integer(XMLReader.getAttributeValue(headerNode, "inicioPacman"));
+            createPacman(headerNode, conf);
             this.ghostStart = new Integer(XMLReader.getAttributeValue(headerNode, "inicioFantasmas"));
         } catch (AttributeNotFoundException ex) {
             Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
 
-
-        /* TODO:
-         Recorrer el nodo y por cada elemento llamar a una instancia factory
-         para que me cree la entidad que corresponda y lo agregue a la lista
-         adecuada.
-         */
+    private void createPacman(Node headerNode, Configuration conf) throws NumberFormatException, AttributeNotFoundException {
+        this.pacmanStart = new Integer(XMLReader.getAttributeValue(headerNode, "inicioPacman"));
+        NodeList nodes = XMLReader.getNodeByName(conf.getLabyrinthFilePath(), "nodo");
+        Node nodePacmanStart = XMLReader.getNodeById(nodes, this.pacmanStart);
+        int pacmanX = Integer.getInteger(XMLReader.getAttributeValue(nodePacmanStart, "fila"));
+        int pacmanY = Integer.getInteger(XMLReader.getAttributeValue(nodePacmanStart, "columna"));
+        Position positionPacman = new Position(pacmanX, pacmanY);
+        this.pacman = new Pacman(this, positionPacman);
     }
 
     @Override
