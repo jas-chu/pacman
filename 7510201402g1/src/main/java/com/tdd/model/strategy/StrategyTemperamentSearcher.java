@@ -2,8 +2,13 @@ package com.tdd.model.strategy;
 
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.ghost.Strategy;
+import com.tdd.model.stageAbstractions.Enemy;
 
 public class StrategyTemperamentSearcher extends Strategy {
+
+	public StrategyTemperamentSearcher(Enemy givenEnemy) {
+		super(givenEnemy);
+	}
 
 	@Override
 	public Direction getDirection() {

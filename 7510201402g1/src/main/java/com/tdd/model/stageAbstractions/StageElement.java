@@ -10,7 +10,7 @@ public abstract class StageElement {
 		this.position = new Position(passedPosition);
 	}
 
-	public boolean isInArea(SquaredArea area) {
+	public boolean isInArea(Area area) {
 		return area.positionIsWithinArea(this.position);
 	}
 	

@@ -6,6 +6,7 @@ import com.tdd.model.configuration.Configuration;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.ghost.Ghost;
 import com.tdd.model.stageAbstractions.Cell;
+import com.tdd.model.stageAbstractions.Area;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Position;
@@ -45,13 +46,13 @@ public class Labyrinth implements Stage {
     }
 
     private Cell createCell(Node node) {
-        
+
         try {
             String nodeContent = XMLReader.getAttributeValue(node, "contiene");
         } catch (AttributeNotFoundException ex) {
             Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         CellFactorySearcher cellFactory = new CellFactorySearcher();
         return cellFactory.getFactory(CellFactorySearcher.CellName.CLEAR).getCell();
     }
@@ -113,4 +114,10 @@ public class Labyrinth implements Stage {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    public boolean pacmanIsInArea(Area area) {
+        return this.pacman.isInArea(area);
+    }
+	
+
+	
 }

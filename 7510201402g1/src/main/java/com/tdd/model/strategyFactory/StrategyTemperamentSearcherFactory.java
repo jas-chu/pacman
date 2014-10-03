@@ -1,16 +1,18 @@
 package com.tdd.model.strategyFactory;
 
 import com.tdd.model.ghost.Strategy;
+import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.strategy.StrategyTemperamentSearcher;
 
 public class StrategyTemperamentSearcherFactory implements StrategyFactory {
 
     /**
+	 * @param givenEnemy
      * @return Devuelve una instancia de la estrategy
      * StrategyTemperamentSeacher.
      */
     @Override
-    public Strategy getStrategy() {
-        return new StrategyTemperamentSearcher();
+    public Strategy getStrategy(Enemy givenEnemy) {
+        return new StrategyTemperamentSearcher(givenEnemy);
     }
 }

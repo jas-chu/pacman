@@ -26,7 +26,7 @@ public class Pacman extends StageCharacter {
 	public boolean isAlive() {
 		return this.alive;
 	}
-
+	
 	public void move(Direction dir) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
