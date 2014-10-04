@@ -10,6 +10,7 @@ import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.StageElement;
 import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -29,8 +30,8 @@ public class LabyrinthTest {
     public void testGetItems() {
         System.out.println("getItems");
         Labyrinth instance = null;
-        ArrayList<Item> expResult = null;
-        ArrayList<Item> result = instance.getItems();
+        List<Item> expResult = null;
+        List<Item> result = instance.getItems();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -43,8 +44,8 @@ public class LabyrinthTest {
     public void testGetEnemies() {
         System.out.println("getEnemies");
         Labyrinth instance = null;
-        ArrayList<Enemy> expResult = null;
-        ArrayList<Enemy> result = instance.getEnemies();
+        List<Enemy> expResult = null;
+        List<Enemy> result = instance.getEnemies();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

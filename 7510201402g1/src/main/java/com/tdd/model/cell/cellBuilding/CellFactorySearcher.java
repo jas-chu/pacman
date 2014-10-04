@@ -1,4 +1,4 @@
-package com.tdd.model.cell.cellFactory;
+package com.tdd.model.cell.cellBuilding;
 
 import java.util.HashMap;
 

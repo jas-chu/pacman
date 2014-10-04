@@ -6,26 +6,27 @@ import com.tdd.model.stage.Pacman;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Stage;
-import java.util.ArrayList;
+import java.util.List;
+import javax.management.AttributeNotFoundException;
 
 public abstract class Game {
 	
 	private Stage stage;
-	private ArrayList<Enemy> enemies;
+	private List<Enemy> enemies;
 	protected Pacman pacman;
 	protected PlayerController controller;
 	
-	public Game(String XMLStagePath) {
+	public Game(String XMLStagePath) throws AttributeNotFoundException {
 		this.stage = new Labyrinth(XMLStagePath);
 		this.enemies = this.stage.getEnemies();
 		this.pacman = this.stage.getPacman();
-		ArrayList<Item> items = this.stage.getItems();
+		List<Item> items = this.stage.getItems();
 		//this.createViews(items); until now, left for next iteration
 	}
 	
 	protected abstract PlayerController createPlayerController();
 	
-	private void createViews(ArrayList<Item> items) {
+	private void createViews(List<Item> items) {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 	

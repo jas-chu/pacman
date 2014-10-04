@@ -1,7 +1,8 @@
 package com.tdd.model.stage;
 
 import com.tdd.helpers.XMLReader;
-import com.tdd.model.cell.cellFactory.CellFactorySearcher;
+import com.tdd.model.cell.cellBuilding.CellBuilder;
+import com.tdd.model.cell.cellBuilding.CellFactorySearcher;
 import com.tdd.model.configuration.Configuration;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.ghost.Ghost;
@@ -22,70 +23,65 @@ import org.w3c.dom.NodeList;
 
 public class Labyrinth implements Stage {
 
-    private ArrayList<Item> items;
-    private ArrayList<Enemy> enemies;
+    private List<Item> items;
+    private List<Enemy> enemies;
     private Pacman pacman;
     private int width;
-    private int heigth;
-    private int pacmanStart;
-    private int ghostStart;
-    private List<Cell> cells;
+    private int height;
+    private Position pacmanStart;
+    private Position ghostStart;
+    private List<List<Cell>> cells;
 
-    public Labyrinth(String XMLpath) {
-        Configuration conf = Configuration.getConfiguration();
-        loadInitialLabyrinthConfigurations(conf);
-        loadCells(conf);
+    public Labyrinth(String XMLpath) throws AttributeNotFoundException {
+		this.items = new ArrayList<Item>();
+		this.enemies = new ArrayList<Enemy>();
+        loadInitialLabyrinthConfigurations(XMLpath);
+        loadCells(XMLpath);
     }
 
-    private void loadCells(Configuration conf) {
-        NodeList nodes = XMLReader.getNodeByName(conf.getLabyrinthFilePath(), "nodo");
-        for (int i = 0; i < nodes.getLength(); i++) {
-            Node node = nodes.item(i);
-            cells.add(createCell(node));
+    private void loadCells(String XMLpath) throws AttributeNotFoundException {
+        NodeList nodes = XMLReader.getNodeByName(XMLpath, "nodo");
+		CellBuilder cellBuilder = new CellBuilder();
+		
+		this.cells = new ArrayList<List<Cell>>();
+        for (int row = 0; row < this.height; row++) {
+			List<Cell> mapRow = new ArrayList<Cell>();
+			for (int col = 0; col < this.width; col++) {
+				Node node = nodes.item(row + col);
+				Cell createdCell = cellBuilder.createCell(node);
+				mapRow.add(createdCell);
+			}
+			this.cells.add(mapRow);
         }
     }
 
-    private Cell createCell(Node node) {
-
-        try {
-            String nodeContent = XMLReader.getAttributeValue(node, "contiene");
-        } catch (AttributeNotFoundException ex) {
-            Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        CellFactorySearcher cellFactory = new CellFactorySearcher();
-        return cellFactory.getFactory(CellFactorySearcher.CellName.CLEAR).getCell();
+    private void loadInitialLabyrinthConfigurations(String XMLpath) throws NumberFormatException, AttributeNotFoundException {
+        Node headerNode = XMLReader.getNodeByName(XMLpath, "laberinto").item(0);
+        this.width = XMLReader.getIntAttributeValue(headerNode, "ancho");
+		this.height = XMLReader.getIntAttributeValue(headerNode, "alto");
+		createPacman(headerNode, XMLpath);
+		this.ghostStart = this.loadStageElementPosition(headerNode, XMLpath, "inicioFantasmas");
     }
 
-    private void loadInitialLabyrinthConfigurations(Configuration conf) throws NumberFormatException {
-        Node headerNode = XMLReader.getNodeByName(conf.getLabyrinthFilePath(), "laberinto").item(0);
-        try {
-            this.width = new Integer(XMLReader.getAttributeValue(headerNode, "ancho"));
-            this.heigth = new Integer(XMLReader.getAttributeValue(headerNode, "alto"));
-            createPacman(headerNode, conf);
-            this.ghostStart = new Integer(XMLReader.getAttributeValue(headerNode, "inicioFantasmas"));
-        } catch (AttributeNotFoundException ex) {
-            Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private void createPacman(Node headerNode, String XMLpath) throws NumberFormatException, AttributeNotFoundException {
+        this.pacmanStart = this.loadStageElementPosition(headerNode, XMLpath, "inicioPacman");
+        this.pacman = new Pacman(this, this.pacmanStart);
     }
-
-    private void createPacman(Node headerNode, Configuration conf) throws NumberFormatException, AttributeNotFoundException {
-        this.pacmanStart = new Integer(XMLReader.getAttributeValue(headerNode, "inicioPacman"));
-        NodeList nodes = XMLReader.getNodeByName(conf.getLabyrinthFilePath(), "nodo");
-        Node nodePacmanStart = XMLReader.getNodeById(nodes, this.pacmanStart);
-        int pacmanX = Integer.getInteger(XMLReader.getAttributeValue(nodePacmanStart, "fila"));
-        int pacmanY = Integer.getInteger(XMLReader.getAttributeValue(nodePacmanStart, "columna"));
-        Position positionPacman = new Position(pacmanX, pacmanY);
-        this.pacman = new Pacman(this, positionPacman);
-    }
-
+	
+	private Position loadStageElementPosition(Node headerNode, String XMLpath, String elementTag) throws NumberFormatException, AttributeNotFoundException {
+        int elementId = new Integer(XMLReader.getAttributeValue(headerNode, elementTag));
+        NodeList nodes = XMLReader.getNodeByName(XMLpath, "nodo");
+        Node elementNode = XMLReader.getNodeById(nodes, elementId);
+        return XMLReader.getNodePosition(elementNode);
+	}
+	
     @Override
-    public ArrayList<Item> getItems() {
+    public List<Item> getItems() {
         return items;
     }
 
     @Override
-    public ArrayList<Enemy> getEnemies() {
+    public List<Enemy> getEnemies() {
         return enemies;
     }
 
@@ -98,9 +94,15 @@ public class Labyrinth implements Stage {
     public boolean hasItems() {
         return !(this.items.isEmpty());
     }
-
+	
+	private Cell getCell(Position position) {
+		int row = position.getY();
+		int col = position.getX();
+		return this.cells.get(row).get(col);
+	}
+	
     private void testPlaceElement(Position position) throws BlockedCellException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.getCell(position).testPlaceElement();
     }
 
     @Override
@@ -114,6 +116,7 @@ public class Labyrinth implements Stage {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+	@Override
     public boolean pacmanIsInArea(Area area) {
         return this.pacman.isInArea(area);
     }

@@ -1,5 +1,6 @@
 package com.tdd.helpers;
 
+import com.tdd.model.stageAbstractions.Position;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -71,7 +72,21 @@ public class XMLReader {
         }
         return attribute;
     }
-
+	
+	public static Integer getIntAttributeValue(Node node, String attribute) throws AttributeNotFoundException {
+		return Integer.getInteger(XMLReader.getAttributeValue(node, attribute));
+	}
+	
+	public static Integer getNodeId(Node node) throws AttributeNotFoundException {
+		return getIntAttributeValue(node, "id");
+	}
+	
+	public static Position getNodePosition(Node node) throws AttributeNotFoundException {
+		int nodeY = getIntAttributeValue(node, "fila");
+        int nodeX = getIntAttributeValue(node, "columna");
+        return new Position(nodeX, nodeY);
+	}
+	
     /**
      * TODO REFACTORIZAR
      *
@@ -87,7 +102,7 @@ public class XMLReader {
             node = nodeList.item(i);
             try {
 
-                if (Integer.getInteger(XMLReader.getAttributeValue(node, "id")).equals(nodeId)) {
+                if (XMLReader.getNodeId(node).equals(nodeId)) {
                     exists = true;
                 }
             } catch (AttributeNotFoundException ex) {
