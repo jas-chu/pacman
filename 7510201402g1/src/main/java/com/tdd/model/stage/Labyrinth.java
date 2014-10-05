@@ -1,5 +1,6 @@
 package com.tdd.model.stage;
 
+import com.tdd.helpers.XMLConstants;
 import com.tdd.helpers.XMLReader;
 import com.tdd.model.cell.cellBuilding.CellBuilder;
 import com.tdd.model.cell.cellBuilding.CellFactorySearcher;
@@ -40,7 +41,7 @@ public class Labyrinth implements Stage {
     }
 
     private void loadCells(String XMLpath) throws AttributeNotFoundException {
-        NodeList nodes = XMLReader.getNodeByName(XMLpath, "nodo");
+        NodeList nodes = XMLReader.getNodeByName(XMLpath,XMLConstants.NODE);
 		CellBuilder cellBuilder = new CellBuilder();
 		
 		this.cells = new ArrayList<List<Cell>>();
@@ -56,21 +57,21 @@ public class Labyrinth implements Stage {
     }
 
     private void loadInitialLabyrinthConfigurations(String XMLpath) throws NumberFormatException, AttributeNotFoundException {
-        Node headerNode = XMLReader.getNodeByName(XMLpath, "laberinto").item(0);
-        this.width = XMLReader.getIntAttributeValue(headerNode, "ancho");
-		this.height = XMLReader.getIntAttributeValue(headerNode, "alto");
+        Node headerNode = XMLReader.getNodeByName(XMLpath, XMLConstants.LABYRINTH).item(0);
+        this.width = XMLReader.getIntAttributeValue(headerNode, XMLConstants.WIDTH);
+		this.height = XMLReader.getIntAttributeValue(headerNode, XMLConstants.HEIGTH);
 		createPacman(headerNode, XMLpath);
-		this.ghostStart = this.loadStageElementPosition(headerNode, XMLpath, "inicioFantasmas");
+		this.ghostStart = this.loadStageElementPosition(headerNode, XMLpath, XMLConstants.GHOST_START);
     }
 
     private void createPacman(Node headerNode, String XMLpath) throws NumberFormatException, AttributeNotFoundException {
-        this.pacmanStart = this.loadStageElementPosition(headerNode, XMLpath, "inicioPacman");
+        this.pacmanStart = this.loadStageElementPosition(headerNode, XMLpath, XMLConstants.PACMAN_START);
         this.pacman = new Pacman(this, this.pacmanStart);
     }
 	
 	private Position loadStageElementPosition(Node headerNode, String XMLpath, String elementTag) throws NumberFormatException, AttributeNotFoundException {
         int elementId = new Integer(XMLReader.getAttributeValue(headerNode, elementTag));
-        NodeList nodes = XMLReader.getNodeByName(XMLpath, "nodo");
+        NodeList nodes = XMLReader.getNodeByName(XMLpath, XMLConstants.NODE);
         Node elementNode = XMLReader.getNodeById(nodes, elementId);
         return XMLReader.getNodePosition(elementNode);
 	}
