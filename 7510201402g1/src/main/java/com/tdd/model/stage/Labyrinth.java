@@ -3,10 +3,7 @@ package com.tdd.model.stage;
 import com.tdd.helpers.XMLConstants;
 import com.tdd.helpers.XMLReader;
 import com.tdd.model.cell.cellBuilding.CellBuilder;
-import com.tdd.model.cell.cellBuilding.CellFactorySearcher;
-import com.tdd.model.configuration.Configuration;
 import com.tdd.model.exceptions.BlockedCellException;
-import com.tdd.model.ghost.Ghost;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Area;
 import com.tdd.model.stageAbstractions.Enemy;
@@ -16,8 +13,6 @@ import com.tdd.model.stageAbstractions.Stage;
 import com.tdd.model.stageAbstractions.StageElement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.management.AttributeNotFoundException;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -101,22 +96,33 @@ public class Labyrinth implements Stage {
 		int col = position.getX();
 		return this.cells.get(row).get(col);
 	}
-
+	
+	private void removeElementFromCell(StageElement element) {
+		Cell sourceCell = this.getCell(element.getPosition());
+		sourceCell.removeElement(element);
+	}
+	
     @Override
     public void placeElement(Position position, StageElement element) throws BlockedCellException {
-        Cell targetCell = this.getCell(position);
+        this.removeElementFromCell(element);
+		Cell targetCell = this.getCell(position);
 		targetCell.testPlaceElement();
 		targetCell.placeElement(element);
     }
 	
+	private void forcePlaceElement(Position position, StageElement element) {
+		this.removeElementFromCell(element);
+		this.getCell(position).placeElement(element);
+	}
+	
     @Override
     public void placeEnemyAtHome(Enemy givenEnemy) {
-		this.getCell(this.ghostStart).placeElement(givenEnemy);
+		this.forcePlaceElement(this.ghostStart, givenEnemy);
     }
 	
 	@Override
     public void placePacmanAtHome(Pacman givenPacman) {
-		this.getCell(this.pacmanStart).placeElement(givenPacman);
+		this.forcePlaceElement(this.pacmanStart, givenPacman);
     }
 
 	@Override

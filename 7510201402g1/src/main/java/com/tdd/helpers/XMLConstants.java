@@ -12,7 +12,7 @@ public final class XMLConstants {
     /**
      * NODE constant
      */
-    public static final String NODE = "node";
+    public static final String NODE = "nodo";
     /**
      * WIDTH constant
      */
