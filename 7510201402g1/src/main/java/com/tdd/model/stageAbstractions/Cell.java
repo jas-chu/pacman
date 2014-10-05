@@ -32,6 +32,10 @@ public abstract class Cell {
 		return this.position.getX();
     }
 	
+	public Position getPosition() {
+		return this.position;
+	}
+	
 	public void testPlaceElement() throws BlockedCellException { }
 	
 	public void placeElement(StageElement element) {
@@ -54,4 +58,5 @@ public abstract class Cell {
     public int getNeighbour(String neighbour) {
         return this.neighbours.get(neighbour);
     }
+	
 }
