@@ -40,6 +40,7 @@ public class Ghost extends Enemy {
 
 	@Override
 	public void move() {
+		super.move();
 		int i = 4; // four possible directions
 		while (i > 0) {
 			Direction firstDirection = this.strategy.getDirection();

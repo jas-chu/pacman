@@ -1,5 +1,6 @@
 package com.tdd.model.stage;
 
+import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.StageCharacter;
 import com.tdd.model.stageAbstractions.Position;
@@ -20,7 +21,8 @@ public class Pacman extends StageCharacter {
 
 	@Override
 	public void revive() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		this.alive = true;
+		this.stage.placePacmanAtHome(this);
 	}
 
 	public boolean isAlive() {
@@ -28,7 +30,13 @@ public class Pacman extends StageCharacter {
 	}
 	
 	public void move(Direction dir) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		this.removeTeleportedState();
+		Position nextPosition = dir.getNewPosition(this.position);
+		try {
+			this.stage.placeElement(nextPosition, this);
+		} catch (BlockedCellException error) {
+			// player hit wall
+		}
 	}
 	
 }

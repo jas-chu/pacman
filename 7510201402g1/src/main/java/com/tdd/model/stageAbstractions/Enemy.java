@@ -8,7 +8,9 @@ public abstract class Enemy extends StageCharacter {
 	
     public abstract void turnToPrey();
 
-	public abstract void move();
+	public void move() {
+		this.removeTeleportedState();
+	}
 	
 	public abstract void advanceCycle();
 	
