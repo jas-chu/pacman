@@ -36,6 +36,7 @@ public abstract class Cell {
 	
 	public void placeElement(StageElement element) {
 		this.elements.add(element);
+		element.setPosition(this.position);
 	}
 	
 	public void removeElement(StageElement element) {

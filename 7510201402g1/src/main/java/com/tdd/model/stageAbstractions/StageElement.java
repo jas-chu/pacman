@@ -9,7 +9,11 @@ public abstract class StageElement {
 		this.stage = givenStage;
 		this.position = new Position(passedPosition);
 	}
-
+	
+	public void setPosition(Position givenPosition) {
+		this.position = new Position(givenPosition);
+	}
+	
 	public boolean isInArea(Area area) {
 		return area.positionIsWithinArea(this.position);
 	}

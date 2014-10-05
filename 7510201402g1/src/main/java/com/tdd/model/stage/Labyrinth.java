@@ -100,27 +100,27 @@ public class Labyrinth implements Stage {
 		int col = position.getX();
 		return this.cells.get(row).get(col);
 	}
-	
-    private void testPlaceElement(Position position) throws BlockedCellException {
-        this.getCell(position).testPlaceElement();
-    }
 
     @Override
     public void placeElement(Position position, StageElement element) throws BlockedCellException {
-        this.testPlaceElement(position);
-        throw new UnsupportedOperationException("Not supported yet.");
+        Cell targetCell = this.getCell(position);
+		targetCell.testPlaceElement();
+		targetCell.placeElement(element);
     }
-
+	
     @Override
     public void placeEnemyAtHome(Enemy givenEnemy) {
-        throw new UnsupportedOperationException("Not supported yet.");
+		this.getCell(this.ghostStart).placeElement(givenEnemy);
+    }
+	
+	@Override
+    public void placePacmanAtHome(Pacman givenPacman) {
+		this.getCell(this.pacmanStart).placeElement(givenPacman);
     }
 
 	@Override
     public boolean pacmanIsInArea(Area area) {
         return this.pacman.isInArea(area);
     }
-	
-
 	
 }

@@ -13,6 +13,7 @@ public interface Stage {
 
 	public void placeElement(Position position, StageElement element) throws BlockedCellException;
 	public void placeEnemyAtHome(Enemy givenEnemy);
+	public void placePacmanAtHome(Pacman givenPacman);
 	public boolean pacmanIsInArea(Area area);
 	
 }
