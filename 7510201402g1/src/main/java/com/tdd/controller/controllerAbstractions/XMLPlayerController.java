@@ -5,8 +5,8 @@ import com.tdd.model.direction.DirectionDown;
 import com.tdd.model.direction.DirectionLeft;
 import com.tdd.model.direction.DirectionRight;
 import com.tdd.model.direction.DirectionUp;
-import com.tdd.model.stage.Pacman;
 import com.tdd.model.stageAbstractions.Direction;
+import com.tdd.model.stageAbstractions.Protagonist;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,10 +29,10 @@ public abstract class XMLPlayerController extends PlayerController {
 	 *
 	 * @param XMLsDirectoryPath
 	 * @param givenFilePrefix: por ejemplo, "pacmanTick"
-	 * @param givenPacman
+	 * @param givenProtagonist
 	 */
-	public XMLPlayerController(String XMLsDirectoryPath, String givenFilePrefix, Pacman givenPacman) {
-		super(givenPacman);
+	public XMLPlayerController(String XMLsDirectoryPath, String givenFilePrefix, Protagonist givenProtagonist) {
+		super(givenProtagonist);
 		this.XMLDirectory = XMLsDirectoryPath;
 		this.filePrefix = givenFilePrefix;
 		this.directionTranslator = new HashMap<String,String>();

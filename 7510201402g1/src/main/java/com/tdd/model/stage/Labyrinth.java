@@ -9,6 +9,7 @@ import com.tdd.model.stageAbstractions.Area;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Position;
+import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
 import com.tdd.model.stageAbstractions.StageElement;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class Labyrinth implements Stage {
 
     private List<Item> items;
     private List<Enemy> enemies;
-    private Pacman pacman;
+    private Protagonist pacman;
     private int width;
     private int height;
     private Position pacmanStart;
@@ -82,7 +83,7 @@ public class Labyrinth implements Stage {
     }
 
     @Override
-    public Pacman getPacman() {
+    public Protagonist getProtagonist() {
         return pacman;
     }
 
@@ -121,12 +122,12 @@ public class Labyrinth implements Stage {
     }
 	
 	@Override
-    public void placePacmanAtHome(Pacman givenPacman) {
-		this.forcePlaceElement(this.pacmanStart, givenPacman);
+    public void placeProtagonistAtHome(Protagonist givenProtagonist) {
+		this.forcePlaceElement(this.pacmanStart, givenProtagonist);
     }
 
 	@Override
-    public boolean pacmanIsInArea(Area area) {
+    public boolean protagonistIsInArea(Area area) {
         return this.pacman.isInArea(area);
     }
 	

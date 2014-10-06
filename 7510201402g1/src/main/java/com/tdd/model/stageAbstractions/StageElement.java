@@ -3,7 +3,7 @@ package com.tdd.model.stageAbstractions;
 import com.tdd.model.exceptions.AlreadyTeleportedException;
 import com.tdd.model.exceptions.BlockedCellException;
 
-public abstract class StageElement {
+public abstract class StageElement implements Collidable {
 	
 	protected Stage stage;
 	protected Position position;

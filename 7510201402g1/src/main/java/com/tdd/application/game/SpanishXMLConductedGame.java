@@ -13,7 +13,7 @@ public class SpanishXMLConductedGame extends XMLConductedGame {
 
 	@Override
 	protected PlayerController createPlayerController() {
-		return new SpanishXMLPlayerController(this.XMLPacmanDirectory, this.PacmanFilePrefix, this.pacman);
+		return new SpanishXMLPlayerController(this.XMLPacmanDirectory, this.PacmanFilePrefix, this.protagonist);
 	}
 
 }

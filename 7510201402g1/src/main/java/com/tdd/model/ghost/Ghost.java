@@ -4,6 +4,7 @@ import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
+import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
 
 public class Ghost extends Enemy {
@@ -59,5 +60,12 @@ public class Ghost extends Enemy {
 	public void advanceCycle() {
 		this.state.advanceCycle();
 		this.strategy.advanceCycle();
+	}
+	
+	// COLLISIONS
+	
+	@Override
+	public void collideWithProtagonist(Protagonist givenProtagonist) {
+		this.state.collideWithProtagonist(givenProtagonist);
 	}
 }

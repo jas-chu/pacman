@@ -2,6 +2,7 @@ package com.tdd.model.ghost;
 
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
+import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.StageCharacter;
 
 public abstract class State {
@@ -33,5 +34,7 @@ public abstract class State {
 	
 	protected abstract boolean shouldChangeState();
 	protected abstract void changeState();
+
+	public abstract void collideWithProtagonist(Protagonist givenProtagonist);
 
 }

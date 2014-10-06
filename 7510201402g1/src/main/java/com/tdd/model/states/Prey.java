@@ -3,6 +3,7 @@ package com.tdd.model.states;
 import com.tdd.model.configuration.Configuration;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
+import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.StageCharacter;
 
 public class Prey extends Passive {
@@ -19,6 +20,11 @@ public class Prey extends Passive {
 	@Override
 	public Direction getDirection(Direction givenDirection) {
 		return givenDirection.invert();
+	}
+
+	@Override
+	public void collideWithProtagonist(Protagonist givenProtagonist) {
+		this.beEaten(givenProtagonist);
 	}
 
 }

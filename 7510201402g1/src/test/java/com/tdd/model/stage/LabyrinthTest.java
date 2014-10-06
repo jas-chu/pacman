@@ -8,8 +8,8 @@ package com.tdd.model.stage;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Position;
+import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.StageElement;
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -58,8 +58,8 @@ public class LabyrinthTest {
     public void testGetPacman() {
         System.out.println("getPacman");
         Labyrinth instance = null;
-        Pacman expResult = null;
-        Pacman result = instance.getPacman();
+        Protagonist expResult = null;
+        Protagonist result = instance.getProtagonist();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

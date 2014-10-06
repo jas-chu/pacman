@@ -1,21 +1,21 @@
 package com.tdd.controller.controllerAbstractions;
 
-import com.tdd.model.stage.Pacman;
 import com.tdd.model.stageAbstractions.Direction;
+import com.tdd.model.stageAbstractions.Protagonist;
 
 public abstract class PlayerController {
 	
-	protected Pacman pacman;
+	protected Protagonist protagonist;
 	protected Integer currentCycle;
 	
-	public PlayerController(Pacman givenPacman) {
+	public PlayerController(Protagonist givenPacman) {
 		this.currentCycle = 1;
-		this.pacman = givenPacman;
+		this.protagonist = givenPacman;
 	}
 
 	public void processMovement() {
 		Direction dir = this.getNextDirection();
-		this.pacman.move(dir);
+		this.protagonist.move(dir);
 		this.advanceCycle();
 	}
 	

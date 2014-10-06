@@ -10,4 +10,10 @@ public class BigDot extends Item {
 		super(givenStage, givenPosition);
 	}
 	
+	@Override
+	public void consume() {
+		super.consume();
+		//this.stage.turnEnemiesToPrey();
+	}
+	
 }
