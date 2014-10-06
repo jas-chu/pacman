@@ -1,4 +1,4 @@
-package com.tdd.helpers;
+package com.tdd.model.helpers;
 
 /**
  *

@@ -1,6 +1,6 @@
 package com.tdd.controller.controllerAbstractions;
 
-import com.tdd.helpers.XMLReader;
+import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.direction.DirectionDown;
 import com.tdd.model.direction.DirectionLeft;
 import com.tdd.model.direction.DirectionRight;

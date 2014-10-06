@@ -1,7 +1,5 @@
-package com.tdd.application.game;
+package com.tdd.model.helpers;
 
-import com.tdd.helpers.XMLConstants;
-import com.tdd.helpers.XMLReader;
 import com.tdd.model.stageAbstractions.Position;
 import java.util.logging.Level;
 import java.util.logging.Logger;

@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package com.tdd.helpers;
+package com.tdd.model.helpers;
 
+import com.tdd.model.helpers.XMLReader;
 import javax.management.AttributeNotFoundException;
 import org.junit.After;
 import org.junit.AfterClass;

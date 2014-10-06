@@ -1,7 +1,7 @@
 package com.tdd.model.cell.cellBuilding;
 
-import com.tdd.helpers.XMLConstants;
-import com.tdd.helpers.XMLReader;
+import com.tdd.model.helpers.XMLConstants;
+import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Position;
 import javax.management.AttributeNotFoundException;

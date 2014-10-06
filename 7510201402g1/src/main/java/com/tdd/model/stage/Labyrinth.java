@@ -1,6 +1,6 @@
 package com.tdd.model.stage;
 
-import com.tdd.application.game.LabyrinthLoader;
+import com.tdd.model.helpers.LabyrinthLoader;
 import com.tdd.model.cell.cellBuilding.CellBuilder;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.stageAbstractions.Cell;
