@@ -35,6 +35,8 @@ public abstract class State {
 	protected abstract boolean shouldChangeState();
 	protected abstract void changeState();
 
-	public abstract void collideWithProtagonist(Protagonist givenProtagonist);
+	public void collideWithProtagonist(Protagonist givenProtagonist) {
+		this.beEaten(givenProtagonist);
+	}
 
 }
