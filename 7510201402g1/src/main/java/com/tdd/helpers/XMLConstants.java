@@ -40,6 +40,10 @@ public final class XMLConstants {
     /**
      * CONTENT constant
      */
-    public static final String CONTENT = "contenido";
+    public static final String CONTENT = "contiene";
+    /**
+     * ID constant
+     */
+    public static final String ID = "id";
 
 }

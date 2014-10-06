@@ -72,21 +72,21 @@ public class XMLReader {
         }
         return attribute;
     }
-	
-	public static Integer getIntAttributeValue(Node node, String attribute) throws AttributeNotFoundException {
-		return Integer.getInteger(XMLReader.getAttributeValue(node, attribute));
-	}
-	
-	public static Integer getNodeId(Node node) throws AttributeNotFoundException {
-		return getIntAttributeValue(node, "id");
-	}
-	
-	public static Position getNodePosition(Node node) throws AttributeNotFoundException {
-		int nodeY = getIntAttributeValue(node, "fila");
-        int nodeX = getIntAttributeValue(node, "columna");
+
+    public static Integer getIntAttributeValue(Node node, String attribute) throws AttributeNotFoundException {
+        return Integer.getInteger(XMLReader.getAttributeValue(node, attribute));
+    }
+
+    public static Integer getNodeId(Node node) throws AttributeNotFoundException {
+        return getIntAttributeValue(node, XMLConstants.ID);
+    }
+
+    public static Position getNodePosition(Node node) throws AttributeNotFoundException {
+        int nodeY = getIntAttributeValue(node, XMLConstants.ROW);
+        int nodeX = getIntAttributeValue(node, XMLConstants.COLUMN);
         return new Position(nodeX, nodeY);
-	}
-	
+    }
+
     /**
      * TODO REFACTORIZAR
      *
