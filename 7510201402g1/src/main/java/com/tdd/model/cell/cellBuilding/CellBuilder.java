@@ -1,5 +1,6 @@
 package com.tdd.model.cell.cellBuilding;
 
+import com.tdd.helpers.XMLConstants;
 import com.tdd.helpers.XMLReader;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Position;
@@ -8,14 +9,20 @@ import org.w3c.dom.Node;
 
 public class CellBuilder {
 
-	public Cell createCell(Node node) throws AttributeNotFoundException {
-		int cellId = XMLReader.getNodeId(node);
-		Position cellPosition = XMLReader.getNodePosition(node);
-        String nodeContent = XMLReader.getAttributeValue(node, "contiene");
-		
-		
+    /**
+     *
+     * @param node
+     * @return
+     * @throws AttributeNotFoundException
+     */
+    public Cell createCell(Node node) throws AttributeNotFoundException {
+        int cellId = XMLReader.getNodeId(node);
+        Position cellPosition = XMLReader.getNodePosition(node);
+        String nodeContent = XMLReader.getAttributeValue(node, XMLConstants.CONTENT);
         CellFactorySearcher cellFactory = new CellFactorySearcher();
-        return cellFactory.getFactory(CellFactorySearcher.CellName.CLEAR).getCell(cellId, cellPosition);
+        return cellFactory.getFactory(nodeContent).getCell(cellId, cellPosition);
     }
+    
+
 
 }

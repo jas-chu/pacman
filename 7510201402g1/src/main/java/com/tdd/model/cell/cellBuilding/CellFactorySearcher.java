@@ -25,4 +25,17 @@ public class CellFactorySearcher {
     public CellFactory getFactory(CellName name) {
         return this.factorySearcher.get(name);
     }
+
+    public CellFactory getFactory(String name) {
+        return this.factorySearcher.get(getCellNameToContent(name));
+    }
+
+    private CellName getCellNameToContent(String nodeContent) {
+        CellName cellName = CellName.CLEAR;
+        if (!nodeContent.isEmpty()) {
+            //TODO: Falta evaluar la celda teletransportadora
+            cellName = CellName.BLOCKED;
+        }
+        return cellName;
+    }
 }

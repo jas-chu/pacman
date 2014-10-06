@@ -1,7 +1,6 @@
 package com.tdd.model.stage;
 
-import com.tdd.helpers.XMLConstants;
-import com.tdd.helpers.XMLReader;
+import com.tdd.application.game.LabyrinthLoader;
 import com.tdd.model.cell.cellBuilding.CellBuilder;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.stageAbstractions.Cell;
@@ -28,50 +27,39 @@ public class Labyrinth implements Stage {
     private Position pacmanStart;
     private Position ghostStart;
     private List<List<Cell>> cells;
-
+    private final LabyrinthLoader labyrinthLoader;
+	
     public Labyrinth(String XMLpath) throws AttributeNotFoundException {
-		this.items = new ArrayList<Item>();
-		this.enemies = new ArrayList<Enemy>();
-        loadInitialLabyrinthConfigurations(XMLpath);
-        loadCells(XMLpath);
+        this.items = new ArrayList<Item>();
+        this.enemies = new ArrayList<Enemy>();
+        this.labyrinthLoader = LabyrinthLoader.getLabyrinthLoader(XMLpath);
+        loadInitialLabyrinthConfigurations();
+        loadCells();
     }
 
-    private void loadCells(String XMLpath) throws AttributeNotFoundException {
-        NodeList nodes = XMLReader.getNodeByName(XMLpath,XMLConstants.NODE);
-		CellBuilder cellBuilder = new CellBuilder();
-		
-		this.cells = new ArrayList<List<Cell>>();
+    private void loadCells() throws AttributeNotFoundException {
+        NodeList nodes = this.labyrinthLoader.getNodes();
+        CellBuilder cellBuilder = new CellBuilder();
+
+        this.cells = new ArrayList<List<Cell>>();
         for (int row = 0; row < this.height; row++) {
-			List<Cell> mapRow = new ArrayList<Cell>();
-			for (int col = 0; col < this.width; col++) {
-				Node node = nodes.item(row + col);
-				Cell createdCell = cellBuilder.createCell(node);
-				mapRow.add(createdCell);
-			}
-			this.cells.add(mapRow);
+            List<Cell> mapRow = new ArrayList<Cell>();
+            for (int col = 0; col < this.width; col++) {
+                Node node = nodes.item(row + col);
+                Cell createdCell = cellBuilder.createCell(node);
+                mapRow.add(createdCell);
+            }
+            this.cells.add(mapRow);
         }
     }
 
-    private void loadInitialLabyrinthConfigurations(String XMLpath) throws NumberFormatException, AttributeNotFoundException {
-        Node headerNode = XMLReader.getNodeByName(XMLpath, XMLConstants.LABYRINTH).item(0);
-        this.width = XMLReader.getIntAttributeValue(headerNode, XMLConstants.WIDTH);
-		this.height = XMLReader.getIntAttributeValue(headerNode, XMLConstants.HEIGTH);
-		createPacman(headerNode, XMLpath);
-		this.ghostStart = this.loadStageElementPosition(headerNode, XMLpath, XMLConstants.GHOST_START);
+    private void loadInitialLabyrinthConfigurations() throws AttributeNotFoundException {
+        this.width = this.labyrinthLoader.getLabyrinthWidth();
+        this.height = this.labyrinthLoader.getLabyrinthHeigth();
+        this.pacman = new Pacman(this, this.labyrinthLoader.getPacmanStartPosition());
+        this.ghostStart = this.labyrinthLoader.getGhostStartPosition();
     }
 
-    private void createPacman(Node headerNode, String XMLpath) throws NumberFormatException, AttributeNotFoundException {
-        this.pacmanStart = this.loadStageElementPosition(headerNode, XMLpath, XMLConstants.PACMAN_START);
-        this.pacman = new Pacman(this, this.pacmanStart);
-    }
-	
-	private Position loadStageElementPosition(Node headerNode, String XMLpath, String elementTag) throws NumberFormatException, AttributeNotFoundException {
-        int elementId = new Integer(XMLReader.getAttributeValue(headerNode, elementTag));
-        NodeList nodes = XMLReader.getNodeByName(XMLpath, XMLConstants.NODE);
-        Node elementNode = XMLReader.getNodeById(nodes, elementId);
-        return XMLReader.getNodePosition(elementNode);
-	}
-	
     @Override
     public List<Item> getItems() {
         return items;
@@ -91,34 +79,34 @@ public class Labyrinth implements Stage {
     public boolean hasItems() {
         return !(this.items.isEmpty());
     }
-	
-	private Cell getCell(Position position) {
-		int row = position.getY();
-		int col = position.getX();
-		return this.cells.get(row).get(col);
-	}
-	
-	private void removeElementFromCell(StageElement element) {
-		Cell sourceCell = this.getCell(element.getPosition());
-		sourceCell.removeElement(element);
-	}
-	
+
+    private Cell getCell(Position position) {
+        int row = position.getY();
+        int col = position.getX();
+        return this.cells.get(row).get(col);
+    }
+
+    private void removeElementFromCell(StageElement element) {
+        Cell sourceCell = this.getCell(element.getPosition());
+        sourceCell.removeElement(element);
+    }
+
     @Override
     public void placeElement(Position position, StageElement element) throws BlockedCellException {
         this.removeElementFromCell(element);
-		Cell targetCell = this.getCell(position);
-		targetCell.testPlaceElement();
-		targetCell.placeElement(element);
+        Cell targetCell = this.getCell(position);
+        targetCell.testPlaceElement();
+        targetCell.placeElement(element);
     }
-	
-	private void forcePlaceElement(Position position, StageElement element) {
-		this.removeElementFromCell(element);
-		this.getCell(position).placeElement(element);
-	}
-	
+
+    private void forcePlaceElement(Position position, StageElement element) {
+        this.removeElementFromCell(element);
+        this.getCell(position).placeElement(element);
+    }
+
     @Override
     public void placeEnemyAtHome(Enemy givenEnemy) {
-		this.forcePlaceElement(this.ghostStart, givenEnemy);
+        this.forcePlaceElement(this.ghostStart, givenEnemy);
     }
 	
 	@Override
@@ -130,5 +118,5 @@ public class Labyrinth implements Stage {
     public boolean protagonistIsInArea(Area area) {
         return this.pacman.isInArea(area);
     }
-	
+
 }
