@@ -37,7 +37,6 @@ public class Configuration {
         this.filePath = new File("").getAbsolutePath() + prePath + "configure.json";
         this.fileLabyrinthPath = new File("").getAbsolutePath() + prePath + "configure.json";
         Configuration.initialized = true;
-        System.out.println(this.filePath);
     }
 
     /**
@@ -52,7 +51,6 @@ public class Configuration {
             ContainerFactory containerFactory = configuration.createContainer();
             try {
                 FileReader fileReader = new FileReader(configuration.getFilePath());
-                System.out.print(fileReader.toString());
                 Map json = (Map) parser.parse(fileReader, containerFactory);
                 Iterator iter = json.entrySet().iterator();
                 while (iter.hasNext()) {
