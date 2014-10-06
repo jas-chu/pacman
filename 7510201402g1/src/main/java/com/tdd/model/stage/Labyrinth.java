@@ -119,4 +119,11 @@ public class Labyrinth implements Stage {
         return this.pacman.isInArea(area);
     }
 
+	@Override
+	public void turnEnemiesToPrey() {
+		for (Enemy enemy : this.enemies) {
+			enemy.turnToPrey();
+		}
+	}
+
 }

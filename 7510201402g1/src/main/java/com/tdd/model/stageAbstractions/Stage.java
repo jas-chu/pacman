@@ -14,5 +14,7 @@ public interface Stage {
 	public void placeEnemyAtHome(Enemy givenEnemy);
 	public void placeProtagonistAtHome(Protagonist givenProtagonist);
 	public boolean protagonistIsInArea(Area area);
+
+	public void turnEnemiesToPrey();
 	
 }

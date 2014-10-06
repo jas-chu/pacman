@@ -38,9 +38,12 @@ public abstract class Cell {
 	
 	public void testPlaceElement() throws BlockedCellException { }
 	
-	public void placeElement(StageElement element) {
-		this.elements.add(element);
-		element.setPosition(this.position);
+	public void placeElement(StageElement givenElement) {
+		givenElement.setPosition(this.position);
+		for (StageElement element : this.elements) {
+			givenElement.collideWithElement(element);
+		}
+		this.elements.add(givenElement);
 	}
 	
 	public void removeElement(StageElement element) {

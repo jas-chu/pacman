@@ -13,7 +13,7 @@ public class BigDot extends Item {
 	@Override
 	public void consume() {
 		super.consume();
-		//this.stage.turnEnemiesToPrey();
+		this.stage.turnEnemiesToPrey();
 	}
 	
 }
