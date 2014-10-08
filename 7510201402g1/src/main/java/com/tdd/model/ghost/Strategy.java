@@ -1,24 +1,31 @@
 package com.tdd.model.ghost;
 
+import com.tdd.model.stage.SquaredArea;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
+import com.tdd.model.stageAbstractions.Protagonist;
 
 public abstract class Strategy {
 
     protected Enemy enemy;
+    protected int vision;
 
     public Strategy(Enemy givenEnemy) {
         this.enemy = givenEnemy;
     }
 
+    //TODO: terminar
     public Direction getDirection(){
-        throw new UnsupportedOperationException("Not supported yet.");
-//        buscar pacman en area:
-//	si no lo ve:
-//		se mueve random o va a la ultima posicion (uno u otro par de estrategias(*))
-//	si lo ve:
-//		lo persigue(en comun para los 4)
-
+        Direction direction;
+        SquaredArea area = new SquaredArea(this.enemy.getPosition(), this.vision);
+        Protagonist pacman = this.enemy.getProtagonist();
+        boolean pacmanIsVisible = pacman.isInArea(area);
+        if (pacmanIsVisible == true){
+            direction = this.chasePacman();            
+        }else{
+            direction = this.getRandomDirection();            
+        }               
+        return direction;
     }
 
     public abstract void advanceCycle();

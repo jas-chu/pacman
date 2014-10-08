@@ -45,4 +45,7 @@ public abstract class StageElement implements Collidable {
 		this.teleported = false;
 	}
 	
+        public Protagonist getProtagonist(){
+            return this.stage.getProtagonist();
+        }
 }
