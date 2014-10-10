@@ -20,7 +20,7 @@ public final class XMLConstants {
     /**
      * HEIGTH constant
      */
-    public static final String HEIGTH = "alto";
+    public static final String HEIGHT = "alto";
     /**
      * GHOST_START constant
      */
