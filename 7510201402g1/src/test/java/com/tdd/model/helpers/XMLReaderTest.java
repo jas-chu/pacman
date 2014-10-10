@@ -7,6 +7,7 @@
 package com.tdd.model.helpers;
 
 import com.tdd.model.helpers.XMLReader;
+import com.tdd.model.languageTools.SpanishXMLConstants;
 import javax.management.AttributeNotFoundException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -23,6 +24,8 @@ import org.w3c.dom.NodeList;
  */
 public class XMLReaderTest {
     
+	private XMLConstants constants;
+	
     public XMLReaderTest() {
     }
     
@@ -36,6 +39,8 @@ public class XMLReaderTest {
     
     @Before
     public void setUp() {
+		this.constants = new SpanishXMLConstants();
+		XMLReader.configureLanguage(constants);
     }
     
     @After

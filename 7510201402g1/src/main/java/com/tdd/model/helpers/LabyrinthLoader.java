@@ -12,28 +12,16 @@ import org.w3c.dom.NodeList;
  *
  */
 public class LabyrinthLoader {
-    /**
-     * 
-     */
-    private Node headerNode;
-    /**
-     * 
-     */
+    
+	private Node headerNode;
     private NodeList nodes;
-    /**
-     * 
-     */
-    private static boolean initialized = false;
-    /**
-     * 
-     */
-    private static LabyrinthLoader labyrinthLoader = null;
+    
+	private static boolean initialized = false;
+	private static LabyrinthLoader labyrinthLoader = null;
 
-    /**
-     *
-     */
-    private LabyrinthLoader() {
-        LabyrinthLoader.initialized = true;
+    private LabyrinthLoader(String xmlPath) {
+		this.headerNode = XMLReader.getNodeByName(xmlPath, XMLConstants.LABYRINTH).item(0);
+        this.nodes = XMLReader.getNodeByName(xmlPath, XMLConstants.NODE);
     }
 
     /**
@@ -41,13 +29,12 @@ public class LabyrinthLoader {
      * @param xmlPath
      * @return
      */
-    static public LabyrinthLoader getLabyrinthLoader(String xmlPath) {
+    public static LabyrinthLoader getLabyrinthLoader(String xmlPath) {
         if (!LabyrinthLoader.initialized) {
-            labyrinthLoader = new LabyrinthLoader();
-            labyrinthLoader.headerNode = XMLReader.getNodeByName(xmlPath, XMLConstants.LABYRINTH).item(0);
-            labyrinthLoader.nodes = XMLReader.getNodeByName(xmlPath, XMLConstants.NODE);
+            LabyrinthLoader.labyrinthLoader = new LabyrinthLoader(xmlPath);
+			LabyrinthLoader.initialized = true;
         }
-        return labyrinthLoader;
+        return LabyrinthLoader.labyrinthLoader;
     }
 
     /**
@@ -55,7 +42,7 @@ public class LabyrinthLoader {
      * @return @throws AttributeNotFoundException
      */
     public Integer getLabyrinthWidth() throws AttributeNotFoundException {
-        return XMLReader.getIntAttributeValue(labyrinthLoader.headerNode, XMLConstants.WIDTH);
+        return XMLReader.getIntAttributeValue(this.headerNode, XMLConstants.WIDTH);
     }
 
     /**
@@ -63,7 +50,7 @@ public class LabyrinthLoader {
      * @return @throws AttributeNotFoundException
      */
     public Integer getLabyrinthHeigth() throws AttributeNotFoundException {
-        return XMLReader.getIntAttributeValue(labyrinthLoader.headerNode, XMLConstants.HEIGHT);
+        return XMLReader.getIntAttributeValue(this.headerNode, XMLConstants.HEIGHT);
     }
 
     /**
@@ -72,9 +59,9 @@ public class LabyrinthLoader {
      */
     public Position getPacmanStartPosition() throws AttributeNotFoundException {
         Position pacmanPosition = null;
-        int pacmanNodeId = XMLReader.getIntAttributeValue(labyrinthLoader.headerNode, XMLConstants.PACMAN_START);
+        int pacmanNodeId = XMLReader.getIntAttributeValue(this.headerNode, XMLConstants.PACMAN_START);
         try {
-            pacmanPosition = labyrinthLoader.loadStageElementPosition(pacmanNodeId);
+            pacmanPosition = this.loadStageElementPosition(pacmanNodeId);
         } catch (NumberFormatException ex) {
             Logger.getLogger(LabyrinthLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -87,9 +74,9 @@ public class LabyrinthLoader {
      */
     public Position getGhostStartPosition() throws AttributeNotFoundException {
         Position ghostPosition = null;
-        int ghostNodeId = XMLReader.getIntAttributeValue(labyrinthLoader.headerNode, XMLConstants.GHOST_START);
+        int ghostNodeId = XMLReader.getIntAttributeValue(this.headerNode, XMLConstants.GHOST_START);
         try {
-            ghostPosition = labyrinthLoader.loadStageElementPosition(ghostNodeId);
+            ghostPosition = this.loadStageElementPosition(ghostNodeId);
         } catch (NumberFormatException ex) {
             Logger.getLogger(LabyrinthLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -101,7 +88,7 @@ public class LabyrinthLoader {
      * @return
      */
     public NodeList getNodes() {
-        return labyrinthLoader.nodes;
+        return this.nodes;
     }
 
     /**
@@ -112,7 +99,7 @@ public class LabyrinthLoader {
      * @throws AttributeNotFoundException
      */
     private Position loadStageElementPosition(int elementId) throws NumberFormatException, AttributeNotFoundException {
-        Node elementNode = XMLReader.getNodeById(labyrinthLoader.nodes, elementId);
+        Node elementNode = XMLReader.getNodeById(this.nodes, elementId);
         return XMLReader.getNodePosition(elementNode);
     }
 }
