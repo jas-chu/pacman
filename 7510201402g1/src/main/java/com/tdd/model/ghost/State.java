@@ -17,7 +17,8 @@ public abstract class State {
 	
     public abstract void increaseAnger();
     public abstract void beEaten(StageCharacter p);
-	
+    
+    //Para que la presa pueda invertir la direccion calculada.
     public Direction getDirection(Direction givenDirection) {
         return givenDirection;
     }

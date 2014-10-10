@@ -6,22 +6,13 @@ import com.tdd.model.stageAbstractions.Enemy;
 
 public class SillyStrategy extends Strategy {
 
-	public SillyStrategy(Enemy givenEnemy) {
-		super(givenEnemy);
-	}
-	
-	@Override
-	public void advanceCycle() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
-	
-        @Override
-        public Direction getRandomDirection(){
-            throw new UnsupportedOperationException("Not supported yet.");            
-        }
-        
-        @Override
-        public Direction chasePacman(){
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
+    public SillyStrategy(Enemy givenEnemy) {
+        super(givenEnemy);
+    }
+
+    @Override
+    public void advanceCycle() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
