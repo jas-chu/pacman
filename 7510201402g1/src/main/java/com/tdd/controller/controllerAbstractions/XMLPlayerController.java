@@ -5,6 +5,8 @@ import com.tdd.model.direction.DirectionDown;
 import com.tdd.model.direction.DirectionLeft;
 import com.tdd.model.direction.DirectionRight;
 import com.tdd.model.direction.DirectionUp;
+import com.tdd.model.directionFactory.DirectionFactory;
+import com.tdd.model.directionFactory.DirectionGenerator;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Protagonist;
 import java.io.File;
@@ -18,11 +20,7 @@ public abstract class XMLPlayerController extends PlayerController {
 	
 	private String XMLDirectory;
 	private String filePrefix;
-	
-	protected static String DIRECTION_UP_KEY = "up";
-	protected static String DIRECTION_DOWN_KEY = "down";
-	protected static String DIRECTION_LEFT_KEY = "left";
-	protected static String DIRECTION_RIGHT_KEY = "right";
+	private DirectionGenerator directionGenerator;
 	protected Map<String,String> directionTranslator;
 	
 	/**
@@ -36,6 +34,7 @@ public abstract class XMLPlayerController extends PlayerController {
 		this.XMLDirectory = XMLsDirectoryPath;
 		this.filePrefix = givenFilePrefix;
 		this.directionTranslator = new HashMap<String,String>();
+		this.directionGenerator = new DirectionGenerator();
 	}
 	
 	@Override
@@ -60,17 +59,8 @@ public abstract class XMLPlayerController extends PlayerController {
 	protected abstract String getDirectionNameAttribute();
 	
 	protected Direction createNewDirection(String direction) {
-		try{
-			if (direction.equals(this.directionTranslator.get(DIRECTION_UP_KEY)))
-				return new DirectionUp();
-			if (direction.equals(this.directionTranslator.get(DIRECTION_DOWN_KEY)))
-				return new DirectionDown();
-			if (direction.equals(this.directionTranslator.get(DIRECTION_LEFT_KEY)))
-				return new DirectionLeft();
-		} catch (Exception ex) {
-			Logger.getLogger(XMLPlayerController.class.getName()).log(Level.SEVERE, null, ex);
-		}
-		return new DirectionRight();
+		String translatedDirection = this.directionTranslator.get(direction);
+		return this.directionGenerator.createDirection(translatedDirection);
 	}
 	
 }
