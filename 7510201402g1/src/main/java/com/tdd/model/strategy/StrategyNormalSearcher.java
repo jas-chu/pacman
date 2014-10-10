@@ -1,12 +1,10 @@
 package com.tdd.model.strategy;
 
-import com.tdd.model.stageAbstractions.Direction;
-import com.tdd.model.ghost.Strategy;
 import com.tdd.model.stageAbstractions.Enemy;
 
-public class StrategySearcher extends Strategy {
+public class StrategyNormalSearcher extends StrategySearchers {
 
-    public StrategySearcher(Enemy givenEnemy) {
+    public StrategyNormalSearcher(Enemy givenEnemy) {
         super(givenEnemy);
     }
 
