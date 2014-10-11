@@ -33,9 +33,4 @@ public abstract class StrategySearchers extends Strategy {
         return direction;
     }
 
-    @Override
-    public void advanceCycle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }

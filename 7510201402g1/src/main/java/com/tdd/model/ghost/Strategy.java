@@ -13,10 +13,9 @@ public abstract class Strategy {
     protected SquaredArea area;
 
     public Strategy(Enemy givenEnemy) {
-        this.enemy = givenEnemy;
+        this.enemy = givenEnemy;        
     }
 
-    //TODO: terminar
     public Direction getDirection(){
         Direction direction;
         this.area = new SquaredArea(this.enemy.getPosition(), this.vision);
@@ -32,7 +31,9 @@ public abstract class Strategy {
 
     // centra el area con respecto a la position del enemy y de ser necesario, limpiá el
     // "buffer de direcciones alternativas" de ese ciclo
-    public abstract void advanceCycle();
+    public void advanceCycle(){
+        
+    }
 
     // ojo: no es random random sino que tiene logica de seguir canales del laberinto.
     // y solo es random en los cruces.
