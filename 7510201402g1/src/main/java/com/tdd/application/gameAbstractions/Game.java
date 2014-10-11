@@ -1,6 +1,8 @@
 package com.tdd.application.gameAbstractions;
 
 import com.tdd.controller.controllerAbstractions.PlayerController;
+import com.tdd.model.helpers.XMLConstants;
+import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.stage.Labyrinth;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Item;
@@ -11,12 +13,15 @@ import javax.management.AttributeNotFoundException;
 
 public abstract class Game {
 	
+	protected XMLConstants gameConstants;
 	private Stage stage;
 	private List<Enemy> enemies;
 	protected Protagonist protagonist;
 	protected PlayerController controller;
 	
-	public Game(String XMLStagePath) throws AttributeNotFoundException {
+	public Game(String XMLStagePath, XMLConstants XMLGameConstants) throws AttributeNotFoundException {
+		this.gameConstants = XMLGameConstants;
+		XMLReader.configureLanguage(this.gameConstants);
 		this.stage = new Labyrinth(XMLStagePath);
 		this.enemies = this.stage.getEnemies();
 		this.protagonist = this.stage.getProtagonist();

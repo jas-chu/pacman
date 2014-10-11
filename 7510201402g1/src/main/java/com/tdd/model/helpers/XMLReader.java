@@ -14,7 +14,10 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class XMLReader {
-
+	
+	private static XMLConstants CONSTANTS;
+	private static boolean CONFIGURED = false;
+	
     /**
      *
      * @param XMLpath
@@ -61,13 +64,15 @@ public class XMLReader {
      * @throws javax.management.AttributeNotFoundException
      */
     public static String getAttributeValue(Node node, String attributeName) throws AttributeNotFoundException {
-        String attribute = "";
+        XMLReader.testConfiguration();
+		String translatedAttributeName = XMLReader.CONSTANTS.getConstantTranslation(attributeName);
+		String attribute = "";
         if (node.hasAttributes()) {
-            Node attr = node.getAttributes().getNamedItem(attributeName);
+            Node attr = node.getAttributes().getNamedItem(translatedAttributeName);
             if (attr != null) {
                 attribute = attr.getNodeValue();
             } else {
-                throw new AttributeNotFoundException("No existe el atributo " + attributeName);
+                throw new AttributeNotFoundException("No existe el atributo " + translatedAttributeName);
             }
         }
         return attribute;
@@ -78,11 +83,11 @@ public class XMLReader {
     }
 
     public static Integer getNodeId(Node node) throws AttributeNotFoundException {
-        return getIntAttributeValue(node, XMLConstants.ID);
+		return getIntAttributeValue(node, XMLConstants.ID);
     }
 
     public static Position getNodePosition(Node node) throws AttributeNotFoundException {
-        int nodeY = getIntAttributeValue(node, XMLConstants.ROW);
+		int nodeY = getIntAttributeValue(node, XMLConstants.ROW);
         int nodeX = getIntAttributeValue(node, XMLConstants.COLUMN);
         return new Position(nodeX, nodeY);
     }
@@ -114,5 +119,15 @@ public class XMLReader {
 
         return node;
     }
+
+	public static void configureLanguage(XMLConstants gameConstants) {
+		XMLReader.CONSTANTS = gameConstants;
+		XMLReader.CONFIGURED = true;
+	}
+	
+	private static void testConfiguration() {
+		if (!XMLReader.CONFIGURED)
+			throw new RuntimeException("XMLReader was not configured correctly");
+	}
 
 }
