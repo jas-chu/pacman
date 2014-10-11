@@ -8,9 +8,4 @@ public class StrategyNormalSearcher extends StrategySearchers {
         super(givenEnemy);
     }
 
-    @Override
-    public void advanceCycle() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
