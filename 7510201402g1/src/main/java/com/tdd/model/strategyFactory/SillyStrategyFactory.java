@@ -5,6 +5,7 @@ import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.strategy.SillyStrategy;
 
 public class SillyStrategyFactory implements StrategyFactory {
+    private int vision;
 
     /**
 	 * @param givenEnemy
@@ -12,7 +13,7 @@ public class SillyStrategyFactory implements StrategyFactory {
      */
     @Override
     public Strategy getStrategy(Enemy givenEnemy) {
-        return new SillyStrategy(givenEnemy);
+        return new SillyStrategy(givenEnemy, this.vision);
     }
 
 }

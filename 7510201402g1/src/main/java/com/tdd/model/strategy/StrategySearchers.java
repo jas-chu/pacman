@@ -10,8 +10,8 @@ public abstract class StrategySearchers extends Strategy {
 
     protected Position lastPosition = null;
 
-    public StrategySearchers(Enemy givenEnemy) {
-        super(givenEnemy);
+    public StrategySearchers(Enemy givenEnemy, int vision) {
+        super(givenEnemy, vision);
     }
 
     @Override

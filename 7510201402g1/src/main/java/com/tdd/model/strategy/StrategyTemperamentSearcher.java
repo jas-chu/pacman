@@ -3,16 +3,19 @@ package com.tdd.model.strategy;
 import com.tdd.model.stageAbstractions.Enemy;
 
 public class StrategyTemperamentSearcher extends StrategySearchers {
+    private int incrementalVision;
+    private final int initialVision;
 
-    public StrategyTemperamentSearcher(Enemy givenEnemy) {
-        super(givenEnemy);
+    public StrategyTemperamentSearcher(Enemy givenEnemy, int vision) {
+        super(givenEnemy, vision);
+        this.initialVision = vision;
     }  
     
-    public void incrementarVision(){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void increaseVision(){
+        this.vision += this.incrementalVision;        
     }
     
-    public void reiniciarVision(){
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void restartVision(){
+        this.vision = this.initialVision;        
     }
 }

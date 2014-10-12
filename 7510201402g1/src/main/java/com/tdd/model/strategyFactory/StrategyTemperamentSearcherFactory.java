@@ -6,13 +6,15 @@ import com.tdd.model.strategy.StrategyTemperamentSearcher;
 
 public class StrategyTemperamentSearcherFactory implements StrategyFactory {
 
+    private int vision;
+
     /**
-	 * @param givenEnemy
+     * @param givenEnemy
      * @return Devuelve una instancia de la estrategy
      * StrategyTemperamentSeacher.
      */
     @Override
     public Strategy getStrategy(Enemy givenEnemy) {
-        return new StrategyTemperamentSearcher(givenEnemy);
+        return new StrategyTemperamentSearcher(givenEnemy, this.vision);
     }
 }

@@ -6,13 +6,15 @@ import com.tdd.model.strategy.StrategyNormalSearcher;
 
 public class StrategyNormalSearcherFactory implements StrategyFactory {
 
+    private int vision;
+
     /**
-	 * @param givenEnemy
+     * @param givenEnemy
      * @return Devuelve una instancia de la estrategia StrategyNormalSearcher
      */
     @Override
     public Strategy getStrategy(Enemy givenEnemy) {
-        return new StrategyNormalSearcher(givenEnemy);
+        return new StrategyNormalSearcher(givenEnemy, this.vision);
     }
 
 }
