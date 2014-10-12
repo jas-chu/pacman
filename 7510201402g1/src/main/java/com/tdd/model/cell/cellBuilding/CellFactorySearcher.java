@@ -15,6 +15,9 @@ public class CellFactorySearcher {
 
     private final HashMap<CellName, CellFactory> factorySearcher;
 
+    /**
+     *
+     */
     public CellFactorySearcher() {
         this.factorySearcher = new HashMap();
         this.factorySearcher.put(CellName.BLOCKED, new BlockedCellFactory());
@@ -22,21 +25,31 @@ public class CellFactorySearcher {
         this.factorySearcher.put(CellName.TELEPORT, new TeleportCellFactory());
     }
 
-    public CellFactory getFactory(CellName name) {
-        return this.factorySearcher.get(name);
+    /**
+     *
+     * @param name
+     * @param isTeleport
+     * @return
+     */
+    public CellFactory getFactory(String name,boolean isTeleport) {
+        return this.factorySearcher.get(getCellNameToContent(name, isTeleport));
     }
 
-    public CellFactory getFactory(String name) {
-        return this.factorySearcher.get(getCellNameToContent(name));
-    }
-
-    private CellName getCellNameToContent(String nodeContent) {
+    /**
+     *
+     * @param nodeContent
+     * @param neighbours
+     * @return
+     */
+    private CellName getCellNameToContent(String nodeContent,boolean isTeleport) {
         CellName cellName = CellName.CLEAR;
-        if (!nodeContent.isEmpty()) {            
+        if (!nodeContent.isEmpty()) {
             cellName = CellName.BLOCKED;
-        }else if (true) {//TODO: Falta evaluar la celda teletransportadora
-            
+        } else if (isTeleport) {
+            cellName = CellName.TELEPORT;
         }
         return cellName;
     }
+
+
 }

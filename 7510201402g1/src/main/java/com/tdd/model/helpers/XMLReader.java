@@ -145,8 +145,8 @@ public class XMLReader {
      * @return
      * @throws AttributeNotFoundException
      */
-    public static HashMap<String, Integer> getNeighbours(Node node) throws AttributeNotFoundException {
-        HashMap<String, Integer> neighbours = new HashMap<>();
+    public static HashMap<String, String> getNeighbours(Node node) throws AttributeNotFoundException {
+        HashMap<String, String> neighbours = new HashMap<>();
         neighbours.put(XMLConstants.DIRECTION_UP, getNeighbour(node, XMLConstants.DIRECTION_UP));
         neighbours.put(XMLConstants.DIRECTION_DOWN, getNeighbour(node, XMLConstants.DIRECTION_DOWN));
         neighbours.put(XMLConstants.DIRECTION_LEFT, getNeighbour(node, XMLConstants.DIRECTION_LEFT));
@@ -162,8 +162,8 @@ public class XMLReader {
      * @return
      * @throws AttributeNotFoundException
      */
-    private static Integer getNeighbour(Node node, String neighbour) throws AttributeNotFoundException {
-        int neighbourId = getIntAttributeValue(node, XMLReader.CONSTANTS.getDirectionValueTranslation(neighbour));
+    private static String getNeighbour(Node node, String neighbour) throws AttributeNotFoundException {
+        String neighbourId = getAttributeValue(node, XMLReader.CONSTANTS.getDirectionValueTranslation(neighbour));
         return neighbourId;
     }
 
