@@ -2,6 +2,7 @@ package com.tdd.model.helpers;
 
 import com.tdd.model.stageAbstractions.Position;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.management.AttributeNotFoundException;
@@ -14,10 +15,10 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 public class XMLReader {
-	
-	private static XMLConstants CONSTANTS;
-	private static boolean CONFIGURED = false;
-	
+
+    private static XMLConstants CONSTANTS;
+    private static boolean CONFIGURED = false;
+
     /**
      *
      * @param XMLpath
@@ -65,14 +66,14 @@ public class XMLReader {
      */
     public static String getAttributeValue(Node node, String attributeName) throws AttributeNotFoundException {
         XMLReader.testConfiguration();
-		String translatedAttributeName = XMLReader.CONSTANTS.getConstantTranslation(attributeName);
-		String attribute = "";
+        String translatedAttributeName = XMLReader.CONSTANTS.getConstantTranslation(attributeName);
+        String attribute = "";
         if (node.hasAttributes()) {
             Node attr = node.getAttributes().getNamedItem(translatedAttributeName);
             if (attr != null) {
                 attribute = attr.getNodeValue();
             } else {
-                throw new AttributeNotFoundException("No existe el atributo " + translatedAttributeName);
+                throw new AttributeNotFoundException("The " + translatedAttributeName + " does not exist");
             }
         }
         return attribute;
@@ -83,11 +84,11 @@ public class XMLReader {
     }
 
     public static Integer getNodeId(Node node) throws AttributeNotFoundException {
-		return getIntAttributeValue(node, XMLConstants.ID);
+        return getIntAttributeValue(node, XMLConstants.ID);
     }
 
     public static Position getNodePosition(Node node) throws AttributeNotFoundException {
-		int nodeY = getIntAttributeValue(node, XMLConstants.ROW);
+        int nodeY = getIntAttributeValue(node, XMLConstants.ROW);
         int nodeX = getIntAttributeValue(node, XMLConstants.COLUMN);
         return new Position(nodeX, nodeY);
     }
@@ -120,14 +121,50 @@ public class XMLReader {
         return node;
     }
 
-	public static void configureLanguage(XMLConstants gameConstants) {
-		XMLReader.CONSTANTS = gameConstants;
-		XMLReader.CONFIGURED = true;
-	}
-	
-	private static void testConfiguration() {
-		if (!XMLReader.CONFIGURED)
-			throw new RuntimeException("XMLReader was not configured correctly");
-	}
+    /**
+     *
+     * @param gameConstants
+     */
+    public static void configureLanguage(XMLConstants gameConstants) {
+        XMLReader.CONSTANTS = gameConstants;
+        XMLReader.CONFIGURED = true;
+    }
+
+    /**
+     *
+     */
+    private static void testConfiguration() {
+        if (!XMLReader.CONFIGURED) {
+            throw new RuntimeException("XMLReader was not configured correctly");
+        }
+    }
+
+    /**
+     *
+     * @param node
+     * @return
+     * @throws AttributeNotFoundException
+     */
+    public static HashMap<String, Integer> getNeighbours(Node node) throws AttributeNotFoundException {
+        HashMap<String, Integer> neighbours = new HashMap<>();
+        neighbours.put(XMLConstants.DIRECTION_UP, getNeighbour(node, XMLConstants.DIRECTION_UP));
+        neighbours.put(XMLConstants.DIRECTION_DOWN, getNeighbour(node, XMLConstants.DIRECTION_DOWN));
+        neighbours.put(XMLConstants.DIRECTION_LEFT, getNeighbour(node, XMLConstants.DIRECTION_LEFT));
+        neighbours.put(XMLConstants.DIRECTION_RIGHT, getNeighbour(node, XMLConstants.DIRECTION_RIGHT));
+        return neighbours;
+
+    }
+
+    /**
+     *
+     * @param node
+     * @param neighbour neighbour name. Example: up,down,right,left
+     * @return
+     * @throws AttributeNotFoundException
+     */
+    private static Integer getNeighbour(Node node, String neighbour) throws AttributeNotFoundException {
+        int neighbourId = getIntAttributeValue(node, XMLReader.CONSTANTS.getDirectionValueTranslation(neighbour));
+        return neighbourId;
+    }
 
 }

@@ -32,9 +32,10 @@ public class CellFactorySearcher {
 
     private CellName getCellNameToContent(String nodeContent) {
         CellName cellName = CellName.CLEAR;
-        if (!nodeContent.isEmpty()) {
-            //TODO: Falta evaluar la celda teletransportadora
+        if (!nodeContent.isEmpty()) {            
             cellName = CellName.BLOCKED;
+        }else if (true) {//TODO: Falta evaluar la celda teletransportadora
+            
         }
         return cellName;
     }

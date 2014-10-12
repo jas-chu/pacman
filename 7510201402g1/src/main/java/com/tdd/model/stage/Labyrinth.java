@@ -28,7 +28,7 @@ public class Labyrinth implements Stage {
     private Position ghostStart;
     private List<List<Cell>> cells;
     private final LabyrinthLoader labyrinthLoader;
-	
+
     public Labyrinth(String XMLpath) throws AttributeNotFoundException {
         this.items = new ArrayList<Item>();
         this.enemies = new ArrayList<Enemy>();
@@ -47,6 +47,8 @@ public class Labyrinth implements Stage {
             for (int col = 0; col < this.width; col++) {
                 Node node = nodes.item(row + col);
                 Cell createdCell = cellBuilder.createCell(node);
+                //Add Items
+                
                 mapRow.add(createdCell);
             }
             this.cells.add(mapRow);
@@ -108,22 +110,22 @@ public class Labyrinth implements Stage {
     public void placeEnemyAtHome(Enemy givenEnemy) {
         this.forcePlaceElement(this.ghostStart, givenEnemy);
     }
-	
-	@Override
+
+    @Override
     public void placeProtagonistAtHome(Protagonist givenProtagonist) {
-		this.forcePlaceElement(this.pacmanStart, givenProtagonist);
+        this.forcePlaceElement(this.pacmanStart, givenProtagonist);
     }
 
-	@Override
+    @Override
     public boolean protagonistIsInArea(Area area) {
         return this.pacman.isInArea(area);
     }
 
-	@Override
-	public void turnEnemiesToPrey() {
-		for (Enemy enemy : this.enemies) {
-			enemy.turnToPrey();
-		}
-	}
+    @Override
+    public void turnEnemiesToPrey() {
+        for (Enemy enemy : this.enemies) {
+            enemy.turnToPrey();
+        }
+    }
 
 }

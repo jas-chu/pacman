@@ -12,15 +12,15 @@ import org.w3c.dom.NodeList;
  *
  */
 public class LabyrinthLoader {
-    
-	private Node headerNode;
+
+    private Node headerNode;
     private NodeList nodes;
-    
-	private static boolean initialized = false;
-	private static LabyrinthLoader labyrinthLoader = null;
+
+    private static boolean initialized = false;
+    private static LabyrinthLoader labyrinthLoader = null;
 
     private LabyrinthLoader(String xmlPath) {
-		this.headerNode = XMLReader.getNodeByName(xmlPath, XMLConstants.LABYRINTH).item(0);
+        this.headerNode = XMLReader.getNodeByName(xmlPath, XMLConstants.LABYRINTH).item(0);
         this.nodes = XMLReader.getNodeByName(xmlPath, XMLConstants.NODE);
     }
 
@@ -32,7 +32,7 @@ public class LabyrinthLoader {
     public static LabyrinthLoader getLabyrinthLoader(String xmlPath) {
         if (!LabyrinthLoader.initialized) {
             LabyrinthLoader.labyrinthLoader = new LabyrinthLoader(xmlPath);
-			LabyrinthLoader.initialized = true;
+            LabyrinthLoader.initialized = true;
         }
         return LabyrinthLoader.labyrinthLoader;
     }
