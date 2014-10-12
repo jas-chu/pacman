@@ -22,7 +22,7 @@ public class CellBuilder {
         Position cellPosition = XMLReader.getNodePosition(node);
         String nodeContent = XMLReader.getAttributeValue(node, XMLConstants.CONTENT);
         HashMap<String, String> neighbours = XMLReader.getNeighbours(node);
-        boolean isTeleport = testIsTeleportCell(cellPosition, neighbours);
+        boolean isTeleport = isTeleportCell(cellPosition, neighbours);
         CellFactorySearcher cellFactory = new CellFactorySearcher();
         Cell cell = cellFactory.getFactory(nodeContent, isTeleport).getCell(cellId, cellPosition);
 
@@ -34,7 +34,7 @@ public class CellBuilder {
      * @param neighbours
      * @return
      */
-    private boolean testIsTeleportCell(Position cellPosition, HashMap<String, String> neighbours) {
+    private boolean isTeleportCell(Position cellPosition, HashMap<String, String> neighbours) {
         boolean condition = false;
         for (Map.Entry<String, String> entrySet : neighbours.entrySet()) {
             String value = entrySet.getValue();
@@ -42,10 +42,8 @@ public class CellBuilder {
                 //Verificar esto
                 String row = value.substring(0, 2);
                 String column = value.substring(2, 4);
-                Position neighborPosition = new Position(Integer.getInteger(row), Integer.getInteger(column));
-                if (!cellPosition.isNeighbor(neighborPosition)) {
-                    condition = false;
-                }
+                condition = cellPosition.isNeighbor(new Position(Integer.getInteger(row), Integer.getInteger(column)));
+
             }
         }
         return condition;

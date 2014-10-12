@@ -1,6 +1,7 @@
 package com.tdd.model.stage;
 
 import com.tdd.model.helpers.LabyrinthLoader;
+import com.tdd.model.helpers.LabyrinthDischarger;
 import com.tdd.model.cell.cellBuilding.CellBuilder;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.stageAbstractions.Cell;
@@ -28,11 +29,13 @@ public class Labyrinth implements Stage {
     private Position ghostStart;
     private List<List<Cell>> cells;
     private final LabyrinthLoader labyrinthLoader;
+    private final LabyrinthDischarger labyrinthDischarger;
 
     public Labyrinth(String XMLpath) throws AttributeNotFoundException {
         this.items = new ArrayList<Item>();
         this.enemies = new ArrayList<Enemy>();
         this.labyrinthLoader = LabyrinthLoader.getLabyrinthLoader(XMLpath);
+        this.labyrinthDischarger = LabyrinthDischarger.getLabyrinthDischarger(XMLpath);
         loadInitialLabyrinthConfigurations();
         loadCells();
     }
@@ -47,7 +50,7 @@ public class Labyrinth implements Stage {
             for (int col = 0; col < this.width; col++) {
                 Node node = nodes.item(row + col);
                 Cell createdCell = cellBuilder.createCell(node);
-                //Add Items
+                //TODO-Add Items
                 
                 mapRow.add(createdCell);
             }
