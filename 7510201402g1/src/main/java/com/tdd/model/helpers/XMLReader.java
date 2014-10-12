@@ -147,10 +147,10 @@ public class XMLReader {
      */
     public static HashMap<String, String> getNeighbours(Node node) throws AttributeNotFoundException {
         HashMap<String, String> neighbours = new HashMap<>();
-        neighbours.put(XMLConstants.DIRECTION_UP, getNeighbour(node, XMLConstants.DIRECTION_UP));
-        neighbours.put(XMLConstants.DIRECTION_DOWN, getNeighbour(node, XMLConstants.DIRECTION_DOWN));
-        neighbours.put(XMLConstants.DIRECTION_LEFT, getNeighbour(node, XMLConstants.DIRECTION_LEFT));
-        neighbours.put(XMLConstants.DIRECTION_RIGHT, getNeighbour(node, XMLConstants.DIRECTION_RIGHT));
+        neighbours.put(XMLConstants.DIRECTION_UP, XMLReader.getNeighbour(node, XMLConstants.DIRECTION_UP));
+        neighbours.put(XMLConstants.DIRECTION_DOWN, XMLReader.getNeighbour(node, XMLConstants.DIRECTION_DOWN));
+        neighbours.put(XMLConstants.DIRECTION_LEFT, XMLReader.getNeighbour(node, XMLConstants.DIRECTION_LEFT));
+        neighbours.put(XMLConstants.DIRECTION_RIGHT, XMLReader.getNeighbour(node, XMLConstants.DIRECTION_RIGHT));
         return neighbours;
 
     }
@@ -163,7 +163,7 @@ public class XMLReader {
      * @throws AttributeNotFoundException
      */
     private static String getNeighbour(Node node, String neighbour) throws AttributeNotFoundException {
-        String neighbourId = getAttributeValue(node, XMLReader.CONSTANTS.getDirectionValueTranslation(neighbour));
+        String neighbourId = XMLReader.getAttributeValue(node, XMLReader.CONSTANTS.getDirectionValueTranslation(neighbour));
         return neighbourId;
     }
 
