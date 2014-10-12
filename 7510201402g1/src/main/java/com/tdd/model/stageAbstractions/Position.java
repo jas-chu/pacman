@@ -181,5 +181,10 @@ public class Position {
     private boolean testAdjacentY(Position anotherPosition) {
         return this.getY() + 1 == anotherPosition.getY() || (this.getY() - 1 == anotherPosition.getY());
     }
-
+    
+    public double getDistance(Position anotherPosition){
+        int xd = this.x - anotherPosition.getX();
+        int yd = this.y - anotherPosition.getY();
+        return Math.pow(Math.pow(xd, 2) + Math.pow(yd, 2), 0.5);             
+    }
 }
