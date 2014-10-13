@@ -21,6 +21,14 @@ public abstract class XMLConstants {
     public static final String CONTENT = "content";
     public static final String ID = "id";
     public static final String DIRECTION = "direccion";
+    public static final String GAME = "game";
+    public static final String PACMAN_POSITION = "pacmanPosition";
+    public static final String SENSE = "sense";
+    public static final String PERSONALITY = "personality";
+    public static final String STATUS = "status";
+    public static final String GHOST = "ghost";
+    public static final String SCORE = "score";
+    public static final String END_GAME = "endGame";
 
     /* DIRECTION VALUES */
     public static final String DIRECTION_UP = "up";
@@ -29,8 +37,8 @@ public abstract class XMLConstants {
     public static final String DIRECTION_RIGHT = "right";
 
     /* CONTENT VALUES */
-    public static final String DOT = "bolita";
-    public static final String BIG_DOT = "bolon";
+    public static final String DOT = "dot";
+    public static final String BIG_DOT = "bigDot";
     
     protected Map<String, String> translationDictionary;
     protected Map<String, String> invertedDirectionValuesDictionary;

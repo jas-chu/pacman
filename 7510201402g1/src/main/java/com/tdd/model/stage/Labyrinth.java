@@ -44,15 +44,16 @@ public class Labyrinth implements Stage {
         this.enemies = new ArrayList<Enemy>();
         this.labyrinthLoader = LabyrinthLoader.getLabyrinthLoader(XMLpath);
         this.labyrinthDischarger = LabyrinthDischarger.getLabyrinthDischarger(XMLpath);
-        loadInitialLabyrinthConfigurations();
-        loadCells();
+        upLoadInitialLabyrinthConfigurations();
+        upLoadCells();
+        upLoadCharacters();
     }
 
     /**
      *
      * @throws AttributeNotFoundException
      */
-    private void loadCells() throws AttributeNotFoundException {
+    private void upLoadCells() throws AttributeNotFoundException {
         NodeList nodes = this.labyrinthLoader.getNodes();
         CellBuilder cellBuilder = new CellBuilder();
         ItemBuilder itemBuilder = new ItemBuilder();
@@ -62,11 +63,12 @@ public class Labyrinth implements Stage {
             for (int col = 0; col < this.width; col++) {
                 Node node = nodes.item(row + col);
                 Cell createdCell = cellBuilder.createCell(node);
-                if(!createdCell.isEmpty()){
+                if (!createdCell.isEmpty()) {
+                    //cellContent viene en castellano. En donde lo traducimos a ingles?
                     String cellContent = XMLReader.getAttributeValue(node, XMLConstants.CONTENT);
-                    this.items.add(itemBuilder.createItem(this, createdCell.getPosition(),cellContent));
+                    this.items.add(itemBuilder.createItem(this, createdCell.getPosition(), cellContent));
                 }
-                
+
                 mapRow.add(createdCell);
             }
             this.cells.add(mapRow);
@@ -77,7 +79,7 @@ public class Labyrinth implements Stage {
      *
      * @throws AttributeNotFoundException
      */
-    private void loadInitialLabyrinthConfigurations() throws AttributeNotFoundException {
+    private void upLoadInitialLabyrinthConfigurations() throws AttributeNotFoundException {
         this.width = this.labyrinthLoader.getLabyrinthWidth();
         this.height = this.labyrinthLoader.getLabyrinthHeigth();
         this.pacman = new Pacman(this, this.labyrinthLoader.getPacmanStartPosition());
@@ -200,6 +202,12 @@ public class Labyrinth implements Stage {
         for (Enemy enemy : this.enemies) {
             enemy.turnToPrey();
         }
+    }
+    /**
+     * 
+     */
+    private void upLoadCharacters() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -79,18 +79,48 @@ public class XMLReader {
         return attribute;
     }
 
+    /**
+     *
+     * @param node
+     * @param attribute
+     * @return
+     * @throws AttributeNotFoundException
+     */
     public static Integer getIntAttributeValue(Node node, String attribute) throws AttributeNotFoundException {
         return Integer.getInteger(XMLReader.getAttributeValue(node, attribute));
     }
 
+    /**
+     *
+     * @param node
+     * @return
+     * @throws AttributeNotFoundException
+     */
     public static Integer getNodeId(Node node) throws AttributeNotFoundException {
         return getIntAttributeValue(node, XMLConstants.ID);
     }
 
+    /**
+     *
+     * @param node
+     * @return
+     * @throws AttributeNotFoundException
+     */
     public static Position getNodePosition(Node node) throws AttributeNotFoundException {
         int nodeY = getIntAttributeValue(node, XMLConstants.ROW);
         int nodeX = getIntAttributeValue(node, XMLConstants.COLUMN);
         return new Position(nodeX, nodeY);
+    }
+
+    /**
+     *
+     * @param node
+     * @param attribute
+     * @return
+     * @throws AttributeNotFoundException
+     */
+    public static Boolean getBooleanAttributeValue(Node node, String attribute) throws AttributeNotFoundException {
+        return Boolean.getBoolean(XMLReader.getAttributeValue(node, attribute));
     }
 
     /**

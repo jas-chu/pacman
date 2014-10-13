@@ -23,6 +23,14 @@ public class SpanishXMLConstants extends XMLConstants {
         this.translationDictionary.put(CONTENT, "contiene");
         this.translationDictionary.put(ID, "id");
         this.translationDictionary.put(DIRECTION, "direccion");
+        this.translationDictionary.put(GAME, "juego");
+        this.translationDictionary.put(PACMAN_POSITION, "posicionPacman");
+        this.translationDictionary.put(SENSE, "sentido");
+        this.translationDictionary.put(PERSONALITY, "personalidad");
+        this.translationDictionary.put(STATUS, "estado");
+        this.translationDictionary.put(GHOST, "fantasma");
+        this.translationDictionary.put(SCORE, "puntaje");
+        this.translationDictionary.put(END_GAME, "finJuego");
     }
 
     private void fillDirectionValuesDictionary() {

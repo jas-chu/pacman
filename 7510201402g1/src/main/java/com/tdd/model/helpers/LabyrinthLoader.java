@@ -13,8 +13,8 @@ import org.w3c.dom.NodeList;
  */
 public class LabyrinthLoader {
 
-    private Node headerNode;
-    private NodeList nodes;
+    private final Node headerNode;
+    private final NodeList nodes;
 
     private static boolean initialized = false;
     private static LabyrinthLoader labyrinthLoader = null;
