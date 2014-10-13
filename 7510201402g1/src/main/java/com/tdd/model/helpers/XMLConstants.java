@@ -28,6 +28,10 @@ public abstract class XMLConstants {
     public static final String DIRECTION_LEFT = "left";
     public static final String DIRECTION_RIGHT = "right";
 
+    /* CONTENT VALUES */
+    public static final String DOT = "bolita";
+    public static final String BIG_DOT = "bolon";
+    
     protected Map<String, String> translationDictionary;
     protected Map<String, String> invertedDirectionValuesDictionary;
 
