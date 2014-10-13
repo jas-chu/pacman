@@ -125,4 +125,12 @@ public abstract class Cell {
     public void setNeighbours(Map<String, Integer> neighbours) {
         this.neighbours = neighbours;
     }
+    
+    /**
+     * 
+     * @return 
+     */
+    public boolean isEmpty(){
+        return this.elements.isEmpty();
+    }
 }

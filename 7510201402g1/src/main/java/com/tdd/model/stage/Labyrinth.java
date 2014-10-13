@@ -4,6 +4,9 @@ import com.tdd.model.helpers.LabyrinthLoader;
 import com.tdd.model.helpers.LabyrinthDischarger;
 import com.tdd.model.cell.cellBuilding.CellBuilder;
 import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.helpers.XMLConstants;
+import com.tdd.model.helpers.XMLReader;
+import com.tdd.model.itemBuilding.ItemBuilder;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Area;
 import com.tdd.model.stageAbstractions.Enemy;
@@ -52,15 +55,18 @@ public class Labyrinth implements Stage {
     private void loadCells() throws AttributeNotFoundException {
         NodeList nodes = this.labyrinthLoader.getNodes();
         CellBuilder cellBuilder = new CellBuilder();
-
+        ItemBuilder itemBuilder = new ItemBuilder();
         this.cells = new ArrayList<List<Cell>>();
         for (int row = 0; row < this.height; row++) {
             List<Cell> mapRow = new ArrayList<Cell>();
             for (int col = 0; col < this.width; col++) {
                 Node node = nodes.item(row + col);
                 Cell createdCell = cellBuilder.createCell(node);
-                //TODO-Add Items
-//                this.items.add(null)
+                if(!createdCell.isEmpty()){
+                    String cellContent = XMLReader.getAttributeValue(node, XMLConstants.CONTENT);
+                    this.items.add(itemBuilder.createItem(this, createdCell.getPosition(),cellContent));
+                }
+                
                 mapRow.add(createdCell);
             }
             this.cells.add(mapRow);

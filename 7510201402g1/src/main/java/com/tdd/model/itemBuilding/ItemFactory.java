@@ -1,4 +1,4 @@
-package com.tdd.model.itemFactory;
+package com.tdd.model.itemBuilding;
 
 import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Position;

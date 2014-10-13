@@ -24,9 +24,7 @@ public class CellBuilder {
         HashMap<String, String> neighbours = XMLReader.getNeighbours(node);
         boolean isTeleport = isTeleportCell(cellPosition, neighbours);
         CellFactorySearcher cellFactory = new CellFactorySearcher();
-        Cell cell = cellFactory.getFactory(nodeContent, isTeleport).getCell(cellId, cellPosition);
-
-        return cell;
+        return cellFactory.getFactory(nodeContent, isTeleport).getCell(cellId, cellPosition);
     }
 
     /**

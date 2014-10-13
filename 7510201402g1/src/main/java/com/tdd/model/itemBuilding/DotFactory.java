@@ -1,5 +1,5 @@
 
-package com.tdd.model.itemFactory;
+package com.tdd.model.itemBuilding;
 
 import com.tdd.model.stage.Dot;
 import com.tdd.model.stageAbstractions.Item;
