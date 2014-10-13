@@ -101,8 +101,15 @@ public class Labyrinth implements Stage {
     private void upLoadGhost() {
         NodeList ghostsNodes = this.gameCharactersLoader.getGhostNodes();
         for (int i = 0; i < ghostsNodes.getLength(); i++) {
-            Node ghostNode = ghostsNodes.item(i);
-            this.enemies.add(new Ghost(this, ghostStart, ghostNode));
+            try {
+                Node ghostNode = ghostsNodes.item(i);
+                String sense = XMLReader.getAttributeValue(ghostNode,XMLConstants.SENSE);
+                String personality = XMLReader.getAttributeValue(ghostNode,XMLConstants.PERSONALITY);
+                String status = XMLReader.getAttributeValue(ghostNode,XMLConstants.STATUS);
+                this.enemies.add(new Ghost(this, ghostStart, sense,personality,status));
+            } catch (AttributeNotFoundException ex) {
+                Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

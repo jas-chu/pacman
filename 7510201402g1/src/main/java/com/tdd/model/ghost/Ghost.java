@@ -22,9 +22,11 @@ public class Ghost extends Enemy {
         this.strategy = givenStrategy;
     }
 
-    public Ghost(Stage stage, Position givenPosition, Node ghostNode) {
+    public Ghost(Stage stage, Position givenPosition,String sense,String personality,String status) {
         super(stage, givenPosition);
-        throw new UnsupportedOperationException("Completar con el resto de la data que trae el nodo"); //To change body of generated methods, choose Tools | Templates.
+        this.factory = null;
+        this.state = null;
+        this.strategy = null;
     }
 
     @Override
