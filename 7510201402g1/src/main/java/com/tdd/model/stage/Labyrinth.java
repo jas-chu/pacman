@@ -4,6 +4,8 @@ import com.tdd.model.helpers.LabyrinthLoader;
 import com.tdd.model.helpers.LabyrinthDischarger;
 import com.tdd.model.cell.cellBuilding.CellBuilder;
 import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.ghost.Ghost;
+import com.tdd.model.helpers.GameCharactersLoader;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.itemBuilding.ItemBuilder;
@@ -17,6 +19,8 @@ import com.tdd.model.stageAbstractions.Stage;
 import com.tdd.model.stageAbstractions.StageElement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.management.AttributeNotFoundException;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -33,6 +37,7 @@ public class Labyrinth implements Stage {
     private List<List<Cell>> cells;
     private final LabyrinthLoader labyrinthLoader;
     private final LabyrinthDischarger labyrinthDischarger;
+    private final GameCharactersLoader gameCharactersLoader;
 
     /**
      *
@@ -44,6 +49,7 @@ public class Labyrinth implements Stage {
         this.enemies = new ArrayList<Enemy>();
         this.labyrinthLoader = LabyrinthLoader.getLabyrinthLoader(XMLpath);
         this.labyrinthDischarger = LabyrinthDischarger.getLabyrinthDischarger(XMLpath);
+        this.gameCharactersLoader = GameCharactersLoader.getCharactersLoader("PATH");
         upLoadInitialLabyrinthConfigurations();
         upLoadCells();
         upLoadCharacters();
@@ -72,6 +78,31 @@ public class Labyrinth implements Stage {
                 mapRow.add(createdCell);
             }
             this.cells.add(mapRow);
+        }
+    }
+
+    /**
+     * 
+     */
+    private void upLoadCharacters() {
+        this.upLoadGhost();
+        Position pacmanPosition = null;
+        try {
+            pacmanPosition = this.gameCharactersLoader.getPacmanPosition();
+        } catch (AttributeNotFoundException ex) {
+            Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.pacman = new Pacman(this, pacmanPosition);
+    }
+
+    /**
+     *
+     */
+    private void upLoadGhost() {
+        NodeList ghostsNodes = this.gameCharactersLoader.getGhostNodes();
+        for (int i = 0; i < ghostsNodes.getLength(); i++) {
+            Node ghostNode = ghostsNodes.item(i);
+            this.enemies.add(new Ghost(this, ghostStart, ghostNode));
         }
     }
 
@@ -202,12 +233,6 @@ public class Labyrinth implements Stage {
         for (Enemy enemy : this.enemies) {
             enemy.turnToPrey();
         }
-    }
-    /**
-     * 
-     */
-    private void upLoadCharacters() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
