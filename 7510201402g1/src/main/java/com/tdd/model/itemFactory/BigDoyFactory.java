@@ -1,15 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.tdd.model.itemFactory;
+
+import com.tdd.model.stage.BigDot;
+import com.tdd.model.stageAbstractions.Item;
+import com.tdd.model.stageAbstractions.Position;
+import com.tdd.model.stageAbstractions.Stage;
 
 /**
  *
  * 
  */
-public class BigDoyFactory {
+public class BigDoyFactory implements ItemFactory{
+
+    @Override
+    public Item getItem(Stage givenStage, Position givenPosition) {
+        return new BigDot(givenStage, givenPosition);
+    }
 
 }
