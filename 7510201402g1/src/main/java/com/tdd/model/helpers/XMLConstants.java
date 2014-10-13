@@ -29,6 +29,8 @@ public abstract class XMLConstants {
     public static final String GHOST = "ghost";
     public static final String SCORE = "score";
     public static final String END_GAME = "endGame";
+    public static final String NODE_WIDTH = "nodeWidth";
+    public static final String NODE_HEIGHT = "nodeHeight";
 
     /* DIRECTION VALUES */
     public static final String DIRECTION_UP = "up";
@@ -39,7 +41,7 @@ public abstract class XMLConstants {
     /* CONTENT VALUES */
     public static final String DOT = "dot";
     public static final String BIG_DOT = "bigDot";
-    
+
     protected Map<String, String> translationDictionary;
     protected Map<String, String> invertedDirectionValuesDictionary;
 

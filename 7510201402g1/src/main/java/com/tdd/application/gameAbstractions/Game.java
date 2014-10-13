@@ -12,48 +12,48 @@ import java.util.List;
 import javax.management.AttributeNotFoundException;
 
 public abstract class Game {
-	
-	protected XMLConstants gameConstants;
-	private Stage stage;
-	private List<Enemy> enemies;
-	protected Protagonist protagonist;
-	protected PlayerController controller;
-	
-	public Game(String XMLStagePath, XMLConstants XMLGameConstants) throws AttributeNotFoundException {
-		this.gameConstants = XMLGameConstants;
-		XMLReader.configureLanguage(this.gameConstants);
-		this.stage = new Labyrinth(XMLStagePath);
-		this.enemies = this.stage.getEnemies();
-		this.protagonist = this.stage.getProtagonist();
-		List<Item> items = this.stage.getItems();
-		//this.createViews(items); until now, left for next iteration
-	}
-	
-	protected abstract PlayerController createPlayerController();
-	
-	private void createViews(List<Item> items) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-	
-	public void gameloop() {
-		this.controller = createPlayerController();
-		boolean continuePlaying = false;
-		while (!continuePlaying) {
-			this.controller.processMovement();
-			this.updateEnemies();
-			//this.updateViews(); until now, left for next iteration
-			continuePlaying = (this.stage.hasItems() && this.protagonist.isAlive());
-		}
-	}
 
-	private void updateEnemies() {
-		for (Enemy enemy : this.enemies) {
-			enemy.move();
-		}
-	}
+    protected XMLConstants gameConstants;
+    private Stage stage;
+    private List<Enemy> enemies;
+    protected Protagonist protagonist;
+    protected PlayerController controller;
 
-	private void updateViews() {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-	
+    public Game(String XMLStagePath, String XMLCharactersPath, XMLConstants XMLGameConstants) throws AttributeNotFoundException {
+        this.gameConstants = XMLGameConstants;
+        XMLReader.configureLanguage(this.gameConstants);
+        this.stage = new Labyrinth(XMLStagePath, XMLCharactersPath);
+        this.enemies = this.stage.getEnemies();
+        this.protagonist = this.stage.getProtagonist();
+        List<Item> items = this.stage.getItems();
+        //this.createViews(items); until now, left for next iteration
+    }
+
+    protected abstract PlayerController createPlayerController();
+
+    private void createViews(List<Item> items) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void gameloop() {
+        this.controller = createPlayerController();
+        boolean continuePlaying = false;
+        while (!continuePlaying) {
+            this.controller.processMovement();
+            this.updateEnemies();
+            //this.updateViews(); until now, left for next iteration
+            continuePlaying = (this.stage.hasItems() && this.protagonist.isAlive());
+        }
+    }
+
+    private void updateEnemies() {
+        for (Enemy enemy : this.enemies) {
+            enemy.move();
+        }
+    }
+
+    private void updateViews() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
 }

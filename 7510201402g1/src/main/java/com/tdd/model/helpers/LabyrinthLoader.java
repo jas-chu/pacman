@@ -102,4 +102,20 @@ public class LabyrinthLoader {
         Node elementNode = XMLReader.getNodeById(this.nodes, elementId);
         return XMLReader.getNodePosition(elementNode);
     }
+
+    /**
+     *
+     * @return @throws AttributeNotFoundException
+     */
+    public Integer getNodeWidth() throws AttributeNotFoundException {
+        return XMLReader.getIntAttributeValue(this.headerNode, XMLConstants.NODE_WIDTH);
+    }
+
+    /**
+     *
+     * @return @throws AttributeNotFoundException
+     */
+    public Integer getNodeHeight() throws AttributeNotFoundException {
+        return XMLReader.getIntAttributeValue(this.headerNode, XMLConstants.NODE_HEIGHT);
+    }
 }

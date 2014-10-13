@@ -30,8 +30,10 @@ public class Labyrinth implements Stage {
     private List<Item> items;
     private List<Enemy> enemies;
     private Protagonist pacman;
-    private int width;
-    private int height;
+    private Integer width;
+    private Integer height;
+    private Integer nodeWidth;
+    private Integer nodeHeight;
     private Position pacmanStart;
     private Position ghostStart;
     private List<List<Cell>> cells;
@@ -41,15 +43,16 @@ public class Labyrinth implements Stage {
 
     /**
      *
-     * @param XMLpath
+     * @param xmlLabyrinthPath
+     * @param xmlCharactersPath
      * @throws AttributeNotFoundException
      */
-    public Labyrinth(String XMLpath) throws AttributeNotFoundException {
+    public Labyrinth(String xmlLabyrinthPath, String xmlCharactersPath) throws AttributeNotFoundException {
         this.items = new ArrayList<Item>();
         this.enemies = new ArrayList<Enemy>();
-        this.labyrinthLoader = LabyrinthLoader.getLabyrinthLoader(XMLpath);
-        this.labyrinthDischarger = LabyrinthDischarger.getLabyrinthDischarger(XMLpath);
-        this.gameCharactersLoader = GameCharactersLoader.getCharactersLoader("PATH");
+        this.labyrinthLoader = LabyrinthLoader.getLabyrinthLoader(xmlLabyrinthPath);
+        this.labyrinthDischarger = LabyrinthDischarger.getLabyrinthDischarger(this);
+        this.gameCharactersLoader = GameCharactersLoader.getCharactersLoader(xmlCharactersPath);
         upLoadInitialLabyrinthConfigurations();
         upLoadCells();
         upLoadCharacters();
@@ -82,7 +85,7 @@ public class Labyrinth implements Stage {
     }
 
     /**
-     * 
+     *
      */
     private void upLoadCharacters() {
         this.upLoadGhost();
@@ -103,10 +106,10 @@ public class Labyrinth implements Stage {
         for (int i = 0; i < ghostsNodes.getLength(); i++) {
             try {
                 Node ghostNode = ghostsNodes.item(i);
-                String sense = XMLReader.getAttributeValue(ghostNode,XMLConstants.SENSE);
-                String personality = XMLReader.getAttributeValue(ghostNode,XMLConstants.PERSONALITY);
-                String status = XMLReader.getAttributeValue(ghostNode,XMLConstants.STATUS);
-                this.enemies.add(new Ghost(this, ghostStart, sense,personality,status));
+                String sense = XMLReader.getAttributeValue(ghostNode, XMLConstants.SENSE);
+                String personality = XMLReader.getAttributeValue(ghostNode, XMLConstants.PERSONALITY);
+                String status = XMLReader.getAttributeValue(ghostNode, XMLConstants.STATUS);
+                this.enemies.add(new Ghost(this, ghostStart, sense, personality, status));
             } catch (AttributeNotFoundException ex) {
                 Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -120,8 +123,59 @@ public class Labyrinth implements Stage {
     private void upLoadInitialLabyrinthConfigurations() throws AttributeNotFoundException {
         this.width = this.labyrinthLoader.getLabyrinthWidth();
         this.height = this.labyrinthLoader.getLabyrinthHeigth();
-        this.pacman = new Pacman(this, this.labyrinthLoader.getPacmanStartPosition());
+        this.nodeWidth = this.labyrinthLoader.getNodeWidth();
+        this.nodeHeight = this.labyrinthLoader.getNodeHeight();
+        this.pacmanStart = this.labyrinthLoader.getPacmanStartPosition();
+        this.pacman = new Pacman(this, this.pacmanStart);
         this.ghostStart = this.labyrinthLoader.getGhostStartPosition();
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Integer getWidth() {
+        return this.width;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Integer getHeight() {
+        return this.height;
+    }
+
+    public Integer getNodeWidth() {
+        return this.nodeWidth;
+    }
+
+    public Integer getNodeHeight() {
+        return this.nodeHeight;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Position getGhostStart() {
+        return this.ghostStart;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public Position getPacmanStart() {
+        return this.pacmanStart;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public List<List<Cell>> getCells() {
+        return this.cells;
     }
 
     /**

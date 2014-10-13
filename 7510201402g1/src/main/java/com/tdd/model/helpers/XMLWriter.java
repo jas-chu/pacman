@@ -1,5 +1,6 @@
 package com.tdd.model.helpers;
 
+import com.tdd.model.stageAbstractions.Cell;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +20,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 /**
  *
@@ -121,10 +123,11 @@ public class XMLWriter {
         }
         return attributeList;
     }
+
     /**
-     * 
+     *
      * @throws TransformerConfigurationException
-     * @throws TransformerException 
+     * @throws TransformerException
      */
     public void write() throws TransformerConfigurationException, TransformerException {
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -133,5 +136,13 @@ public class XMLWriter {
         StreamResult result = new StreamResult(new File(this.path));
         transformer.transform(source, result);
     }
+    
+    
+    public void addNodesToRoot(NodeList nodes) {
+        for (int i = 0; i < nodes.getLength(); i++) {
+            this.root.appendChild(nodes.item(i));
+        }
+    }
 
+    
 }

@@ -31,6 +31,8 @@ public class SpanishXMLConstants extends XMLConstants {
         this.translationDictionary.put(GHOST, "fantasma");
         this.translationDictionary.put(SCORE, "puntaje");
         this.translationDictionary.put(END_GAME, "finJuego");
+        this.translationDictionary.put(NODE_WIDTH, "nodoAncho");
+        this.translationDictionary.put(NODE_HEIGHT, "nodoAlto");
     }
 
     private void fillDirectionValuesDictionary() {

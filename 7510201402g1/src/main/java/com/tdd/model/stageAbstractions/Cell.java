@@ -8,7 +8,7 @@ import java.util.Map;
 
 public abstract class Cell {
 
-    private int id;
+    private Integer id;
     private Position position;
     private List<StageElement> elements;
     private Map<String, Integer> neighbours;
@@ -29,7 +29,7 @@ public abstract class Cell {
      *
      * @return
      */
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
 
@@ -37,7 +37,7 @@ public abstract class Cell {
      *
      * @return
      */
-    public int getRow() {
+    public Integer getRow() {
         return this.position.getY();
     }
 
@@ -45,7 +45,7 @@ public abstract class Cell {
      *
      * @return
      */
-    public int getColumn() {
+    public Integer getColumn() {
         return this.position.getX();
     }
 
@@ -132,5 +132,13 @@ public abstract class Cell {
      */
     public boolean isEmpty(){
         return this.elements.isEmpty();
+    }
+
+    public String getContent() {
+       String content = "";
+       if(!this.isEmpty()){
+           //Ver como retornar bolita y bolon
+       }
+       return content;
     }
 }
