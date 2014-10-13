@@ -1,9 +1,0 @@
-{
-    "deadTime": 1000,
-    "preyTime": 1000,
-    "hunterTimes":[
-        1000,
-        1000,
-        1000
-    ]
-}
