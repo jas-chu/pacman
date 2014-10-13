@@ -31,6 +31,11 @@ public class Labyrinth implements Stage {
     private final LabyrinthLoader labyrinthLoader;
     private final LabyrinthDischarger labyrinthDischarger;
 
+    /**
+     *
+     * @param XMLpath
+     * @throws AttributeNotFoundException
+     */
     public Labyrinth(String XMLpath) throws AttributeNotFoundException {
         this.items = new ArrayList<Item>();
         this.enemies = new ArrayList<Enemy>();
@@ -40,6 +45,10 @@ public class Labyrinth implements Stage {
         loadCells();
     }
 
+    /**
+     *
+     * @throws AttributeNotFoundException
+     */
     private void loadCells() throws AttributeNotFoundException {
         NodeList nodes = this.labyrinthLoader.getNodes();
         CellBuilder cellBuilder = new CellBuilder();
@@ -51,13 +60,17 @@ public class Labyrinth implements Stage {
                 Node node = nodes.item(row + col);
                 Cell createdCell = cellBuilder.createCell(node);
                 //TODO-Add Items
-                
+//                this.items.add(null)
                 mapRow.add(createdCell);
             }
             this.cells.add(mapRow);
         }
     }
 
+    /**
+     *
+     * @throws AttributeNotFoundException
+     */
     private void loadInitialLabyrinthConfigurations() throws AttributeNotFoundException {
         this.width = this.labyrinthLoader.getLabyrinthWidth();
         this.height = this.labyrinthLoader.getLabyrinthHeigth();
@@ -65,37 +78,68 @@ public class Labyrinth implements Stage {
         this.ghostStart = this.labyrinthLoader.getGhostStartPosition();
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Item> getItems() {
         return items;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public List<Enemy> getEnemies() {
         return enemies;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public Protagonist getProtagonist() {
         return pacman;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public boolean hasItems() {
         return !(this.items.isEmpty());
     }
 
+    /**
+     *
+     * @param position
+     * @return
+     */
     private Cell getCell(Position position) {
         int row = position.getY();
         int col = position.getX();
         return this.cells.get(row).get(col);
     }
 
+    /**
+     *
+     * @param element
+     */
     private void removeElementFromCell(StageElement element) {
         Cell sourceCell = this.getCell(element.getPosition());
         sourceCell.removeElement(element);
     }
 
+    /**
+     *
+     * @param position
+     * @param element
+     * @throws BlockedCellException
+     */
     @Override
     public void placeElement(Position position, StageElement element) throws BlockedCellException {
         this.removeElementFromCell(element);
@@ -104,26 +148,47 @@ public class Labyrinth implements Stage {
         targetCell.placeElement(element);
     }
 
+    /**
+     *
+     * @param position
+     * @param element
+     */
     private void forcePlaceElement(Position position, StageElement element) {
         this.removeElementFromCell(element);
         this.getCell(position).placeElement(element);
     }
 
+    /**
+     *
+     * @param givenEnemy
+     */
     @Override
     public void placeEnemyAtHome(Enemy givenEnemy) {
         this.forcePlaceElement(this.ghostStart, givenEnemy);
     }
 
+    /**
+     *
+     * @param givenProtagonist
+     */
     @Override
     public void placeProtagonistAtHome(Protagonist givenProtagonist) {
         this.forcePlaceElement(this.pacmanStart, givenProtagonist);
     }
 
+    /**
+     *
+     * @param area
+     * @return
+     */
     @Override
     public boolean protagonistIsInArea(Area area) {
         return this.pacman.isInArea(area);
     }
 
+    /**
+     *
+     */
     @Override
     public void turnEnemiesToPrey() {
         for (Enemy enemy : this.enemies) {
