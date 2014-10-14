@@ -187,9 +187,15 @@ public class Position {
         int yd = this.y - anotherPosition.getY();
         return Math.pow(Math.pow(xd, 2) + Math.pow(yd, 2), 0.5);
     }
-
+	
+	private String componentToString(Integer value) {
+		String rawStringValue = value.toString();
+		if (rawStringValue.length() < 2) return ("0" + rawStringValue);
+		return rawStringValue;
+	}
+	
     @Override
     public String toString() {
-        return this.x.toString() + this.y.toString();
+        return this.componentToString(this.x) + this.componentToString(this.y);
     }
 }

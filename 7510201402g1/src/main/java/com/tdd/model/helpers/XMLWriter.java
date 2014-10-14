@@ -26,7 +26,7 @@ import org.w3c.dom.NodeList;
  *
  *
  */
-public class XMLWriter {
+public class XMLWriter extends XMLIO {
 
     private final Document doc;
     private Element root;
@@ -37,13 +37,7 @@ public class XMLWriter {
      * @param xmlPath
      */
     public XMLWriter(String xmlPath) {
-        DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder docBuilder = null;
-        try {
-            docBuilder = docFactory.newDocumentBuilder();
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(XMLWriter.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        DocumentBuilder docBuilder = XMLIO.getDocumentBuilder();
         this.doc = docBuilder.newDocument();
         this.path = xmlPath;
     }
@@ -144,5 +138,33 @@ public class XMLWriter {
         }
     }
 
-    
+    public static void addAttributeToCustomMap(Map<String, String> attributes, String attributeName, String value) {
+		XMLWriter.testConfiguration();
+		String translatedAttributeName = XMLIO.getConstants().getConstantTranslation(attributeName);
+		attributes.put(translatedAttributeName, value);
+	}
+	
+	public static void addIntAttributeToCustomMap(Map<String, String> attributes, String attributeName, Integer value, Integer digitsAmount) {
+		String rawStringValue = value.toString();
+		int difference = rawStringValue.length() - digitsAmount;
+		String completingZeros = new String();
+		for (int i = 0 ; i < difference ; ++i) completingZeros += "0";
+		String stringValue = completingZeros + rawStringValue;
+		XMLWriter.addAttributeToCustomMap(attributes, attributeName, stringValue);
+	}
+	
+	/**
+     *
+     * @param gameConstants
+     */
+    public static void configureLanguage(XMLConstants gameConstants) {
+        XMLIO.configureLanguage(gameConstants);
+    }
+
+    /**
+     *
+     */
+    protected static void testConfiguration() {
+        XMLIO.testConfiguration("XMLWriter");
+    }
 }

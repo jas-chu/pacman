@@ -64,17 +64,16 @@ public class LabyrinthSerializer {
      * @return
      */
     private HashMap<String, String> getLabyrinthAttributes() {
-
         HashMap<String, String> attributes = new HashMap<>();
-        attributes.put(XMLConstants.WIDTH, labyrinth.getHeight().toString());
-        attributes.put(XMLConstants.HEIGHT, labyrinth.getHeight().toString());
-        attributes.put(XMLConstants.PACMAN_START, labyrinth.getPacmanStart().toString());
-        attributes.put(XMLConstants.GHOST_START, labyrinth.getGhostStart().toString());
-        attributes.put(XMLConstants.NODE_WIDTH, labyrinth.getNodeWidth().toString());
-        attributes.put(XMLConstants.NODE_HEIGHT, labyrinth.getNodeHeight().toString());
+		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.WIDTH, labyrinth.getWidth(), 2);
+		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.HEIGHT, labyrinth.getHeight(), 2);
+		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.PACMAN_START, labyrinth.getPacmanStart().toString());
+		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.GHOST_START, labyrinth.getGhostStart().toString());
+		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.NODE_WIDTH, labyrinth.getNodeWidth(), 2);
+		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.NODE_HEIGHT, labyrinth.getNodeHeight(), 2);
         return attributes;
-
     }
+	
     /**
      * 
      * @param cell
@@ -82,15 +81,14 @@ public class LabyrinthSerializer {
      */
     private HashMap<String, String> getCellAttributes(Cell cell) {
         HashMap<String, String> attributes = new HashMap<>();
-        attributes.put(XMLConstants.ID, cell.getId().toString());
-        attributes.put(XMLConstants.ROW, cell.getRow().toString());
-        attributes.put(XMLConstants.COLUMN, cell.getColumn().toString());
-        attributes.put(XMLConstants.CONTENT, cell.getContent());
-        attributes.put(XMLConstants.DIRECTION_LEFT, cell.getNeighbour(XMLConstants.DIRECTION_LEFT));
-        attributes.put(XMLConstants.DIRECTION_RIGHT, cell.getNeighbour(XMLConstants.DIRECTION_RIGHT));
-        attributes.put(XMLConstants.DIRECTION_UP, cell.getNeighbour(XMLConstants.DIRECTION_UP));
-        attributes.put(XMLConstants.DIRECTION_DOWN, cell.getNeighbour(XMLConstants.DIRECTION_DOWN));
-        return attributes;
-
+		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.ID, cell.getId(), 4);
+		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.ROW, cell.getRow(), 2);
+		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.COLUMN, cell.getColumn(), 2);
+		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.CONTENT, cell.getContent());
+		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.DIRECTION_LEFT, cell.getNeighbour(XMLConstants.DIRECTION_LEFT));
+		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.DIRECTION_RIGHT, cell.getNeighbour(XMLConstants.DIRECTION_RIGHT));
+		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.DIRECTION_UP, cell.getNeighbour(XMLConstants.DIRECTION_UP));
+		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.DIRECTION_DOWN, cell.getNeighbour(XMLConstants.DIRECTION_DOWN));
+		return attributes;
     }
 }

@@ -15,10 +15,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-public class XMLReader {
-
-    private static XMLConstants CONSTANTS;
-    private static boolean CONFIGURED = false;
+public class XMLReader extends XMLIO {
+	
 
     /**
      *
@@ -26,15 +24,14 @@ public class XMLReader {
      * @return
      */
     private static Document getDocument(String XMLpath) {
-        try {
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            //TODO: Ojo con el ClassLoader que en los test suele no andar
-            return builder.parse(ClassLoader.getSystemResourceAsStream(XMLpath));
-        } catch (ParserConfigurationException | SAXException | IOException ex) {
-            Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
-        }
+        DocumentBuilder builder = XMLIO.getDocumentBuilder();
+		if (builder == null) return null;
+		try {
+			return builder.parse(ClassLoader.getSystemResourceAsStream(XMLpath));
+		} catch (SAXException | IOException ex) {
+			Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
     }
 
     /**
@@ -67,7 +64,7 @@ public class XMLReader {
      */
     public static String getAttributeValue(Node node, String attributeName) throws AttributeNotFoundException {
         XMLReader.testConfiguration();
-        String translatedAttributeName = XMLReader.CONSTANTS.getConstantTranslation(attributeName);
+        String translatedAttributeName = XMLIO.getConstants().getConstantTranslation(attributeName);
         String attribute = "";
         if (node.hasAttributes()) {
             Node attr = node.getAttributes().getNamedItem(translatedAttributeName);
@@ -157,17 +154,14 @@ public class XMLReader {
      * @param gameConstants
      */
     public static void configureLanguage(XMLConstants gameConstants) {
-        XMLReader.CONSTANTS = gameConstants;
-        XMLReader.CONFIGURED = true;
+        XMLIO.configureLanguage(gameConstants);
     }
 
     /**
      *
      */
-    private static void testConfiguration() {
-        if (!XMLReader.CONFIGURED) {
-            throw new RuntimeException("XMLReader was not configured correctly");
-        }
+    protected static void testConfiguration() {
+        XMLIO.testConfiguration("XMLReader");
     }
 
     /**
