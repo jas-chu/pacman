@@ -14,29 +14,13 @@ public class GameCharactersLoader {
     private final Node game;
     private final NodeList ghosts;
 
-    private static boolean initialized = false;
-    private static GameCharactersLoader charactersLoader = null;
-
     /**
      *
      * @param xmlPath
      */
-    private GameCharactersLoader(String xmlPath) {
+    public GameCharactersLoader(String xmlPath) {
         this.game = XMLReader.getNodeByName(xmlPath, XMLConstants.GAME).item(0);
         this.ghosts = XMLReader.getNodeByName(xmlPath, XMLConstants.GHOST);
-    }
-
-    /**
-     *
-     * @param xmlPath
-     * @return
-     */
-    public static GameCharactersLoader getCharactersLoader(String xmlPath) {
-        if (!GameCharactersLoader.initialized) {
-            GameCharactersLoader.charactersLoader = new GameCharactersLoader(xmlPath);
-            GameCharactersLoader.initialized = true;
-        }
-        return GameCharactersLoader.charactersLoader;
     }
 
     /**

@@ -1,7 +1,7 @@
 package com.tdd.model.stage;
 
 import com.tdd.model.helpers.LabyrinthLoader;
-import com.tdd.model.helpers.LabyrinthDischarger;
+import com.tdd.model.helpers.LabyrinthSerializer;
 import com.tdd.model.cell.cellBuilding.CellBuilder;
 import com.tdd.model.enemy.enemyBuilding.EnemyBuilder;
 import com.tdd.model.exceptions.BlockedCellException;
@@ -40,7 +40,7 @@ public class Labyrinth implements Stage {
     private Position ghostStart;
     private List<List<Cell>> cells;
     private final LabyrinthLoader labyrinthLoader;
-    private final LabyrinthDischarger labyrinthDischarger;
+    private final LabyrinthSerializer labyrinthDischarger;
     private final GameCharactersLoader gameCharactersLoader;
 
     /**
@@ -52,9 +52,9 @@ public class Labyrinth implements Stage {
     public Labyrinth(String xmlLabyrinthPath, String xmlCharactersPath) throws AttributeNotFoundException {
         this.items = new ArrayList<Item>();
         this.enemies = new ArrayList<Enemy>();
-        this.labyrinthLoader = LabyrinthLoader.getLabyrinthLoader(xmlLabyrinthPath);
-        this.labyrinthDischarger = LabyrinthDischarger.getLabyrinthDischarger(this);
-        this.gameCharactersLoader = GameCharactersLoader.getCharactersLoader(xmlCharactersPath);
+        this.labyrinthLoader = new LabyrinthLoader(xmlLabyrinthPath);
+        this.labyrinthDischarger = new LabyrinthSerializer(this);
+        this.gameCharactersLoader = new GameCharactersLoader(xmlCharactersPath);
         upLoadInitialLabyrinthConfigurations();
 		try {
 			upLoadCells();

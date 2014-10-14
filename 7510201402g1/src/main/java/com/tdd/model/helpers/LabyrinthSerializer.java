@@ -12,25 +12,14 @@ import javax.xml.transform.TransformerException;
  *
  *
  */
-public class LabyrinthDischarger {
+public class LabyrinthSerializer {
+	
+    private String path;
+	private Labyrinth labyrinth;
 
-    private static boolean initialized = false;
-    private static LabyrinthDischarger labyrinthDischarger = null;
-    private static String path;
-
-    private static Labyrinth labyrinth = null;
-
-    private LabyrinthDischarger(Labyrinth labyrinth) {
-        LabyrinthDischarger.path = "";
-        LabyrinthDischarger.labyrinth = labyrinth;
-    }
-
-    public static LabyrinthDischarger getLabyrinthDischarger(Labyrinth labyrinth) {
-        if (!LabyrinthDischarger.initialized) {
-            LabyrinthDischarger.labyrinthDischarger = new LabyrinthDischarger(labyrinth);
-            LabyrinthDischarger.initialized = true;
-        }
-        return LabyrinthDischarger.labyrinthDischarger;
+    public LabyrinthSerializer(Labyrinth labyrinth) {
+        this.path = "";
+        this.labyrinth = labyrinth;
     }
 
     /**
@@ -38,22 +27,22 @@ public class LabyrinthDischarger {
      * @return
      */
     public String getPath() {
-        return LabyrinthDischarger.path;
+        return this.path;
     }
 
     /**
      *
-     * @param path
+     * @param givenPath
      */
-    public void discharger(String path) {
-        LabyrinthDischarger.path = path;
-        XMLWriter writer = new XMLWriter(path);
+    public void serialize(String givenPath) {
+        this.path = givenPath;
+        XMLWriter writer = new XMLWriter(this.path);
         writer.createRoot(XMLConstants.LABYRINTH, this.getLabyrinthAttributes());
         this.addNodes(writer, labyrinth.getCells());
         try {
             writer.write();
         } catch (TransformerException ex) {
-            Logger.getLogger(LabyrinthDischarger.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LabyrinthSerializer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

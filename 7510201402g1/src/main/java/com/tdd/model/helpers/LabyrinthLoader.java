@@ -16,25 +16,9 @@ public class LabyrinthLoader {
     private final Node headerNode;
     private final NodeList nodes;
 
-    private static boolean initialized = false;
-    private static LabyrinthLoader labyrinthLoader = null;
-
-    private LabyrinthLoader(String xmlPath) {
+    public LabyrinthLoader(String xmlPath) {
         this.headerNode = XMLReader.getNodeByName(xmlPath, XMLConstants.LABYRINTH).item(0);
         this.nodes = XMLReader.getNodeByName(xmlPath, XMLConstants.NODE);
-    }
-
-    /**
-     *
-     * @param xmlPath
-     * @return
-     */
-    public static LabyrinthLoader getLabyrinthLoader(String xmlPath) {
-        if (!LabyrinthLoader.initialized) {
-            LabyrinthLoader.labyrinthLoader = new LabyrinthLoader(xmlPath);
-            LabyrinthLoader.initialized = true;
-        }
-        return LabyrinthLoader.labyrinthLoader;
     }
 
     /**
