@@ -9,7 +9,7 @@ import com.tdd.model.stageAbstractions.Stage;
  *
  * 
  */
-public class BigDoyFactory implements ItemFactory{
+public class BigDotFactory implements ItemFactory{
 
     @Override
     public Item getItem(Stage givenStage, Position givenPosition) {

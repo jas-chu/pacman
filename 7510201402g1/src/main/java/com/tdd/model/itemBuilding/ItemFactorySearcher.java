@@ -1,27 +1,22 @@
 package com.tdd.model.itemBuilding;
 
+import com.tdd.model.exceptions.NoAvailableFactoryException;
+import com.tdd.model.helpers.XMLConstants;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  *
  */
 public class ItemFactorySearcher {
+	
+    private Map<String, ItemFactory> factorySearcher;
 
-    public enum ItemName {
-
-        DOT, BIG_DOT
-    }
-
-    private final HashMap<ItemName, ItemFactory> factorySearcher;
-
-    /**
-     *
-     */
     public ItemFactorySearcher() {
         this.factorySearcher = new HashMap();
-        this.factorySearcher.put(ItemName.DOT, new DotFactory());
-        this.factorySearcher.put(ItemName.BIG_DOT, new BigDoyFactory());
+        this.factorySearcher.put(XMLConstants.DOT, new DotFactory());
+        this.factorySearcher.put(XMLConstants.BIG_DOT, new BigDotFactory());
     }
 
     /**
@@ -29,7 +24,8 @@ public class ItemFactorySearcher {
      * @param name
      * @return
      */
-    public ItemFactory getFactory(String name) {
-        return this.factorySearcher.get(name);
+    public ItemFactory getFactory(String name) throws NoAvailableFactoryException {
+        if (this.factorySearcher.containsKey(name)) return this.factorySearcher.get(name);
+		throw new NoAvailableFactoryException();
     }
 }
