@@ -1,55 +1,38 @@
 package com.tdd.model.cell.cellBuilding;
 
-import java.util.HashMap;
+import com.tdd.model.exceptions.NotMyJobException;
+import com.tdd.model.exceptions.NoAvailableFactoryException;
+import com.tdd.model.stageAbstractions.Position;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- *
- */
 public class CellFactorySearcher {
 
-    public enum CellName {
+    private List<CellFactory> availableFactories;
 
-        BLOCKED, CLEAR, TELEPORT
-    }
-
-    private final HashMap<CellName, CellFactory> factorySearcher;
-
-    /**
-     *
-     */
     public CellFactorySearcher() {
-        this.factorySearcher = new HashMap();
-        this.factorySearcher.put(CellName.BLOCKED, new BlockedCellFactory());
-        this.factorySearcher.put(CellName.CLEAR, new ClearCellFactory());
-        this.factorySearcher.put(CellName.TELEPORT, new TeleportCellFactory());
+        this.availableFactories = new ArrayList<CellFactory>();
+        this.availableFactories.add(new BlockedCellFactory());
+        this.availableFactories.add(new ClearCellFactory());
+        this.availableFactories.add(new TeleportCellFactory());
     }
 
     /**
      *
-     * @param name
-     * @param isTeleport
+	 * @param hasNeighbours
+	 * @param teleportTarget may be null
      * @return
      */
-    public CellFactory getFactory(String name,boolean isTeleport) {
-        return this.factorySearcher.get(getCellNameToContent(name, isTeleport));
+    public CellFactory getFactory(boolean hasNeighbours, Position teleportTarget) throws NoAvailableFactoryException {
+		for (CellFactory factory : this.availableFactories) {
+			try {
+				factory.setUp(hasNeighbours, teleportTarget);
+				return factory;
+			} catch (NotMyJobException e) {
+				// move on to next factory
+			}
+		}
+        throw new NoAvailableFactoryException();
     }
-
-    /**
-     *
-     * @param nodeContent
-     * @param neighbours
-     * @return
-     */
-    private CellName getCellNameToContent(String nodeContent,boolean isTeleport) {
-        CellName cellName = CellName.CLEAR;
-        if (!nodeContent.isEmpty()) {
-            cellName = CellName.BLOCKED;
-        } else if (isTeleport) {
-            cellName = CellName.TELEPORT;
-        }
-        return cellName;
-    }
-
 
 }

@@ -150,7 +150,7 @@ public class Position {
      * @param anotherPosition
      * @return
      */
-    public boolean isNeighbor(Position anotherPosition) {
+    public boolean isNeighbour(Position anotherPosition) {
         boolean result = false;
         if (this.hasEqualX(anotherPosition)) {//Misma fila
             //chequeo que las columnas sean vecinas

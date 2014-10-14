@@ -5,6 +5,7 @@ import com.tdd.model.helpers.LabyrinthDischarger;
 import com.tdd.model.cell.cellBuilding.CellBuilder;
 import com.tdd.model.enemy.enemyBuilding.EnemyBuilder;
 import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.ghost.Ghost;
 import com.tdd.model.helpers.GameCharactersLoader;
 import com.tdd.model.helpers.XMLConstants;
@@ -55,7 +56,11 @@ public class Labyrinth implements Stage {
         this.labyrinthDischarger = LabyrinthDischarger.getLabyrinthDischarger(this);
         this.gameCharactersLoader = GameCharactersLoader.getCharactersLoader(xmlCharactersPath);
         upLoadInitialLabyrinthConfigurations();
-        upLoadCells();
+		try {
+			upLoadCells();
+		} catch (NoAvailableFactoryException ex) {
+			// TODO: should throw exception of another class
+		}
         upLoadCharacters();
     }
 
@@ -63,7 +68,7 @@ public class Labyrinth implements Stage {
      *
      * @throws AttributeNotFoundException
      */
-    private void upLoadCells() throws AttributeNotFoundException {
+    private void upLoadCells() throws AttributeNotFoundException, NoAvailableFactoryException {
         NodeList nodes = this.labyrinthLoader.getNodes();
         CellBuilder cellBuilder = new CellBuilder();
         ItemBuilder itemBuilder = new ItemBuilder();
@@ -72,13 +77,11 @@ public class Labyrinth implements Stage {
             List<Cell> mapRow = new ArrayList<Cell>();
             for (int col = 0; col < this.width; col++) {
                 Node node = nodes.item(row + col);
-                Cell createdCell = cellBuilder.createCell(node);
-                if (!createdCell.isEmpty()) {
-                    //cellContent viene en castellano. En donde lo traducimos a ingles?
-                    String cellContent = XMLReader.getAttributeValue(node, XMLConstants.CONTENT);
+                Cell createdCell = cellBuilder.createCell(nodes, node);
+				String cellContent = XMLReader.getAttributeValue(node, XMLConstants.CONTENT);
+                if (!cellContent.isEmpty()) {
                     this.items.add(itemBuilder.createItem(this, createdCell.getPosition(), cellContent));
                 }
-
                 mapRow.add(createdCell);
             }
             this.cells.add(mapRow);
@@ -89,14 +92,8 @@ public class Labyrinth implements Stage {
      *
      */
     private void upLoadCharacters() {
+		this.pacman = new Pacman(this, this.pacmanStart);
         this.upLoadGhost();
-        Position pacmanPosition = null;
-        try {
-            pacmanPosition = this.gameCharactersLoader.getPacmanPosition();
-        } catch (AttributeNotFoundException ex) {
-            Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.pacman = new Pacman(this, pacmanPosition);
     }
 
     /**
@@ -128,7 +125,6 @@ public class Labyrinth implements Stage {
         this.nodeWidth = this.labyrinthLoader.getNodeWidth();
         this.nodeHeight = this.labyrinthLoader.getNodeHeight();
         this.pacmanStart = this.labyrinthLoader.getPacmanStartPosition();
-        this.pacman = new Pacman(this, this.pacmanStart);
         this.ghostStart = this.labyrinthLoader.getGhostStartPosition();
     }
 

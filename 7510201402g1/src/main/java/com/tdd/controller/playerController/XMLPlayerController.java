@@ -53,7 +53,7 @@ public class XMLPlayerController extends PlayerController {
 	}
 	
 	private Direction createNewDirection(String direction) {
-		String translatedDirection = this.constants.getDirectionValueTranslation(direction);
+		String translatedDirection = this.constants.getInvertedDirectionValueTranslation(direction);
 		return this.directionGenerator.createDirection(translatedDirection);
 	}
 	

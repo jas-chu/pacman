@@ -8,7 +8,6 @@ public class SpanishXMLConstants extends XMLConstants {
         super();
         this.fillTranslationDictionary();
         this.fillDirectionValuesDictionary();
-        this.fillContentValuesDictinorary();
     }
 
     private void fillTranslationDictionary() {
@@ -20,9 +19,7 @@ public class SpanishXMLConstants extends XMLConstants {
         this.translationDictionary.put(PACMAN_START, "inicioPacman");
         this.translationDictionary.put(ROW, "fila");
         this.translationDictionary.put(COLUMN, "columna");
-        this.translationDictionary.put(CONTENT, "contiene");
         this.translationDictionary.put(ID, "id");
-        this.translationDictionary.put(DIRECTION, "direccion");
         this.translationDictionary.put(GAME, "juego");
         this.translationDictionary.put(PACMAN_POSITION, "posicionPacman");
         this.translationDictionary.put(SENSE, "sentido");
@@ -33,6 +30,14 @@ public class SpanishXMLConstants extends XMLConstants {
         this.translationDictionary.put(END_GAME, "finJuego");
         this.translationDictionary.put(NODE_WIDTH, "nodoAncho");
         this.translationDictionary.put(NODE_HEIGHT, "nodoAlto");
+		this.translationDictionary.put(DIRECTION, "direccion");
+		this.translationDictionary.put(DIRECTION_UP, "arriba");
+        this.translationDictionary.put(DIRECTION_DOWN, "abajo");
+        this.translationDictionary.put(DIRECTION_LEFT, "izquierda");
+        this.translationDictionary.put(DIRECTION_RIGHT, "derecha");
+		this.translationDictionary.put(CONTENT, "contiene");
+		this.translationDictionary.put(DOT, "bolita");
+        this.translationDictionary.put(BIG_DOT, "bolon");
     }
 
     private void fillDirectionValuesDictionary() {
@@ -40,11 +45,6 @@ public class SpanishXMLConstants extends XMLConstants {
         this.invertedDirectionValuesDictionary.put("abajo", DIRECTION_DOWN);
         this.invertedDirectionValuesDictionary.put("izquierda", DIRECTION_LEFT);
         this.invertedDirectionValuesDictionary.put("derecha", DIRECTION_RIGHT);
-    }
-
-    private void fillContentValuesDictinorary() {
-        this.translationDictionary.put(DOT, "bolita");
-        this.translationDictionary.put(BIG_DOT, "bolon");
     }
 
 }

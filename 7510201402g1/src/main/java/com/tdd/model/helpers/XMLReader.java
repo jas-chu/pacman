@@ -3,6 +3,7 @@ package com.tdd.model.helpers;
 import com.tdd.model.stageAbstractions.Position;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.management.AttributeNotFoundException;
@@ -175,26 +176,18 @@ public class XMLReader {
      * @return
      * @throws AttributeNotFoundException
      */
-    public static HashMap<String, String> getNeighbours(Node node) throws AttributeNotFoundException {
-        HashMap<String, String> neighbours = new HashMap<>();
-        neighbours.put(XMLConstants.DIRECTION_UP, XMLReader.getNeighbour(node, XMLConstants.DIRECTION_UP));
-        neighbours.put(XMLConstants.DIRECTION_DOWN, XMLReader.getNeighbour(node, XMLConstants.DIRECTION_DOWN));
-        neighbours.put(XMLConstants.DIRECTION_LEFT, XMLReader.getNeighbour(node, XMLConstants.DIRECTION_LEFT));
-        neighbours.put(XMLConstants.DIRECTION_RIGHT, XMLReader.getNeighbour(node, XMLConstants.DIRECTION_RIGHT));
+    public static Map<String, String> getNeighboursIds(Node node) throws AttributeNotFoundException {
+        Map<String, String> neighbours = new HashMap<>();
+        XMLReader.addNeighbourId(neighbours, node, XMLConstants.DIRECTION_UP);
+		XMLReader.addNeighbourId(neighbours, node, XMLConstants.DIRECTION_DOWN);
+		XMLReader.addNeighbourId(neighbours, node, XMLConstants.DIRECTION_LEFT);
+		XMLReader.addNeighbourId(neighbours, node, XMLConstants.DIRECTION_RIGHT);
         return neighbours;
-
     }
-
-    /**
-     *
-     * @param node
-     * @param neighbour neighbour name. Example: up,down,right,left
-     * @return
-     * @throws AttributeNotFoundException
-     */
-    private static String getNeighbour(Node node, String neighbour) throws AttributeNotFoundException {
-        String neighbourId = XMLReader.getAttributeValue(node, XMLReader.CONSTANTS.getDirectionValueTranslation(neighbour));
-        return neighbourId;
-    }
+	
+	private static void addNeighbourId(Map<String, String> neighbours, Node node, String constant) throws AttributeNotFoundException {
+		String id = XMLReader.getAttributeValue(node, constant);
+		if (!(id.isEmpty())) neighbours.put(constant, id);
+	}
 
 }

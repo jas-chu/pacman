@@ -18,9 +18,7 @@ public abstract class XMLConstants {
     public static final String PACMAN_START = "pacmanStart";
     public static final String ROW = "row";
     public static final String COLUMN = "column";
-    public static final String CONTENT = "content";
     public static final String ID = "id";
-    public static final String DIRECTION = "direccion";
     public static final String GAME = "game";
     public static final String PACMAN_POSITION = "pacmanPosition";
     public static final String SENSE = "sense";
@@ -33,12 +31,14 @@ public abstract class XMLConstants {
     public static final String NODE_HEIGHT = "nodeHeight";
 
     /* DIRECTION VALUES */
+	public static final String DIRECTION = "direccion";
     public static final String DIRECTION_UP = "up";
     public static final String DIRECTION_DOWN = "down";
     public static final String DIRECTION_LEFT = "left";
     public static final String DIRECTION_RIGHT = "right";
 
     /* CONTENT VALUES */
+	public static final String CONTENT = "content";
     public static final String DOT = "dot";
     public static final String BIG_DOT = "bigDot";
 
@@ -50,19 +50,28 @@ public abstract class XMLConstants {
         this.invertedDirectionValuesDictionary = new HashMap<String, String>();
     }
 
-    public String getConstantTranslation(String key) {
+	/**
+	 * Translates key from default to specific language.
+	 * @param key
+	 * @return
+	 */
+	public String getConstantTranslation(String key) {
         return this.searchTranslation(this.translationDictionary, key);
     }
-
-    public String getDirectionValueTranslation(String key) {
+	
+	/**
+	 * Translates key representing a direction value from specific to default language.
+	 * @param key
+	 * @return
+	 */
+	public String getInvertedDirectionValueTranslation(String key) {
         return this.searchTranslation(this.invertedDirectionValuesDictionary, key);
     }
 
     /**
      * Searches for translation, if it doesn't exist, returns default value.
-     *
      * @param key
-     * @return
+     * @return translation
      */
     private String searchTranslation(Map<String, String> dictionary, String key) {
         if (dictionary.containsKey(key)) {
@@ -71,5 +80,5 @@ public abstract class XMLConstants {
             return key;
         }
     }
-
+	
 }

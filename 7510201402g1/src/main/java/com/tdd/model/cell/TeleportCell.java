@@ -7,21 +7,18 @@ import com.tdd.model.stageAbstractions.StageElement;
 
 public class TeleportCell extends Cell {
 
-    private Cell targetCell = null;
+    private Position targetCell;
 
-    public TeleportCell(int givenId, Position givenPosition) {
+    public TeleportCell(int givenId, Position givenPosition, Position givenTargetCell) {
         super(givenId, givenPosition);
-    }
-
-    public void setTargetCell(Cell givenCell) {
-        this.targetCell = givenCell;
+		this.targetCell = givenTargetCell;
     }
 
     @Override
     public void placeElement(StageElement element) {
         super.placeElement(element);
         try {
-            element.teleport(this.targetCell.getPosition());
+            element.teleport(this.targetCell);
         } catch (AlreadyTeleportedException ex) {
             // no action to avoid infinite teleportation loop
         }
