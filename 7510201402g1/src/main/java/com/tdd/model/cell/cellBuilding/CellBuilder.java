@@ -28,8 +28,9 @@ public class CellBuilder {
 		
 		boolean hasNeighbours = !(neighboursIds.isEmpty());
         Position targetPosition = getTeleportTargetCellPosition(cellPosition, neighboursIds, nodes);
-        CellFactorySearcher cellFactory = new CellFactorySearcher();
-        return cellFactory.getFactory(hasNeighbours, targetPosition).getCell(cellId, cellPosition);
+        CellFactorySearcher cellFactorySearcher = new CellFactorySearcher();
+        CellFactory cellFactory = cellFactorySearcher.getFactory(hasNeighbours, targetPosition);
+		return cellFactory.getCell(cellId, cellPosition, neighboursIds);
     }
 
     /**

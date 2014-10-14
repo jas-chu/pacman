@@ -86,10 +86,10 @@ public class LabyrinthSerializer {
         attributes.put(XMLConstants.ROW, cell.getRow().toString());
         attributes.put(XMLConstants.COLUMN, cell.getColumn().toString());
         attributes.put(XMLConstants.CONTENT, cell.getContent());
-        attributes.put(XMLConstants.DIRECTION_LEFT, cell.getNeighbour(XMLConstants.DIRECTION_LEFT).toString());
-        attributes.put(XMLConstants.DIRECTION_RIGHT, cell.getNeighbour(XMLConstants.DIRECTION_RIGHT).toString());
-        attributes.put(XMLConstants.DIRECTION_UP, cell.getNeighbour(XMLConstants.DIRECTION_UP).toString());
-        attributes.put(XMLConstants.DIRECTION_DOWN, cell.getNeighbour(XMLConstants.DIRECTION_DOWN).toString());
+        attributes.put(XMLConstants.DIRECTION_LEFT, cell.getNeighbour(XMLConstants.DIRECTION_LEFT));
+        attributes.put(XMLConstants.DIRECTION_RIGHT, cell.getNeighbour(XMLConstants.DIRECTION_RIGHT));
+        attributes.put(XMLConstants.DIRECTION_UP, cell.getNeighbour(XMLConstants.DIRECTION_UP));
+        attributes.put(XMLConstants.DIRECTION_DOWN, cell.getNeighbour(XMLConstants.DIRECTION_DOWN));
         return attributes;
 
     }

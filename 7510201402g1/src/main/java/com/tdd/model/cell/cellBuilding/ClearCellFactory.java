@@ -4,6 +4,7 @@ import com.tdd.model.cell.ClearCell;
 import com.tdd.model.exceptions.NotMyJobException;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Position;
+import java.util.Map;
 
 /**
  *
@@ -17,8 +18,8 @@ public class ClearCellFactory implements CellFactory{
 	}
 	
     @Override
-    public Cell getCell(int givenId, Position givenPosition) {
-        return new ClearCell(givenId, givenPosition);
+    public Cell getCell(int givenId, Position givenPosition, Map<String, String> givenNeighboursIds) {
+        return new ClearCell(givenId, givenPosition, givenNeighboursIds);
     }
 
 }

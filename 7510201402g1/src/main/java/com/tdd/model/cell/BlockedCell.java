@@ -4,11 +4,12 @@ import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.StageElement;
+import java.util.Map;
 
 public class BlockedCell extends Cell {
 
-    public BlockedCell(int givenId, Position givenPosition) {
-        super(givenId, givenPosition);
+    public BlockedCell(int givenId, Position givenPosition, Map<String, String> givenNeighboursIds) {
+        super(givenId, givenPosition, givenNeighboursIds);
     }
 
     @Override

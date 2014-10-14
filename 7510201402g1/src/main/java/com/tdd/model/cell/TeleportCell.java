@@ -4,13 +4,14 @@ import com.tdd.model.exceptions.AlreadyTeleportedException;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.StageElement;
+import java.util.Map;
 
 public class TeleportCell extends Cell {
 
     private Position targetCell;
 
-    public TeleportCell(int givenId, Position givenPosition, Position givenTargetCell) {
-        super(givenId, givenPosition);
+    public TeleportCell(int givenId, Position givenPosition, Map<String, String> givenNeighboursIds, Position givenTargetCell) {
+        super(givenId, givenPosition, givenNeighboursIds);
 		this.targetCell = givenTargetCell;
     }
 

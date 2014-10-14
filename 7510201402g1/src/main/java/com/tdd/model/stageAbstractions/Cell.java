@@ -11,18 +11,18 @@ public abstract class Cell {
     private Integer id;
     private Position position;
     private List<StageElement> elements;
-    private Map<String, Integer> neighbours;
+    private Map<String, String> neighboursIds;
 
     /**
      *
      * @param givenId
      * @param givenPosition
      */
-    public Cell(int givenId, Position givenPosition) {
+    public Cell(int givenId, Position givenPosition, Map<String, String> givenNeighboursIds) {
         this.id = givenId;
         this.position = new Position(givenPosition);
         this.elements = new ArrayList<StageElement>();
-        this.neighbours = new HashMap<String, Integer>();
+        this.neighboursIds = givenNeighboursIds;
     }
 
     /**
@@ -94,36 +94,11 @@ public abstract class Cell {
 
     /**
      *
-     * @return
-     */
-    public Map<String, Integer> getNeighbours() {
-        return this.neighbours;
-    }
-
-    /**
-     *
      * @param neighbour
      * @return
      */
-    public Integer getNeighbour(String neighbour) {
-        return this.neighbours.get(neighbour);
-    }
-
-    /**
-     *
-     * @param neighbour
-     * @param neighbourId
-     */
-    public void setNeighbour(String neighbour, Integer neighbourId) {
-        this.neighbours.put(neighbour, neighbourId);
-    }
-
-    /**
-     *
-     * @param neighbours
-     */
-    public void setNeighbours(Map<String, Integer> neighbours) {
-        this.neighbours = neighbours;
+    public String getNeighbour(String neighbour) {
+        return this.neighboursIds.get(neighbour);
     }
     
     /**
@@ -138,6 +113,6 @@ public abstract class Cell {
      * @return 
      */
     public String getContent() {
-        return "";
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
