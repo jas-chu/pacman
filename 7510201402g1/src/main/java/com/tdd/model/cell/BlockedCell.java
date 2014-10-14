@@ -7,23 +7,28 @@ import com.tdd.model.stageAbstractions.StageElement;
 
 public class BlockedCell extends Cell {
 
-	public BlockedCell(int givenId, Position givenPosition) {
-		super(givenId, givenPosition);
-	}
-	
-	@Override
-	public void testPlaceElement() throws BlockedCellException {
-		throw new BlockedCellException();
-	}
-	
-	@Override
-	public void placeElement(StageElement element) {
-		// blocked cell, allows functionality extension
-	}
+    public BlockedCell(int givenId, Position givenPosition) {
+        super(givenId, givenPosition);
+    }
 
-	@Override
-	public void removeElement(StageElement element) {
-		// blocked cell, allows functionality extension
-	}
+    @Override
+    public void testPlaceElement() throws BlockedCellException {
+        throw new BlockedCellException();
+    }
+
+    @Override
+    public void placeElement(StageElement element) {
+        // blocked cell, allows functionality extension
+    }
+
+    @Override
+    public void removeElement(StageElement element) {
+        // blocked cell, allows functionality extension
+    }
+
+    @Override
+    public String getContent() {
+        return super.getContent(); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }

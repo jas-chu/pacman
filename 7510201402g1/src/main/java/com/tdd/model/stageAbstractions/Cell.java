@@ -133,12 +133,11 @@ public abstract class Cell {
     public boolean isEmpty(){
         return this.elements.isEmpty();
     }
-
+    /**
+     * 
+     * @return 
+     */
     public String getContent() {
-       String content = "";
-       if(!this.isEmpty()){
-           //Ver como retornar bolita y bolon
-       }
-       return content;
+        return "";
     }
 }
