@@ -1,13 +1,11 @@
 package com.tdd.model.ghost;
 
 import com.tdd.model.exceptions.BlockedCellException;
-import com.tdd.model.stage.Labyrinth;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
-import org.w3c.dom.Node;
 
 public class Ghost extends Enemy {
 
@@ -15,18 +13,12 @@ public class Ghost extends Enemy {
     private StateFactory factory;
     private Strategy strategy;
 
+
     public Ghost(Stage stage, Position givenPosition, StateFactory givenFactory, Strategy givenStrategy) {
         super(stage, givenPosition);
         this.factory = givenFactory;
         this.state = this.factory.createHunter(this);
         this.strategy = givenStrategy;
-    }
-
-    public Ghost(Stage stage, Position givenPosition,String sense,String personality,String status) {
-        super(stage, givenPosition);
-        this.factory = null;
-        this.state = null;
-        this.strategy = null;
     }
 
     @Override
@@ -72,7 +64,7 @@ public class Ghost extends Enemy {
         this.strategy.advanceCycle();
     }
 
-	// COLLISIONS
+    // COLLISIONS
     @Override
     public void collideWithProtagonist(Protagonist givenProtagonist) {
         this.state.collideWithProtagonist(givenProtagonist);

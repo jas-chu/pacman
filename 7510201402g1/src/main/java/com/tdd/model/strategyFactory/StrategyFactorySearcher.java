@@ -5,6 +5,7 @@ import java.util.HashMap;
 public class StrategyFactorySearcher {
 
     public enum StrategyName {
+
         LAZYSTRATEGY, SILLYSTRATEGY, STRATEGYNORMALSEARCHER, STRATEGYTEMPERAMENTSEARCHER;
     }
 
