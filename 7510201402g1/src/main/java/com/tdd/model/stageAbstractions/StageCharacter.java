@@ -9,4 +9,9 @@ public abstract class StageCharacter extends StageElement {
     public abstract void kill();
     public abstract void revive();
 	
+	@Override
+	public String getMapSerialization() {
+		return "";
+	}
+	
 }

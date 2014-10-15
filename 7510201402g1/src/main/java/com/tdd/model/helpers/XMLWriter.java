@@ -28,7 +28,7 @@ import org.w3c.dom.NodeList;
  */
 public class XMLWriter extends XMLIO {
 
-    private final Document doc;
+	private final Document doc;
     private Element root;
     private final String path;
 
@@ -137,11 +137,20 @@ public class XMLWriter extends XMLIO {
             this.root.appendChild(nodes.item(i));
         }
     }
-
-    public static void addAttributeToCustomMap(Map<String, String> attributes, String attributeName, String value) {
+	
+	private static String getTranslation(String attributeName) {
 		XMLWriter.testConfiguration();
-		String translatedAttributeName = XMLIO.getConstants().getConstantTranslation(attributeName);
+		return XMLIO.getConstants().getConstantTranslation(attributeName);
+	}
+	
+    public static void addAttributeToCustomMap(Map<String, String> attributes, String attributeName, String value) {
+		String translatedAttributeName = XMLWriter.getTranslation(attributeName);
 		attributes.put(translatedAttributeName, value);
+	}
+	
+	public static void addAttributeToCustomMapWithValueTranslation(HashMap<String, String> attributes, String attributeName, String value) {
+		String translatedValue = XMLWriter.getTranslation(value);
+		XMLWriter.addAttributeToCustomMap(attributes, attributeName, translatedValue);
 	}
 	
 	public static void addIntAttributeToCustomMap(Map<String, String> attributes, String attributeName, Integer value, Integer digitsAmount) {

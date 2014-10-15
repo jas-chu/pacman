@@ -84,7 +84,7 @@ public class LabyrinthSerializer {
 		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.ID, cell.getId(), 4);
 		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.ROW, cell.getRow(), 2);
 		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.COLUMN, cell.getColumn(), 2);
-		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.CONTENT, cell.getContent());
+		XMLWriter.addAttributeToCustomMapWithValueTranslation(attributes, XMLConstants.CONTENT, cell.getContent());
 		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.DIRECTION_LEFT, cell.getNeighbour(XMLConstants.DIRECTION_LEFT));
 		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.DIRECTION_RIGHT, cell.getNeighbour(XMLConstants.DIRECTION_RIGHT));
 		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.DIRECTION_UP, cell.getNeighbour(XMLConstants.DIRECTION_UP));

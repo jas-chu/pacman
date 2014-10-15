@@ -2,7 +2,6 @@ package com.tdd.model.stageAbstractions;
 
 import com.tdd.model.exceptions.BlockedCellException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -113,6 +112,7 @@ public abstract class Cell {
      * @return 
      */
     public String getContent() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (this.elements.isEmpty()) return "";
+		return this.elements.get(0).getMapSerialization();
     }
 }
