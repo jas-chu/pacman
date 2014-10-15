@@ -214,12 +214,13 @@ public class Labyrinth implements Stage {
 
     /**
      *
-     * @param position
+     * @param givenPosition
      * @return
      */
-    private Cell getCell(Position position) {
-        int row = position.getY();
-        int col = position.getX();
+    @Override
+    public Cell getCell(Position givenPosition) {
+        int row = givenPosition.getY();
+        int col = givenPosition.getX();
         return this.cells.get(row).get(col);
     }
 

@@ -15,7 +15,7 @@ public abstract class StrategySearchers extends Strategy {
     }
 
     @Override
-    public void getPosibleDirections() {        
+    public void getPossibleDirections() {        
         this.area = new SquaredArea(this.enemy.getPosition(), this.vision);
         Protagonist pacman = this.enemy.getProtagonist();
         boolean pacmanIsVisible = pacman.isInArea(this.area);

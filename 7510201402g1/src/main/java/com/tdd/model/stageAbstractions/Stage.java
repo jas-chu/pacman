@@ -8,6 +8,7 @@ public interface Stage {
 	public List<Item> getItems();
 	public List<Enemy> getEnemies();
 	public Protagonist getProtagonist();
+        public Cell getCell(Position givenPosition);
 	public boolean hasItems();
 	
 	public void placeElement(Position position, StageElement element) throws BlockedCellException;
