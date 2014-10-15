@@ -17,15 +17,15 @@ public class StateFactory {
 		this.preyCycles = givenPreyCycles;
 	}
 	
-	public Hunter createHunter(Ghost ghost) {
+	public State createHunter(Ghost ghost) {
 		return new Hunter(ghost, this.angerWaitingCycles);
 	}
 
-	public Dead createDead(Ghost ghost) {
+	public State createDead(Ghost ghost) {
 		return new Dead(ghost, this.deadCycles);
 	}
 
-	public Prey createPrey(Ghost ghost) {
+	public State createPrey(Ghost ghost) {
 		return new Prey(ghost, this.preyCycles);
 	}
 	

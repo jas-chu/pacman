@@ -1,4 +1,4 @@
-package com.tdd.model.states;
+package com.tdd.model.mocks;
 
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;

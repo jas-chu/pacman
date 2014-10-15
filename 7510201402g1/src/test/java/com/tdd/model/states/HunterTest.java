@@ -1,5 +1,7 @@
 package com.tdd.model.states;
 
+import com.tdd.model.mocks.MockGhost;
+import com.tdd.model.mocks.MockProtagonist;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.*;

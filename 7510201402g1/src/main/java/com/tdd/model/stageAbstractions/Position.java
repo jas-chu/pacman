@@ -140,7 +140,7 @@ public class Position {
     public boolean hasGreaterOrEqualY(Position anotherPosition) {
         return this.hasGreaterOrEqualY(anotherPosition.getY());
     }
-
+	
     public boolean equals(Position anotherPosition) {
         return (this.hasEqualX(anotherPosition) && this.hasEqualY(anotherPosition));
     }

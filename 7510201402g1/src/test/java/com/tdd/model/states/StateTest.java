@@ -1,5 +1,6 @@
 package com.tdd.model.states;
 
+import com.tdd.model.mocks.MockGhost;
 import com.tdd.model.direction.DirectionRight;
 import com.tdd.model.ghost.State;
 import com.tdd.model.stageAbstractions.Direction;
