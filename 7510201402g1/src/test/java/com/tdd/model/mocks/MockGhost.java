@@ -1,6 +1,7 @@
 package com.tdd.model.mocks;
 
 import com.tdd.model.stageAbstractions.Enemy;
+import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 
@@ -11,6 +12,7 @@ public class MockGhost extends Enemy {
 	public boolean killMethodCalled = false;
 	public boolean reviveMethodCalled = false;
 	public boolean collideWithProtagonistMethodCalled = false;
+	public boolean collideWithItemMethodCalled = false;
 	
 	public MockGhost() {
 		super(null, new Position(0,0));
@@ -41,12 +43,18 @@ public class MockGhost extends Enemy {
 		this.collideWithProtagonistMethodCalled = true;
 	}
 	
+	@Override
+	public void collideWithItem(Item givenItem) {
+		this.collideWithItemMethodCalled = true;
+	}
+	
 	public boolean noMethodWasCalled() {
 		return !(this.advanceCycleMethodCalled
-		      || this.collideWithProtagonistMethodCalled
+		      || this.turnToPreyMethodCalled
 			  || this.killMethodCalled
 			  || this.reviveMethodCalled
-			  || this.turnToPreyMethodCalled);
+			  || this.collideWithProtagonistMethodCalled
+			  || this.collideWithItemMethodCalled);
 	}
 
 }

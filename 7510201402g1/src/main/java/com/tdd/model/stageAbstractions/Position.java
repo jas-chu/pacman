@@ -145,46 +145,27 @@ public class Position {
         return (this.hasEqualX(anotherPosition) && this.hasEqualY(anotherPosition));
     }
 
-    /**
-     *
-     * @param anotherPosition
-     * @return
-     */
     public boolean isNeighbour(Position anotherPosition) {
-        boolean result = false;
-        if (this.hasEqualX(anotherPosition)) {//Misma fila
-            //chequeo que las columnas sean vecinas
-            result = testAdjacentY(anotherPosition);
-
-        } else if (this.hasEqualY(anotherPosition)) {//Misma columna
-            //chequeo que las filas sean vecinas
-            result = testAdjacentX(anotherPosition);
-
-        }
-        return result;
+        if (this.hasEqualX(anotherPosition)) return testAdjacentY(anotherPosition);
+		if (this.hasEqualY(anotherPosition)) return testAdjacentX(anotherPosition);
+		return false;
     }
 
-    /**
-     *
-     * @param anotherPosition
-     * @return
-     */
     private boolean testAdjacentX(Position anotherPosition) {
-        return this.getX() + 1 == anotherPosition.getX() || (this.getX() - 1 == anotherPosition.getX());
+		boolean right = anotherPosition.hasEqualX(this.calculateXAddingValue(1));
+		boolean left = anotherPosition.hasEqualX(this.calculateXSubstractingValue(1));
+        return right || left;
     }
 
-    /**
-     *
-     * @param anotherPosition
-     * @return
-     */
     private boolean testAdjacentY(Position anotherPosition) {
-        return this.getY() + 1 == anotherPosition.getY() || (this.getY() - 1 == anotherPosition.getY());
+        boolean up = anotherPosition.hasEqualY(this.calculateYAddingValue(1));
+		boolean down = anotherPosition.hasEqualY(this.calculateYSubstractingValue(1));
+        return up || down;
     }
 
     public double getDistance(Position anotherPosition) {
-        int xd = this.x - anotherPosition.getX();
-        int yd = this.y - anotherPosition.getY();
+        int xd = this.calculateXSubstractingValue(anotherPosition.getX());
+        int yd = this.calculateYSubstractingValue(anotherPosition.getY());
         return Math.pow(Math.pow(xd, 2) + Math.pow(yd, 2), 0.5);
     }
 	

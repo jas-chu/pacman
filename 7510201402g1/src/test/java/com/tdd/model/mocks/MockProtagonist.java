@@ -2,6 +2,7 @@ package com.tdd.model.mocks;
 
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
+import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 
@@ -12,6 +13,7 @@ public class MockProtagonist extends Protagonist {
 	public boolean killMethodCalled = false;
 	public boolean reviveMethodCalled = false;
 	public boolean collideWithEnemyMethodCalled = false;
+	public boolean collideWithItemMethodCalled = false;
 	
 	public MockProtagonist() {
 		super(null, new Position(0,0));
@@ -43,12 +45,18 @@ public class MockProtagonist extends Protagonist {
 		this.collideWithEnemyMethodCalled = true;
 	}
 	
+	@Override
+	public void collideWithItem(Item givenItem) {
+		this.collideWithItemMethodCalled = true;
+	}
+	
 	public boolean noMethodWasCalled() {
 		return !(this.isAliveMethodCalled
 		      || this.moveMethodCalled
 			  || this.killMethodCalled
 			  || this.reviveMethodCalled
-			  || this.collideWithEnemyMethodCalled);
+			  || this.collideWithEnemyMethodCalled
+			  || this.collideWithItemMethodCalled);
 	}
 	
 }

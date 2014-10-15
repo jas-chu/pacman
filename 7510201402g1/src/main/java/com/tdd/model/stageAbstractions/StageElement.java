@@ -45,9 +45,9 @@ public abstract class StageElement implements Collidable {
 		this.teleported = false;
 	}
 	
-        public Protagonist getProtagonist(){
-            return this.stage.getProtagonist();
-        }
+	public Protagonist getProtagonist(){
+		return this.stage.getProtagonist();
+	}
 
 	public abstract String getMapSerialization();
 	
