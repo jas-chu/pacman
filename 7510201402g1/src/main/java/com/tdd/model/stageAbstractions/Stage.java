@@ -9,12 +9,14 @@ public interface Stage {
 	public List<Enemy> getEnemies();
 	public Protagonist getProtagonist();
 	public boolean hasItems();
-
+	
 	public void placeElement(Position position, StageElement element) throws BlockedCellException;
 	public void placeEnemyAtHome(Enemy givenEnemy);
 	public void placeProtagonistAtHome(Protagonist givenProtagonist);
 	public boolean protagonistIsInArea(Area area);
 
 	public void turnEnemiesToPrey();
+
+	public void removeItem(Item givenItem);
 	
 }

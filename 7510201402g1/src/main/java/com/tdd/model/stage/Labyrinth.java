@@ -293,5 +293,13 @@ public class Labyrinth implements Stage {
             enemy.turnToPrey();
         }
     }
+	
+	@Override
+	public void removeItem(Item givenItem) {
+		Position itemPosition = givenItem.getPosition();
+		Cell theCell = this.getCell(itemPosition);
+		theCell.removeElement(givenItem);
+		this.items.remove(givenItem);
+	}
 
 }

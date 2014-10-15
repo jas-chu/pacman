@@ -11,6 +11,7 @@ public abstract class Item extends StageElement {
 
 	public void consume() {
 		this.consumed = true;
+		this.stage.removeItem(this);
 	}
 	
 	public boolean isConsumed() {
