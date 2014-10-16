@@ -49,13 +49,16 @@ public abstract class XMLConstants {
 	public static final String CONTENT = "content";
     public static final String DOT = "dot";
     public static final String BIG_DOT = "bigDot";
-
+	
+	/* DICTIONARIES */
     protected Map<String, String> translationDictionary;
     protected Map<String, String> invertedDirectionValuesDictionary;
+	protected Map<String, String> invertedStrategyValuesDictionary;
 
     public XMLConstants() {
         this.translationDictionary = new HashMap<String, String>();
         this.invertedDirectionValuesDictionary = new HashMap<String, String>();
+		this.invertedStrategyValuesDictionary = new HashMap<String, String>();
     }
 
 	/**
@@ -74,6 +77,15 @@ public abstract class XMLConstants {
 	 */
 	public String getInvertedDirectionValueTranslation(String key) {
         return this.searchTranslation(this.invertedDirectionValuesDictionary, key);
+    }
+	
+	/**
+	 * Translates key representing a strategy value from specific to default language.
+	 * @param key
+	 * @return
+	 */
+	public String getInvertedStrategyValueTranslation(String key) {
+        return this.searchTranslation(this.invertedStrategyValuesDictionary, key);
     }
 
     /**
