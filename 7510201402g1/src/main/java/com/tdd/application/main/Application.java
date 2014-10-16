@@ -1,6 +1,5 @@
 package com.tdd.application.main;
 
-import com.tdd.application.game.XMLConductedGame;
 import com.tdd.application.gameAbstractions.Game;
 import com.tdd.application.gameAbstractions.GameConfigurations;
 import com.tdd.model.exceptions.MalformedXMLException;
@@ -8,12 +7,20 @@ import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.languageTools.SpanishXMLConstants;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class application {
+public abstract class Application {
 	
-	private static void configureProgram(GameConfigurations configs) {
+	protected XMLConstants constants;
+	protected GameConfigurations configs;
+	protected Game game = null;
+	
+	public Application() {
+		this.constants = new SpanishXMLConstants();
+		this.configs = new GameConfigurations(constants);
+		this.configureProgram(configs);
+	}
+	
+	private void configureProgram(GameConfigurations configs) {
 		String rootPath = System.getProperty("user.dir") + File.separator + "doc";
 		rootPath += File.separator + "xmls" + File.separator + "xmls" + File.separator;
 		
@@ -33,15 +40,10 @@ public class application {
 		configs.ghostIncrementalVision = 1;
 	}
 	
-	public static void main(String[] args) {
-		XMLConstants constants = new SpanishXMLConstants();
-		GameConfigurations configs = new GameConfigurations(constants);
-		configureProgram(configs);
-		try {
-			Game game = new XMLConductedGame(configs);
-			game.gameloop();
-		} catch (MalformedXMLException ex) {
-			Logger.getLogger(application.class.getName()).log(Level.SEVERE, null, ex);
-		}
+	protected abstract void createGame() throws MalformedXMLException;
+	
+	public void run() {
+		if (this.game != null) this.game.gameloop();
 	}
+	
 }

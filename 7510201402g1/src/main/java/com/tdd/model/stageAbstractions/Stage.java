@@ -1,9 +1,14 @@
 package com.tdd.model.stageAbstractions;
 
+import com.tdd.application.gameAbstractions.GameConfigurations;
 import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.exceptions.MalformedXMLException;
 import java.util.List;
 
 public interface Stage {
+	
+	public void populateWithEnemies(GameConfigurations givenConfigs) throws MalformedXMLException;
+	public void populateWithProtagonist();
 	
 	public List<Item> getItems();
 	public List<Enemy> getEnemies();

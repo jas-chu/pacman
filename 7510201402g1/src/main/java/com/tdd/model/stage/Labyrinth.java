@@ -56,7 +56,6 @@ public class Labyrinth implements Stage {
         try {
             upLoadInitialLabyrinthConfigurations();
             upLoadCells();
-            upLoadCharacters(givenConfigs);
         } catch (NoAvailableFactoryException | AttributeNotFoundException ex) {
             throw new MalformedXMLException();
         }
@@ -85,15 +84,21 @@ public class Labyrinth implements Stage {
             this.cells.add(mapRow);
         }
     }
-
-    /**
-     *
-     */
-    private void upLoadCharacters(GameConfigurations givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
-        this.pacman = new Pacman(this, this.pacmanStart);
-        this.placeProtagonistAtHome(this.pacman);
-        this.upLoadGhost(givenConfigs);
-    }
+	
+	@Override
+	public void populateWithEnemies(GameConfigurations givenConfigs) throws MalformedXMLException {
+		try {
+			this.upLoadGhost(givenConfigs);
+		} catch (AttributeNotFoundException | NoAvailableFactoryException ex) {
+			throw new MalformedXMLException();
+		}
+	}
+	
+	@Override
+	public void populateWithProtagonist() {
+		this.pacman = new Pacman(this, this.pacmanStart);
+		this.placeProtagonistAtHome(this.pacman);
+	}
 
     /**
      *

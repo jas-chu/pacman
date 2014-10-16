@@ -1,7 +1,9 @@
 package com.tdd.model.mocks;
 
+import com.tdd.application.gameAbstractions.GameConfigurations;
 import com.tdd.model.cell.ClearCell;
 import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.exceptions.MalformedXMLException;
 import com.tdd.model.stageAbstractions.Area;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Enemy;
@@ -109,6 +111,16 @@ public class MockStage implements Stage {
 	@Override
 	public List<List<Cell>> getCells() {
 		return null;
+	}
+
+	@Override
+	public void populateWithEnemies(GameConfigurations givenConfigs) throws MalformedXMLException {
+		
+	}
+
+	@Override
+	public void populateWithProtagonist() {
+		
 	}
         
 }
