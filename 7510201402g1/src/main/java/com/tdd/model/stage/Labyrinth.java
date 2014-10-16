@@ -55,10 +55,10 @@ public class Labyrinth implements Stage {
         try {
 			upLoadInitialLabyrinthConfigurations();
 			upLoadCells();
+			upLoadCharacters();
 		} catch (NoAvailableFactoryException | AttributeNotFoundException ex) {
 			throw new MalformedXMLException();
 		}
-        upLoadCharacters();
     }
 
     /**
@@ -88,7 +88,7 @@ public class Labyrinth implements Stage {
     /**
      *
      */
-    private void upLoadCharacters() {
+    private void upLoadCharacters() throws AttributeNotFoundException, NoAvailableFactoryException {
 		this.pacman = new Pacman(this, this.pacmanStart);
 		this.placeProtagonistAtHome(this.pacman);
         this.upLoadGhost();
@@ -97,21 +97,17 @@ public class Labyrinth implements Stage {
     /**
      *
      */
-    private void upLoadGhost() {
+    private void upLoadGhost() throws AttributeNotFoundException, NoAvailableFactoryException {
         NodeList ghostsNodes = this.gameCharactersLoader.getGhostNodes();
         EnemyBuilder enemyBuilder = new EnemyBuilder();
         for (int i = 0; i < ghostsNodes.getLength(); i++) {
-            try {
-                Node ghostNode = ghostsNodes.item(i);
-                String sense = XMLReader.getAttributeValue(ghostNode, XMLConstants.SENSE);
-                String personality = XMLReader.getAttributeValue(ghostNode, XMLConstants.PERSONALITY);
-                String status = XMLReader.getAttributeValue(ghostNode, XMLConstants.STATUS);                
-                Enemy enemy = enemyBuilder.createEnemy(this, this.ghostStart, status, sense, personality);
-				this.enemies.add(enemy);
-				this.placeEnemyAtHome(enemy);
-            } catch (AttributeNotFoundException ex) {
-                Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            Node ghostNode = ghostsNodes.item(i);
+			String sense = XMLReader.getAttributeValue(ghostNode, XMLConstants.SENSE);
+			String personality = XMLReader.getAttributeValue(ghostNode, XMLConstants.PERSONALITY);
+			String status = XMLReader.getAttributeValue(ghostNode, XMLConstants.STATUS);                
+			Enemy enemy = enemyBuilder.createEnemy(this, this.ghostStart, status, sense, personality);
+			this.enemies.add(enemy);
+			this.placeEnemyAtHome(enemy);
         }
     }
 

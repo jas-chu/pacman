@@ -3,6 +3,7 @@ package com.tdd.controller.playerController;
 import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.directionFactory.DirectionGenerator;
+import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Protagonist;
@@ -52,7 +53,7 @@ public class XMLPlayerController extends PlayerController {
 		return filePath;
 	}
 	
-	private Direction createNewDirection(String direction) {
+	private Direction createNewDirection(String direction) throws NoAvailableFactoryException {
 		String translatedDirection = this.constants.getInvertedDirectionValueTranslation(direction);
 		return this.directionGenerator.createDirection(translatedDirection);
 	}

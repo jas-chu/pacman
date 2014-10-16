@@ -1,5 +1,7 @@
 package com.tdd.model.enemy.enemyBuilding;
 
+import com.tdd.model.exceptions.NoAvailableFactoryException;
+import com.tdd.model.helpers.XMLConstants;
 import java.util.HashMap;
 
 /**
@@ -8,31 +10,21 @@ import java.util.HashMap;
  */
 public class EnemyFactorySearcher {
 
-    public enum EnemyName {
-
-        GHOST
-    }
-    private final HashMap<EnemyName, EnemyFactory> factorySearcher;
+    private final HashMap<String, EnemyFactory> factorySearcher;
 
     public EnemyFactorySearcher() {
         this.factorySearcher = new HashMap();
-        this.factorySearcher.put(EnemyName.GHOST, new GhostFactory());
+        this.factorySearcher.put(XMLConstants.GHOST, new GhostFactory());
     }
         /**
      *
      * @param name
      * @return
+	 * @throws com.tdd.model.exceptions.NoAvailableFactoryException
      */
-    public EnemyFactory getFactory(String name) {
-        return this.factorySearcher.get(nameToEnemyname(name));
-    }
-    /**
-     * Por ahora esta harcodeado que retorne un fantasma. 
-     * Mas adelante se puede expandir a disintos tipos de enemigos
-     * @param name
-     * @return 
-     */
-    private EnemyName nameToEnemyname(String name){
-        return EnemyName.GHOST;
+    public EnemyFactory getFactory(String name) throws NoAvailableFactoryException {
+		if (this.factorySearcher.containsKey(name))
+			return this.factorySearcher.get(name);
+		throw new NoAvailableFactoryException();
     }
 }

@@ -1,7 +1,9 @@
 package com.tdd.model.enemy.enemyBuilding;
 
+import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.ghost.StateFactory;
 import com.tdd.model.ghost.Strategy;
+import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Stage;
@@ -20,8 +22,9 @@ public class EnemyBuilder {
      * @param sense
      * @param personality
      * @return 
+	 * @throws com.tdd.model.exceptions.NoAvailableFactoryException 
      */
-    public Enemy createEnemy(Stage stage, Position givenPosition, String status,String sense,String personality) {
+    public Enemy createEnemy(Stage stage, Position givenPosition, String status,String sense,String personality) throws NoAvailableFactoryException {
         Enemy enemy = null;
         StrategyFactorySearcher strategyFactorySearcher = new StrategyFactorySearcher();
         //Personality o status debería indicar que estrategia usar
@@ -29,7 +32,7 @@ public class EnemyBuilder {
         StateFactory stateFactory = new StateFactory(null, 1, 2);
         EnemyFactorySearcher enemyFactory = new EnemyFactorySearcher();
        
-        return enemyFactory.getFactory("ghost").getEnemy(stage, givenPosition, stateFactory, strategy);
+        return enemyFactory.getFactory(XMLConstants.GHOST).getEnemy(stage, givenPosition, stateFactory, strategy);
     }
 
 }

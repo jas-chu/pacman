@@ -1,5 +1,6 @@
 package com.tdd.model.directionFactory;
 
+import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Direction;
 import java.util.HashMap;
@@ -21,8 +22,10 @@ public class DirectionGenerator {
 		this.directionFactories.put(DIRECTION_RIGHT_KEY, new DirectionRightFactory());
 	}
 	
-	public Direction createDirection(String directionType) {
-		return this.directionFactories.get(directionType).createDirection();
+	public Direction createDirection(String directionType) throws NoAvailableFactoryException {
+		if (this.directionFactories.containsKey(directionType))
+			return this.directionFactories.get(directionType).createDirection();
+		throw new NoAvailableFactoryException();
 	}
 	
 }
