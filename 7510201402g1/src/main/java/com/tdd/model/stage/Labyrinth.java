@@ -1,5 +1,6 @@
 package com.tdd.model.stage;
 
+import com.tdd.application.gameAbstractions.GameConfigurations;
 import com.tdd.model.helpers.LabyrinthLoader;
 import com.tdd.model.cell.cellBuilding.CellBuilder;
 import com.tdd.model.enemy.enemyBuilding.EnemyBuilder;
@@ -47,15 +48,15 @@ public class Labyrinth implements Stage {
      * @param xmlCharactersPath
 	 * @throws com.tdd.model.exceptions.MalformedXMLException
      */
-    public Labyrinth(String xmlLabyrinthPath, String xmlCharactersPath) throws MalformedXMLException {
+    public Labyrinth(GameConfigurations givenConfigs) throws MalformedXMLException {
         this.items = new ArrayList<Item>();
         this.enemies = new ArrayList<Enemy>();
-        this.labyrinthLoader = new LabyrinthLoader(xmlLabyrinthPath);
-        this.gameCharactersLoader = new GameCharactersLoader(xmlCharactersPath);
+        this.labyrinthLoader = new LabyrinthLoader(givenConfigs.XMLStagePath);
+        this.gameCharactersLoader = new GameCharactersLoader(givenConfigs.XMLCharactersPath);
         try {
 			upLoadInitialLabyrinthConfigurations();
 			upLoadCells();
-			upLoadCharacters();
+			upLoadCharacters(givenConfigs);
 		} catch (NoAvailableFactoryException | AttributeNotFoundException ex) {
 			throw new MalformedXMLException();
 		}
@@ -88,16 +89,16 @@ public class Labyrinth implements Stage {
     /**
      *
      */
-    private void upLoadCharacters() throws AttributeNotFoundException, NoAvailableFactoryException {
+    private void upLoadCharacters(GameConfigurations givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
 		this.pacman = new Pacman(this, this.pacmanStart);
 		this.placeProtagonistAtHome(this.pacman);
-        this.upLoadGhost();
+        this.upLoadGhost(givenConfigs);
     }
 
     /**
      *
      */
-    private void upLoadGhost() throws AttributeNotFoundException, NoAvailableFactoryException {
+    private void upLoadGhost(GameConfigurations givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
         NodeList ghostsNodes = this.gameCharactersLoader.getGhostNodes();
         EnemyBuilder enemyBuilder = new EnemyBuilder();
         for (int i = 0; i < ghostsNodes.getLength(); i++) {
@@ -105,7 +106,7 @@ public class Labyrinth implements Stage {
 			String sense = XMLReader.getAttributeValue(ghostNode, XMLConstants.SENSE);
 			String personality = XMLReader.getAttributeValue(ghostNode, XMLConstants.PERSONALITY);
 			String status = XMLReader.getAttributeValue(ghostNode, XMLConstants.STATUS);                
-			Enemy enemy = enemyBuilder.createEnemy(this, this.ghostStart, status, sense, personality);
+			Enemy enemy = enemyBuilder.createEnemy(this, givenConfigs, this.ghostStart, status, sense, personality);
 			this.enemies.add(enemy);
 			this.placeEnemyAtHome(enemy);
         }

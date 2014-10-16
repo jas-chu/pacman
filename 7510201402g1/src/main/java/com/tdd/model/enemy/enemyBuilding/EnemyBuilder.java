@@ -1,5 +1,6 @@
 package com.tdd.model.enemy.enemyBuilding;
 
+import com.tdd.application.gameAbstractions.GameConfigurations;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.ghost.StateFactory;
 import com.tdd.model.ghost.Strategy;
@@ -24,9 +25,9 @@ public class EnemyBuilder {
      * @return 
 	 * @throws com.tdd.model.exceptions.NoAvailableFactoryException 
      */
-    public Enemy createEnemy(Stage stage, Position givenPosition, String status,String sense,String personality) throws NoAvailableFactoryException {
+    public Enemy createEnemy(Stage stage, GameConfigurations givenConfigs, Position givenPosition, String status,String sense,String personality) throws NoAvailableFactoryException {
         Enemy enemy = null;
-        StrategyFactorySearcher strategyFactorySearcher = new StrategyFactorySearcher();
+        StrategyFactorySearcher strategyFactorySearcher = new StrategyFactorySearcher(1,1);
         //Personality o status debería indicar que estrategia usar
         Strategy strategy = strategyFactorySearcher.getFactory(StrategyFactorySearcher.StrategyName.LAZYSTRATEGY).getStrategy(enemy);
         StateFactory stateFactory = new StateFactory(null, 1, 2);

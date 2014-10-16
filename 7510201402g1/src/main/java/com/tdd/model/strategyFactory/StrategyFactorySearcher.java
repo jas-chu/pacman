@@ -3,8 +3,8 @@ package com.tdd.model.strategyFactory;
 import java.util.HashMap;
 
 public class StrategyFactorySearcher {
-    public int vision;
-    public int incrementalVision;
+    private int vision;
+    private int incrementalVision;
 
     public enum StrategyName {
 
@@ -13,7 +13,9 @@ public class StrategyFactorySearcher {
 
     private final HashMap<StrategyName, StrategyFactory> factorySearcher;
 
-    public StrategyFactorySearcher() {
+    public StrategyFactorySearcher(int givenVision, int givenIncrementalVision) {
+		this.vision = givenVision;
+		this.incrementalVision = givenIncrementalVision;
         this.factorySearcher = new HashMap();
         this.factorySearcher.put(StrategyName.LAZYSTRATEGY, new LazyStrategyFactory(this.vision));
         this.factorySearcher.put(StrategyName.SILLYSTRATEGY, new SillyStrategyFactory(this.vision));

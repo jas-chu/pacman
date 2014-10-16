@@ -14,23 +14,20 @@ import java.util.List;
 
 public abstract class Game {
 
-    protected XMLConstants gameConstants;
+    protected GameConfigurations configs;
     private Stage stage;
     private List<Enemy> enemies;
     protected Protagonist protagonist;
     protected PlayerController controller;
 	private LabyrinthSerializer labyrinthSerializer;
 
-    public Game(String XMLStagePath, String XMLCharactersPath, String XMLSerializationPath,
-			    XMLConstants XMLGameConstants) throws MalformedXMLException {
-        
-		this.gameConstants = XMLGameConstants;
-        XMLIO.configureLanguage(this.gameConstants);
-        this.stage = new Labyrinth(XMLStagePath, XMLCharactersPath);
+    public Game(GameConfigurations givenConfigs) throws MalformedXMLException {
+		this.configs = givenConfigs;
+        this.stage = new Labyrinth(this.configs);
         this.enemies = this.stage.getEnemies();
         this.protagonist = this.stage.getProtagonist();
         List<Item> items = this.stage.getItems();
-        this.labyrinthSerializer = new LabyrinthSerializer(this.stage, XMLSerializationPath, this.gameConstants);
+        this.labyrinthSerializer = new LabyrinthSerializer(this.stage, this.configs.XMLSerializationPath, this.configs.XMLGameConstants);
     }
 
     protected abstract PlayerController createPlayerController();
