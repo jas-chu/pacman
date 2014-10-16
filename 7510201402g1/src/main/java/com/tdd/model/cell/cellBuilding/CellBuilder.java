@@ -41,7 +41,7 @@ public class CellBuilder {
     private Position getTeleportTargetCellPosition(Position cellPosition, Map<String, String> neighboursIds, NodeList nodes) throws AttributeNotFoundException {
         for (Map.Entry<String, String> entrySet : neighboursIds.entrySet()) {
             String idString = entrySet.getValue();
-            Integer neighbourId = Integer.getInteger(idString);
+            Integer neighbourId = Integer.parseInt(idString);
 			Node neighbourCellNode = XMLReader.getNodeById(nodes, neighbourId);
 			Position neighbourPosition = XMLReader.getNodePosition(neighbourCellNode);
 			if (!(cellPosition.isNeighbour(neighbourPosition))) return neighbourPosition;

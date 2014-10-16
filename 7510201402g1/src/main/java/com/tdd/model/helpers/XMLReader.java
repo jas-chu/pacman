@@ -1,15 +1,15 @@
 package com.tdd.model.helpers;
 
 import com.tdd.model.stageAbstractions.Position;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.management.AttributeNotFoundException;
 import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -27,7 +27,8 @@ public class XMLReader extends XMLIO {
         DocumentBuilder builder = XMLIO.getDocumentBuilder();
 		if (builder == null) return null;
 		try {
-			return builder.parse(ClassLoader.getSystemResourceAsStream(XMLpath));
+			InputStream file = new FileInputStream(XMLpath);
+			return builder.parse(file);
 		} catch (SAXException | IOException ex) {
 			Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -54,6 +55,12 @@ public class XMLReader extends XMLIO {
         Document document = XMLReader.getDocument(XMLpath);
         return document.getElementsByTagName(tagName);
     }
+	
+//	public static NodeList getNodeByName(Node node, String tagName) {
+//		NodeList nodes = node.getC.getChildNodes();
+//		
+//        return node.getElementsByTagName(tagName);
+//    }
 
     /**
      *
@@ -85,7 +92,8 @@ public class XMLReader extends XMLIO {
      * @throws AttributeNotFoundException
      */
     public static Integer getIntAttributeValue(Node node, String attribute) throws AttributeNotFoundException {
-        return Integer.getInteger(XMLReader.getAttributeValue(node, attribute));
+        String value = XMLReader.getAttributeValue(node, attribute);
+		return Integer.parseInt(value);
     }
 
     /**
@@ -122,31 +130,20 @@ public class XMLReader extends XMLIO {
     }
 
     /**
-     * TODO REFACTORIZAR
-     *
      * @param nodeList
      * @param nodeId
      * @return
      */
     public static Node getNodeById(NodeList nodeList, Integer nodeId) {
-        Node node = null;
-        int i = 0;
-        boolean exists = false;
-        while ((i < nodeList.getLength()) && !exists) {
-            node = nodeList.item(i);
-            try {
-
-                if (XMLReader.getNodeId(node).equals(nodeId)) {
-                    exists = true;
-                }
+		for (int i = 0 ; i < nodeList.getLength() ; ++i) {
+			Node node = nodeList.item(i);
+			try {
+                if (XMLReader.getNodeId(node).equals(nodeId)) return node;
             } catch (AttributeNotFoundException ex) {
                 Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
             }
-            i++;
-
-        }
-
-        return node;
+		}
+		return null;
     }
 
     /**
