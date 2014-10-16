@@ -9,5 +9,4 @@ public class SillyStrategy extends Strategy {
         super(givenEnemy, vision);
     }
 
-
 }
