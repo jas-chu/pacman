@@ -59,8 +59,9 @@ public class XMLWriter extends XMLIO {
      * @param attributes
      */
     public void createRoot(String rootName, HashMap<String, String> attributes) {
-        this.root = this.doc.createElement(rootName);
-        this.createAttributeList(attributes);
+		String translatedRootName = XMLWriter.getTranslation(rootName);
+        this.root = this.doc.createElement(translatedRootName);
+		this.addAttributesToElement(this.root, this.createAttributeList(attributes));
         doc.appendChild(this.root);
     }
 
@@ -71,7 +72,8 @@ public class XMLWriter extends XMLIO {
      * @param attributes
      */
     public void addSubElement(Element element, String subElementName, HashMap<String, String> attributes) {
-        Element subElement = doc.createElement(subElementName);
+        String translatedSubElementName = XMLWriter.getTranslation(subElementName);
+		Element subElement = doc.createElement(translatedSubElementName);
         this.addAttributesToElement(subElement, this.createAttributeList(attributes));
         element.appendChild(subElement);
     }
@@ -82,9 +84,7 @@ public class XMLWriter extends XMLIO {
      * @param attributes
      */
     public void addElementToRoot(String elementName, HashMap<String, String> attributes) {
-        Element element = doc.createElement(elementName);
-        this.addAttributesToElement(element, this.createAttributeList(attributes));
-        this.root.appendChild(element);
+        this.addSubElement(this.root, elementName, attributes);
     }
 
     /**
@@ -106,8 +106,10 @@ public class XMLWriter extends XMLIO {
     private List<Attr> createAttributeList(HashMap<String, String> attributes) {
         List<Attr> attributeList = new ArrayList<>();
         for (Map.Entry<String, String> entrySet : attributes.entrySet()) {
-            Attr attr = this.doc.createAttribute(entrySet.getKey());
-            attr.setValue(entrySet.getValue());
+			String translatedKey = XMLWriter.getTranslation(entrySet.getKey());
+			String translatedValue = XMLWriter.getTranslation(entrySet.getValue());
+            Attr attr = this.doc.createAttribute(translatedKey);
+            attr.setValue(translatedValue);
             attributeList.add(attr);
         }
         return attributeList;
@@ -132,11 +134,6 @@ public class XMLWriter extends XMLIO {
             this.root.appendChild(nodes.item(i));
         }
     }
-	
-	private static String getTranslation(String attributeName) {
-		XMLWriter.testConfiguration();
-		return XMLIO.getConstants().getConstantTranslation(attributeName);
-	}
 	
     public static void addAttributeToCustomMap(Map<String, String> attributes, String attributeName, String value) {
 		String translatedAttributeName = XMLWriter.getTranslation(attributeName);
@@ -171,4 +168,10 @@ public class XMLWriter extends XMLIO {
     protected static void testConfiguration() {
         XMLIO.testConfiguration("XMLWriter");
     }
+	
+	private static String getTranslation(String attributeName) {
+		XMLWriter.testConfiguration();
+		return XMLIO.getConstants().getConstantTranslation(attributeName);
+	}
+	
 }

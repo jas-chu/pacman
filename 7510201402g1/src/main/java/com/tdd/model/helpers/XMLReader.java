@@ -53,7 +53,7 @@ public class XMLReader extends XMLIO {
      */
     public static NodeList getNodeByName(String XMLpath, String tagName) {
         Document document = XMLReader.getDocument(XMLpath);
-		String translatedTagName = XMLIO.getConstants().getConstantTranslation(tagName);
+		String translatedTagName = XMLReader.getTranslation(tagName);
         return document.getElementsByTagName(translatedTagName);
     }
 
@@ -65,8 +65,7 @@ public class XMLReader extends XMLIO {
      * @throws javax.management.AttributeNotFoundException
      */
     public static String getAttributeValue(Node node, String attributeName) throws AttributeNotFoundException {
-        XMLReader.testConfiguration();
-        String translatedAttributeName = XMLIO.getConstants().getConstantTranslation(attributeName);
+        String translatedAttributeName = XMLReader.getTranslation(attributeName);
         String attribute = "";
         if (node.hasAttributes()) {
             Node attr = node.getAttributes().getNamedItem(translatedAttributeName);
@@ -155,7 +154,12 @@ public class XMLReader extends XMLIO {
     protected static void testConfiguration() {
         XMLIO.testConfiguration("XMLReader");
     }
-
+	
+	private static String getTranslation(String attributeName) {
+		XMLReader.testConfiguration();
+		return XMLIO.getConstants().getConstantTranslation(attributeName);
+	}
+	
     /**
      *
      * @param node

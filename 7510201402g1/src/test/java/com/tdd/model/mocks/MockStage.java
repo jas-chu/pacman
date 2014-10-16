@@ -75,4 +75,39 @@ public class MockStage implements Stage {
         return null;
     }
 
+	@Override
+	public Integer getWidth() {
+		return 20;
+	}
+
+	@Override
+	public Integer getHeight() {
+		return 20;
+	}
+
+	@Override
+	public Integer getNodeWidth() {
+		return 40;
+	}
+
+	@Override
+	public Integer getNodeHeight() {
+		return 40;
+	}
+
+	@Override
+	public Position getGhostStart() {
+		return new Position (4,5);
+	}
+
+	@Override
+	public Position getPacmanStart() {
+		return new Position (8,10);
+	}
+
+	@Override
+	public List<List<Cell>> getCells() {
+		return null;
+	}
+
 }

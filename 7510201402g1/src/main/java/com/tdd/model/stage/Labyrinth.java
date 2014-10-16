@@ -1,12 +1,11 @@
 package com.tdd.model.stage;
 
 import com.tdd.model.helpers.LabyrinthLoader;
-import com.tdd.model.helpers.LabyrinthSerializer;
 import com.tdd.model.cell.cellBuilding.CellBuilder;
 import com.tdd.model.enemy.enemyBuilding.EnemyBuilder;
 import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.exceptions.MalformedXMLException;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
-import com.tdd.model.ghost.Ghost;
 import com.tdd.model.helpers.GameCharactersLoader;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.helpers.XMLReader;
@@ -40,26 +39,24 @@ public class Labyrinth implements Stage {
     private Position ghostStart;
     private List<List<Cell>> cells;
     private final LabyrinthLoader labyrinthLoader;
-    private final LabyrinthSerializer labyrinthDischarger;
     private final GameCharactersLoader gameCharactersLoader;
 
     /**
      *
      * @param xmlLabyrinthPath
      * @param xmlCharactersPath
-     * @throws AttributeNotFoundException
+	 * @throws com.tdd.model.exceptions.MalformedXMLException
      */
-    public Labyrinth(String xmlLabyrinthPath, String xmlCharactersPath) throws AttributeNotFoundException {
+    public Labyrinth(String xmlLabyrinthPath, String xmlCharactersPath) throws MalformedXMLException {
         this.items = new ArrayList<Item>();
         this.enemies = new ArrayList<Enemy>();
         this.labyrinthLoader = new LabyrinthLoader(xmlLabyrinthPath);
-        this.labyrinthDischarger = new LabyrinthSerializer(this);
         this.gameCharactersLoader = new GameCharactersLoader(xmlCharactersPath);
-        upLoadInitialLabyrinthConfigurations();
-		try {
+        try {
+			upLoadInitialLabyrinthConfigurations();
 			upLoadCells();
-		} catch (NoAvailableFactoryException ex) {
-			// TODO: should throw exception of another class
+		} catch (NoAvailableFactoryException | AttributeNotFoundException ex) {
+			throw new MalformedXMLException();
 		}
         upLoadCharacters();
     }
@@ -93,6 +90,7 @@ public class Labyrinth implements Stage {
      */
     private void upLoadCharacters() {
 		this.pacman = new Pacman(this, this.pacmanStart);
+		this.placeProtagonistAtHome(this.pacman);
         this.upLoadGhost();
     }
 
@@ -108,7 +106,9 @@ public class Labyrinth implements Stage {
                 String sense = XMLReader.getAttributeValue(ghostNode, XMLConstants.SENSE);
                 String personality = XMLReader.getAttributeValue(ghostNode, XMLConstants.PERSONALITY);
                 String status = XMLReader.getAttributeValue(ghostNode, XMLConstants.STATUS);                
-                this.enemies.add(enemyBuilder.createEnemy(this, ghostStart, status, sense, personality));
+                Enemy enemy = enemyBuilder.createEnemy(this, this.ghostStart, status, sense, personality);
+				this.enemies.add(enemy);
+				this.placeEnemyAtHome(enemy);
             } catch (AttributeNotFoundException ex) {
                 Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -127,11 +127,12 @@ public class Labyrinth implements Stage {
         this.pacmanStart = this.labyrinthLoader.getPacmanStartPosition();
         this.ghostStart = this.labyrinthLoader.getGhostStartPosition();
     }
-
+	
     /**
      *
      * @return
      */
+	@Override
     public Integer getWidth() {
         return this.width;
     }
@@ -140,14 +141,17 @@ public class Labyrinth implements Stage {
      *
      * @return
      */
+	@Override
     public Integer getHeight() {
         return this.height;
     }
 
+	@Override
     public Integer getNodeWidth() {
         return this.nodeWidth;
     }
 
+	@Override
     public Integer getNodeHeight() {
         return this.nodeHeight;
     }
@@ -156,6 +160,7 @@ public class Labyrinth implements Stage {
      *
      * @return
      */
+	@Override
     public Position getGhostStart() {
         return this.ghostStart;
     }
@@ -164,6 +169,7 @@ public class Labyrinth implements Stage {
      *
      * @return
      */
+	@Override
     public Position getPacmanStart() {
         return this.pacmanStart;
     }
@@ -172,6 +178,7 @@ public class Labyrinth implements Stage {
      *
      * @return
      */
+	@Override
     public List<List<Cell>> getCells() {
         return this.cells;
     }

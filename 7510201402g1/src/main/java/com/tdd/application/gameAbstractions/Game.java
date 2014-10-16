@@ -1,6 +1,8 @@
 package com.tdd.application.gameAbstractions;
 
 import com.tdd.controller.controllerAbstractions.PlayerController;
+import com.tdd.model.exceptions.MalformedXMLException;
+import com.tdd.model.helpers.LabyrinthSerializer;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.helpers.XMLIO;
 import com.tdd.model.stage.Labyrinth;
@@ -9,7 +11,6 @@ import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
 import java.util.List;
-import javax.management.AttributeNotFoundException;
 
 public abstract class Game {
 
@@ -18,31 +19,32 @@ public abstract class Game {
     private List<Enemy> enemies;
     protected Protagonist protagonist;
     protected PlayerController controller;
+	private LabyrinthSerializer labyrinthSerializer;
 
-    public Game(String XMLStagePath, String XMLCharactersPath, XMLConstants XMLGameConstants) throws AttributeNotFoundException {
-        this.gameConstants = XMLGameConstants;
+    public Game(String XMLStagePath, String XMLCharactersPath, String XMLSerializationPath,
+			    XMLConstants XMLGameConstants) throws MalformedXMLException {
+        
+		this.gameConstants = XMLGameConstants;
         XMLIO.configureLanguage(this.gameConstants);
         this.stage = new Labyrinth(XMLStagePath, XMLCharactersPath);
         this.enemies = this.stage.getEnemies();
         this.protagonist = this.stage.getProtagonist();
         List<Item> items = this.stage.getItems();
-        //this.createViews(items); until now, left for next iteration
+        this.labyrinthSerializer = new LabyrinthSerializer(this.stage, XMLSerializationPath, this.gameConstants);
     }
 
     protected abstract PlayerController createPlayerController();
 
-    private void createViews(List<Item> items) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
     public void gameloop() {
         this.controller = createPlayerController();
         boolean continuePlaying = false;
+		long i = 1;
         while (!continuePlaying) {
             this.controller.processMovement();
             this.updateEnemies();
-            //this.updateViews(); until now, left for next iteration
+            this.serializeGame(i);
             continuePlaying = (this.stage.hasItems() && this.protagonist.isAlive());
+			++i;
         }
     }
 
@@ -52,8 +54,8 @@ public abstract class Game {
         }
     }
 
-    private void updateViews() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    private void serializeGame(long cycle) {
+        this.labyrinthSerializer.serialize(cycle);
     }
 
 }

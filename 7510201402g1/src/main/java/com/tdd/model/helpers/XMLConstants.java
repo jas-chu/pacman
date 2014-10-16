@@ -25,6 +25,7 @@ public abstract class XMLConstants {
     public static final String PERSONALITY = "personality";
     public static final String STATUS = "status";
     public static final String GHOST = "ghost";
+	public static final String PACMAN = "pacman";
     public static final String SCORE = "score";
     public static final String END_GAME = "endGame";
     public static final String NODE_WIDTH = "nodeWidth";

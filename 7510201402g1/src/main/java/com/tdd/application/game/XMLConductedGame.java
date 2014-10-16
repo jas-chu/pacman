@@ -3,20 +3,21 @@ package com.tdd.application.game;
 import com.tdd.application.gameAbstractions.Game;
 import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.controller.playerController.XMLPlayerController;
+import com.tdd.model.exceptions.MalformedXMLException;
 import com.tdd.model.helpers.XMLConstants;
-import javax.management.AttributeNotFoundException;
 
 public class XMLConductedGame extends Game {
 
     protected String XMLPacmanDirectory;
     protected String PacmanFilePrefix;
-
-    public XMLConductedGame(String XMLStagePath, String XMLCharactersPath, XMLConstants XMLGameConstants,
-            String givenXMLPacmanDirectory, String givenPacmanFilePrefix)
-            throws AttributeNotFoundException {
-        super(XMLStagePath, XMLCharactersPath, XMLGameConstants);
+	
+	public XMLConductedGame(String XMLStagePath, String XMLCharactersPath, String XMLSerializationPath,
+							XMLConstants XMLGameConstants, String givenXMLPacmanDirectory)
+							throws MalformedXMLException {
+		
+        super(XMLStagePath, XMLCharactersPath, XMLSerializationPath, XMLGameConstants);
         this.XMLPacmanDirectory = givenXMLPacmanDirectory;
-        this.PacmanFilePrefix = givenPacmanFilePrefix;
+        this.PacmanFilePrefix = XMLGameConstants.getConstantTranslation(XMLConstants.PACMAN);
     }
 
     @Override

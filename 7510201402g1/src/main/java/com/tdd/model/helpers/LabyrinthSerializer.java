@@ -1,7 +1,8 @@
 package com.tdd.model.helpers;
 
-import com.tdd.model.stage.Labyrinth;
 import com.tdd.model.stageAbstractions.Cell;
+import com.tdd.model.stageAbstractions.Stage;
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -14,12 +15,14 @@ import javax.xml.transform.TransformerException;
  */
 public class LabyrinthSerializer {
 	
-    private String path;
-	private Labyrinth labyrinth;
+	private XMLConstants gameConstants;
+    private String rootPath;
+	private Stage stage;
 
-    public LabyrinthSerializer(Labyrinth labyrinth) {
-        this.path = "";
-        this.labyrinth = labyrinth;
+    public LabyrinthSerializer(Stage givenStage, String givenRootPath, XMLConstants constants) {
+        this.gameConstants = constants;
+		this.rootPath = givenRootPath;
+        this.stage = givenStage;
     }
 
     /**
@@ -27,18 +30,15 @@ public class LabyrinthSerializer {
      * @return
      */
     public String getPath() {
-        return this.path;
+        return this.rootPath;
     }
 
-    /**
-     *
-     * @param givenPath
-     */
-    public void serialize(String givenPath) {
-        this.path = givenPath;
-        XMLWriter writer = new XMLWriter(this.path);
+    public void serialize(long cycle) {
+		String labyrinthName = this.gameConstants.getConstantTranslation(XMLConstants.LABYRINTH);
+        String path = rootPath + File.separator + labyrinthName + "Tick" + cycle + ".xml";
+        XMLWriter writer = new XMLWriter(path);
         writer.createRoot(XMLConstants.LABYRINTH, this.getLabyrinthAttributes());
-        this.addNodes(writer, labyrinth.getCells());
+        this.addNodes(writer, stage.getCells());
         try {
             writer.write();
         } catch (TransformerException ex) {
@@ -65,12 +65,12 @@ public class LabyrinthSerializer {
      */
     private HashMap<String, String> getLabyrinthAttributes() {
         HashMap<String, String> attributes = new HashMap<>();
-		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.WIDTH, labyrinth.getWidth(), 2);
-		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.HEIGHT, labyrinth.getHeight(), 2);
-		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.PACMAN_START, labyrinth.getPacmanStart().toString());
-		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.GHOST_START, labyrinth.getGhostStart().toString());
-		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.NODE_WIDTH, labyrinth.getNodeWidth(), 2);
-		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.NODE_HEIGHT, labyrinth.getNodeHeight(), 2);
+		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.WIDTH, stage.getWidth(), 2);
+		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.HEIGHT, stage.getHeight(), 2);
+		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.PACMAN_START, stage.getPacmanStart().toString());
+		XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.GHOST_START, stage.getGhostStart().toString());
+		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.NODE_WIDTH, stage.getNodeWidth(), 2);
+		XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.NODE_HEIGHT, stage.getNodeHeight(), 2);
         return attributes;
     }
 	
