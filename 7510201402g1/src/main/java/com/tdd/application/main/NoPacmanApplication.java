@@ -2,6 +2,7 @@ package com.tdd.application.main;
 
 import com.tdd.application.game.NoPacmanGame;
 import com.tdd.model.exceptions.MalformedXMLException;
+import java.io.File;
 
 public class NoPacmanApplication extends Application {
 	
@@ -14,6 +15,11 @@ public class NoPacmanApplication extends Application {
 	@Override
 	protected void createGame() throws MalformedXMLException {
 		this.game = new NoPacmanGame(this.configs, this.ticks);
+	}
+	
+	@Override
+	protected String configurePaths(String rootPath) {
+		return rootPath + "test_fantasma_pacman" + File.separator;
 	}
 
 }
