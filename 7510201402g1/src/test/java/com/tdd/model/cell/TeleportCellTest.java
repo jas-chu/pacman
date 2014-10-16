@@ -1,26 +1,27 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tdd.model.cell;
 
+import com.tdd.model.helpers.XMLConstants;
+import com.tdd.model.stageAbstractions.Position;
+import java.util.HashMap;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.Before;
 
-/**
- *
- * @author agu
- */
-public class TeleportCellTest {
+public class TeleportCellTest extends CellTest {
+	
+    @Before
+	@Override
+	public void setUp() {
+		super.setUp();
+		HashMap<String,String> neighbours = new HashMap<String,String>();
+		neighbours.put(XMLConstants.DIRECTION_RIGHT, (new Integer(this.cellId + 2)).toString());
+		this.cell = new TeleportCell(this.cellId, this.position, neighbours, new Position(1,9));
+	}
     
-    public TeleportCellTest() {
+	@Test
+	@Override
+    public void placeElement() {
+        this.cell.placeElement(this.protagonist);
+		assert(this.protagonist.teleportMethodCalled);
     }
-
-    @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
+	
 }

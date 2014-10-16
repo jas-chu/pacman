@@ -1,5 +1,6 @@
 package com.tdd.model.mocks;
 
+import com.tdd.model.exceptions.AlreadyTeleportedException;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Item;
@@ -12,6 +13,7 @@ public class MockProtagonist extends Protagonist {
 	public boolean moveMethodCalled = false;
 	public boolean killMethodCalled = false;
 	public boolean reviveMethodCalled = false;
+	public boolean teleportMethodCalled = false;
 	public boolean collideWithProtagonistMethodCalled = false;
 	public boolean collideWithEnemyMethodCalled = false;
 	public boolean collideWithItemMethodCalled = false;
@@ -42,6 +44,11 @@ public class MockProtagonist extends Protagonist {
 	}
 	
 	@Override
+	public void teleport(Position givenPosition) throws AlreadyTeleportedException {
+		this.teleportMethodCalled = true;
+	}
+	
+	@Override
 	public void collideWithProtagonist(Protagonist givenProtagonist) {
 		this.collideWithProtagonistMethodCalled = true;
 	}
@@ -61,6 +68,7 @@ public class MockProtagonist extends Protagonist {
 		      || this.moveMethodCalled
 			  || this.killMethodCalled
 			  || this.reviveMethodCalled
+			  || this.teleportMethodCalled
 			  || this.collideWithProtagonistMethodCalled
 			  || this.collideWithEnemyMethodCalled
 			  || this.collideWithItemMethodCalled);

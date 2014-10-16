@@ -11,7 +11,7 @@ public class BlockedCell extends Cell {
     public BlockedCell(int givenId, Position givenPosition, Map<String, String> givenNeighboursIds) {
         super(givenId, givenPosition, givenNeighboursIds);
     }
-
+	
     @Override
     public void testPlaceElement() throws BlockedCellException {
         throw new BlockedCellException();
@@ -25,11 +25,6 @@ public class BlockedCell extends Cell {
     @Override
     public void removeElement(StageElement element) {
         // blocked cell, allows functionality extension
-    }
-
-    @Override
-    public String getContent() {
-        return super.getContent(); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -1,26 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tdd.model.cell;
 
+import com.tdd.model.helpers.XMLConstants;
+import com.tdd.model.mocks.MockItem;
+import java.util.HashMap;
+import static org.junit.Assert.assertEquals;
+import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
-/**
- *
- * @author agu
- */
-public class ClearCellTest {
+public class ClearCellTest extends CellTest {
     
-    public ClearCellTest() {
-    }
-
-    @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    @Before
+	@Override
+	public void setUp() {
+		super.setUp();
+		HashMap<String,String> neighbours = new HashMap<String,String>();
+		neighbours.put(XMLConstants.DIRECTION_RIGHT, (new Integer(this.cellId + 1)).toString());
+		this.cell = new ClearCell(this.cellId, this.position, neighbours);
+	}
     
+	@Test
+	@Override
+    public void getContent() {
+        assertEquals(this.cell.getContent(),"");
+		
+		MockItem item = new MockItem();
+		this.cell.placeElement(item);
+		assertEquals(item.getMapSerialization(), this.cell.getContent());
+    }
+	
 }
