@@ -15,9 +15,9 @@ public abstract class StageElement implements Collidable {
 		this.removeTeleportedState();
 	}
 	       
-        public Stage getStage(){
-            return this.stage;
-        }
+	public Stage getStage(){
+		return this.stage;
+	}
         
 	public Position getPosition() {
 		return this.position;

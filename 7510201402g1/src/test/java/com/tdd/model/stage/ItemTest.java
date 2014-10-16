@@ -9,7 +9,7 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ItemTest {
+public abstract class ItemTest {
 	protected Item item;
 	protected MockGhost ghost;
 	protected Position position;

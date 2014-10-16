@@ -12,6 +12,7 @@ public class Pacman extends Protagonist {
 	
 	public Pacman(Stage givenStage, Position givenPosition) {
 		super(givenStage, givenPosition);
+		this.alive = true;
 	}
 	
 	@Override

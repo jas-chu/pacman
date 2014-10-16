@@ -12,6 +12,7 @@ public class MockProtagonist extends Protagonist {
 	public boolean moveMethodCalled = false;
 	public boolean killMethodCalled = false;
 	public boolean reviveMethodCalled = false;
+	public boolean collideWithProtagonistMethodCalled = false;
 	public boolean collideWithEnemyMethodCalled = false;
 	public boolean collideWithItemMethodCalled = false;
 	
@@ -41,6 +42,11 @@ public class MockProtagonist extends Protagonist {
 	}
 	
 	@Override
+	public void collideWithProtagonist(Protagonist givenProtagonist) {
+		this.collideWithProtagonistMethodCalled = true;
+	}
+	
+	@Override
 	public void collideWithEnemy(Enemy givenEnemy) {
 		this.collideWithEnemyMethodCalled = true;
 	}
@@ -55,6 +61,7 @@ public class MockProtagonist extends Protagonist {
 		      || this.moveMethodCalled
 			  || this.killMethodCalled
 			  || this.reviveMethodCalled
+			  || this.collideWithProtagonistMethodCalled
 			  || this.collideWithEnemyMethodCalled
 			  || this.collideWithItemMethodCalled);
 	}
