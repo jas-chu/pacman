@@ -16,7 +16,7 @@ import com.tdd.model.strategyFactory.StrategyFactorySearcher;
  */
 public class EnemyBuilder {
     /**
-     * TODO: Esto es horrible - ya estoy quemado para seguir pensando
+     
      * @param stage
      * @param givenPosition
      * @param status
@@ -29,7 +29,7 @@ public class EnemyBuilder {
         Enemy enemy = null;
         StrategyFactorySearcher strategyFactorySearcher = new StrategyFactorySearcher(1,1);
         //Personality o status debería indicar que estrategia usar
-        Strategy strategy = strategyFactorySearcher.getFactory(StrategyFactorySearcher.StrategyName.LAZYSTRATEGY).getStrategy(enemy);
+        Strategy strategy = strategyFactorySearcher.getFactory(XMLConstants.LAZY_STRATEGY).getStrategy(enemy);
         StateFactory stateFactory = new StateFactory(null, 1, 2);
         EnemyFactorySearcher enemyFactory = new EnemyFactorySearcher();
        

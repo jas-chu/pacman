@@ -37,6 +37,12 @@ public abstract class XMLConstants {
     public static final String DIRECTION_DOWN = "down";
     public static final String DIRECTION_LEFT = "left";
     public static final String DIRECTION_RIGHT = "right";
+    
+    /* STRATEGY VALUES */
+    public static final String LAZY_STRATEGY = "lazy";
+    public static final String SILLY_STRATEGY = "silly";
+    public static final String STRATEGY_NORMAL_SEARCHER = "normalSearcher";
+    public static final String STRATEGY_TEMPERAMENT_SEARCHER = "temperamentSearcher";    
 
     /* CONTENT VALUES */
 	public static final String CONTENT = "content";

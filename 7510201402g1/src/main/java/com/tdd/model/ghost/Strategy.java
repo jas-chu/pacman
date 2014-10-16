@@ -16,7 +16,7 @@ public abstract class Strategy {
     protected int vision;
     protected SquaredArea area;
     protected ArrayList<Direction> possibleDirections;
-    protected int directionIndex;
+    protected int directionIndex = 0;
     protected Direction lastDirection;
     protected int bifurcationCells = 3;
 
@@ -97,7 +97,7 @@ public abstract class Strategy {
     private void generateRandomDirections() {
         ArrayList<Direction> directions = this.getAllDirections();
         while (!directions.isEmpty()){        
-            int index = getRandomNumber(directions.size() - 1, 0);
+            int index = getRandomNumber(0, directions.size() - 1);
             this.possibleDirections.add(directions.remove(index));            
         }        
     }
@@ -133,10 +133,10 @@ public abstract class Strategy {
 
     private ArrayList<Position> getAllPossibleNextPositions() {
         ArrayList<Position> positions = new ArrayList<>();
-        positions.add(this.enemy.getPosition().createPositionSubstractingX(this.enemy.getPosition().getX()));
-        positions.add(this.enemy.getPosition().createPositionAddingX(this.enemy.getPosition().getX()));
-        positions.add(this.enemy.getPosition().createPositionAddingY(this.enemy.getPosition().getY()));
-        positions.add(this.enemy.getPosition().createPositionSubstractingY(this.enemy.getPosition().getY()));
+        ArrayList<Direction> directions = getAllDirections();
+        for (Direction direction : directions){
+            positions.add(direction.getNewPosition(this.enemy.getPosition()));                       
+        }    
         return positions;
     }
     

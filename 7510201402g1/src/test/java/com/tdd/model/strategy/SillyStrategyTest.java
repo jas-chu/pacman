@@ -7,17 +7,17 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class LazyStrategyTest {
+public class SillyStrategyTest {
     
     private MockGhost ghost;    
     private int vision;
-    private LazyStrategy instance;
+    private SillyStrategy instance;
 
     @Before
     public void setUp() {
         this.vision = 10;
         this.ghost = new MockGhost();  
-        this.instance = new LazyStrategy(ghost,vision);
+        this.instance = new SillyStrategy(ghost,vision);
     }
 
     @Test
