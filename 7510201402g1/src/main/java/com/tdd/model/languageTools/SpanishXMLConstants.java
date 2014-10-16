@@ -63,10 +63,10 @@ public class SpanishXMLConstants extends XMLConstants {
     }
 	
 	private void fillStrategyValuesDictionary() {
-        this.invertedDirectionValuesDictionary.put("perezoso", LAZY_STRATEGY);
-        this.invertedDirectionValuesDictionary.put("zonzo", SILLY_STRATEGY);
-        this.invertedDirectionValuesDictionary.put("buscador", STRATEGY_NORMAL_SEARCHER);
-        this.invertedDirectionValuesDictionary.put("buscadorTemperamental", STRATEGY_TEMPERAMENT_SEARCHER);
+        this.invertedStrategyValuesDictionary.put("perezoso", LAZY_STRATEGY);
+        this.invertedStrategyValuesDictionary.put("zonzo", SILLY_STRATEGY);
+        this.invertedStrategyValuesDictionary.put("buscador", STRATEGY_NORMAL_SEARCHER);
+        this.invertedStrategyValuesDictionary.put("buscadorTemperamental", STRATEGY_TEMPERAMENT_SEARCHER);
     }
 	
 	private void fillStatusValuesDictionary() {

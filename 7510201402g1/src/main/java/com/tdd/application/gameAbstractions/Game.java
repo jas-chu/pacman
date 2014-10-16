@@ -44,7 +44,6 @@ public abstract class Game {
 	protected void createProtagonist() {
 		this.stage.populateWithProtagonist();
         this.protagonist = this.stage.getProtagonist();
-		this.controller = createPlayerController();
 	}
 	
 	protected boolean isEndOfGame() {
@@ -52,6 +51,7 @@ public abstract class Game {
 	}
 	
     public void gameloop() {
+		this.controller = createPlayerController();
         boolean continuePlaying = false;
 		long i = 1;
         while (!continuePlaying) {
