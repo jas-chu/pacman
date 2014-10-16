@@ -3,8 +3,6 @@ package com.tdd.application.gameAbstractions;
 import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.exceptions.MalformedXMLException;
 import com.tdd.model.helpers.LabyrinthSerializer;
-import com.tdd.model.helpers.XMLConstants;
-import com.tdd.model.helpers.XMLIO;
 import com.tdd.model.stage.Labyrinth;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Item;
