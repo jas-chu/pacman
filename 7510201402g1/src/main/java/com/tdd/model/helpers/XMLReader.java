@@ -53,14 +53,9 @@ public class XMLReader extends XMLIO {
      */
     public static NodeList getNodeByName(String XMLpath, String tagName) {
         Document document = XMLReader.getDocument(XMLpath);
-        return document.getElementsByTagName(tagName);
+		String translatedTagName = XMLIO.getConstants().getConstantTranslation(tagName);
+        return document.getElementsByTagName(translatedTagName);
     }
-	
-//	public static NodeList getNodeByName(Node node, String tagName) {
-//		NodeList nodes = node.getC.getChildNodes();
-//		
-//        return node.getElementsByTagName(tagName);
-//    }
 
     /**
      *

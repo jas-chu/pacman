@@ -33,7 +33,7 @@ public class LabyrinthLoader {
      *
      * @return @throws AttributeNotFoundException
      */
-    public Integer getLabyrinthHeigth() throws AttributeNotFoundException {
+    public Integer getLabyrinthHeight() throws AttributeNotFoundException {
         return XMLReader.getIntAttributeValue(this.headerNode, XMLConstants.HEIGHT);
     }
 

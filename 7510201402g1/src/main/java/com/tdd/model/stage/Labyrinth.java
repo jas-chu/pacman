@@ -121,7 +121,7 @@ public class Labyrinth implements Stage {
      */
     private void upLoadInitialLabyrinthConfigurations() throws AttributeNotFoundException {
         this.width = this.labyrinthLoader.getLabyrinthWidth();
-        this.height = this.labyrinthLoader.getLabyrinthHeigth();
+        this.height = this.labyrinthLoader.getLabyrinthHeight();
         this.nodeWidth = this.labyrinthLoader.getNodeWidth();
         this.nodeHeight = this.labyrinthLoader.getNodeHeight();
         this.pacmanStart = this.labyrinthLoader.getPacmanStartPosition();

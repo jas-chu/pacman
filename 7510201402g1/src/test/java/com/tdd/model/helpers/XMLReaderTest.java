@@ -1,8 +1,6 @@
 package com.tdd.model.helpers;
 
-import com.tdd.model.languageTools.SpanishXMLConstants;
 import com.tdd.model.stageAbstractions.Position;
-import java.io.File;
 import java.util.Map;
 import javax.management.AttributeNotFoundException;
 import org.junit.Before;
@@ -11,40 +9,34 @@ import static org.junit.Assert.*;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class XMLReaderTest {
+public class XMLReaderTest extends ReadingSetUpTest {
     
-	private XMLConstants constants;
-	private String XMLpath;
 	private Node root;
 	private NodeList childrenNodes;
 	
 	@Before
+	@Override
     public void setUp() {
-		this.constants = new SpanishXMLConstants();
-		XMLReader.configureLanguage(constants);
-		this.XMLpath  = System.getProperty("user.dir") + File.separator + "doc";
-		this.XMLpath += File.separator + "xmls" + File.separator + "xmls";
-		this.XMLpath += File.separator + "laberintos" + File.separator + "LaberintoSimple.xml";
-		
+		super.setUp();
 		this.root = XMLReader.getFirstNode(this.XMLpath);
-		this.childrenNodes = XMLReader.getNodeByName(this.XMLpath, "nodo");
+		this.childrenNodes = XMLReader.getNodeByName(this.XMLpath, XMLConstants.NODE);
 	}
     
     @Test
     public void getFirstNode() {
 		Node firstNode = XMLReader.getFirstNode(this.XMLpath);
-		assertEquals(firstNode.getNodeName(), "laberinto");
+		assertEquals(firstNode.getNodeName(), this.constants.getConstantTranslation(XMLConstants.LABYRINTH));
     }
 
     @Test
     public void getNodeByName() {
-        NodeList nodes = XMLReader.getNodeByName(this.XMLpath, "laberinto");
+        NodeList nodes = XMLReader.getNodeByName(this.XMLpath, XMLConstants.LABYRINTH);
 		assertTrue(nodes.getLength() == 1);
-		assertEquals(nodes.item(0).getNodeName(), "laberinto");
+		assertEquals(nodes.item(0).getNodeName(), this.constants.getConstantTranslation(XMLConstants.LABYRINTH));
 		
-		NodeList allChildrenNodes = XMLReader.getNodeByName(this.XMLpath, "nodo");
+		NodeList allChildrenNodes = XMLReader.getNodeByName(this.XMLpath, XMLConstants.NODE);
 		for (int i = 0 ; i < allChildrenNodes.getLength() ; ++i)
-			assertEquals(allChildrenNodes.item(i).getNodeName(), "nodo");
+			assertEquals(allChildrenNodes.item(i).getNodeName(), this.constants.getConstantTranslation(XMLConstants.NODE));
     }
 	
     @Test
