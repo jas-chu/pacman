@@ -15,7 +15,7 @@ import com.tdd.model.strategyFactory.StrategyFactorySearcher;
  */
 public class EnemyBuilder {
     /**
-     * TODO: Esto es horrible - ya estoy quemado para seguir pensando
+     
      * @param stage
      * @param givenPosition
      * @param status
