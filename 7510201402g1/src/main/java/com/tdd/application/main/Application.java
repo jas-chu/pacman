@@ -21,7 +21,13 @@ public abstract class Application {
 	}
 	
 	private void configureProgram() {
-		this.configurePaths();
+		String rootPath = System.getProperty("user.dir") + File.separator + "doc";
+		rootPath += File.separator + "xmls" + File.separator;
+		String completeRootPath = this.configurePaths(rootPath);
+		configs.XMLStagePath = completeRootPath + "laberintos" + File.separator + "LaberintoSimple.xml";
+		configs.XMLCharactersPath = completeRootPath + "laberintos" + File.separator + "PersonajesSimple.xml";
+		configs.XMLPacmanMovementDirectory = completeRootPath + XMLConstants.PACMAN;
+		configs.XMLSerializationPath = System.getProperty("user.dir")+ File.separator + "ciclosJuego";
 		
 		configs.ghostAngerWaitingCycles = new ArrayList<Long>();
 		configs.ghostAngerWaitingCycles.add(new Long(5000));
@@ -34,14 +40,8 @@ public abstract class Application {
 		configs.ghostIncrementalVision = 1;
 	}
 	
-	protected void configurePaths() {
-		String rootPath = System.getProperty("user.dir") + File.separator + "doc";
-		rootPath += File.separator + "xmls" + File.separator + "xmls" + File.separator;
-		
-		configs.XMLStagePath = rootPath + "laberintos" + File.separator + "LaberintoSimple.xml";
-		configs.XMLCharactersPath = rootPath + "laberintos" + File.separator + "PersonajesSimple.xml";
-		configs.XMLPacmanMovementDirectory = rootPath + XMLConstants.PACMAN;
-		configs.XMLSerializationPath = System.getProperty("user.dir")+ File.separator + "ciclosJuego";
+	protected String configurePaths(String rootPath) {
+		return rootPath + "xmls" + File.separator;
 	}
 	
 	protected abstract void createGame() throws MalformedXMLException;
