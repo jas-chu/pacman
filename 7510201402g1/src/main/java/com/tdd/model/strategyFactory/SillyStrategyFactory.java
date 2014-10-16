@@ -7,6 +7,10 @@ import com.tdd.model.strategy.SillyStrategy;
 public class SillyStrategyFactory implements StrategyFactory {
     private int vision;
 
+    public SillyStrategyFactory(int vision){
+        this.vision = vision;     
+    }   
+    
     /**
 	 * @param givenEnemy
      * @return Devuelve instancia de la estrategy SillyStrategy

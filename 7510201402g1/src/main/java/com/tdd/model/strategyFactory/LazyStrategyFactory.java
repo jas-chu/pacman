@@ -6,6 +6,11 @@ import com.tdd.model.strategy.LazyStrategy;
 
 public class LazyStrategyFactory implements StrategyFactory {
     private int vision;
+    
+    public LazyStrategyFactory(int vision){
+        this.vision = vision;     
+    }
+    
     /**
 	 * @param givenEnemy
      * @return Devuelve una instancia de la estrategia LazyStrategy.

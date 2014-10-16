@@ -7,6 +7,10 @@ import com.tdd.model.strategy.StrategyNormalSearcher;
 public class StrategyNormalSearcherFactory implements StrategyFactory {
 
     private int vision;
+    
+    public StrategyNormalSearcherFactory(int vision){
+        this.vision = vision;     
+    }
 
     /**
      * @param givenEnemy

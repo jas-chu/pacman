@@ -6,9 +6,10 @@ public class StrategyTemperamentSearcher extends StrategySearchers {
     private int incrementalVision;
     private final int initialVision;
 
-    public StrategyTemperamentSearcher(Enemy givenEnemy, int vision) {
+    public StrategyTemperamentSearcher(Enemy givenEnemy, int vision, int incrementalVision) {
         super(givenEnemy, vision);
         this.initialVision = vision;
+        this.incrementalVision = incrementalVision;
     }  
     
     public void increaseVision(){
