@@ -2,7 +2,6 @@ package com.tdd.model.mocks;
 
 import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Position;
-import com.tdd.model.stageAbstractions.Stage;
 
 public class MockItem extends Item {
 	
