@@ -50,15 +50,22 @@ public abstract class XMLConstants {
     public static final String DOT = "dot";
     public static final String BIG_DOT = "bigDot";
 	
+	/* STATUS VALUES */
+	public static final String HUNTER = "hunter";
+	public static final String DEAD = "dead";
+	public static final String PREY = "prey";
+	
 	/* DICTIONARIES */
     protected Map<String, String> translationDictionary;
     protected Map<String, String> invertedDirectionValuesDictionary;
 	protected Map<String, String> invertedStrategyValuesDictionary;
+	protected Map<String, String> invertedStatusValuesDictionary;
 
     public XMLConstants() {
         this.translationDictionary = new HashMap<String, String>();
         this.invertedDirectionValuesDictionary = new HashMap<String, String>();
 		this.invertedStrategyValuesDictionary = new HashMap<String, String>();
+		this.invertedStatusValuesDictionary = new HashMap<String, String>();
     }
 
 	/**

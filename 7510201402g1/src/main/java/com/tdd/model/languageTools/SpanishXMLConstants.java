@@ -9,6 +9,7 @@ public class SpanishXMLConstants extends XMLConstants {
         this.fillTranslationDictionary();
         this.fillDirectionValuesDictionary();
 		this.fillStrategyValuesDictionary();
+		this.fillStatusValuesDictionary();
     }
 
     private void fillTranslationDictionary() {
@@ -48,6 +49,10 @@ public class SpanishXMLConstants extends XMLConstants {
 		this.translationDictionary.put(CONTENT, "contiene");
 		this.translationDictionary.put(DOT, "bolita");
         this.translationDictionary.put(BIG_DOT, "bolon");
+		
+		this.translationDictionary.put(HUNTER, "cazador");
+		this.translationDictionary.put(DEAD, "muerto");
+		this.translationDictionary.put(PREY, "presa");
     }
 
     private void fillDirectionValuesDictionary() {
@@ -63,5 +68,11 @@ public class SpanishXMLConstants extends XMLConstants {
         this.invertedDirectionValuesDictionary.put("buscador", STRATEGY_NORMAL_SEARCHER);
         this.invertedDirectionValuesDictionary.put("buscadorTemperamental", STRATEGY_TEMPERAMENT_SEARCHER);
     }
-
+	
+	private void fillStatusValuesDictionary() {
+        this.invertedStatusValuesDictionary.put("cazador", HUNTER);
+        this.invertedStatusValuesDictionary.put("muerto", DEAD);
+        this.invertedStatusValuesDictionary.put("presa", PREY);
+    }
+	
 }
