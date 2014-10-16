@@ -30,5 +30,5 @@ public abstract class Enemy extends StageCharacter {
 	public void collideWithEnemy(Enemy givenEnemy) {
 		// does nothing, allows functionality extension.
 	}
-	
+
 }

@@ -1,17 +1,20 @@
 package com.tdd.model.stageAbstractions;
 
 public abstract class StageCharacter extends StageElement {
-	
-	public StageCharacter(Stage givenStage, Position givenPosition) {
-		super(givenStage, givenPosition);
-	}
-	
+
+    public StageCharacter(Stage givenStage, Position givenPosition) {
+        super(givenStage, givenPosition);
+    }
+
     public abstract void kill();
+
     public abstract void revive();
-	
-	@Override
-	public String getMapSerialization() {
-		return "";
-	}
-	
+
+    public abstract void setSense(Direction sense);
+
+    @Override
+    public String getMapSerialization() {
+        return "";
+    }
+
 }

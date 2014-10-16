@@ -6,35 +6,38 @@ import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
-
+import com.tdd.model.strategyFactory.StrategyFactory;
 public class Ghost extends Enemy {
 
     private State state;
-    private StateFactory factory;
+    private StateFactory stateFactory;
     private Strategy strategy;
+    private StrategyFactory strategyFactory;
+    private Direction sense;
 
 
-    public Ghost(Stage stage, Position givenPosition, StateFactory givenFactory, Strategy givenStrategy) {
+    public Ghost(Stage stage, Position givenPosition, StateFactory givenFactory, StrategyFactory givenStrategy) {
         super(stage, givenPosition);
-        this.factory = givenFactory;
-        this.state = this.factory.createHunter(this);
-        this.strategy = givenStrategy;
+        this.stateFactory = givenFactory;
+        this.strategyFactory = givenStrategy;
+        this.state = this.stateFactory.createHunter(this);
+        this.strategy = this.strategyFactory.getStrategy(this);
     }
 
     @Override
     public void kill() {
-        this.state = this.factory.createDead(this);
+        this.state = this.stateFactory.createDead(this);
         this.stage.placeEnemyAtHome(this);
     }
 
     @Override
     public void turnToPrey() {
-        this.state = this.factory.createPrey(this);
+        this.state = this.stateFactory.createPrey(this);
     }
 
     @Override
     public void revive() {
-        this.state = this.factory.createHunter(this);
+        this.state = this.stateFactory.createHunter(this);
     }
 
     public State getState() {
@@ -70,5 +73,10 @@ public class Ghost extends Enemy {
     @Override
     public void collideWithProtagonist(Protagonist givenProtagonist) {
         this.state.collideWithProtagonist(givenProtagonist);
+    }
+
+    @Override
+    public void setSense(Direction sense) {
+        this.sense = sense;
     }
 }

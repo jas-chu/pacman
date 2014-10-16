@@ -83,4 +83,9 @@ public class MockProtagonist extends Protagonist {
         public void setIsInArea(boolean isInArea){
             this.isInArea = isInArea;
         }
+
+    @Override
+    public void setSense(Direction sense) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
