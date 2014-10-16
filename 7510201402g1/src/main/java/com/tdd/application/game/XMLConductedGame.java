@@ -21,7 +21,7 @@ public class XMLConductedGame extends Game {
 
     @Override
     protected PlayerController createPlayerController() {
-        return new XMLPlayerController(this.XMLPacmanDirectory, this.PacmanFilePrefix, this.protagonist, this.configs.XMLGameConstants);
+        return new XMLPlayerController(this.configs, this.protagonist);
     }
 
 }

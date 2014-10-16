@@ -35,7 +35,8 @@ public class LabyrinthSerializer {
 
     public void serialize(long cycle) {
 		String labyrinthName = this.gameConstants.getConstantTranslation(XMLConstants.LABYRINTH);
-        String path = rootPath + File.separator + labyrinthName + "Tick" + cycle + ".xml";
+		String nameSuffix = this.gameConstants.getConstantTranslation(XMLConstants.TICK);
+        String path = rootPath + File.separator + labyrinthName + nameSuffix + cycle + ".xml";
         XMLWriter writer = new XMLWriter(path);
         writer.createRoot(XMLConstants.LABYRINTH, this.getLabyrinthAttributes());
         this.addNodes(writer, stage.getCells());

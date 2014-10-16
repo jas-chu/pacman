@@ -10,6 +10,7 @@ import java.util.Map;
 public abstract class XMLConstants {
 
     /* TRANSLATION KEYS */
+	public static final String TICK = "Tick";
     public static final String LABYRINTH = "labyrinth";
     public static final String NODE = "node";
     public static final String WIDTH = "width";

@@ -1,5 +1,6 @@
 package com.tdd.controller.playerController;
 
+import com.tdd.application.gameAbstractions.GameConfigurations;
 import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.directionFactory.DirectionGenerator;
@@ -10,27 +11,22 @@ import com.tdd.model.stageAbstractions.Protagonist;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.management.AttributeNotFoundException;
 import org.w3c.dom.Node;
 
 public class XMLPlayerController extends PlayerController {
 	
-	private String XMLDirectory;
-	private String filePrefix;
-	private XMLConstants constants;
+	private GameConfigurations configs;
 	private DirectionGenerator directionGenerator;
 	
 	/**
 	 *
-	 * @param XMLsDirectoryPath
-	 * @param givenFilePrefix: por ejemplo, "pacmanTick"
+	 * @param givenConfigs
 	 * @param givenProtagonist
 	 */
-	public XMLPlayerController(String XMLsDirectoryPath, String givenFilePrefix,
-							   Protagonist givenProtagonist, XMLConstants XMLGameConstants) {
+	public XMLPlayerController(GameConfigurations givenConfigs, Protagonist givenProtagonist) {
 		super(givenProtagonist);
-		this.XMLDirectory = XMLsDirectoryPath;
-		this.filePrefix = givenFilePrefix;
-		this.constants = XMLGameConstants;
+		this.configs = givenConfigs;
 		this.directionGenerator = new DirectionGenerator();
 	}
 	
@@ -42,19 +38,21 @@ public class XMLPlayerController extends PlayerController {
 			Node pacmanNode = gameNode.getFirstChild();
 			String direction = XMLReader.getAttributeValue(pacmanNode, XMLConstants.DIRECTION);
 			return this.createNewDirection(direction);
-		} catch (Exception ex) {
+		} catch (AttributeNotFoundException | NoAvailableFactoryException ex) {
 			Logger.getLogger(XMLPlayerController.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		return null;
 	}
 
 	private String getCurrentCycleXML() {
-		String filePath = this.XMLDirectory + File.separator + this.filePrefix + this.currentCycle.toString() + ".xml";
-		return filePath;
+		String dir = this.configs.XMLPacmanMovementDirectory;
+		String prefix = this.configs.XMLGameConstants.getConstantTranslation(XMLConstants.PACMAN);
+		prefix += this.configs.XMLGameConstants.getConstantTranslation(XMLConstants.TICK);
+		return dir + File.separator + prefix + this.currentCycle.toString() + ".xml";
 	}
 	
 	private Direction createNewDirection(String direction) throws NoAvailableFactoryException {
-		String translatedDirection = this.constants.getInvertedDirectionValueTranslation(direction);
+		String translatedDirection = this.configs.XMLGameConstants.getInvertedDirectionValueTranslation(direction);
 		return this.directionGenerator.createDirection(translatedDirection);
 	}
 	
