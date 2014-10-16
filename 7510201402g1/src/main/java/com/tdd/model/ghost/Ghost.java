@@ -47,11 +47,12 @@ public class Ghost extends Enemy {
         int i = 4; // four possible directions
         while (i > 0) {
             Direction firstDirection = this.strategy.getDirection();
+            i = this.strategy.getNumberOfPossibleDirections();
             Direction finalDirection = this.state.getDirection(firstDirection);
             Position nextPosition = finalDirection.getNewPosition(this.position);
             try {
                 this.stage.placeElement(nextPosition, this);
-				i = 0;
+		i = 0;
             } catch (BlockedCellException error) {
                 i--; // must look another way
             }

@@ -27,6 +27,13 @@ public abstract class Strategy {
         this.lastDirection = null;
     }
 
+    public void advanceCycle() {
+        this.area = new SquaredArea(this.enemy.getPosition(), this.vision);
+        this.lastDirection = this.possibleDirections.get(this.directionIndex);
+        this.possibleDirections.clear();
+        this.directionIndex = 0;
+    }
+    
     public Direction getDirection() {
         if (possibleDirections.isEmpty()) {
             this.getPossibleDirections();
@@ -46,24 +53,6 @@ public abstract class Strategy {
         }
     }
 
-    public void advanceCycle() {
-        this.area = new SquaredArea(this.enemy.getPosition(), this.vision);
-        this.lastDirection = this.possibleDirections.get(this.directionIndex);
-        this.possibleDirections.clear();
-        this.directionIndex = 0;
-    }
-
-    //guarda las 4 direcciones posibles segun su prioridad en this.possibleDirections
-    //hay que guardar direccion anterior para seguir siempre la misma direccion al 
-    //entrar a un canal.
-    public void getRandomDirection() {
-        if (inCellBifurcation() || this.lastDirection == null) {
-            generateRandomDirections();
-        } else {
-            getNoBifurcationDirections();
-        }
-    }
-
     public void chasePacman(Position givenPosition) {
         ArrayList<Direction> directions = this.getAllDirections();
         ArrayList<Double> distances = this.getAllDistances(givenPosition);
@@ -78,6 +67,14 @@ public abstract class Strategy {
             }
             this.possibleDirections.add(directions.remove(indexMin));
             distances.remove(indexMin);
+        }
+    }
+    
+    public void getRandomDirection() {
+        if (inCellBifurcation() || this.lastDirection == null) {
+            generateRandomDirections();
+        } else {
+            getNoBifurcationDirections();
         }
     }
 
@@ -106,10 +103,8 @@ public abstract class Strategy {
     }
 
     private void getNoBifurcationDirections() {
-        //seguir hacia adelante
-        //segundo hacia atras
-        //demases
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.possibleDirections.add(this.lastDirection);
+        this.possibleDirections.add(this.lastDirection.invert());       
     }
     
     private int getRandomNumber(int min, int max) {
@@ -143,5 +138,9 @@ public abstract class Strategy {
         positions.add(this.enemy.getPosition().createPositionAddingY(this.enemy.getPosition().getY()));
         positions.add(this.enemy.getPosition().createPositionSubstractingY(this.enemy.getPosition().getY()));
         return positions;
+    }
+    
+    public int getNumberOfPossibleDirections(){
+        return this.possibleDirections.size();
     }
 }
