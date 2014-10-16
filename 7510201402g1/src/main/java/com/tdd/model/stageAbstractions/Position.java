@@ -165,7 +165,7 @@ public class Position {
 
     public double getDistance(Position anotherPosition) {
         int xd = this.calculateXSubstractingValue(anotherPosition.getX());
-        int yd = this.calculateYSubstractingValue(anotherPosition.getY());
+        int yd = this.calculateYSubstractingValue(anotherPosition.getY());       
         return Math.pow(Math.pow(xd, 2) + Math.pow(yd, 2), 0.5);
     }
 	

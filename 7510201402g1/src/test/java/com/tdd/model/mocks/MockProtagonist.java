@@ -1,6 +1,7 @@
 package com.tdd.model.mocks;
 
 import com.tdd.model.exceptions.AlreadyTeleportedException;
+import com.tdd.model.stage.SquaredArea;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Item;
@@ -9,6 +10,7 @@ import com.tdd.model.stageAbstractions.Protagonist;
 
 public class MockProtagonist extends Protagonist {
 	
+        public boolean isInArea = false;
 	public boolean isAliveMethodCalled = false;
 	public boolean moveMethodCalled = false;
 	public boolean killMethodCalled = false;
@@ -19,7 +21,7 @@ public class MockProtagonist extends Protagonist {
 	public boolean collideWithItemMethodCalled = false;
 	
 	public MockProtagonist() {
-		super(null, new Position(0,0));
+		super(null, new Position(2,0));
 	}
 
 	@Override
@@ -74,4 +76,11 @@ public class MockProtagonist extends Protagonist {
 			  || this.collideWithItemMethodCalled);
 	}
 	
+        public boolean isInArea(SquaredArea area){
+            return this.isInArea;
+        }
+        
+        public void setIsInArea(boolean isInArea){
+            this.isInArea = isInArea;
+        }
 }

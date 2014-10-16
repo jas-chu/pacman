@@ -1,5 +1,6 @@
 package com.tdd.model.mocks;
 
+import com.tdd.model.cell.ClearCell;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.stageAbstractions.Area;
 import com.tdd.model.stageAbstractions.Cell;
@@ -72,7 +73,7 @@ public class MockStage implements Stage {
 
     @Override
     public Cell getCell(Position givenPosition) {
-        return null;
+        return new ClearCell(0, givenPosition, null);        
     }
 
 	@Override
@@ -109,5 +110,5 @@ public class MockStage implements Stage {
 	public List<List<Cell>> getCells() {
 		return null;
 	}
-
+        
 }
