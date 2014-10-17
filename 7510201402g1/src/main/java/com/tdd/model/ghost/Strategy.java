@@ -2,6 +2,7 @@ package com.tdd.model.ghost;
 
 import com.tdd.model.direction.*;
 import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.exceptions.NoExistingCellException;
 import com.tdd.model.stage.SquaredArea;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Direction;
@@ -10,6 +11,8 @@ import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public abstract class Strategy {
 
@@ -86,11 +89,9 @@ public abstract class Strategy {
         ArrayList<Position> positions = getAllPossibleNextPositions();
         for (Position position : positions) {
             try {
-                Cell cell = this.enemy.getStage().getCell(position);
-				if (cell == null) continue;
-				cell.testPlaceElement();
+                this.enemy.getStage().getCell(position).testPlaceElement();
                 unblockedCells++;
-            } catch (BlockedCellException error) {
+            } catch (BlockedCellException | NoExistingCellException error) {
             }
         }
         if (unblockedCells >= bifurcationCells) {

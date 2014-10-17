@@ -1,5 +1,6 @@
 package com.tdd.model.stage;
 
+import com.tdd.model.exceptions.NoExistingCellException;
 import com.tdd.application.gameAbstractions.GameConfigurations;
 import com.tdd.model.helpers.LabyrinthLoader;
 import com.tdd.model.cell.cellBuilding.CellBuilder;
@@ -223,27 +224,24 @@ public class Labyrinth implements Stage {
      *
      * @param givenPosition
      * @return
+	 * @throws com.tdd.model.exceptions.NoExistingCellException
      */
     @Override
-    public Cell getCell(Position givenPosition) {
+    public Cell getCell(Position givenPosition) throws NoExistingCellException {
         int rowIndex = givenPosition.getY();
-        int col = givenPosition.getX();
-		if (rowIndex < 0 || rowIndex >= this.cells.size()) return null;
+        int colIndex = givenPosition.getX();
+		if (rowIndex < 0 || rowIndex >= this.cells.size()) throw new NoExistingCellException();
 		
         List<Cell> row = this.cells.get(rowIndex);
-		if (row == null) return null;
-		if (row.size() > col && col >= 0) {
-			return row.get(col);
-		} else {
-			return null;
-		}
+		if (colIndex < 0 || colIndex >= row.size()) throw new NoExistingCellException();
+		return row.get(colIndex);
     }
 
     /**
      *
      * @param element
      */
-    private void removeElementFromCell(StageElement element) {
+    private void removeElementFromCell(StageElement element) throws NoExistingCellException {
         Cell sourceCell = this.getCell(element.getPosition());
         sourceCell.removeElement(element);
     }
@@ -253,12 +251,12 @@ public class Labyrinth implements Stage {
      * @param position
      * @param element
      * @throws BlockedCellException
+	 * @throws com.tdd.model.exceptions.NoExistingCellException
      */
     @Override
-    public void placeElement(Position position, StageElement element) throws BlockedCellException {
+    public void placeElement(Position position, StageElement element) throws BlockedCellException, NoExistingCellException {
         this.removeElementFromCell(element);
         Cell targetCell = this.getCell(position);
-        if (targetCell == null) return;
 		targetCell.testPlaceElement();
         targetCell.placeElement(element);
     }
@@ -269,9 +267,12 @@ public class Labyrinth implements Stage {
      * @param element
      */
     private void forcePlaceElement(Position position, StageElement element) {
-        this.removeElementFromCell(element);
-        Cell cell = this.getCell(position);
-		if (cell != null) cell.placeElement(element);
+		try {
+			this.removeElementFromCell(element);
+			this.getCell(position).placeElement(element);
+		} catch (NoExistingCellException ex) {
+			Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
+		}
     }
 
     /**
@@ -314,10 +315,14 @@ public class Labyrinth implements Stage {
 
     @Override
     public void removeItem(Item givenItem) {
-        Position itemPosition = givenItem.getPosition();
-        Cell theCell = this.getCell(itemPosition);
-        theCell.removeElement(givenItem);
-        this.items.remove(givenItem);
+		try {
+			Position itemPosition = givenItem.getPosition();
+			Cell theCell = this.getCell(itemPosition);
+			theCell.removeElement(givenItem);
+			this.items.remove(givenItem);
+		} catch (NoExistingCellException ex) {
+			Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
+		}
     }
 
 }
