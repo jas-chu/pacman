@@ -3,6 +3,7 @@ package com.tdd.model.ghost;
 import com.tdd.model.direction.*;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.stage.SquaredArea;
+import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
@@ -45,12 +46,14 @@ public abstract class Strategy {
     public void getPossibleDirections() {
         this.area = new SquaredArea(this.enemy.getPosition(), this.vision);
         Protagonist pacman = this.enemy.getProtagonist();
-        boolean pacmanIsVisible = pacman.isInArea(this.area);
-        if (pacmanIsVisible == true) {
-            this.chasePacman(pacman.getPosition());
-        } else {
-            this.getRandomDirection();
-        }
+		if (pacman != null) {
+			boolean pacmanIsVisible = pacman.isInArea(this.area);
+			if (pacmanIsVisible == true) {
+				this.chasePacman(pacman.getPosition());
+				return;
+			}
+		}
+		this.getRandomDirection();
     }
 
     public void chasePacman(Position givenPosition) {
@@ -83,7 +86,9 @@ public abstract class Strategy {
         ArrayList<Position> positions = getAllPossibleNextPositions();
         for (Position position : positions) {
             try {
-                this.enemy.getStage().getCell(position).testPlaceElement();
+                Cell cell = this.enemy.getStage().getCell(position);
+				if (cell == null) continue;
+				cell.testPlaceElement();
                 unblockedCells++;
             } catch (BlockedCellException error) {
             }

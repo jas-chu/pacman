@@ -226,9 +226,17 @@ public class Labyrinth implements Stage {
      */
     @Override
     public Cell getCell(Position givenPosition) {
-        int row = givenPosition.getY();
+        int rowIndex = givenPosition.getY();
         int col = givenPosition.getX();
-        return this.cells.get(row).get(col);
+		if (rowIndex < 0 || rowIndex >= this.cells.size()) return null;
+		
+        List<Cell> row = this.cells.get(rowIndex);
+		if (row == null) return null;
+		if (row.size() > col && col >= 0) {
+			return row.get(col);
+		} else {
+			return null;
+		}
     }
 
     /**
@@ -250,7 +258,8 @@ public class Labyrinth implements Stage {
     public void placeElement(Position position, StageElement element) throws BlockedCellException {
         this.removeElementFromCell(element);
         Cell targetCell = this.getCell(position);
-        targetCell.testPlaceElement();
+        if (targetCell == null) return;
+		targetCell.testPlaceElement();
         targetCell.placeElement(element);
     }
 
@@ -261,7 +270,8 @@ public class Labyrinth implements Stage {
      */
     private void forcePlaceElement(Position position, StageElement element) {
         this.removeElementFromCell(element);
-        this.getCell(position).placeElement(element);
+        Cell cell = this.getCell(position);
+		if (cell != null) cell.placeElement(element);
     }
 
     /**

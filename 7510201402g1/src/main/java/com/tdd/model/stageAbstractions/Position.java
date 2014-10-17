@@ -177,6 +177,6 @@ public class Position {
 	
     @Override
     public String toString() {
-        return this.componentToString(this.x) + this.componentToString(this.y);
+        return this.componentToString(this.y) + this.componentToString(this.x);
     }
 }
