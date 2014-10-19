@@ -14,5 +14,14 @@ public class DirectionUp extends Direction {
 	public Direction invert() {
 		return new DirectionDown();
 	}
-	
+	        
+        /**
+         * 
+         * @return 
+         */
+        @Override        
+        public String toString(){
+            this.name = "up";
+            return this.name;
+        }
 }

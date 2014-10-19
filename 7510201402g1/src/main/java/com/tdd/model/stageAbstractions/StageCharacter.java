@@ -11,6 +11,8 @@ public abstract class StageCharacter extends StageElement {
     public abstract void revive();
 
     public abstract void setSense(Direction sense);
+    
+    public abstract Direction getSense();
 
     @Override
     public String getMapSerialization() {

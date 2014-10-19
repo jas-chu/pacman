@@ -57,13 +57,19 @@ public abstract class Cell {
     public String getNeighbour(String neighbour) {
         return this.neighboursIds.get(neighbour);
     }
-    
-	public boolean isEmpty(){
+
+    public boolean isEmpty() {
         return this.elements.isEmpty();
     }
-    
-	public String getContent() {
-        if (this.elements.isEmpty()) return "";
-		return this.elements.get(0).getMapSerialization();
+
+       /**
+        * TODO: Revisar
+        * @return 
+        */
+    public String getContent() {
+        if (this.elements.isEmpty()) {
+            return "";
+        }
+        return this.elements.get(0).getMapSerialization();
     }
 }

@@ -4,7 +4,7 @@ import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Position;
 
 public class DirectionDown extends Direction {
-
+        
 	@Override
 	public Position getNewPosition(Position position) {
 		return position.createPositionAddingY(1);
@@ -14,5 +14,15 @@ public class DirectionDown extends Direction {
 	public Direction invert() {
 		return new DirectionUp();
 	}
+        
+        /**
+         * 
+         * @return 
+         */
+        @Override        
+        public String toString(){
+            this.name = "down";
+            return this.name;
+        }
 	
 }

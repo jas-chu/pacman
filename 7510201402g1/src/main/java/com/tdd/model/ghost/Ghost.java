@@ -79,4 +79,9 @@ public class Ghost extends Enemy {
     public void setSense(Direction sense) {
         this.sense = sense;
     }
+
+    @Override
+    public Direction getSense() {
+        return this.strategy.getDirection();
+    }
 }

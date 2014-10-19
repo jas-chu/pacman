@@ -23,7 +23,7 @@ import org.w3c.dom.NodeList;
  */
 public class XMLWriter extends XMLIO {
 
-	private final Document doc;
+    private final Document doc;
     private Element root;
     private final String path;
 
@@ -59,9 +59,9 @@ public class XMLWriter extends XMLIO {
      * @param attributes
      */
     public void createRoot(String rootName, HashMap<String, String> attributes) {
-		String translatedRootName = XMLWriter.getTranslation(rootName);
+        String translatedRootName = XMLWriter.getTranslation(rootName);
         this.root = this.doc.createElement(translatedRootName);
-		this.addAttributesToElement(this.root, this.createAttributeList(attributes));
+        this.addAttributesToElement(this.root, this.createAttributeList(attributes));
         doc.appendChild(this.root);
     }
 
@@ -73,7 +73,7 @@ public class XMLWriter extends XMLIO {
      */
     public void addSubElement(Element element, String subElementName, HashMap<String, String> attributes) {
         String translatedSubElementName = XMLWriter.getTranslation(subElementName);
-		Element subElement = doc.createElement(translatedSubElementName);
+        Element subElement = doc.createElement(translatedSubElementName);
         this.addAttributesToElement(subElement, this.createAttributeList(attributes));
         element.appendChild(subElement);
     }
@@ -106,8 +106,8 @@ public class XMLWriter extends XMLIO {
     private List<Attr> createAttributeList(HashMap<String, String> attributes) {
         List<Attr> attributeList = new ArrayList<>();
         for (Map.Entry<String, String> entrySet : attributes.entrySet()) {
-			String translatedKey = XMLWriter.getTranslation(entrySet.getKey());
-			String translatedValue = XMLWriter.getTranslation(entrySet.getValue());
+            String translatedKey = XMLWriter.getTranslation(entrySet.getKey());
+            String translatedValue = XMLWriter.getTranslation(entrySet.getValue());
             Attr attr = this.doc.createAttribute(translatedKey);
             attr.setValue(translatedValue);
             attributeList.add(attr);
@@ -127,34 +127,69 @@ public class XMLWriter extends XMLIO {
         StreamResult result = new StreamResult(new File(this.path));
         transformer.transform(source, result);
     }
-    
-    
+
+    /**
+     *
+     * @param nodes
+     */
     public void addNodesToRoot(NodeList nodes) {
         for (int i = 0; i < nodes.getLength(); i++) {
             this.root.appendChild(nodes.item(i));
         }
     }
-	
+
+    /**
+     *
+     * @param attributes
+     * @param attributeName
+     * @param value
+     */
     public static void addAttributeToCustomMap(Map<String, String> attributes, String attributeName, String value) {
-		String translatedAttributeName = XMLWriter.getTranslation(attributeName);
-		attributes.put(translatedAttributeName, value);
-	}
-	
-	public static void addAttributeToCustomMapWithValueTranslation(HashMap<String, String> attributes, String attributeName, String value) {
-		String translatedValue = XMLWriter.getTranslation(value);
-		XMLWriter.addAttributeToCustomMap(attributes, attributeName, translatedValue);
-	}
-	
-	public static void addIntAttributeToCustomMap(Map<String, String> attributes, String attributeName, Integer value, Integer digitsAmount) {
-		String rawStringValue = value.toString();
-		int difference = rawStringValue.length() - digitsAmount;
-		String completingZeros = new String();
-		for (int i = 0 ; i < difference ; ++i) completingZeros += "0";
-		String stringValue = completingZeros + rawStringValue;
-		XMLWriter.addAttributeToCustomMap(attributes, attributeName, stringValue);
-	}
-	
-	/**
+        String translatedAttributeName = XMLWriter.getTranslation(attributeName);
+        attributes.put(translatedAttributeName, value);
+    }
+
+    /**
+     *
+     * @param attributes
+     * @param attributeName
+     * @param value
+     */
+    public static void addAttributeToCustomMapWithValueTranslation(HashMap<String, String> attributes, String attributeName, String value) {
+        String translatedValue = XMLWriter.getTranslation(value);
+        XMLWriter.addAttributeToCustomMap(attributes, attributeName, translatedValue);
+    }
+
+    /**
+     *
+     * @param attributes
+     * @param attributeName
+     * @param value
+     * @param digitsAmount
+     */
+    public static void addIntAttributeToCustomMap(Map<String, String> attributes, String attributeName, Integer value, Integer digitsAmount) {
+        String rawStringValue = value.toString();
+        int difference = rawStringValue.length() - digitsAmount;
+        String completingZeros = new String();
+        for (int i = 0; i < difference; ++i) {
+            completingZeros += "0";
+        }
+        String stringValue = completingZeros + rawStringValue;
+        XMLWriter.addAttributeToCustomMap(attributes, attributeName, stringValue);
+    }
+
+    /**
+     *
+     * @param attributes
+     * @param attributeName
+     * @param value
+     */
+    static void addBooleanAttributeToCustomMap(HashMap<String, String> attributes, String attributeName, Boolean value) {
+        String translatedAttributeName = XMLWriter.getTranslation(attributeName);
+        attributes.put(translatedAttributeName, value.toString());
+    }
+
+    /**
      *
      * @param gameConstants
      */
@@ -168,10 +203,15 @@ public class XMLWriter extends XMLIO {
     protected static void testConfiguration() {
         XMLIO.testConfiguration("XMLWriter");
     }
-	
-	private static String getTranslation(String attributeName) {
-		XMLWriter.testConfiguration();
-		return XMLIO.getConstants().getConstantTranslation(attributeName);
-	}
-	
+
+    /**
+     *
+     * @param attributeName
+     * @return
+     */
+    private static String getTranslation(String attributeName) {
+        XMLWriter.testConfiguration();
+        return XMLIO.getConstants().getConstantTranslation(attributeName);
+    }
+
 }

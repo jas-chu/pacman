@@ -17,27 +17,27 @@ public class Position {
         this.initialize(anotherPosition.getX(), anotherPosition.getY());
     }
 
-    public int getX() {
+    public Integer getX() {
         return this.x;
     }
 
-    public int getY() {
+    public Integer getY() {
         return this.y;
     }
 
-    public int calculateXAddingValue(int value) {
+    public Integer calculateXAddingValue(int value) {
         return this.getX() + value;
     }
 
-    public int calculateXSubstractingValue(int value) {
+    public Integer calculateXSubstractingValue(int value) {
         return this.getX() - value;
     }
 
-    public int calculateYAddingValue(int value) {
+    public Integer calculateYAddingValue(int value) {
         return this.getY() + value;
     }
 
-    public int calculateYSubstractingValue(int value) {
+    public Integer calculateYSubstractingValue(int value) {
         return this.getY() - value;
     }
 

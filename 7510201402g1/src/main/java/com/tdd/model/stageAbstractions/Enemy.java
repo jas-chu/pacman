@@ -31,4 +31,8 @@ public abstract class Enemy extends StageCharacter {
 		// does nothing, allows functionality extension.
 	}
 
+    public Integer getId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

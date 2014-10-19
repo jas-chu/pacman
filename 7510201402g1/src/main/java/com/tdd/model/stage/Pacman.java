@@ -48,4 +48,10 @@ public class Pacman extends Protagonist {
         this.sense = sense;
     }
 
+    @Override
+    public Direction getSense() {
+        return this.sense;
+    }
+    
+    
 }
