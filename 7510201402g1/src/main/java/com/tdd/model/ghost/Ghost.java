@@ -1,12 +1,15 @@
 package com.tdd.model.ghost;
 
 import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.exceptions.NoExistingCellException;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
 import com.tdd.model.strategyFactory.StrategyFactory;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 public class Ghost extends Enemy {
 
     private State state;
@@ -55,8 +58,8 @@ public class Ghost extends Enemy {
             Position nextPosition = finalDirection.getNewPosition(this.position);
             try {
                 this.stage.placeElement(nextPosition, this);
-		i = 0;
-            } catch (BlockedCellException error) {
+				i = 0;
+            } catch (BlockedCellException | NoExistingCellException error) {
                 i--; // must look another way
             }
         }

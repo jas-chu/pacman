@@ -2,13 +2,17 @@ package com.tdd.model.ghost;
 
 import com.tdd.model.direction.*;
 import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.exceptions.NoExistingCellException;
 import com.tdd.model.stage.SquaredArea;
+import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public abstract class Strategy {
 
@@ -45,12 +49,14 @@ public abstract class Strategy {
     public void getPossibleDirections() {
         this.area = new SquaredArea(this.enemy.getPosition(), this.vision);
         Protagonist pacman = this.enemy.getProtagonist();
-        boolean pacmanIsVisible = pacman.isInArea(this.area);
-        if (pacmanIsVisible == true) {
-            this.chasePacman(pacman.getPosition());
-        } else {
-            this.getRandomDirection();
-        }
+		if (pacman != null) {
+			boolean pacmanIsVisible = pacman.isInArea(this.area);
+			if (pacmanIsVisible == true) {
+				this.chasePacman(pacman.getPosition());
+				return;
+			}
+		}
+		this.getRandomDirection();
     }
 
     public void chasePacman(Position givenPosition) {
@@ -85,7 +91,7 @@ public abstract class Strategy {
             try {
                 this.enemy.getStage().getCell(position).testPlaceElement();
                 unblockedCells++;
-            } catch (BlockedCellException error) {
+            } catch (BlockedCellException | NoExistingCellException error) {
             }
         }
         if (unblockedCells >= bifurcationCells) {

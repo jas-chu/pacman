@@ -1,10 +1,13 @@
 package com.tdd.model.stage;
 
 import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.exceptions.NoExistingCellException;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Pacman extends Protagonist {
 
@@ -38,7 +41,7 @@ public class Pacman extends Protagonist {
         Position nextPosition = dir.getNewPosition(this.position);
         try {
             this.stage.placeElement(nextPosition, this);
-        } catch (BlockedCellException error) {
+        } catch (BlockedCellException | NoExistingCellException error) {
             // player hit wall
         }
     }
