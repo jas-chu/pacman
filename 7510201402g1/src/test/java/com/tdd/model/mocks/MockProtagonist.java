@@ -88,4 +88,10 @@ public class MockProtagonist extends Protagonist {
     public void setSense(Direction sense) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public Direction getSense() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
