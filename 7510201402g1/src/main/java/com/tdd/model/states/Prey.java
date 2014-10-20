@@ -1,5 +1,6 @@
 package com.tdd.model.states;
 
+import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.StageCharacter;
@@ -15,9 +16,12 @@ public class Prey extends Passive {
         this.enemy.kill();
     }
 
-	@Override
-	public Direction getDirection(Direction givenDirection) {
-		return givenDirection.invert();
-	}
-
+    @Override
+    public Direction getDirection(Direction givenDirection) {
+        return givenDirection.invert();
+    }
+    @Override
+    public String toString(){
+        return XMLConstants.PREY;
+    }
 }

@@ -32,6 +32,10 @@ public class GameCharactersSerializer {
         return this.filePath;
     }
 
+    /**
+     *
+     * @param cycle
+     */
     public void serialize(long cycle) {
         String charactersName = this.gameConstants.getConstantTranslation(XMLConstants.CHARACTERS);
         String nameSuffix = this.gameConstants.getConstantTranslation(XMLConstants.TICK);
@@ -42,14 +46,17 @@ public class GameCharactersSerializer {
 
     }
 
+    /**
+     *
+     * @return
+     */
     private HashMap<String, String> getGameAttributes() {
         HashMap<String, String> attributes = new HashMap<>();
-        //posicionPacman="0412" fila="04" columna="12" sentido="arriba" puntaje="80" finJuego="false"
         Protagonist protagonist = stage.getProtagonist();
         Position position = protagonist.getPosition();
         String sense = protagonist.getSense().toString();
-        Integer score = null;//stage.getScore();
-        Boolean endGame = false;//stage.getStatusGame();
+        Integer score = stage.getScore();
+        Boolean endGame = stage.getProtagonist().isAlive();
         XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.PACMAN_START, position.toString());
         XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.ROW, position.getY(), 2);
         XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.COLUMN, position.getX(), 2);
@@ -59,6 +66,11 @@ public class GameCharactersSerializer {
         return attributes;
     }
 
+    /**
+     *
+     * @param writer
+     * @param enemies
+     */
     private void addNodes(XMLWriter writer, List<Enemy> enemies) {
         for (Enemy enemy : enemies) {
             writer.addElementToRoot(XMLConstants.GHOST, this.getEnemyAttributes(enemy));
@@ -66,20 +78,24 @@ public class GameCharactersSerializer {
 
     }
 
+    /**
+     *
+     * @param enemy
+     * @return
+     */
     private HashMap<String, String> getEnemyAttributes(Enemy enemy) {
         HashMap<String, String> attributes = new HashMap<>();
         Position position = enemy.getPosition();
         String sense = enemy.getSense().toString();
-        String personality = "";
-        String status = "";
-        //<fantasma id="1" nodo="1010" fila="10" columna="10" sentido="arriba" personalidad="zonzo" estado="cazador" />
+        String status = enemy.getState().toString();
+        String personality = enemy.getStrategy().toString();
         XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.ROW, enemy.getId(), 1);
         XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.NODE, position.toString());
         XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.ROW, position.getY(), 2);
         XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.COLUMN, position.getX(), 2);
-        XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.SENSE, sense);
-        XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.PERSONALITY, personality);
-        XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.STATUS, status);
+        XMLWriter.addAttributeToCustomMapWithValueTranslation(attributes, XMLConstants.SENSE, sense);
+        XMLWriter.addAttributeToCustomMapWithValueTranslation(attributes, XMLConstants.PERSONALITY, personality);
+        XMLWriter.addAttributeToCustomMapWithValueTranslation(attributes, XMLConstants.STATUS, status);
         return attributes;
     }
 

@@ -6,8 +6,7 @@ import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public class Pacman extends Protagonist {
 
@@ -55,6 +54,7 @@ public class Pacman extends Protagonist {
     public Direction getSense() {
         return this.sense;
     }
+
     
     
 }

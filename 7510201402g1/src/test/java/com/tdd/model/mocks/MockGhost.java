@@ -8,7 +8,6 @@ import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
-import com.tdd.model.stageAbstractions.Stage;
 
 public class MockGhost extends Enemy {
 
@@ -107,6 +106,26 @@ public class MockGhost extends Enemy {
     @Override
     public void setSense(Direction sense) {
         this.sense = sense;
+    }
+
+    @Override
+    public Direction getSense() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public State getState() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Integer getId() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Strategy getStrategy() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

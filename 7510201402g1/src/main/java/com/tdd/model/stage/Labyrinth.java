@@ -85,21 +85,21 @@ public class Labyrinth implements Stage {
             this.cells.add(mapRow);
         }
     }
-	
-	@Override
-	public void populateWithEnemies(GameConfigurations givenConfigs) throws MalformedXMLException {
-		try {
-			this.upLoadGhost(givenConfigs);
-		} catch (AttributeNotFoundException | NoAvailableFactoryException ex) {
-			throw new MalformedXMLException();
-		}
-	}
-	
-	@Override
-	public void populateWithProtagonist() {
-		this.pacman = new Pacman(this, this.pacmanStart);
-		this.placeProtagonistAtHome(this.pacman);
-	}
+
+    @Override
+    public void populateWithEnemies(GameConfigurations givenConfigs) throws MalformedXMLException {
+        try {
+            this.upLoadGhost(givenConfigs);
+        } catch (AttributeNotFoundException | NoAvailableFactoryException ex) {
+            throw new MalformedXMLException();
+        }
+    }
+
+    @Override
+    public void populateWithProtagonist() {
+        this.pacman = new Pacman(this, this.pacmanStart);
+        this.placeProtagonistAtHome(this.pacman);
+    }
 
     /**
      *
@@ -109,7 +109,7 @@ public class Labyrinth implements Stage {
         EnemyBuilder enemyBuilder = new EnemyBuilder();
         for (int i = 0; i < ghostsNodes.getLength(); i++) {
             Node ghostNode = ghostsNodes.item(i);
-            
+
             Enemy enemy = enemyBuilder.createEnemy(this, givenConfigs, this.ghostStart, ghostNode);
             this.enemies.add(enemy);
             this.placeEnemyAtHome(enemy);
@@ -224,17 +224,21 @@ public class Labyrinth implements Stage {
      *
      * @param givenPosition
      * @return
-	 * @throws com.tdd.model.exceptions.NoExistingCellException
+     * @throws com.tdd.model.exceptions.NoExistingCellException
      */
     @Override
     public Cell getCell(Position givenPosition) throws NoExistingCellException {
         int rowIndex = givenPosition.getY();
         int colIndex = givenPosition.getX();
-		if (rowIndex < 0 || rowIndex >= this.cells.size()) throw new NoExistingCellException();
-		
+        if (rowIndex < 0 || rowIndex >= this.cells.size()) {
+            throw new NoExistingCellException();
+        }
+
         List<Cell> row = this.cells.get(rowIndex);
-		if (colIndex < 0 || colIndex >= row.size()) throw new NoExistingCellException();
-		return row.get(colIndex);
+        if (colIndex < 0 || colIndex >= row.size()) {
+            throw new NoExistingCellException();
+        }
+        return row.get(colIndex);
     }
 
     /**
@@ -251,13 +255,13 @@ public class Labyrinth implements Stage {
      * @param position
      * @param element
      * @throws BlockedCellException
-	 * @throws com.tdd.model.exceptions.NoExistingCellException
+     * @throws com.tdd.model.exceptions.NoExistingCellException
      */
     @Override
     public void placeElement(Position position, StageElement element) throws BlockedCellException, NoExistingCellException {
         this.removeElementFromCell(element);
         Cell targetCell = this.getCell(position);
-		targetCell.testPlaceElement();
+        targetCell.testPlaceElement();
         targetCell.placeElement(element);
     }
 
@@ -267,12 +271,12 @@ public class Labyrinth implements Stage {
      * @param element
      */
     private void forcePlaceElement(Position position, StageElement element) {
-		try {
-			this.removeElementFromCell(element);
-			this.getCell(position).placeElement(element);
-		} catch (NoExistingCellException ex) {
-			Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
-		}
+        try {
+            this.removeElementFromCell(element);
+            this.getCell(position).placeElement(element);
+        } catch (NoExistingCellException ex) {
+            Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -315,14 +319,19 @@ public class Labyrinth implements Stage {
 
     @Override
     public void removeItem(Item givenItem) {
-		try {
-			Position itemPosition = givenItem.getPosition();
-			Cell theCell = this.getCell(itemPosition);
-			theCell.removeElement(givenItem);
-			this.items.remove(givenItem);
-		} catch (NoExistingCellException ex) {
-			Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
-		}
+        try {
+            Position itemPosition = givenItem.getPosition();
+            Cell theCell = this.getCell(itemPosition);
+            theCell.removeElement(givenItem);
+            this.items.remove(givenItem);
+        } catch (NoExistingCellException ex) {
+            Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public Integer getScore() {
+        return 0;
     }
 
 }

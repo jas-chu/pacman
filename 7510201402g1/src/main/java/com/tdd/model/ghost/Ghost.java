@@ -8,8 +8,7 @@ import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
 import com.tdd.model.strategyFactory.StrategyFactory;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 public class Ghost extends Enemy {
 
     private State state;
@@ -17,7 +16,7 @@ public class Ghost extends Enemy {
     private Strategy strategy;
     private StrategyFactory strategyFactory;
     private Direction sense;
-
+    private static Integer id = 0;
 
     public Ghost(Stage stage, Position givenPosition, StateFactory givenFactory, StrategyFactory givenStrategy) {
         super(stage, givenPosition);
@@ -25,6 +24,8 @@ public class Ghost extends Enemy {
         this.strategyFactory = givenStrategy;
         this.state = this.stateFactory.createHunter(this);
         this.strategy = this.strategyFactory.getStrategy(this);
+        this.id++;
+
     }
 
     @Override
@@ -43,6 +44,7 @@ public class Ghost extends Enemy {
         this.state = this.stateFactory.createHunter(this);
     }
 
+    @Override
     public State getState() {
         return this.state;
     }
@@ -58,7 +60,7 @@ public class Ghost extends Enemy {
             Position nextPosition = finalDirection.getNewPosition(this.position);
             try {
                 this.stage.placeElement(nextPosition, this);
-				i = 0;
+                i = 0;
             } catch (BlockedCellException | NoExistingCellException error) {
                 i--; // must look another way
             }
@@ -86,5 +88,15 @@ public class Ghost extends Enemy {
     @Override
     public Direction getSense() {
         return this.strategy.getDirection();
+    }
+
+    @Override
+    public Integer getId() {
+        return this.id;
+    }
+
+    @Override
+    public Strategy getStrategy() {
+        return this.strategy;
     }
 }

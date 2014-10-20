@@ -75,52 +75,57 @@ public class MockStage implements Stage {
 
     @Override
     public Cell getCell(Position givenPosition) {
-        return new ClearCell(0, givenPosition, null);        
+        return new ClearCell(0, givenPosition, null);
     }
 
-	@Override
-	public Integer getWidth() {
-		return 20;
-	}
+    @Override
+    public Integer getWidth() {
+        return 20;
+    }
 
-	@Override
-	public Integer getHeight() {
-		return 20;
-	}
+    @Override
+    public Integer getHeight() {
+        return 20;
+    }
 
-	@Override
-	public Integer getNodeWidth() {
-		return 40;
-	}
+    @Override
+    public Integer getNodeWidth() {
+        return 40;
+    }
 
-	@Override
-	public Integer getNodeHeight() {
-		return 40;
-	}
+    @Override
+    public Integer getNodeHeight() {
+        return 40;
+    }
 
-	@Override
-	public Position getGhostStart() {
-		return new Position (4,5);
-	}
+    @Override
+    public Position getGhostStart() {
+        return new Position(4, 5);
+    }
 
-	@Override
-	public Position getPacmanStart() {
-		return new Position (8,10);
-	}
+    @Override
+    public Position getPacmanStart() {
+        return new Position(8, 10);
+    }
 
-	@Override
-	public List<List<Cell>> getCells() {
-		return null;
-	}
+    @Override
+    public List<List<Cell>> getCells() {
+        return null;
+    }
 
-	@Override
-	public void populateWithEnemies(GameConfigurations givenConfigs) throws MalformedXMLException {
-		
-	}
+    @Override
+    public void populateWithEnemies(GameConfigurations givenConfigs) throws MalformedXMLException {
 
-	@Override
-	public void populateWithProtagonist() {
-		
-	}
-        
+    }
+
+    @Override
+    public void populateWithProtagonist() {
+
+    }
+
+    @Override
+    public Integer getScore() {
+        return 0;
+    }
+
 }
