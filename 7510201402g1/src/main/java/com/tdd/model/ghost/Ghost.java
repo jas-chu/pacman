@@ -10,22 +10,24 @@ import com.tdd.model.stageAbstractions.Stage;
 import com.tdd.model.strategyFactory.StrategyFactory;
 
 public class Ghost extends Enemy {
-
+	
+	private static Integer LAST_ID = 0;
+	
     private State state;
     private StateFactory stateFactory;
     private Strategy strategy;
     private StrategyFactory strategyFactory;
     private Direction sense;
-    private static Integer id = 0;
+    private Integer id;
 
     public Ghost(Stage stage, Position givenPosition, StateFactory givenFactory, StrategyFactory givenStrategy) {
         super(stage, givenPosition);
         this.stateFactory = givenFactory;
         this.strategyFactory = givenStrategy;
+		Ghost.LAST_ID++;
+        this.id = Ghost.LAST_ID;
         this.state = this.stateFactory.createHunter(this);
         this.strategy = this.strategyFactory.getStrategy(this);
-        this.id++;
-
     }
 
     @Override
