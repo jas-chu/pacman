@@ -12,10 +12,14 @@ public class Pacman extends Protagonist {
 
     private boolean alive;
     private Direction sense;
+	private Integer score;
+	private Integer speed;
 
     public Pacman(Stage givenStage, Position givenPosition) {
         super(givenStage, givenPosition);
         this.alive = true;
+		this.score = 0;
+		this.speed = 1;
     }
 
     @Override
@@ -36,13 +40,15 @@ public class Pacman extends Protagonist {
 
     @Override
     public void move(Direction dir) {
-        this.removeTeleportedState();
-        Position nextPosition = dir.getNewPosition(this.position);
-        try {
-            this.stage.placeElement(nextPosition, this);
-        } catch (BlockedCellException | NoExistingCellException error) {
-            // player hit wall
-        }
+		for (Integer i = 0 ; i < this.speed ; ++i) {
+			this.removeTeleportedState();
+			Position nextPosition = dir.getNewPosition(this.position);
+			try {
+				this.stage.placeElement(nextPosition, this);
+			} catch (BlockedCellException | NoExistingCellException error) {
+				// player hit wall
+			}
+		}
     }
 
     @Override
@@ -54,6 +60,21 @@ public class Pacman extends Protagonist {
     public Direction getSense() {
         return this.sense;
     }
+
+	@Override
+	public Integer getScore() {
+		return this.score;
+	}
+
+	@Override
+	public void setSpeed(Integer givenSpeed) {
+		this.speed = givenSpeed;
+	}
+
+	@Override
+	public Integer getSpeed() {
+		return this.speed;
+	}
 
     
     

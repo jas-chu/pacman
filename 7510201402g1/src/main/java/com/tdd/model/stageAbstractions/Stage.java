@@ -48,6 +48,4 @@ public interface Stage {
 
     public void removeItem(Item givenItem);
 
-    public Integer getScore();
-
 }

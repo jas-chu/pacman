@@ -123,9 +123,4 @@ public class MockStage implements Stage {
 
     }
 
-    @Override
-    public Integer getScore() {
-        return 0;
-    }
-
 }

@@ -10,7 +10,7 @@ import com.tdd.model.stageAbstractions.Protagonist;
 
 public class MockProtagonist extends Protagonist {
 	
-        public boolean isInArea = false;
+	public boolean isInArea = false;
 	public boolean isAliveMethodCalled = false;
 	public boolean moveMethodCalled = false;
 	public boolean killMethodCalled = false;
@@ -93,5 +93,20 @@ public class MockProtagonist extends Protagonist {
     public Direction getSense() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+	@Override
+	public Integer getScore() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public void setSpeed(Integer givenSpeed) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
+	@Override
+	public Integer getSpeed() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
 
 }

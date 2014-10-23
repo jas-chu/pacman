@@ -329,9 +329,4 @@ public class Labyrinth implements Stage {
         }
     }
 
-    @Override
-    public Integer getScore() {
-        return 0;
-    }
-
 }
