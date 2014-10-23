@@ -19,7 +19,7 @@ public class NoPacmanApplication extends Application {
 	
 	@Override
 	protected String configurePaths(String rootPath) {
-		return rootPath + "test_fantasma_pacman" + File.separator;
+		return rootPath + "test_sin_pacman" + File.separator;
 	}
 
 }
