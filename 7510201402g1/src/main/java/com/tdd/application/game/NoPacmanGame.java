@@ -26,7 +26,7 @@ public class NoPacmanGame extends Game {
 	}
 	
 	@Override
-	protected boolean isEndOfGame() {
+	public boolean isEndOfGame() {
 		this.ticks--;
 		return (this.ticks <= 0);
 	}

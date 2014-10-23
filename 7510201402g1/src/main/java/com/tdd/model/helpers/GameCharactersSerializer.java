@@ -1,12 +1,15 @@
 package com.tdd.model.helpers;
 
+import com.tdd.application.gameAbstractions.Game;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
-import com.tdd.model.stageAbstractions.Stage;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.transform.TransformerException;
 
 /**
  *
@@ -16,12 +19,12 @@ public class GameCharactersSerializer {
 
     private final XMLConstants gameConstants;
     private final String filePath;
-    private final Stage stage;
+    private final Game game;
 
-    public GameCharactersSerializer(Stage stage, String filePath, XMLConstants constants) {
+    public GameCharactersSerializer(Game givenGame, String filePath, XMLConstants constants) {
         this.gameConstants = constants;
         this.filePath = filePath;
-        this.stage = stage;
+        this.game = givenGame;
     }
 
     /**
@@ -42,8 +45,12 @@ public class GameCharactersSerializer {
         String path = this.filePath + File.separator + charactersName + nameSuffix + cycle + ".xml";
         XMLWriter writer = new XMLWriter(path);
         writer.createRoot(XMLConstants.GAME, this.getGameAttributes());
-        this.addNodes(writer, stage.getEnemies());
-
+        this.addNodes(writer, game.getEnemies());
+		try {
+            writer.write();
+        } catch (TransformerException ex) {
+            Logger.getLogger(LabyrinthSerializer.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -52,17 +59,19 @@ public class GameCharactersSerializer {
      */
     private HashMap<String, String> getGameAttributes() {
         HashMap<String, String> attributes = new HashMap<>();
-        Protagonist protagonist = stage.getProtagonist();
-        Position position = protagonist.getPosition();
-        String sense = protagonist.getSense().toString();
-        Integer score = stage.getScore();
-        Boolean endGame = stage.getProtagonist().isAlive();
-        XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.PACMAN_START, position.toString());
-        XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.ROW, position.getY(), 2);
-        XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.COLUMN, position.getX(), 2);
-        XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.SENSE, sense);
-        XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.SCORE, score, 2);
-        XMLWriter.addBooleanAttributeToCustomMap(attributes, XMLConstants.END_GAME, endGame);
+        Protagonist protagonist = game.getProtagonist();
+		if (protagonist != null) {
+			Position position = protagonist.getPosition();
+			String sense = protagonist.getSense().toString();
+			Integer score = protagonist.getScore();
+			XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.PACMAN_START, position.toString());
+			XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.ROW, position.getY(), 2);
+			XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.COLUMN, position.getX(), 2);
+			XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.SENSE, sense);
+			XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.SCORE, score, 2);
+		}
+		Boolean endGame = game.isEndOfGame();
+		XMLWriter.addBooleanAttributeToCustomMap(attributes, XMLConstants.END_GAME, endGame);
         return attributes;
     }
 
@@ -89,7 +98,7 @@ public class GameCharactersSerializer {
         String sense = enemy.getSense().toString();
         String status = enemy.getState().toString();
         String personality = enemy.getStrategy().toString();
-        XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.ROW, enemy.getId(), 1);
+        XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.ID, enemy.getId(), 1);
         XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.NODE, position.toString());
         XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.ROW, position.getY(), 2);
         XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.COLUMN, position.getX(), 2);

@@ -2,15 +2,15 @@ package com.tdd.application.gameAbstractions;
 
 import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.exceptions.MalformedXMLException;
-import com.tdd.model.exceptions.NoAvailableFactoryException;
+import com.tdd.model.helpers.GameCharactersSerializer;
 import com.tdd.model.helpers.LabyrinthSerializer;
 import com.tdd.model.stage.Labyrinth;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Item;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
+import java.util.ArrayList;
 import java.util.List;
-import javax.management.AttributeNotFoundException;
 
 public abstract class Game {
 
@@ -20,13 +20,16 @@ public abstract class Game {
     protected Protagonist protagonist = null;
     protected PlayerController controller = null;
 	private LabyrinthSerializer labyrinthSerializer;
+	private GameCharactersSerializer charactersSerializer;
 
     public Game(GameConfigurations givenConfigs) throws MalformedXMLException {
 		this.configs = givenConfigs;
         this.stage = new Labyrinth(this.configs);
 		this.populateMap();
+		if (this.enemies == null) this.enemies = new ArrayList<Enemy>();
         List<Item> items = this.stage.getItems();
         this.labyrinthSerializer = new LabyrinthSerializer(this.stage, this.configs.XMLSerializationPath, this.configs.XMLGameConstants);
+		this.charactersSerializer = new GameCharactersSerializer(this, this.configs.XMLCharactersPath, this.configs.XMLGameConstants);
     }
 
     protected abstract PlayerController createPlayerController();
@@ -46,7 +49,7 @@ public abstract class Game {
         this.protagonist = this.stage.getProtagonist();
 	}
 	
-	protected boolean isEndOfGame() {
+	public boolean isEndOfGame() {
 		return (this.stage.hasItems() && this.protagonist.isAlive());
 	}
 	
@@ -64,7 +67,6 @@ public abstract class Game {
     }
 
     private void updateEnemies() {
-		if (this.enemies == null) return;
         for (Enemy enemy : this.enemies) {
             enemy.move();
         }
@@ -72,6 +74,15 @@ public abstract class Game {
 
     private void serializeGame(long cycle) {
         this.labyrinthSerializer.serialize(cycle);
+		this.charactersSerializer.serialize(cycle);
     }
+
+	public List<Enemy> getEnemies() {
+		return this.enemies;
+	}
+
+	public Protagonist getProtagonist() {
+		return this.protagonist;
+	}
 
 }
