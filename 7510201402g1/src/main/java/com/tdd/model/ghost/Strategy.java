@@ -32,7 +32,7 @@ public abstract class Strategy {
         this.area = new SquaredArea(this.enemy.getPosition(), this.vision);
 
         try {
-            this.lastDirection = this.possibleDirections.get(this.directionIndex);
+            this.lastDirection = this.possibleDirections.get(this.directionIndex - 1);
         } catch (Exception arrayIndexOutOfBoundsException) {
             return;
         }

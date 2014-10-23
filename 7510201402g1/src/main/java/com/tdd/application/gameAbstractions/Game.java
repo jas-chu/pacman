@@ -21,6 +21,7 @@ public abstract class Game {
     protected PlayerController controller = null;
 	private LabyrinthSerializer labyrinthSerializer;
 	private GameCharactersSerializer charactersSerializer;
+	protected long ticks = 1;
 
     public Game(GameConfigurations givenConfigs) throws MalformedXMLException {
 		this.configs = givenConfigs;
@@ -29,7 +30,7 @@ public abstract class Game {
 		if (this.enemies == null) this.enemies = new ArrayList<Enemy>();
         List<Item> items = this.stage.getItems();
         this.labyrinthSerializer = new LabyrinthSerializer(this.stage, this.configs.XMLSerializationPath, this.configs.XMLGameConstants);
-		this.charactersSerializer = new GameCharactersSerializer(this, this.configs.XMLCharactersPath, this.configs.XMLGameConstants);
+		this.charactersSerializer = new GameCharactersSerializer(this, this.configs.XMLSerializationPath, this.configs.XMLGameConstants);
     }
 
     protected abstract PlayerController createPlayerController();
@@ -56,13 +57,12 @@ public abstract class Game {
     public void gameloop() {
 		this.controller = createPlayerController();
         boolean continuePlaying = false;
-		long i = 1;
         while (!continuePlaying) {
             this.controller.processMovement();
             this.updateEnemies();
-            this.serializeGame(i);
+            this.serializeGame();
             continuePlaying = this.isEndOfGame();
-			++i;
+			++(this.ticks);
         }
     }
 
@@ -72,9 +72,9 @@ public abstract class Game {
         }
     }
 
-    private void serializeGame(long cycle) {
-        this.labyrinthSerializer.serialize(cycle);
-		this.charactersSerializer.serialize(cycle);
+    private void serializeGame() {
+        this.labyrinthSerializer.serialize(ticks);
+		this.charactersSerializer.serialize(ticks);
     }
 
 	public List<Enemy> getEnemies() {

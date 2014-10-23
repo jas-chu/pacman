@@ -8,11 +8,11 @@ import com.tdd.model.exceptions.MalformedXMLException;
 
 public class NoPacmanGame extends Game {
 	
-	private long ticks;
+	private long ticksToRun;
 	
-	public NoPacmanGame(GameConfigurations givenConfigs, long givenTicks) throws MalformedXMLException {
+	public NoPacmanGame(GameConfigurations givenConfigs, long givenTicksToRun) throws MalformedXMLException {
 		super(givenConfigs);
-		this.ticks = givenTicks;
+		this.ticksToRun = givenTicksToRun;
 	}
 
 	@Override
@@ -27,8 +27,7 @@ public class NoPacmanGame extends Game {
 	
 	@Override
 	public boolean isEndOfGame() {
-		this.ticks--;
-		return (this.ticks <= 0);
+		return (this.ticksToRun == this.ticks);
 	}
 
 }

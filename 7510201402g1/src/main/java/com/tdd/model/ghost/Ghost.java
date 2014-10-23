@@ -90,7 +90,7 @@ public class Ghost extends Enemy {
 
     @Override
     public Direction getSense() {
-        return this.strategy.getDirection();
+        return this.sense;
     }
 
     @Override

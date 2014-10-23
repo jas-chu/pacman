@@ -82,7 +82,7 @@ public class GameCharactersSerializer {
      */
     private void addNodes(XMLWriter writer, List<Enemy> enemies) {
         for (Enemy enemy : enemies) {
-            writer.addElementToRoot(XMLConstants.GHOST, this.getEnemyAttributes(enemy));
+             writer.addElementToRoot(XMLConstants.GHOST, this.getEnemyAttributes(enemy));
         }
 
     }
