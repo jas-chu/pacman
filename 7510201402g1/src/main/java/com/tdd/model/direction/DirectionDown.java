@@ -1,5 +1,6 @@
 package com.tdd.model.direction;
 
+import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Position;
 
@@ -15,14 +16,9 @@ public class DirectionDown extends Direction {
 		return new DirectionUp();
 	}
         
-        /**
-         * 
-         * @return 
-         */
-        @Override        
-        public String toString(){
-            this.name = "down";
-            return this.name;
-        }
+    @Override        
+	public String toString(){
+		return XMLConstants.DIRECTION_DOWN;
+	}
 	
 }
