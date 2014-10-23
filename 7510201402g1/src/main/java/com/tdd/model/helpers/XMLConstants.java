@@ -61,12 +61,14 @@ public abstract class XMLConstants {
     protected Map<String, String> invertedDirectionValuesDictionary;
     protected Map<String, String> invertedStrategyValuesDictionary;
     protected Map<String, String> invertedStatusValuesDictionary;
+	protected Map<String, String> invertedItemValuesDictionary;
 
     public XMLConstants() {
         this.translationDictionary = new HashMap<String, String>();
         this.invertedDirectionValuesDictionary = new HashMap<String, String>();
         this.invertedStrategyValuesDictionary = new HashMap<String, String>();
         this.invertedStatusValuesDictionary = new HashMap<String, String>();
+		this.invertedItemValuesDictionary = new HashMap<String, String>();
     }
 
     /**
@@ -109,6 +111,17 @@ public abstract class XMLConstants {
      */
     public String getInvertedStrategyValueTranslation(String key) {
         return this.searchTranslation(this.invertedStrategyValuesDictionary, key);
+    }
+	
+	/**
+     * Translates key representing a item value from specific to default
+     * language.
+     *
+     * @param key
+     * @return
+     */
+    public String getInvertedItemValueTranslation(String key) {
+        return this.searchTranslation(this.invertedItemValuesDictionary, key);
     }
 
     /**

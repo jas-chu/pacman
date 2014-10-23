@@ -62,6 +62,7 @@ public class Ghost extends Enemy {
             Position nextPosition = finalDirection.getNewPosition(this.position);
             try {
                 this.stage.placeElement(nextPosition, this);
+				this.sense = finalDirection;
                 i = 0;
             } catch (BlockedCellException | NoExistingCellException error) {
                 i--; // must look another way

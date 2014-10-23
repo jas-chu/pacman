@@ -10,6 +10,7 @@ public class SpanishXMLConstants extends XMLConstants {
         this.fillDirectionValuesDictionary();
         this.fillStrategyValuesDictionary();
         this.fillStatusValuesDictionary();
+		this.fillItemValuesDictionary();
     }
 
     private void fillTranslationDictionary() {
@@ -74,6 +75,11 @@ public class SpanishXMLConstants extends XMLConstants {
         this.invertedStatusValuesDictionary.put("cazador", HUNTER);
         this.invertedStatusValuesDictionary.put("muerto", DEAD);
         this.invertedStatusValuesDictionary.put("presa", PREY);
+    }
+	
+	private void fillItemValuesDictionary() {
+        this.invertedItemValuesDictionary.put("bolita", DOT);
+		this.invertedItemValuesDictionary.put("bolon", BIG_DOT);
     }
 
 }
