@@ -260,9 +260,9 @@ public class Labyrinth implements Stage {
      */
     @Override
     public void placeElement(Position position, StageElement element) throws BlockedCellException, NoExistingCellException {
-        this.removeElementFromCell(element);
         Cell targetCell = this.getCell(position);
         targetCell.testPlaceElement();
+		this.removeElementFromCell(element);
         targetCell.placeElement(element);
     }
 
