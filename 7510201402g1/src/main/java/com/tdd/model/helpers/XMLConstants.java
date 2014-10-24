@@ -34,7 +34,7 @@ public abstract class XMLConstants {
     public static final String NODE_HEIGHT = "nodeHeight";
 
     /* DIRECTION VALUES */
-    public static final String DIRECTION = "direccion";
+    public static final String DIRECTION = "direction";
     public static final String DIRECTION_UP = "up";
     public static final String DIRECTION_DOWN = "down";
     public static final String DIRECTION_LEFT = "left";

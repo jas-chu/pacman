@@ -2,6 +2,7 @@ package com.tdd.application.gameAbstractions;
 
 import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.exceptions.MalformedXMLException;
+import com.tdd.model.exceptions.NoMoreMovementsException;
 import com.tdd.model.helpers.GameCharactersSerializer;
 import com.tdd.model.helpers.LabyrinthSerializer;
 import com.tdd.model.stage.Labyrinth;
@@ -11,6 +12,8 @@ import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public abstract class Game {
 
@@ -51,18 +54,22 @@ public abstract class Game {
 	}
 	
 	public boolean isEndOfGame() {
-		return (this.stage.hasItems() && this.protagonist.isAlive());
+		return !(this.stage.hasItems() && this.protagonist.isAlive());
 	}
 	
     public void gameloop() {
 		this.controller = createPlayerController();
-        boolean continuePlaying = false;
-        while (!continuePlaying) {
-            this.controller.processMovement();
-            this.updateEnemies();
-            this.serializeGame();
-            continuePlaying = this.isEndOfGame();
-			++(this.ticks);
+        boolean endOfGame = false;
+        while (!endOfGame) {
+			try {
+				this.controller.processMovement();
+				this.updateEnemies();
+				this.serializeGame();
+				endOfGame = this.isEndOfGame();
+				++(this.ticks);
+			} catch (NoMoreMovementsException ex) {
+				endOfGame = true;
+			}
         }
     }
 

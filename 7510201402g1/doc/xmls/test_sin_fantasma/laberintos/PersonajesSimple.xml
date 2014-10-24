@@ -1,2 +1,2 @@
-<juego   posicionPacman="00" fila="01" columna="01" sentido="derecha" puntaje="0" finJuego="false">
+<juego   posicionPacman="0000" fila="01" columna="01" sentido="derecha" puntaje="0" finJuego="false">
 </juego>

@@ -30,9 +30,8 @@ public class XMLReader extends XMLIO {
 			InputStream file = new FileInputStream(XMLpath);
 			return builder.parse(file);
 		} catch (SAXException | IOException ex) {
-			Logger.getLogger(XMLReader.class.getName()).log(Level.SEVERE, null, ex);
+			return null;
 		}
-		return null;
     }
 
     /**

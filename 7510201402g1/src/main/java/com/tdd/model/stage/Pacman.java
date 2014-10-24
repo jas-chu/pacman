@@ -48,6 +48,7 @@ public class Pacman extends Protagonist {
 			} catch (BlockedCellException | NoExistingCellException error) {
 				// player hit wall
 			}
+			this.setSense(dir);
 		}
     }
 

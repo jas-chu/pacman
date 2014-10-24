@@ -5,6 +5,7 @@ import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.directionFactory.DirectionGenerator;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
+import com.tdd.model.exceptions.NoMoreMovementsException;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Protagonist;
@@ -31,17 +32,17 @@ public class XMLPlayerController extends PlayerController {
 	}
 	
 	@Override
-	protected Direction getNextDirection() {
+	protected Direction getNextDirection() throws NoMoreMovementsException {
 		try {
 			String XMLPath = this.getCurrentCycleXML();
 			Node gameNode = XMLReader.getFirstNode(XMLPath);
-			Node pacmanNode = gameNode.getFirstChild();
+			Node pacmanNode = XMLReader.getNodeByName(XMLPath, XMLConstants.PACMAN).item(0);
+			
 			String direction = XMLReader.getAttributeValue(pacmanNode, XMLConstants.DIRECTION);
 			return this.createNewDirection(direction);
-		} catch (AttributeNotFoundException | NoAvailableFactoryException ex) {
-			Logger.getLogger(XMLPlayerController.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (Exception ex) {
+			throw new NoMoreMovementsException();
 		}
-		return null;
 	}
 
 	private String getCurrentCycleXML() {

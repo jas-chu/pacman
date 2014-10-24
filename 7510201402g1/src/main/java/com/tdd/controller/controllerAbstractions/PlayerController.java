@@ -1,5 +1,6 @@
 package com.tdd.controller.controllerAbstractions;
 
+import com.tdd.model.exceptions.NoMoreMovementsException;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Protagonist;
 
@@ -13,7 +14,7 @@ public abstract class PlayerController {
 		this.protagonist = givenPacman;
 	}
 
-	public void processMovement() {
+	public void processMovement() throws NoMoreMovementsException {
 		Direction dir = this.getNextDirection();
 		this.protagonist.move(dir);
 		this.advanceCycle();
@@ -23,6 +24,6 @@ public abstract class PlayerController {
 		this.currentCycle++;
 	}
 	
-	protected abstract Direction getNextDirection();
+	protected abstract Direction getNextDirection() throws NoMoreMovementsException;
 	
 }

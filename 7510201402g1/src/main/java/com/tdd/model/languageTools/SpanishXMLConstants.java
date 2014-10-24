@@ -58,6 +58,7 @@ public class SpanishXMLConstants extends XMLConstants {
     }
 
     private void fillDirectionValuesDictionary() {
+		this.invertedDirectionValuesDictionary.put("direccion", DIRECTION);
         this.invertedDirectionValuesDictionary.put("arriba", DIRECTION_UP);
         this.invertedDirectionValuesDictionary.put("abajo", DIRECTION_DOWN);
         this.invertedDirectionValuesDictionary.put("izquierda", DIRECTION_LEFT);
