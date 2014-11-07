@@ -2,7 +2,7 @@ package com.tdd.model.states;
 
 import com.tdd.model.mocks.MockGhost;
 import com.tdd.model.direction.DirectionRight;
-import com.tdd.model.ghost.State;
+import com.tdd.model.stageAbstractions.State;
 import com.tdd.model.stageAbstractions.Direction;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

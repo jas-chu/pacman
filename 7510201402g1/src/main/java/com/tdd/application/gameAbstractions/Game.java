@@ -7,7 +7,7 @@ import com.tdd.model.helpers.GameCharactersSerializer;
 import com.tdd.model.helpers.LabyrinthSerializer;
 import com.tdd.model.stage.Labyrinth;
 import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.model.stageAbstractions.Item;
+import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
 import java.util.ArrayList;
@@ -31,7 +31,7 @@ public abstract class Game {
         this.stage = new Labyrinth(this.configs);
 		this.populateMap();
 		if (this.enemies == null) this.enemies = new ArrayList<Enemy>();
-        List<Item> items = this.stage.getItems();
+        List<StaticItem> items = this.stage.getItems();
         this.labyrinthSerializer = new LabyrinthSerializer(this.stage, this.configs.XMLSerializationPath, this.configs.XMLGameConstants);
 		this.charactersSerializer = new GameCharactersSerializer(this, this.configs.XMLSerializationPath, this.configs.XMLGameConstants);
     }

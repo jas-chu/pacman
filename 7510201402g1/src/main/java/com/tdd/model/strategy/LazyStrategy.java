@@ -1,6 +1,6 @@
 package com.tdd.model.strategy;
 
-import com.tdd.model.ghost.Strategy;
+import com.tdd.model.stageAbstractions.Strategy;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Enemy;
 

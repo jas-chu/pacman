@@ -1,23 +1,21 @@
 package com.tdd.model.stageAbstractions;
 
-import com.tdd.model.ghost.State;
-import com.tdd.model.ghost.Strategy;
+import com.tdd.model.strategyFactory.StrategyFactory;
 
-public abstract class Enemy extends StageCharacter {
-
+public abstract class Enemy extends MovedByStrategy {
     
-    public Enemy(Stage givenStage, Position givenPosition) {
-        super(givenStage, givenPosition);
+    public Enemy(Stage givenStage, Position givenPosition, StrategyFactory givenStrategyFactory) {
+        super(givenStage, givenPosition, givenStrategyFactory);
     }
-
+	
+	public abstract void kill();
+    public abstract void revive();
+	
     public abstract void turnToPrey();
-
-    public void move() {
-        this.removeTeleportedState();
-    }
-
-    public abstract void advanceCycle();
-
+	
+	public abstract Integer getId();
+	public abstract State getState();
+	
     // COLLISIONS	
     @Override
     public void collideWithElement(StageElement anotherElement) {
@@ -25,7 +23,7 @@ public abstract class Enemy extends StageCharacter {
     }
 
     @Override
-    public void collideWithItem(Item givenItem) {
+    public void collideWithConsumable(Consumable givenConsumable) {
         // does nothing, allows functionality extension.
     }
 
@@ -33,23 +31,5 @@ public abstract class Enemy extends StageCharacter {
     public void collideWithEnemy(Enemy givenEnemy) {
         // does nothing, allows functionality extension.
     }
-
-    /**
-     *
-     * @return
-     */
-    public abstract Integer getId();
-
-    /**
-     *
-     * @return
-     */
-    public abstract State getState();
-
-    /**
-     *
-     * @return
-     */
-    public abstract Strategy getStrategy();
-
+	
 }

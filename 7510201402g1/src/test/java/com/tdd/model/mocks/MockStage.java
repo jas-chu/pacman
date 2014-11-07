@@ -7,7 +7,7 @@ import com.tdd.model.exceptions.MalformedXMLException;
 import com.tdd.model.stageAbstractions.Area;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.model.stageAbstractions.Item;
+import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
@@ -23,7 +23,7 @@ public class MockStage implements Stage {
     public boolean removeItemMethodCalled = false;
 
     @Override
-    public List<Item> getItems() {
+    public List<StaticItem> getItems() {
         return null;
     }
 
@@ -69,7 +69,7 @@ public class MockStage implements Stage {
     }
 
     @Override
-    public void removeItem(Item givenItem) {
+    public void removeItem(StaticItem givenItem) {
         this.removeItemMethodCalled = true;
     }
 

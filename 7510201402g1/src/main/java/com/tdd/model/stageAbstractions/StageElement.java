@@ -3,8 +3,6 @@ package com.tdd.model.stageAbstractions;
 import com.tdd.model.exceptions.AlreadyTeleportedException;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.exceptions.NoExistingCellException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public abstract class StageElement implements Collidable {
 	

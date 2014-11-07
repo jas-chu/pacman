@@ -2,7 +2,7 @@ package com.tdd.model.states;
 
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.model.stageAbstractions.StageCharacter;
+import com.tdd.model.stageAbstractions.Protagonist;
 
 public class Dead extends Passive {
 
@@ -11,7 +11,7 @@ public class Dead extends Passive {
     }
 
     @Override
-    public void beEaten(StageCharacter p) {
+    public void beEaten(Protagonist givenProtagonist) {
         // does nothing, allows functionality extension.
     }
 

@@ -4,7 +4,7 @@ import com.tdd.model.exceptions.AlreadyTeleportedException;
 import com.tdd.model.stage.SquaredArea;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.model.stageAbstractions.Item;
+import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 
@@ -61,7 +61,7 @@ public class MockProtagonist extends Protagonist {
 	}
 	
 	@Override
-	public void collideWithItem(Item givenItem) {
+	public void collideWithConsumable(com.tdd.model.stageAbstractions.Consumable givenConsumable) {
 		this.collideWithItemMethodCalled = true;
 	}
 	

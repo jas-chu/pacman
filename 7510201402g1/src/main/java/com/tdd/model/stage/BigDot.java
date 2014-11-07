@@ -1,11 +1,11 @@
 package com.tdd.model.stage;
 
 import com.tdd.model.helpers.XMLConstants;
-import com.tdd.model.stageAbstractions.Item;
+import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Stage;
 
-public class BigDot extends Item {
+public class BigDot extends StaticItem {
 
 	public BigDot(Stage givenStage, Position givenPosition) {
 		super(givenStage, givenPosition);

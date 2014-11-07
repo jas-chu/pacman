@@ -3,7 +3,7 @@ package com.tdd.model.states;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.model.stageAbstractions.StageCharacter;
+import com.tdd.model.stageAbstractions.Protagonist;
 
 public class Prey extends Passive {
 
@@ -12,7 +12,7 @@ public class Prey extends Passive {
     }
 
     @Override
-    public void beEaten(StageCharacter p) {
+    public void beEaten(Protagonist givenProtagonist) {
         this.enemy.kill();
     }
 

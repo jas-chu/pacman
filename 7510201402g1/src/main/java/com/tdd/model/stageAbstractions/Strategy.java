@@ -1,13 +1,9 @@
-package com.tdd.model.ghost;
+package com.tdd.model.stageAbstractions;
 
 import com.tdd.model.direction.*;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.exceptions.NoExistingCellException;
 import com.tdd.model.stage.SquaredArea;
-import com.tdd.model.stageAbstractions.Direction;
-import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.model.stageAbstractions.Position;
-import com.tdd.model.stageAbstractions.Protagonist;
 import java.util.ArrayList;
 import java.util.Random;
 

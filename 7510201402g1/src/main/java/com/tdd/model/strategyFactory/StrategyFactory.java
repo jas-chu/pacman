@@ -1,10 +1,11 @@
 package com.tdd.model.strategyFactory;
 
-import com.tdd.model.ghost.Strategy;
-import com.tdd.model.stageAbstractions.Enemy;
+import com.tdd.model.stageAbstractions.MovedByStrategy;
+import com.tdd.model.stageAbstractions.Strategy;
 
 public interface StrategyFactory {
-    // Devuelve una instancia de la estrategia correspondiente.
-    public Strategy getStrategy(Enemy givenEnemy);
+	
+    // Returns an instance of the corresponding strategy
+    public Strategy getStrategy(MovedByStrategy givenElement);
     
 }

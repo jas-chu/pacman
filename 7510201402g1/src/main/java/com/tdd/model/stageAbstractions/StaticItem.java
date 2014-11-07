@@ -1,19 +1,21 @@
 package com.tdd.model.stageAbstractions;
 
-public abstract class Item extends StageElement {
+public abstract class StaticItem extends StageElement implements Consumable {
 	
 	private boolean consumed;
 	
-	public Item(Stage givenStage, Position givenPosition) {
+	public StaticItem(Stage givenStage, Position givenPosition) {
 		super(givenStage, givenPosition);
 		this.consumed = false;
 	}
 
+	@Override
 	public void consume() {
 		this.consumed = true;
 		this.stage.removeItem(this);
 	}
 	
+	@Override
 	public boolean isConsumed() {
 		return this.consumed;
 	}
@@ -22,7 +24,7 @@ public abstract class Item extends StageElement {
 	
 	@Override
 	public void collideWithElement(StageElement anotherElement) {
-		anotherElement.collideWithItem(this);
+		anotherElement.collideWithConsumable(this);
 	}
 
 	@Override
@@ -31,13 +33,13 @@ public abstract class Item extends StageElement {
 	}
 
 	@Override
-	public void collideWithItem(Item givenItem) {
+	public void collideWithConsumable(com.tdd.model.stageAbstractions.Consumable givenConsumable) {
 		// does nothing, allows functionality extension.
 	}
 
 	@Override
 	public void collideWithEnemy(Enemy givenEnemy) {
-		givenEnemy.collideWithItem(this);
+		givenEnemy.collideWithConsumable(this);
 	}
 	
 }

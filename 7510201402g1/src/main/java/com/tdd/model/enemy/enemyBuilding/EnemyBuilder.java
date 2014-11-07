@@ -3,7 +3,7 @@ package com.tdd.model.enemy.enemyBuilding;
 import com.tdd.application.gameAbstractions.GameConfigurations;
 import com.tdd.model.directionFactory.DirectionGenerator;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
-import com.tdd.model.ghost.StateFactory;
+import com.tdd.model.states.StateFactory;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.stageAbstractions.Direction;

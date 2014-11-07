@@ -1,11 +1,11 @@
 package com.tdd.model.mocks;
 
 import com.tdd.model.exceptions.BlockedCellException;
-import com.tdd.model.ghost.State;
-import com.tdd.model.ghost.Strategy;
+import com.tdd.model.stageAbstractions.State;
+import com.tdd.model.stageAbstractions.Strategy;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.model.stageAbstractions.Item;
+import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 
@@ -53,7 +53,7 @@ public class MockGhost extends Enemy {
     }
 
     @Override
-    public void collideWithItem(Item givenItem) {
+    public void collideWithConsumable(com.tdd.model.stageAbstractions.Consumable givenConsumable) {
         this.collideWithItemMethodCalled = true;
     }
 

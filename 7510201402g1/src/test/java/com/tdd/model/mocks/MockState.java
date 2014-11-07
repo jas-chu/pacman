@@ -1,9 +1,9 @@
 package com.tdd.model.mocks;
 
-import com.tdd.model.ghost.State;
+import com.tdd.model.stageAbstractions.State;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Protagonist;
-import com.tdd.model.stageAbstractions.StageCharacter;
+import com.tdd.model.stageAbstractions.MovingElement;
 
 public class MockState extends State {
 	
@@ -28,7 +28,7 @@ public class MockState extends State {
 	}
 	
 	@Override
-	public void beEaten(StageCharacter p) {
+	public void beEaten(com.tdd.model.stageAbstractions.Protagonist givenProtagonist) {
 		this.beEatenMethodCalled = true;
 	}
 	

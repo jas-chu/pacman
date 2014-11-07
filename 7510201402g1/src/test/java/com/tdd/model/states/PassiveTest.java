@@ -1,6 +1,5 @@
 package com.tdd.model.states;
 
-import com.tdd.model.mocks.MockGhost;
 import com.tdd.model.mocks.MockProtagonist;
 import static org.junit.Assert.assertTrue;
 import org.junit.Before;
@@ -25,9 +24,9 @@ public abstract class PassiveTest extends StateTest {
 	
 	@Test
     public void beEaten() {
-		MockGhost anotherMockGhost = new MockGhost();
-        this.state.beEaten(anotherMockGhost);
-		assertTrue(anotherMockGhost.noMethodWasCalled());
+		MockProtagonist anotherMockProtagonist = new MockProtagonist();
+        this.state.beEaten(anotherMockProtagonist);
+		assertTrue(anotherMockProtagonist.noMethodWasCalled());
     }
 	
 	@Test

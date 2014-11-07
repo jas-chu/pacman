@@ -1,7 +1,7 @@
 package com.tdd.model.mocks;
 
 import com.tdd.model.direction.DirectionRight;
-import com.tdd.model.ghost.Strategy;
+import com.tdd.model.stageAbstractions.Strategy;
 import com.tdd.model.stageAbstractions.Direction;
 
 

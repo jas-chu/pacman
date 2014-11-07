@@ -1,8 +1,7 @@
 package com.tdd.model.states;
 
-import com.tdd.model.ghost.State;
+import com.tdd.model.stageAbstractions.State;
 import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.model.stageAbstractions.StageCharacter;
 
 public abstract class Passive extends State {
 
@@ -18,9 +17,6 @@ public abstract class Passive extends State {
 		// por el momento no hace nada
         // permite agregar funcionalidad
     }
-
-    @Override
-    public abstract void beEaten(StageCharacter p);
 	
 	@Override
 	protected boolean shouldChangeState(){

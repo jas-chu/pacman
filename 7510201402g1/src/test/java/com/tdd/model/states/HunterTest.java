@@ -1,6 +1,5 @@
 package com.tdd.model.states;
 
-import com.tdd.model.mocks.MockGhost;
 import com.tdd.model.mocks.MockProtagonist;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,9 +26,9 @@ public class HunterTest extends StateTest {
 
     @Test
     public void beEaten() {
-		MockGhost anotherMockGhost = new MockGhost();
-        this.state.beEaten(anotherMockGhost);
-		assertTrue(anotherMockGhost.killMethodCalled);
+		MockProtagonist anotherMockProtagonist = new MockProtagonist();
+        this.state.beEaten(anotherMockProtagonist);
+		assertTrue(anotherMockProtagonist.killMethodCalled);
 		assertTrue(this.mockGhost.noMethodWasCalled());
     }
 	

@@ -1,19 +1,23 @@
 package com.tdd.model.stageAbstractions;
 
-public abstract class Protagonist extends StageCharacter {
+public abstract class Protagonist extends MovingElement {
+	
+	protected Integer score;
 	
 	public Protagonist(Stage givenStage, Position givenPosition) {
         super(givenStage, givenPosition);
+		this.score = 0;
     }
-
+	
+	public abstract void kill();
+    public abstract void revive();
+	
     public abstract boolean isAlive();
-
     public abstract void move(Direction dir);
 	
-	public abstract Integer getScore();
-	
-	public abstract void setSpeed(Integer givenSpeed);
-	public abstract Integer getSpeed();
+	public Integer getScore() {
+		return this.score;
+	}
 	
 	// COLLISIONS
     @Override
@@ -32,7 +36,7 @@ public abstract class Protagonist extends StageCharacter {
     }
 
     @Override
-    public void collideWithItem(Item givenItem) {
-        givenItem.consume();
+    public void collideWithConsumable(Consumable givenConsumable) {
+        givenConsumable.consume();
     }
 }

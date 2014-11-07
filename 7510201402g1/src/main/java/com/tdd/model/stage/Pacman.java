@@ -11,15 +11,10 @@ import com.tdd.model.stageAbstractions.Stage;
 public class Pacman extends Protagonist {
 
     private boolean alive;
-    private Direction sense;
-	private Integer score;
-	private Integer speed;
 
     public Pacman(Stage givenStage, Position givenPosition) {
         super(givenStage, givenPosition);
         this.alive = true;
-		this.score = 0;
-		this.speed = 1;
     }
 
     @Override
@@ -41,7 +36,7 @@ public class Pacman extends Protagonist {
     @Override
     public void move(Direction dir) {
 		for (Integer i = 0 ; i < this.speed ; ++i) {
-			this.removeTeleportedState();
+			super.move();
 			Position nextPosition = dir.getNewPosition(this.position);
 			try {
 				this.stage.placeElement(nextPosition, this);
@@ -51,32 +46,5 @@ public class Pacman extends Protagonist {
 			this.setSense(dir);
 		}
     }
-
-    @Override
-    public void setSense(Direction sense) {
-        this.sense = sense;
-    }
-
-    @Override
-    public Direction getSense() {
-        return this.sense;
-    }
-
-	@Override
-	public Integer getScore() {
-		return this.score;
-	}
-
-	@Override
-	public void setSpeed(Integer givenSpeed) {
-		this.speed = givenSpeed;
-	}
-
-	@Override
-	public Integer getSpeed() {
-		return this.speed;
-	}
-
-    
-    
+	
 }

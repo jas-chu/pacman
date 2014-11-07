@@ -105,7 +105,7 @@ public class PacmanTest {
 	@Test
 	public void collideWithItem() {
 		MockItem item = new MockItem();
-		this.pacman.collideWithItem(item);
+		this.pacman.collideWithConsumable(item);
 		assertTrue(item.consumeMethodCalled);
 	}
 	

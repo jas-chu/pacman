@@ -1,8 +1,8 @@
 package com.tdd.model.mocks;
 
-import com.tdd.model.ghost.Ghost;
-import com.tdd.model.ghost.State;
-import com.tdd.model.ghost.StateFactory;
+import com.tdd.model.stageAbstractions.Enemy;
+import com.tdd.model.stageAbstractions.State;
+import com.tdd.model.states.StateFactory;
 
 public class MockStateFactory extends StateFactory {
 	
@@ -15,19 +15,19 @@ public class MockStateFactory extends StateFactory {
 	}
 	
 	@Override
-	public State createHunter(Ghost ghost) {
+	public State createHunter(Enemy givenEnemy) {
 		this.hunterCreations++;
 		return new MockState();
 	}
 
 	@Override
-	public State createDead(Ghost ghost) {
+	public State createDead(Enemy givenEnemy) {
 		this.deadCreations++;
 		return new MockState();
 	}
 
 	@Override
-	public State createPrey(Ghost ghost) {
+	public State createPrey(Enemy givenEnemy) {
 		this.preyCreations++;
 		return new MockState();
 	}

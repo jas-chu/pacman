@@ -2,7 +2,7 @@ package com.tdd.model.stage;
 
 import com.tdd.model.mocks.MockGhost;
 import com.tdd.model.mocks.MockStage;
-import com.tdd.model.stageAbstractions.Item;
+import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Position;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public abstract class ItemTest {
-	protected Item item;
+	protected StaticItem item;
 	protected MockGhost ghost;
 	protected Position position;
 	protected MockStage stage;
@@ -49,7 +49,7 @@ public abstract class ItemTest {
 
 	@Test
 	public void collideWithItem() {
-		this.item.collideWithItem(null);
+		this.item.collideWithConsumable(null);
 		assertFalse(this.item.isConsumed());
 	}
 

@@ -15,7 +15,7 @@ import com.tdd.model.itemBuilding.ItemBuilder;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Area;
 import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.model.stageAbstractions.Item;
+import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
@@ -30,7 +30,7 @@ import org.w3c.dom.NodeList;
 
 public class Labyrinth implements Stage {
 
-    private List<Item> items;
+    private List<StaticItem> items;
     private List<Enemy> enemies;
     private Protagonist pacman;
     private Integer width;
@@ -50,7 +50,7 @@ public class Labyrinth implements Stage {
      * @throws com.tdd.model.exceptions.MalformedXMLException
      */
     public Labyrinth(GameConfigurations givenConfigs) throws MalformedXMLException {
-        this.items = new ArrayList<Item>();
+        this.items = new ArrayList<StaticItem>();
         this.enemies = new ArrayList<Enemy>();
         this.labyrinthLoader = new LabyrinthLoader(givenConfigs.XMLStagePath);
         this.gameCharactersLoader = new GameCharactersLoader(givenConfigs.XMLCharactersPath);
@@ -190,7 +190,7 @@ public class Labyrinth implements Stage {
      * @return
      */
     @Override
-    public List<Item> getItems() {
+    public List<StaticItem> getItems() {
         return items;
     }
 
@@ -319,7 +319,7 @@ public class Labyrinth implements Stage {
     }
 
     @Override
-    public void removeItem(Item givenItem) {
+    public void removeItem(StaticItem givenItem) {
         try {
             Position itemPosition = givenItem.getPosition();
             Cell theCell = this.getCell(itemPosition);

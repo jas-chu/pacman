@@ -1,9 +1,9 @@
 package com.tdd.model.mocks;
 
-import com.tdd.model.stageAbstractions.Item;
+import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Position;
 
-public class MockItem extends Item {
+public class MockItem extends StaticItem {
 	
 	public boolean consumeMethodCalled = false;
 	

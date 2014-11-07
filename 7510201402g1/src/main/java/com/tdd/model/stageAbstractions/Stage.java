@@ -12,7 +12,7 @@ public interface Stage {
 
     public void populateWithProtagonist();
 
-    public List<Item> getItems();
+    public List<StaticItem> getItems();
 
     public List<Enemy> getEnemies();
 
@@ -46,6 +46,6 @@ public interface Stage {
 
     public void turnEnemiesToPrey();
 
-    public void removeItem(Item givenItem);
+    public void removeItem(StaticItem givenItem);
 
 }

@@ -2,7 +2,7 @@ package com.tdd.model.mocks;
 
 import com.tdd.application.gameAbstractions.GameConfigurations;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
-import com.tdd.model.ghost.Strategy;
+import com.tdd.model.stageAbstractions.Strategy;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.languageTools.SpanishXMLConstants;
 import com.tdd.model.stageAbstractions.Enemy;

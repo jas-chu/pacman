@@ -15,10 +15,10 @@ public interface Collidable {
 	void collideWithProtagonist(Protagonist givenProtagonist);
 	
 	/**
-	 * Element to Item collision.
-	 * @param givenItem
+	 * Element to Consumable collision.
+	 * @param givenConsumable
 	 */
-	void collideWithItem(Item givenItem);
+	void collideWithConsumable(Consumable givenConsumable);
 	
 	/**
 	 * Element to Enemy collision.

@@ -1,9 +1,9 @@
 package com.tdd.model.states;
 
-import com.tdd.model.ghost.State;
+import com.tdd.model.stageAbstractions.State;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.model.stageAbstractions.StageCharacter;
+import com.tdd.model.stageAbstractions.Protagonist;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,8 +32,8 @@ public class Hunter extends State {
     }
 
     @Override
-    public void beEaten(StageCharacter p) {
-        p.kill();
+    public void beEaten(Protagonist givenProtagonist) {
+        givenProtagonist.kill();
     }
 
     public int getAngerLevel() {

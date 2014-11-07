@@ -1,5 +1,6 @@
-package com.tdd.model.ghost;
+package com.tdd.model.stage;
 
+import com.tdd.model.stage.Ghost;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.mocks.MockProtagonist;
 import com.tdd.model.mocks.MockState;
@@ -87,7 +88,7 @@ public class GhostTest {
 
     @Test
     public void collideWithItem() {
-        this.ghost.collideWithItem(null);
+        this.ghost.collideWithConsumable(null);
         assertEquals(this.state, this.ghost.getState());
     }
 

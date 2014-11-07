@@ -1,14 +1,10 @@
-package com.tdd.model.ghost;
-
-import com.tdd.model.stageAbstractions.Direction;
-import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.model.stageAbstractions.Protagonist;
-import com.tdd.model.stageAbstractions.StageCharacter;
+package com.tdd.model.stageAbstractions;
 
 public abstract class State {
 
     protected Enemy enemy;
     protected int countedCycles;
+	
     public State(Enemy givenEnemy) {
         this.enemy = givenEnemy;
         this.countedCycles = 0;
@@ -16,7 +12,7 @@ public abstract class State {
 
     public abstract void increaseAnger();
 
-    public abstract void beEaten(StageCharacter p);
+    public abstract void beEaten(Protagonist givenProtagonist);
 
     //Para que la presa pueda invertir la direccion calculada.
     public Direction getDirection(Direction givenDirection) {
