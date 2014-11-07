@@ -2,12 +2,12 @@ package com.tdd.model.strategy;
 
 import com.tdd.model.stageAbstractions.Strategy;
 import com.tdd.model.helpers.XMLConstants;
-import com.tdd.model.stageAbstractions.Enemy;
+import com.tdd.model.stageAbstractions.MovedByStrategy;
 
 public class SillyStrategy extends Strategy {
 
-    public SillyStrategy(Enemy givenEnemy, int vision) {
-        super(givenEnemy, vision);
+    public SillyStrategy(MovedByStrategy givenElement, int vision) {
+        super(givenElement, vision);
     }
 
     @Override

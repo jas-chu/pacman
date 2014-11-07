@@ -14,8 +14,14 @@ public abstract class MovingElement extends StageElement {
     }
 	
 	public void move() {
-        this.removeTeleportedState();
+		for (Integer i = 0 ; i < this.speed ; ++i) {
+			this.moveOneTime();
+		}
     }
+	
+	protected void moveOneTime() {
+		this.removeTeleportedState();
+	}
 	
     public void setSense(Direction sense) {
         this.sense = sense;

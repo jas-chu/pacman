@@ -9,7 +9,7 @@ import java.util.Random;
 
 public abstract class Strategy {
 
-    protected Enemy enemy;
+    protected MovedByStrategy element;
     protected int vision;
     protected SquaredArea area;
     protected ArrayList<Direction> possibleDirections;
@@ -17,15 +17,15 @@ public abstract class Strategy {
     protected Direction lastDirection;
     protected int bifurcationCells = 3;
 
-    public Strategy(Enemy givenEnemy, int vision) {
-        this.enemy = givenEnemy;
+    public Strategy(MovedByStrategy givenElement, int vision) {
+        this.element = givenElement;
         this.vision = vision;
         this.possibleDirections = new ArrayList<>();
         this.lastDirection = null;
     }
 
     public void advanceCycle() {
-        this.area = new SquaredArea(this.enemy.getPosition(), this.vision);
+        this.area = new SquaredArea(this.element.getPosition(), this.vision);
 
         try {
             this.lastDirection = this.possibleDirections.get(this.directionIndex - 1);
@@ -42,12 +42,16 @@ public abstract class Strategy {
             this.getPossibleDirections();
         }
         directionIndex++;
-        return possibleDirections.get(directionIndex - 1);
+		int size = possibleDirections.size();
+		if (this.directionIndex <= size) {
+			return possibleDirections.get(directionIndex - 1);
+		}
+		return possibleDirections.get(size - 1);
     }
 
     public void getPossibleDirections() {
-        this.area = new SquaredArea(this.enemy.getPosition(), this.vision);
-        Protagonist pacman = this.enemy.getProtagonist();
+        this.area = new SquaredArea(this.element.getPosition(), this.vision);
+        Protagonist pacman = this.element.getProtagonist();
         if (pacman != null) {
             boolean pacmanIsVisible = pacman.isInArea(this.area);
             if (pacmanIsVisible == true) {
@@ -88,7 +92,7 @@ public abstract class Strategy {
         ArrayList<Position> positions = getAllPossibleNextPositions();
         for (Position position : positions) {
             try {
-                this.enemy.getStage().getCell(position).testPlaceElement();
+                this.element.getStage().getCell(position).testPlaceElement();
                 unblockedCells++;
             } catch (BlockedCellException | NoExistingCellException error) {
             }
@@ -139,7 +143,7 @@ public abstract class Strategy {
         ArrayList<Position> positions = new ArrayList<>();
         ArrayList<Direction> directions = getAllDirections();
         for (Direction direction : directions) {
-            positions.add(direction.getNewPosition(this.enemy.getPosition()));
+            positions.add(direction.getNewPosition(this.element.getPosition()));
         }
         return positions;
     }

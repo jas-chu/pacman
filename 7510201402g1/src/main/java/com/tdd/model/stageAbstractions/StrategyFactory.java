@@ -1,7 +1,4 @@
-package com.tdd.model.strategyFactory;
-
-import com.tdd.model.stageAbstractions.MovedByStrategy;
-import com.tdd.model.stageAbstractions.Strategy;
+package com.tdd.model.stageAbstractions;
 
 public interface StrategyFactory {
 	

@@ -5,7 +5,7 @@ import com.tdd.model.stageAbstractions.Strategy;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Stage;
-import com.tdd.model.strategyFactory.StrategyFactory;
+import com.tdd.model.stageAbstractions.StrategyFactory;
 
 
 public interface EnemyFactory {

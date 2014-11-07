@@ -5,8 +5,8 @@ import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.stageAbstractions.Strategy;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.languageTools.SpanishXMLConstants;
-import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.model.strategyFactory.StrategyFactory;
+import com.tdd.model.stageAbstractions.MovedByStrategy;
+import com.tdd.model.stageAbstractions.StrategyFactory;
 import com.tdd.model.strategyFactory.StrategyFactorySearcher;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  *
  *
  */
-public class MockStrategyFactory {
+public class MockStrategyFactory implements StrategyFactory {
 
     private StrategyFactorySearcher searcher;
     private String factoryName;
@@ -37,5 +37,10 @@ public class MockStrategyFactory {
         }
         return null;
     }
+
+	@Override
+	public Strategy getStrategy(MovedByStrategy givenElement) {
+		return new MockStrategy();
+	}
 
 }

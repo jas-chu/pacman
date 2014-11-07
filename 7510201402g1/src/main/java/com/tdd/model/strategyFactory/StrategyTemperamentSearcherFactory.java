@@ -1,7 +1,8 @@
 package com.tdd.model.strategyFactory;
 
+import com.tdd.model.stageAbstractions.StrategyFactory;
 import com.tdd.model.stageAbstractions.Strategy;
-import com.tdd.model.stageAbstractions.Enemy;
+import com.tdd.model.stageAbstractions.MovedByStrategy;
 import com.tdd.model.strategy.StrategyTemperamentSearcher;
 
 public class StrategyTemperamentSearcherFactory implements StrategyFactory {
@@ -15,12 +16,12 @@ public class StrategyTemperamentSearcherFactory implements StrategyFactory {
     }
     
     /**
-     * @param givenEnemy
+	 * @param givenElement
      * @return Devuelve una instancia de la estrategy
      * StrategyTemperamentSeacher.
      */
     @Override
-    public Strategy getStrategy(com.tdd.model.stageAbstractions.MovedByStrategy givenElement) {
+    public Strategy getStrategy(MovedByStrategy givenElement) {
         return new StrategyTemperamentSearcher(givenElement, this.vision, this.incrementalVision);
     }
 }

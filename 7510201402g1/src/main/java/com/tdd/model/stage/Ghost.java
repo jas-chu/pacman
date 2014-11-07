@@ -7,7 +7,7 @@ import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
-import com.tdd.model.strategyFactory.StrategyFactory;
+import com.tdd.model.stageAbstractions.StrategyFactory;
 
 public class Ghost extends Enemy {
 	
@@ -46,13 +46,18 @@ public class Ghost extends Enemy {
     }
 	
 	@Override
-	protected Direction finishProcessingDirection(Direction givenDirection) {
-		return this.state.getDirection(givenDirection);
+	protected Direction getNextDirection() {
+		Direction firstDirection = super.getNextDirection();
+		return this.state.getDirection(firstDirection);
 	}
-
-    @Override
-    public void advanceCycle() {
-		super.advanceCycle();
+	
+	@Override
+	public void move() {
+		super.move();
+		this.advanceGameCycle();
+	}
+    
+    private void advanceGameCycle() {
         this.state.advanceCycle();
     }
 	

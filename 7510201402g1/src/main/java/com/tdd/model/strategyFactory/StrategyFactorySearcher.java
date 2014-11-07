@@ -1,5 +1,6 @@
 package com.tdd.model.strategyFactory;
 
+import com.tdd.model.stageAbstractions.StrategyFactory;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.helpers.XMLConstants;
 import java.util.HashMap;

@@ -9,7 +9,7 @@ import com.tdd.model.mocks.MockStage;
 import com.tdd.model.mocks.MockStateFactory;
 import com.tdd.model.mocks.MockStrategyFactory;
 import com.tdd.model.stageAbstractions.Position;
-import com.tdd.model.strategyFactory.StrategyFactory;
+import com.tdd.model.stageAbstractions.StrategyFactory;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,14 +27,13 @@ public class GhostTest {
 
     @Before
     public void setUp() {
-        MockStrategyFactory mockStrategyFactory = new MockStrategyFactory(XMLConstants.STRATEGY_NORMAL_SEARCHER);
         this.position = new Position(0, 0);
         this.factory = new MockStateFactory();
-        this.strategyFactory = mockStrategyFactory.getStrategyFactory();
-        this.strategy = new MockStrategy();
+		this.strategyFactory = new MockStrategyFactory(XMLConstants.STRATEGY_NORMAL_SEARCHER);
         this.stage = new MockStage();
         this.ghost = new Ghost(this.stage, this.position, this.factory, this.strategyFactory);
         this.state = (MockState) ghost.getState();
+		this.strategy = (MockStrategy) ghost.getStrategy();
         this.protagonist = new MockProtagonist();
     }
 
@@ -71,14 +70,7 @@ public class GhostTest {
         assertTrue(this.stage.placeElementMethodCalled);
         assertTrue(this.position.createPositionAddingX(1).equals(this.ghost.getPosition()));
     }
-
-    @Test
-    public void advanceCycle() {
-        this.ghost.advanceCycle();
-        assertTrue(this.strategy.advanceCycleMethodCalled);
-        assertTrue(this.state.advanceCycleMethodCalled);
-    }
-
+	
     @Test
     public void collideWithElement() {
         this.ghost.collideWithElement(this.protagonist);

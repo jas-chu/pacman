@@ -2,7 +2,6 @@ package com.tdd.model.stageAbstractions;
 
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.exceptions.NoExistingCellException;
-import com.tdd.model.strategyFactory.StrategyFactory;
 
 public abstract class MovedByStrategy extends MovingElement {
 	
@@ -19,30 +18,30 @@ public abstract class MovedByStrategy extends MovingElement {
         return this.strategy;
     }
 	
-	public void advanceCycle() {
+	public void advanceMovementCycle() {
         this.strategy.advanceCycle();
     }
 	
-	protected abstract Direction finishProcessingDirection(Direction givenDirection);
+	protected Direction getNextDirection() {
+		return this.strategy.getDirection();
+	}
 	
 	@Override
-    public void move() {
-        super.move();
-        int i = 4; // four possible directions
+    public void moveOneTime() {
+        super.moveOneTime();
+        int i = Direction.getNumberOfPossibleDirections();
         while (i > 0) {
-            Direction firstDirection = this.strategy.getDirection();
-            i = this.strategy.getNumberOfPossibleDirections();
-            Direction finalDirection = this.finishProcessingDirection(firstDirection);
-            Position nextPosition = finalDirection.getNewPosition(this.position);
+            Direction direction = this.getNextDirection();
+            Position nextPosition = direction.getNewPosition(this.position);
             try {
                 this.stage.placeElement(nextPosition, this);
-				this.sense = finalDirection;
+				this.sense = direction;
                 i = 0;
             } catch (BlockedCellException | NoExistingCellException error) {
                 i--; // must look another way
             }
         }
-        this.advanceCycle();
+        this.advanceMovementCycle();
     }
 	
 }

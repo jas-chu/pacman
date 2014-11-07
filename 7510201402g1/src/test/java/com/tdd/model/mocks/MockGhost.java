@@ -1,18 +1,15 @@
 package com.tdd.model.mocks;
 
-import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.State;
 import com.tdd.model.stageAbstractions.Strategy;
-import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 
 public class MockGhost extends Enemy {
 
     public boolean turnToPreyMethodCalled = false;
-    public boolean advanceCycleMethodCalled = false;
     public boolean killMethodCalled = false;
     public boolean reviveMethodCalled = false;
     public boolean collideWithProtagonistMethodCalled = false;
@@ -20,21 +17,15 @@ public class MockGhost extends Enemy {
     private final MockProtagonist protagonist = new MockProtagonist();
     private Strategy strategy;
     private State state;
-    private MockStage stage = new MockStage();
-    private Direction sense;
 
     public MockGhost() {
-        super(null, new Position(0, 0));
+        super(null, new Position(0, 0), new MockStrategyFactory(XMLConstants.LAZY_STRATEGY));
+		this.stage = new MockStage();
     }
 
     @Override
     public void turnToPrey() {
         this.turnToPreyMethodCalled = true;
-    }
-
-    @Override
-    public void advanceCycle() {
-        this.advanceCycleMethodCalled = true;
     }
 
     @Override
@@ -58,8 +49,7 @@ public class MockGhost extends Enemy {
     }
 
     public boolean noMethodWasCalled() {
-        return !(this.advanceCycleMethodCalled
-                || this.turnToPreyMethodCalled
+        return !(this.turnToPreyMethodCalled
                 || this.killMethodCalled
                 || this.reviveMethodCalled
                 || this.collideWithProtagonistMethodCalled
@@ -69,6 +59,11 @@ public class MockGhost extends Enemy {
     @Override
     public MockProtagonist getProtagonist() {
         return this.protagonist;
+    }
+	
+	@Override
+    public MockStage getStage() {
+        return (MockStage)this.stage;
     }
 
     public void setStrategy(Strategy strategy) {
@@ -80,51 +75,12 @@ public class MockGhost extends Enemy {
     }
 
     @Override
-    public MockStage getStage() {
-        return this.stage;
-    }
-
-    @Override
-    public void move() {
-        super.move();
-        int i = 4; // four possible directions
-        while (i > 0) {
-            Direction firstDirection = this.strategy.getDirection();
-            i = this.strategy.getNumberOfPossibleDirections();
-            Direction finalDirection = this.state.getDirection(firstDirection);
-            Position nextPosition = finalDirection.getNewPosition(this.position);
-            try {
-                this.stage.placeElement(nextPosition, this);
-                i = 0;
-            } catch (BlockedCellException error) {
-                i--; // must look another way
-            }
-        }
-        this.advanceCycle();
-    }
-
-    @Override
-    public void setSense(Direction sense) {
-        this.sense = sense;
-    }
-
-    @Override
-    public Direction getSense() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public State getState() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Integer getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Strategy getStrategy() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

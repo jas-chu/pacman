@@ -1,7 +1,5 @@
 package com.tdd.model.stageAbstractions;
 
-import com.tdd.model.strategyFactory.StrategyFactory;
-
 public abstract class Enemy extends MovedByStrategy {
     
     public Enemy(Stage givenStage, Position givenPosition, StrategyFactory givenStrategyFactory) {

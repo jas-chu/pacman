@@ -21,7 +21,9 @@ public class MockStage implements Stage {
     public boolean placeProtagonistAtHomeMethodCalled = false;
     public boolean turnEnemiesToPreyMethodCalled = false;
     public boolean removeItemMethodCalled = false;
-
+	
+	private MockProtagonist protagonist = new MockProtagonist();
+	
     @Override
     public List<StaticItem> getItems() {
         return null;
@@ -34,7 +36,7 @@ public class MockStage implements Stage {
 
     @Override
     public Protagonist getProtagonist() {
-        return null;
+        return this.protagonist;
     }
 
     @Override

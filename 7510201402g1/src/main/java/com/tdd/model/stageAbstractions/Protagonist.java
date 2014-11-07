@@ -1,5 +1,8 @@
 package com.tdd.model.stageAbstractions;
 
+import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.exceptions.NoExistingCellException;
+
 public abstract class Protagonist extends MovingElement {
 	
 	protected Integer score;
@@ -11,12 +14,33 @@ public abstract class Protagonist extends MovingElement {
 	
 	public abstract void kill();
     public abstract void revive();
-	
     public abstract boolean isAlive();
-    public abstract void move(Direction dir);
+    
+	protected Direction getNextDirection() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+	
+	@Override
+	protected void moveOneTime() {
+		super.moveOneTime();
+		Direction direction = this.getNextDirection();
+		Position nextPosition = direction.getNewPosition(this.position);
+		try {
+			this.stage.placeElement(nextPosition, this);
+		} catch (BlockedCellException | NoExistingCellException error) {
+			// player hit wall
+		}
+		this.setSense(direction);
+	}
 	
 	public Integer getScore() {
 		return this.score;
+	}
+	
+	public void move(Direction dir) {
+		// DEPRECATED
+		// TODO: ERASE AND REFACTOR OTHER CLASES
+		throw new UnsupportedOperationException("DEPRECATED");
 	}
 	
 	// COLLISIONS
