@@ -3,11 +3,11 @@ package com.tdd.model.mocks;
 import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Position;
 
-public class MockItem extends StaticItem {
+public class MockStaticItem extends StaticItem {
 	
 	public boolean consumeMethodCalled = false;
 	
-	public MockItem() {
+	public MockStaticItem() {
 		super(null, new Position(0,0));
 	}
 	
@@ -18,7 +18,7 @@ public class MockItem extends StaticItem {
 	
 	@Override
 	public String getMapSerialization() {
-		return "MockItem";
+		return "MockStaticItem";
 	}
 
 }

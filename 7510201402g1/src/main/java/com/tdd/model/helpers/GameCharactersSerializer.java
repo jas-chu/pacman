@@ -1,6 +1,6 @@
 package com.tdd.model.helpers;
 
-import com.tdd.application.gameAbstractions.Game;
+import com.tdd.application.gameAbstractions.GameLevel;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
@@ -19,9 +19,9 @@ public class GameCharactersSerializer {
 
     private final XMLConstants gameConstants;
     private final String filePath;
-    private final Game game;
+    private final GameLevel game;
 
-    public GameCharactersSerializer(Game givenGame, String filePath, XMLConstants constants) {
+    public GameCharactersSerializer(GameLevel givenGame, String filePath, XMLConstants constants) {
         this.gameConstants = constants;
         this.filePath = filePath;
         this.game = givenGame;
@@ -70,7 +70,7 @@ public class GameCharactersSerializer {
 			XMLWriter.addAttributeToCustomMap(attributes, XMLConstants.SENSE, sense);
 			XMLWriter.addIntAttributeToCustomMap(attributes, XMLConstants.SCORE, score, 2);
 		}
-		Boolean endGame = game.isEndOfGame();
+		Boolean endGame = game.isEndOfLevel();
 		XMLWriter.addBooleanAttributeToCustomMap(attributes, XMLConstants.END_GAME, endGame);
         return attributes;
     }

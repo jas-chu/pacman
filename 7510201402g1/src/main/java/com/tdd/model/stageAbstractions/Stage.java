@@ -1,51 +1,35 @@
 package com.tdd.model.stageAbstractions;
 
-import com.tdd.application.gameAbstractions.GameConfigurations;
 import com.tdd.model.exceptions.BlockedCellException;
-import com.tdd.model.exceptions.MalformedXMLException;
 import com.tdd.model.exceptions.NoExistingCellException;
 import java.util.List;
 
 public interface Stage {
 
-    public void populateWithEnemies(GameConfigurations givenConfigs) throws MalformedXMLException;
+    public void populateWithProtagonist(Protagonist givenProtagonist);
 
-    public void populateWithProtagonist();
-
-    public List<StaticItem> getItems();
-
+    public List<StaticItem> getStaticItems();
+	public List<MovingItem> getMovingItems();
     public List<Enemy> getEnemies();
-
     public Protagonist getProtagonist();
 
-    public Cell getCell(Position givenPosition) throws NoExistingCellException;
-
-    public boolean hasItems();
-
     public Integer getWidth();
-
     public Integer getHeight();
-
     public Integer getNodeWidth();
-
     public Integer getNodeHeight();
-
     public Position getGhostStart();
-
     public Position getPacmanStart();
 
     public List<List<Cell>> getCells();
-
+	public Cell getCell(Position givenPosition) throws NoExistingCellException;
+	
+	public boolean hasStaticItems();
+	
     public void placeElement(Position position, StageElement element) throws BlockedCellException, NoExistingCellException;
-
     public void placeEnemyAtHome(Enemy givenEnemy);
-
     public void placeProtagonistAtHome(Protagonist givenProtagonist);
-
-    public boolean protagonistIsInArea(Area area);
-
+	
+	public void removeItem(StaticItem givenItem);
     public void turnEnemiesToPrey();
-
-    public void removeItem(StaticItem givenItem);
-
+	
 }

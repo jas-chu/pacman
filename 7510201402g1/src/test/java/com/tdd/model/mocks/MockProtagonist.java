@@ -4,7 +4,6 @@ import com.tdd.model.exceptions.AlreadyTeleportedException;
 import com.tdd.model.stage.SquaredArea;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 
@@ -21,7 +20,7 @@ public class MockProtagonist extends Protagonist {
 	public boolean collideWithItemMethodCalled = false;
 	
 	public MockProtagonist() {
-		super(null, new Position(2,0));
+		super();
 	}
 
 	@Override
@@ -31,7 +30,7 @@ public class MockProtagonist extends Protagonist {
 	}
 
 	@Override
-	public void move(Direction dir) {
+	public void move() {
 		this.moveMethodCalled = true;
 	}
 
@@ -76,37 +75,12 @@ public class MockProtagonist extends Protagonist {
 			  || this.collideWithItemMethodCalled);
 	}
 	
-        public boolean isInArea(SquaredArea area){
-            return this.isInArea;
-        }
-        
-        public void setIsInArea(boolean isInArea){
-            this.isInArea = isInArea;
-        }
-
-    @Override
-    public void setSense(Direction sense) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Direction getSense() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-	@Override
-	public Integer getScore() {
-		throw new UnsupportedOperationException("Not supported yet.");
+	public boolean isInArea(SquaredArea area){
+		return this.isInArea;
 	}
 
-	@Override
-	public void setSpeed(Integer givenSpeed) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
-	@Override
-	public Integer getSpeed() {
-		throw new UnsupportedOperationException("Not supported yet.");
+	public void setIsInArea(boolean isInArea){
+		this.isInArea = isInArea;
 	}
 
 }

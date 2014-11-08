@@ -1,12 +1,11 @@
 package com.tdd.model.stage;
 
-import com.tdd.model.mocks.MockItem;
-import com.tdd.model.direction.DirectionRight;
+import com.tdd.model.mocks.MockStaticItem;
 import com.tdd.model.exceptions.AlreadyTeleportedException;
+import com.tdd.model.mocks.MockController;
 import com.tdd.model.mocks.MockGhost;
 import com.tdd.model.mocks.MockProtagonist;
 import com.tdd.model.mocks.MockStage;
-import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Position;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,13 +15,17 @@ public class PacmanTest {
 	
 	private Position position;
 	private MockStage stage;
+	private MockController controller;
 	private Pacman pacman;
 
 	@Before
 	public void setUp() {
 		this.position = new Position(0, 0);
 		this.stage = new MockStage();
-		this.pacman = new Pacman(this.stage, this.position);
+		this.controller = new MockController();
+		this.pacman = new Pacman();
+		this.pacman.placeOnStage(this.stage, this.position);
+		this.pacman.setController(this.controller);
 	}
 	
 	@Test
@@ -45,10 +48,9 @@ public class PacmanTest {
 	
 	@Test
 	public void move() {
-		Direction dir = new DirectionRight();
-		this.pacman.move(dir);
+		this.pacman.move();
 		assertTrue(this.stage.placeElementMethodCalled);
-		assertTrue(this.position.createPositionAddingX(1).equals(this.pacman.getPosition()));
+		assertTrue(this.controller.getNextPosition(this.position).equals(this.pacman.getPosition()));
 	}
 	
 	@Test
@@ -104,7 +106,7 @@ public class PacmanTest {
 	
 	@Test
 	public void collideWithItem() {
-		MockItem item = new MockItem();
+		MockStaticItem item = new MockStaticItem();
 		this.pacman.collideWithConsumable(item);
 		assertTrue(item.consumeMethodCalled);
 	}

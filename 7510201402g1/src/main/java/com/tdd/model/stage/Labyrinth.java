@@ -13,8 +13,8 @@ import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.itemBuilding.ItemBuilder;
 import com.tdd.model.stageAbstractions.Cell;
-import com.tdd.model.stageAbstractions.Area;
 import com.tdd.model.stageAbstractions.Enemy;
+import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
@@ -30,7 +30,8 @@ import org.w3c.dom.NodeList;
 
 public class Labyrinth implements Stage {
 
-    private List<StaticItem> items;
+    private List<StaticItem> staticItems;
+	private List<MovingItem> movingItems;
     private List<Enemy> enemies;
     private Protagonist pacman;
     private Integer width;
@@ -45,28 +46,36 @@ public class Labyrinth implements Stage {
 
     /**
      *
-     * @param xmlLabyrinthPath
-     * @param xmlCharactersPath
+	 * @param givenConfigs
+	 * @param XMLStagePath
+	 * @param XMLCharactersPath
      * @throws com.tdd.model.exceptions.MalformedXMLException
      */
-    public Labyrinth(GameConfigurations givenConfigs) throws MalformedXMLException {
-        this.items = new ArrayList<StaticItem>();
+    public Labyrinth(GameConfigurations givenConfigs, String XMLStagePath, String XMLCharactersPath) throws MalformedXMLException {
+        this.staticItems = new ArrayList<StaticItem>();
+		this.movingItems = new ArrayList<MovingItem>();
         this.enemies = new ArrayList<Enemy>();
-        this.labyrinthLoader = new LabyrinthLoader(givenConfigs.XMLStagePath);
-        this.gameCharactersLoader = new GameCharactersLoader(givenConfigs.XMLCharactersPath);
+        this.labyrinthLoader = new LabyrinthLoader(XMLStagePath);
+        this.gameCharactersLoader = new GameCharactersLoader(XMLCharactersPath);
         try {
-            upLoadInitialLabyrinthConfigurations();
-            upLoadCells(givenConfigs);
+            this.loadInitialLabyrinthConfigurations();
+            this.loadCells(givenConfigs);
+			this.loadEnemies(givenConfigs);
         } catch (NoAvailableFactoryException | AttributeNotFoundException ex) {
             throw new MalformedXMLException();
         }
     }
-
-    /**
-     *
-     * @throws AttributeNotFoundException
-     */
-    private void upLoadCells(GameConfigurations givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
+	
+	private void loadInitialLabyrinthConfigurations() throws AttributeNotFoundException {
+        this.width = this.labyrinthLoader.getLabyrinthWidth();
+        this.height = this.labyrinthLoader.getLabyrinthHeight();
+        this.nodeWidth = this.labyrinthLoader.getNodeWidth();
+        this.nodeHeight = this.labyrinthLoader.getNodeHeight();
+        this.pacmanStart = this.labyrinthLoader.getPacmanStartPosition();
+        this.ghostStart = this.labyrinthLoader.getGhostStartPosition();
+    }
+	
+    private void loadCells(GameConfigurations givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
         NodeList nodes = this.labyrinthLoader.getNodes();
         CellBuilder cellBuilder = new CellBuilder();
         ItemBuilder itemBuilder = new ItemBuilder();
@@ -79,70 +88,39 @@ public class Labyrinth implements Stage {
                 String cellContent = XMLReader.getAttributeValue(node, XMLConstants.CONTENT);
                 if (!cellContent.isEmpty()) {
 					String translatedCellContent = givenConfigs.XMLGameConstants.getInvertedItemValueTranslation(cellContent);
-                    this.items.add(itemBuilder.createItem(this, createdCell.getPosition(), translatedCellContent));
+                    this.staticItems.add(itemBuilder.createItem(this, createdCell.getPosition(), translatedCellContent));
                 }
                 mapRow.add(createdCell);
             }
             this.cells.add(mapRow);
         }
     }
-
-    @Override
-    public void populateWithEnemies(GameConfigurations givenConfigs) throws MalformedXMLException {
-        try {
-            this.upLoadGhost(givenConfigs);
-        } catch (AttributeNotFoundException | NoAvailableFactoryException ex) {
-            throw new MalformedXMLException();
-        }
+	
+    private void loadEnemies(GameConfigurations givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
+        NodeList ghostsNodes = this.gameCharactersLoader.getGhostNodes();
+		if (ghostsNodes == null) return;
+		
+		EnemyBuilder enemyBuilder = new EnemyBuilder();
+		for (int i = 0; i < ghostsNodes.getLength(); i++) {
+			Node ghostNode = ghostsNodes.item(i);
+			Enemy enemy = enemyBuilder.createEnemy(this, givenConfigs, this.ghostStart, ghostNode);
+			this.enemies.add(enemy);
+			this.placeEnemyAtHome(enemy);
+		}
     }
 
     @Override
-    public void populateWithProtagonist() {
-        this.pacman = new Pacman(this, this.pacmanStart);
+    public void populateWithProtagonist(Protagonist givenProtagonist) {
+        this.pacman = givenProtagonist;
+		this.pacman.placeOnStage(this, this.pacmanStart);
         this.placeProtagonistAtHome(this.pacman);
     }
 
-    /**
-     *
-     */
-    private void upLoadGhost(GameConfigurations givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
-        NodeList ghostsNodes = this.gameCharactersLoader.getGhostNodes();
-        EnemyBuilder enemyBuilder = new EnemyBuilder();
-        for (int i = 0; i < ghostsNodes.getLength(); i++) {
-            Node ghostNode = ghostsNodes.item(i);
-
-            Enemy enemy = enemyBuilder.createEnemy(this, givenConfigs, this.ghostStart, ghostNode);
-            this.enemies.add(enemy);
-            this.placeEnemyAtHome(enemy);
-        }
-    }
-
-    /**
-     *
-     * @throws AttributeNotFoundException
-     */
-    private void upLoadInitialLabyrinthConfigurations() throws AttributeNotFoundException {
-        this.width = this.labyrinthLoader.getLabyrinthWidth();
-        this.height = this.labyrinthLoader.getLabyrinthHeight();
-        this.nodeWidth = this.labyrinthLoader.getNodeWidth();
-        this.nodeHeight = this.labyrinthLoader.getNodeHeight();
-        this.pacmanStart = this.labyrinthLoader.getPacmanStartPosition();
-        this.ghostStart = this.labyrinthLoader.getGhostStartPosition();
-    }
-
-    /**
-     *
-     * @return
-     */
     @Override
     public Integer getWidth() {
         return this.width;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Integer getHeight() {
         return this.height;
@@ -158,67 +136,44 @@ public class Labyrinth implements Stage {
         return this.nodeHeight;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Position getGhostStart() {
         return this.ghostStart;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Position getPacmanStart() {
         return this.pacmanStart;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public List<List<Cell>> getCells() {
         return this.cells;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
-    public List<StaticItem> getItems() {
-        return items;
+    public List<StaticItem> getStaticItems() {
+        return this.staticItems;
     }
-
-    /**
-     *
-     * @return
-     */
+	
+	@Override
+    public List<MovingItem> getMovingItems() {
+        return this.movingItems;
+    }
+	
     @Override
     public List<Enemy> getEnemies() {
-        return enemies;
+        return this.enemies;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
     public Protagonist getProtagonist() {
-        return pacman;
+        return this.pacman;
     }
 
-    /**
-     *
-     * @return
-     */
     @Override
-    public boolean hasItems() {
-        return !(this.items.isEmpty());
+    public boolean hasStaticItems() {
+        return !(this.staticItems.isEmpty());
     }
 
     /**
@@ -300,16 +255,6 @@ public class Labyrinth implements Stage {
 
     /**
      *
-     * @param area
-     * @return
-     */
-    @Override
-    public boolean protagonistIsInArea(Area area) {
-        return this.pacman.isInArea(area);
-    }
-
-    /**
-     *
      */
     @Override
     public void turnEnemiesToPrey() {
@@ -324,7 +269,7 @@ public class Labyrinth implements Stage {
             Position itemPosition = givenItem.getPosition();
             Cell theCell = this.getCell(itemPosition);
             theCell.removeElement(givenItem);
-            this.items.remove(givenItem);
+            this.staticItems.remove(givenItem);
         } catch (NoExistingCellException ex) {
             Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
         }

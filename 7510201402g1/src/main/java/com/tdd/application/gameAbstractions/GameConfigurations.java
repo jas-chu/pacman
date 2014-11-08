@@ -10,9 +10,6 @@ public class GameConfigurations {
 	public final XMLConstants XMLGameConstants;
 	
 	// PATHS
-	public String XMLStagePath = "";
-	public String XMLCharactersPath = "";
-	public String XMLPacmanMovementDirectory = "";
 	public String XMLSerializationPath = "";
 	
 	// GAME PARAMETERS

@@ -1,7 +1,7 @@
 package com.tdd.model.cell;
 
 import com.tdd.model.helpers.XMLConstants;
-import com.tdd.model.mocks.MockItem;
+import com.tdd.model.mocks.MockStaticItem;
 import java.util.HashMap;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
@@ -23,7 +23,7 @@ public class ClearCellTest extends CellTest {
     public void getContent() {
         assertEquals(this.cell.getContent(),"");
 		
-		MockItem item = new MockItem();
+		MockStaticItem item = new MockStaticItem();
 		this.cell.placeElement(item);
 		assertEquals(item.getMapSerialization(), this.cell.getContent());
     }

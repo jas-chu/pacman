@@ -1,12 +1,10 @@
 package com.tdd.model.mocks;
 
-import com.tdd.application.gameAbstractions.GameConfigurations;
 import com.tdd.model.cell.ClearCell;
 import com.tdd.model.exceptions.BlockedCellException;
-import com.tdd.model.exceptions.MalformedXMLException;
-import com.tdd.model.stageAbstractions.Area;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Enemy;
+import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
@@ -25,22 +23,32 @@ public class MockStage implements Stage {
 	private MockProtagonist protagonist = new MockProtagonist();
 	
     @Override
-    public List<StaticItem> getItems() {
+    public List<StaticItem> getStaticItems() {
         return null;
     }
+	
+	@Override
+	public List<MovingItem> getMovingItems() {
+		return null;
+	}
 
     @Override
     public List<Enemy> getEnemies() {
         return null;
     }
-
+	
+	@Override
+	public void populateWithProtagonist(Protagonist givenProtagonist) {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+	
     @Override
     public Protagonist getProtagonist() {
         return this.protagonist;
     }
 
     @Override
-    public boolean hasItems() {
+    public boolean hasStaticItems() {
         return false;
     }
 
@@ -58,11 +66,6 @@ public class MockStage implements Stage {
     @Override
     public void placeProtagonistAtHome(Protagonist givenProtagonist) {
         this.placeProtagonistAtHomeMethodCalled = true;
-    }
-
-    @Override
-    public boolean protagonistIsInArea(Area area) {
-        return false;
     }
 
     @Override
@@ -114,15 +117,5 @@ public class MockStage implements Stage {
     public List<List<Cell>> getCells() {
         return null;
     }
-
-    @Override
-    public void populateWithEnemies(GameConfigurations givenConfigs) throws MalformedXMLException {
-
-    }
-
-    @Override
-    public void populateWithProtagonist() {
-
-    }
-
+	
 }

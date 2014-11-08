@@ -3,7 +3,6 @@ package com.tdd.model.mocks;
 import com.tdd.model.stageAbstractions.State;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Protagonist;
-import com.tdd.model.stageAbstractions.MovingElement;
 
 public class MockState extends State {
 	

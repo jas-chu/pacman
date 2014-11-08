@@ -13,7 +13,7 @@ public abstract class StageElement implements Collidable {
 	public StageElement(Stage givenStage, Position passedPosition) {
 		this.stage = givenStage;
 		this.position = new Position(passedPosition);
-		this.removeTeleportedState();
+		this.teleported = false;
 	}
 	       
 	public Stage getStage(){
@@ -33,6 +33,7 @@ public abstract class StageElement implements Collidable {
 	}
 	
 	public void teleport(Position givenPosition) throws AlreadyTeleportedException {
+		if (this.stage == null) return;
 		this.testTeleport();
 		try {
 			this.teleported = true;
@@ -51,6 +52,7 @@ public abstract class StageElement implements Collidable {
 	}
 	
 	public Protagonist getProtagonist(){
+		if (this.stage == null) return null;
 		return this.stage.getProtagonist();
 	}
 
