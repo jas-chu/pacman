@@ -41,28 +41,34 @@ public abstract class Strategy {
         if (possibleDirections.isEmpty()) {
             this.getPossibleDirections();
         }
-        directionIndex++;
+        this.directionIndex++;
 		int size = possibleDirections.size();
 		if (this.directionIndex <= size) {
-			return possibleDirections.get(directionIndex - 1);
+			return possibleDirections.get(this.directionIndex - 1);
+		} else if (size > 0) {
+			return possibleDirections.get(size - 1);
+		} else {
+			return new DirectionRight();
 		}
-		return possibleDirections.get(size - 1);
     }
 
     public void getPossibleDirections() {
         this.area = new SquaredArea(this.element.getPosition(), this.vision);
         Protagonist pacman = this.element.getProtagonist();
+		
         if (pacman != null) {
-            boolean pacmanIsVisible = pacman.isInArea(this.area);
-            if (pacmanIsVisible == true) {
-                this.chasePacman(pacman.getPosition());
-                return;
-            }
-        }
+			boolean pacmanIsVisible = pacman.isInArea(this.area);
+			if (pacmanIsVisible == true) {
+				this.chasePacman(pacman.getPosition());
+				return;
+			}
+		}
         this.getRandomDirection();
     }
 
     public void chasePacman(Position givenPosition) {
+		if (givenPosition == null) return;
+		
         ArrayList<Direction> directions = this.getAllDirections();
         ArrayList<Double> distances = this.getAllDistances(givenPosition);
         while (!distances.isEmpty()) {

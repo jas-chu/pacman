@@ -7,12 +7,12 @@ import com.tdd.model.exceptions.NoExistingCellException;
 public abstract class StageElement implements Collidable {
 	
 	protected Stage stage;
-	protected Position position;
+	protected Position position = null;
 	private boolean teleported;
 	
-	public StageElement(Stage givenStage, Position passedPosition) {
+	public StageElement(Stage givenStage, Position givenPosition) {
 		this.stage = givenStage;
-		this.position = new Position(passedPosition);
+		if (givenPosition != null) this.position = new Position(givenPosition);
 		this.teleported = false;
 	}
 	       
@@ -29,6 +29,7 @@ public abstract class StageElement implements Collidable {
 	}
 	
 	public boolean isInArea(Area area) {
+		if (this.position == null) return false;
 		return area.positionIsWithinArea(this.position);
 	}
 	

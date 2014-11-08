@@ -29,7 +29,7 @@ public class LazyStrategyTest {
 
     @Test
     public void GetDirection() {
-        this.ghost.getProtagonist().setIsInArea(true);        
+        this.ghost.getProtagonist().setIsInArea(true);
         Direction direction = instance.getDirection();
         Position newPosition = direction.getNewPosition(this.ghost.getPosition());
         assertEquals(newPosition.getX(), this.ghost.getPosition().calculateXAddingValue(1));

@@ -30,11 +30,10 @@ public class StrategyTemperamentSearcherTest {
         assertEquals(newPosition.getY(), this.ghost.getPosition().getY());
         assertEquals(newPosition.getX(), this.ghost.getPosition().calculateXAddingValue(1));       
         
-        instance.advanceCycle();        
+        instance.advanceCycle();
         this.ghost.getProtagonist().setIsInArea(false);        
         Direction anotherDirection = instance.getDirection();
         Position anotherNewPosition = anotherDirection.getNewPosition(this.ghost.getPosition());
-        assertEquals(anotherNewPosition.getX(), this.ghost.getPosition().calculateXAddingValue(1));
-        assertEquals(anotherNewPosition.getY(), this.ghost.getPosition().getY());        
+        assertTrue(this.ghost.getPosition().isNeighbour(anotherNewPosition));       
     }
 }
