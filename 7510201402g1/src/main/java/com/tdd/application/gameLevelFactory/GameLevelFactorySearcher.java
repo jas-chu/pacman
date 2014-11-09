@@ -6,20 +6,20 @@ import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.exceptions.NotMyJobException;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.helpers.XMLReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import javax.management.AttributeNotFoundException;
 import org.w3c.dom.Node;
 
 public class GameLevelFactorySearcher {
 	
-	private List<GameLevelFactory> availableFactories;
+	private Map<String,GameLevelFactory> availableFactories;
 
     public GameLevelFactorySearcher() {
-        this.availableFactories = new ArrayList<GameLevelFactory>();
-		this.availableFactories.add(new KeyboardConductedLevelFactory());
-        this.availableFactories.add(new XMLConductedLevelFactory());
-        this.availableFactories.add(new NoPacmanLevelFactory());
+        this.availableFactories = new HashMap<String,GameLevelFactory>();
+		this.availableFactories.put(XMLConstants.KEYBOARD_LEVEL, new KeyboardConductedLevelFactory());
+        this.availableFactories.put(XMLConstants.XML_LEVEL, new XMLConductedLevelFactory());
+        this.availableFactories.put(XMLConstants.NO_PACMAN_LEVEL, new NoPacmanLevelFactory());
     }
 
     /**
@@ -33,15 +33,9 @@ public class GameLevelFactorySearcher {
 		LevelConfigurations levelConfigs = new LevelConfigurations(gameConstants, levelNode);
 		String levelType = this.getLevelType(levelNode, gameConstants);
 		
-		for (GameLevelFactory factory : this.availableFactories) {
-			try {
-				factory.testCreateFactory(levelType);
-				return factory.createFactory(levelConfigs);
-			} catch (NotMyJobException e) {
-				// move on to next factory
-			}
-		}
-        throw new NoAvailableFactoryException();
+		GameLevelFactory factory = this.availableFactories.get(levelType);
+		if (factory == null) throw new NoAvailableFactoryException();
+		return factory;
     }
 
 	private String getLevelType(Node levelNode, XMLConstants gameConstants) throws NoAvailableFactoryException {

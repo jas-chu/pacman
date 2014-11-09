@@ -5,7 +5,6 @@ import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.application.gameAbstractions.GameLevel;
 import com.tdd.application.gameAbstractions.GameLevelFactory;
 import com.tdd.model.exceptions.MalformedXMLException;
-import com.tdd.model.helpers.XMLConstants;
 
 public class KeyboardConductedLevelFactory extends GameLevelFactory {
 	
@@ -15,11 +14,6 @@ public class KeyboardConductedLevelFactory extends GameLevelFactory {
 	
 	private KeyboardConductedLevelFactory(LevelConfigurationsReader givenConfigs) {
 		super(givenConfigs);
-	}
-	
-	@Override
-	protected String getMyLevelType() {
-		return XMLConstants.KEYBOARD_LEVEL;
 	}
 	
 	@Override

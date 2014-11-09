@@ -5,7 +5,6 @@ import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.application.gameAbstractions.GameLevel;
 import com.tdd.application.gameAbstractions.GameLevelFactory;
 import com.tdd.model.exceptions.MalformedXMLException;
-import com.tdd.model.helpers.XMLConstants;
 
 public class NoPacmanLevelFactory extends GameLevelFactory {
 	
@@ -18,11 +17,6 @@ public class NoPacmanLevelFactory extends GameLevelFactory {
 	private NoPacmanLevelFactory(LevelConfigurationsReader givenConfigs) {
 		super(givenConfigs);
 		this.ticksToRun = givenConfigs.getTicksToRun();
-	}
-	
-	@Override
-	protected String getMyLevelType() {
-		return XMLConstants.NO_PACMAN_LEVEL;
 	}
 	
 	@Override

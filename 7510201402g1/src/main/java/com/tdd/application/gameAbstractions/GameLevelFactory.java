@@ -2,7 +2,6 @@ package com.tdd.application.gameAbstractions;
 
 import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.model.exceptions.MalformedXMLException;
-import com.tdd.model.exceptions.NotMyJobException;
 
 public abstract class GameLevelFactory {
 	
@@ -14,17 +13,6 @@ public abstract class GameLevelFactory {
 	
 	protected GameLevelFactory(LevelConfigurationsReader givenConfigs) {
 		this.configs = givenConfigs;
-	}
-	
-	protected abstract String getMyLevelType();
-	
-	/**
-	 * Tests if the levelType corresponds to the specific factory.
-	 * @param levelType
-	 * @throws NotMyJobException
-	 */
-	public void testCreateFactory(String levelType) throws NotMyJobException {
-		if (!(this.getMyLevelType()).equals(levelType)) throw new NotMyJobException();
 	}
 	
 	/**
