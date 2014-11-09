@@ -1,6 +1,8 @@
 package com.tdd.application.configuration;
 
+import com.tdd.model.exceptions.NoNodeWithThatNameException;
 import com.tdd.model.helpers.XMLConstants;
+import com.tdd.model.helpers.XMLReader;
 import java.util.ArrayList;
 import java.util.List;
 import org.w3c.dom.Node;
@@ -11,28 +13,26 @@ public class LevelConfigurations extends LevelConfigurationsReader {
 		super(givenConstants);
 	}
 	
+	/**
+	 * Construction from XML node
+	 * @param givenConstants
+	 * @param levelNode
+	 */
 	public LevelConfigurations(XMLConstants givenConstants, Node levelNode) {
 		super(givenConstants);
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-	
-	// TO DO
-	private void configureProgram() {
-		this.setStagePath("");
-		this.setCharactersPath("");
 		
-		this.setPacmanMovementDirectory("");
+		XMLStagePath = this.readStringConfiguration(levelNode, XMLConstants.STAGE);
+		XMLCharactersPath = this.readStringConfiguration(levelNode, XMLConstants.CHARACTERS);
+		XMLPacmanMovementDirectory = this.readStringConfiguration(levelNode, XMLConstants.PACMAN);
+		XMLSerializationPath = this.readStringConfiguration(levelNode, XMLConstants.SAVE_PATH);
 		
-		List<Long> angerWaitingCycles = new ArrayList<Long>();
-		angerWaitingCycles.add(new Long(5000));
-		angerWaitingCycles.add(new Long(7000));
-		angerWaitingCycles.add(new Long(9000));
-		this.setGhostAngerWaitingCycles(angerWaitingCycles);
+		ghostAngerWaitingCycles = this.readAngerCyclesConfiguration(levelNode, XMLConstants.ANGER_CYCLES);
+		ghostDeadWaitingCycles = this.readIntConfiguration(levelNode, XMLConstants.DEAD_CYCLES);
+		ghostPreyWaitingCycles = this.readIntConfiguration(levelNode, XMLConstants.PREY_CYCLES);
+		ghostVision = this.readIntConfiguration(levelNode, XMLConstants.GHOST_VISION);
+		ghostIncrementalVision = this.readIntConfiguration(levelNode, XMLConstants.INCREMENTAL_VISION);
 		
-		this.setGhostDeadWaitingCycles(500);
-		this.setGhostPreyWaitingCycles(350);
-		this.setGhostVision(4);
-		this.setGhostIncrementalVision(1);
+		ticksToRun = this.readLongConfiguration(levelNode, XMLConstants.TICKS_TO_RUN);
 	}
 	
 	public void setStagePath(String XMLStagePath) {
@@ -73,6 +73,44 @@ public class LevelConfigurations extends LevelConfigurationsReader {
 	
 	public void setTicksToRun(int ticksToRun) {
 		this.ticksToRun = ticksToRun;
+	}
+	
+	private List<Long> readAngerCyclesConfiguration(Node levelNode, String tagName) {
+		List<Long> angerCycles = new ArrayList<Long>();
+		try {
+			Node angerCyclesNode = XMLReader.getFirstNodeWithName(levelNode, tagName);
+			List<Node> valueNodes = XMLReader.getNodeByName(angerCyclesNode, XMLConstants.VALUE);
+			for (Node valueNode : valueNodes) {
+				long value = Long.parseLong(valueNode.getNodeValue());
+				angerCycles.add(value);
+			}
+		} catch (NoNodeWithThatNameException ex) { }
+		return angerCycles;
+	}
+	
+	
+	private String readStringConfiguration(Node levelNode, String tagName) {
+		try {
+			return XMLReader.getFirstNodeValueWithName(levelNode, tagName);
+		} catch (NoNodeWithThatNameException ex) {
+			return "";
+		}
+	}
+	
+	private int readIntConfiguration(Node levelNode, String tagName) {
+		try {
+			return XMLReader.getFirstNodeIntValueWithName(levelNode, tagName);
+		} catch (NoNodeWithThatNameException ex) {
+			return 1;
+		}
+	}
+	
+	private long readLongConfiguration(Node levelNode, String tagName) {
+		try {
+			return XMLReader.getFirstNodeLongValueWithName(levelNode, tagName);
+		} catch (NoNodeWithThatNameException ex) {
+			return 10;
+		}
 	}
 	
 }

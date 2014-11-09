@@ -15,9 +15,25 @@ public class SpanishXMLConstants extends XMLConstants {
     }
 
     private void fillTranslationDictionary() {
+		this.translationDictionary.put(GAME, "juego");
+		this.translationDictionary.put(LEVEL, "nivel");
+		this.translationDictionary.put(LEVEL_TYPE, "tipo");
+		this.translationDictionary.put(KEYBOARD_LEVEL, "conTeclado");
+		this.translationDictionary.put(NO_PACMAN_LEVEL, "sinPacman");
+		this.translationDictionary.put(XML_LEVEL, "conXML");
+		this.translationDictionary.put(STAGE, "escenario");
+		this.translationDictionary.put(CHARACTERS, "personajes");
+		this.translationDictionary.put(SAVE_PATH, "guardarEn");
+		this.translationDictionary.put(ANGER_CYCLES, "ciclosFuria");
+		this.translationDictionary.put(VALUE, "valor");
+		this.translationDictionary.put(DEAD_CYCLES, "ciclosMuerto");
+		this.translationDictionary.put(PREY_CYCLES, "ciclosPresa");
+		this.translationDictionary.put(GHOST_VISION, "visionFantasma");
+		this.translationDictionary.put(INCREMENTAL_VISION, "incrementoVision");
+		this.translationDictionary.put(TICKS_TO_RUN, "ciclosACorrer");
+		
         this.translationDictionary.put(TICK, "Tick");
         this.translationDictionary.put(LABYRINTH, "laberinto");
-        this.translationDictionary.put(CHARACTERS, "personajes");
         this.translationDictionary.put(NODE, "nodo");
         this.translationDictionary.put(WIDTH, "ancho");
         this.translationDictionary.put(HEIGHT, "alto");
@@ -26,14 +42,6 @@ public class SpanishXMLConstants extends XMLConstants {
         this.translationDictionary.put(ROW, "fila");
         this.translationDictionary.put(COLUMN, "columna");
         this.translationDictionary.put(ID, "id");
-        this.translationDictionary.put(GAME, "juego");
-		
-		this.translationDictionary.put(LEVEL, "nivel");
-		this.translationDictionary.put(LEVEL_TYPE, "tipo");
-		this.translationDictionary.put(KEYBOARD_LEVEL, "conTeclado");
-		this.translationDictionary.put(NO_PACMAN_LEVEL, "sinPacman");
-		this.translationDictionary.put(XML_LEVEL, "conXML");
-		
         this.translationDictionary.put(PACMAN_POSITION, "posicionPacman");
         this.translationDictionary.put(SENSE, "sentido");
         this.translationDictionary.put(PERSONALITY, "personalidad");

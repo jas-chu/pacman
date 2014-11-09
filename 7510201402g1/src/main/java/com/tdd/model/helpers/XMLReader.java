@@ -1,10 +1,13 @@
 package com.tdd.model.helpers;
 
+import com.tdd.model.exceptions.NoNodeWithThatNameException;
 import com.tdd.model.stageAbstractions.Position;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,7 +58,83 @@ public class XMLReader extends XMLIO {
 		String translatedTagName = XMLReader.getTranslation(tagName);
         return document.getElementsByTagName(translatedTagName);
     }
-
+	
+	/**
+     *
+	 * @param givenNode
+     * @param tagName
+     * @return first node with name=tagName
+     */
+    public static List<Node> getNodeByName(Node givenNode, String tagName) {
+        NodeList children = givenNode.getChildNodes();
+		String translatedTagName = XMLReader.getTranslation(tagName);
+		
+		List<Node> filteredChildren = new ArrayList<Node>();
+		for (int i = 0 ; i < children.getLength() ; ++i) {
+			Node child = children.item(i);
+			if (child.getNodeName().equals(translatedTagName)) {
+				filteredChildren.add(child);
+			}
+		}
+		return filteredChildren;
+    }
+	
+	/**
+     *
+	 * @param givenNode
+     * @param tagName
+     * @return first node with name=tagName
+	 * @throws com.tdd.model.exceptions.NoNodeWithThatNameException
+     */
+    public static Node getFirstNodeWithName(Node givenNode, String tagName) throws NoNodeWithThatNameException {
+        NodeList children = givenNode.getChildNodes();
+		String translatedTagName = XMLReader.getTranslation(tagName);
+		
+		for (int i = 0 ; i < children.getLength() ; ++i) {
+			Node child = children.item(i);
+			if (child.getNodeName().equals(translatedTagName)) {
+				return child;
+			}
+		}
+        throw new NoNodeWithThatNameException();
+    }
+	
+	/**
+     *
+	 * @param givenNode
+     * @param tagName
+     * @return string value of first node with name=tagName
+	 * @throws com.tdd.model.exceptions.NoNodeWithThatNameException
+     */
+    public static String getFirstNodeValueWithName(Node givenNode, String tagName) throws NoNodeWithThatNameException {
+        Node node = XMLReader.getFirstNodeWithName(givenNode, tagName);
+		return node.getNodeValue();
+    }
+	
+	/**
+     *
+	 * @param givenNode
+     * @param tagName
+     * @return integer value of first node with name=tagName
+	 * @throws com.tdd.model.exceptions.NoNodeWithThatNameException
+     */
+    public static Integer getFirstNodeIntValueWithName(Node givenNode, String tagName) throws NoNodeWithThatNameException {
+        String value = XMLReader.getFirstNodeValueWithName(givenNode, tagName);
+		return Integer.parseInt(value);
+    }
+	
+	/**
+     *
+	 * @param givenNode
+     * @param tagName
+     * @return long value of first node with name=tagName
+	 * @throws com.tdd.model.exceptions.NoNodeWithThatNameException
+     */
+    public static Long getFirstNodeLongValueWithName(Node givenNode, String tagName) throws NoNodeWithThatNameException {
+        String value = XMLReader.getFirstNodeValueWithName(givenNode, tagName);
+		return Long.parseLong(value);
+    }
+	
     /**
      *
      * @param node

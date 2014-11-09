@@ -10,9 +10,25 @@ import java.util.Map;
 public abstract class XMLConstants {
 
     /* TRANSLATION KEYS */
+	public static final String GAME = "game";
+	public static final String LEVEL = "level";
+	public static final String LEVEL_TYPE = "type";
+	public static final String KEYBOARD_LEVEL = "keyboardLevel";
+	public static final String NO_PACMAN_LEVEL = "noPacmanLevel";
+	public static final String XML_LEVEL = "xmlLevel";
+	public static final String STAGE = "stage";
+	public static final String CHARACTERS = "characters";
+	public static final String SAVE_PATH = "saveTo";
+	public static final String ANGER_CYCLES = "angerCycles";
+	public static final String VALUE = "value";
+	public static final String DEAD_CYCLES = "deadCycles";
+	public static final String PREY_CYCLES = "preyCycles";
+	public static final String GHOST_VISION = "ghostVision";
+	public static final String INCREMENTAL_VISION = "incrementalVision";
+	public static final String TICKS_TO_RUN = "ticksToRun";
+	
     public static final String TICK = "Tick";
     public static final String LABYRINTH = "labyrinth";
-    public static final String CHARACTERS = "characters";
     public static final String NODE = "node";
     public static final String WIDTH = "width";
     public static final String HEIGHT = "height";
@@ -21,12 +37,6 @@ public abstract class XMLConstants {
     public static final String ROW = "row";
     public static final String COLUMN = "column";
     public static final String ID = "id";
-    public static final String GAME = "game";
-	public static final String LEVEL = "level";
-	public static final String LEVEL_TYPE = "type";
-	public static final String KEYBOARD_LEVEL = "keyboardLevel";
-	public static final String NO_PACMAN_LEVEL = "noPacmanLevel";
-	public static final String XML_LEVEL = "xmlLevel";
     public static final String PACMAN_POSITION = "pacmanPosition";
     public static final String SENSE = "sense";
     public static final String PERSONALITY = "personality";
