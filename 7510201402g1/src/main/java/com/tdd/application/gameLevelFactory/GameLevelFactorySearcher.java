@@ -35,7 +35,7 @@ public class GameLevelFactorySearcher {
 		
 		GameLevelFactory factory = this.availableFactories.get(levelType);
 		if (factory == null) throw new NoAvailableFactoryException();
-		return factory;
+		return factory.createFactory(levelConfigs);
     }
 
 	private String getLevelType(Node levelNode, XMLConstants gameConstants) throws NoAvailableFactoryException {
