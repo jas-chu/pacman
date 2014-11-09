@@ -6,6 +6,7 @@ import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.languageTools.SpanishXMLConstants;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Application {
 	
@@ -28,17 +29,18 @@ public abstract class Application {
 //		
 //		configs.XMLPacmanMovementDirectory = completeRootPath + XMLConstants.PACMAN;
 		
-		configs.XMLSerializationPath = System.getProperty("user.dir")+ File.separator + "ciclosJuego";
+		configs.setSerializationPath(System.getProperty("user.dir")+ File.separator + "ciclosJuego");
 		
-		configs.ghostAngerWaitingCycles = new ArrayList<Long>();
-		configs.ghostAngerWaitingCycles.add(new Long(5000));
-		configs.ghostAngerWaitingCycles.add(new Long(7000));
-		configs.ghostAngerWaitingCycles.add(new Long(9000));
+		List<Long> angerWaitingCycles = new ArrayList<Long>();
+		angerWaitingCycles.add(new Long(5000));
+		angerWaitingCycles.add(new Long(7000));
+		angerWaitingCycles.add(new Long(9000));
+		configs.setGhostAngerWaitingCycles(angerWaitingCycles);
 		
-		configs.ghostDeadWaitingCycles = 500;
-		configs.ghostPreyWaitingCycles = 350;
-		configs.ghostVision = 4;
-		configs.ghostIncrementalVision = 1;
+		configs.setGhostDeadWaitingCycles(500);
+		configs.setGhostPreyWaitingCycles(350);
+		configs.setGhostVision(4);
+		configs.setGhostIncrementalVision(1);
 	}
 	
 	protected String configurePaths(String rootPath) {

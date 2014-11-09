@@ -1,15 +1,15 @@
 package com.tdd.application.gameLevelFactory;
 
 import com.tdd.application.game.KeyboardConductedLevel;
-import com.tdd.application.gameAbstractions.GameConfigurations;
+import com.tdd.application.gameAbstractions.GameConfigurationsReader;
 import com.tdd.application.gameAbstractions.GameLevel;
 import com.tdd.application.gameAbstractions.GameLevelFactory;
 import com.tdd.model.exceptions.MalformedXMLException;
 
 public class KeyboardConductedLevelFactory extends GameLevelFactory {
 	
-	public KeyboardConductedLevelFactory(GameConfigurations givenConfigs, String givenXMLStagePath,
-								String givenXMLCharactersPath) {
+	public KeyboardConductedLevelFactory(GameConfigurationsReader givenConfigs, String givenXMLStagePath,
+										String givenXMLCharactersPath) {
 		super(givenConfigs, givenXMLStagePath, givenXMLCharactersPath);
 	}
 	

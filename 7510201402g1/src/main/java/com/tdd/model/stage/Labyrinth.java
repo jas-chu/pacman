@@ -1,7 +1,7 @@
 package com.tdd.model.stage;
 
 import com.tdd.model.exceptions.NoExistingCellException;
-import com.tdd.application.gameAbstractions.GameConfigurations;
+import com.tdd.application.gameAbstractions.GameConfigurationsReader;
 import com.tdd.model.helpers.LabyrinthLoader;
 import com.tdd.model.cell.cellBuilding.CellBuilder;
 import com.tdd.model.enemy.enemyBuilding.EnemyBuilder;
@@ -51,7 +51,7 @@ public class Labyrinth implements Stage {
 	 * @param XMLCharactersPath
      * @throws com.tdd.model.exceptions.MalformedXMLException
      */
-    public Labyrinth(GameConfigurations givenConfigs, String XMLStagePath, String XMLCharactersPath) throws MalformedXMLException {
+    public Labyrinth(GameConfigurationsReader givenConfigs, String XMLStagePath, String XMLCharactersPath) throws MalformedXMLException {
         this.staticItems = new ArrayList<StaticItem>();
 		this.movingItems = new ArrayList<MovingItem>();
         this.enemies = new ArrayList<Enemy>();
@@ -75,7 +75,7 @@ public class Labyrinth implements Stage {
         this.ghostStart = this.labyrinthLoader.getGhostStartPosition();
     }
 	
-    private void loadCells(GameConfigurations givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
+    private void loadCells(GameConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
         NodeList nodes = this.labyrinthLoader.getNodes();
         CellBuilder cellBuilder = new CellBuilder();
         ItemBuilder itemBuilder = new ItemBuilder();
@@ -87,7 +87,7 @@ public class Labyrinth implements Stage {
                 Cell createdCell = cellBuilder.createCell(nodes, node);
                 String cellContent = XMLReader.getAttributeValue(node, XMLConstants.CONTENT);
                 if (!cellContent.isEmpty()) {
-					String translatedCellContent = givenConfigs.XMLGameConstants.getInvertedItemValueTranslation(cellContent);
+					String translatedCellContent = givenConfigs.getGameConstants().getInvertedItemValueTranslation(cellContent);
                     this.staticItems.add(itemBuilder.createItem(this, createdCell.getPosition(), translatedCellContent));
                 }
                 mapRow.add(createdCell);
@@ -96,7 +96,7 @@ public class Labyrinth implements Stage {
         }
     }
 	
-    private void loadEnemies(GameConfigurations givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
+    private void loadEnemies(GameConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
         NodeList ghostsNodes = this.gameCharactersLoader.getGhostNodes();
 		if (ghostsNodes == null) return;
 		

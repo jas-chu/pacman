@@ -2,7 +2,7 @@ package com.tdd.application.game;
 
 import com.tdd.application.gameAbstractions.GameLevelFactory;
 import com.tdd.application.gameAbstractions.Game;
-import com.tdd.application.gameAbstractions.GameConfigurations;
+import com.tdd.application.gameAbstractions.GameConfigurationsReader;
 import com.tdd.application.gameAbstractions.GameLevel;
 import com.tdd.model.exceptions.MalformedXMLException;
 import com.tdd.model.stage.Pacman;
@@ -13,11 +13,11 @@ import java.util.logging.Logger;
 
 public abstract class ActualGame implements Game {
 	
-	private GameConfigurations configs;
+	private GameConfigurationsReader configs;
 	private Protagonist protagonist;
 	private List<GameLevelFactory> levelFactories;
 	
-	public ActualGame(GameConfigurations givenConfigs, List<GameLevelFactory> givenLevelFactories) {
+	public ActualGame(GameConfigurationsReader givenConfigs, List<GameLevelFactory> givenLevelFactories) {
 		this.configs = givenConfigs;
 		this.protagonist = new Pacman();
 		this.levelFactories = givenLevelFactories;

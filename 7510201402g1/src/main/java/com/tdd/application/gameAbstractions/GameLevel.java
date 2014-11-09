@@ -12,14 +12,14 @@ import java.util.List;
 
 public abstract class GameLevel {
 
-    protected GameConfigurations configs;
+    protected GameConfigurationsReader configs;
     private Stage stage;
     private List<Enemy> enemies;
 	private List<MovingItem> movingItems;
     protected Protagonist protagonist = null;
 	protected long ticks = 1;
 
-    public GameLevel(GameConfigurations givenConfigs, String XMLStagePath,
+    public GameLevel(GameConfigurationsReader givenConfigs, String XMLStagePath,
 					String XMLCharactersPath) throws MalformedXMLException {
 		
 		this.configs = givenConfigs;

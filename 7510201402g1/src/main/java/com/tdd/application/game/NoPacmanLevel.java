@@ -1,7 +1,7 @@
 package com.tdd.application.game;
 
 import com.tdd.application.gameAbstractions.GameLevel;
-import com.tdd.application.gameAbstractions.GameConfigurations;
+import com.tdd.application.gameAbstractions.GameConfigurationsReader;
 import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.exceptions.MalformedXMLException;
 import com.tdd.model.stageAbstractions.Protagonist;
@@ -10,7 +10,7 @@ public class NoPacmanLevel extends GameLevel {
 	
 	private long ticksToRun;
 	
-	public NoPacmanLevel(GameConfigurations givenConfigs, String XMLStagePath,
+	public NoPacmanLevel(GameConfigurationsReader givenConfigs, String XMLStagePath,
 						String XMLCharactersPath, long givenTicksToRun)
 						throws MalformedXMLException {
 		

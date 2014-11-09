@@ -1,6 +1,6 @@
 package com.tdd.controller.playerController;
 
-import com.tdd.application.gameAbstractions.GameConfigurations;
+import com.tdd.application.gameAbstractions.GameConfigurationsReader;
 import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.directionFactory.DirectionGenerator;
@@ -13,7 +13,7 @@ import org.w3c.dom.Node;
 
 public class XMLPlayerController implements PlayerController {
 	
-	private GameConfigurations configs;
+	private GameConfigurationsReader configs;
 	private String XMLPacmanDirectory;
 	private DirectionGenerator directionGenerator;
 	private Integer currentCycle;
@@ -22,7 +22,7 @@ public class XMLPlayerController implements PlayerController {
 	 *
 	 * @param givenConfigs
 	 */
-	public XMLPlayerController(GameConfigurations givenConfigs, String XMLPacmanMovementDirectory) {
+	public XMLPlayerController(GameConfigurationsReader givenConfigs, String XMLPacmanMovementDirectory) {
 		this.configs = givenConfigs;
 		this.XMLPacmanDirectory = XMLPacmanMovementDirectory;
 		this.directionGenerator = new DirectionGenerator();
@@ -46,13 +46,13 @@ public class XMLPlayerController implements PlayerController {
 
 	private String getCurrentCycleXML() {
 		String dir = this.XMLPacmanDirectory;
-		String prefix = this.configs.XMLGameConstants.getConstantTranslation(XMLConstants.PACMAN);
-		prefix += this.configs.XMLGameConstants.getConstantTranslation(XMLConstants.TICK);
+		String prefix = this.configs.getGameConstants().getConstantTranslation(XMLConstants.PACMAN);
+		prefix += this.configs.getGameConstants().getConstantTranslation(XMLConstants.TICK);
 		return dir + File.separator + prefix + this.currentCycle.toString() + ".xml";
 	}
 	
 	private Direction createNewDirection(String direction) throws NoAvailableFactoryException {
-		String translatedDirection = this.configs.XMLGameConstants.getInvertedDirectionValueTranslation(direction);
+		String translatedDirection = this.configs.getGameConstants().getInvertedDirectionValueTranslation(direction);
 		return this.directionGenerator.createDirection(translatedDirection);
 	}
 	
