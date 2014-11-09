@@ -3,7 +3,6 @@ package com.tdd.application.gameLevelFactory;
 import com.tdd.application.configuration.LevelConfigurations;
 import com.tdd.application.gameAbstractions.GameLevelFactory;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
-import com.tdd.model.exceptions.NotMyJobException;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.helpers.XMLReader;
 import java.util.HashMap;

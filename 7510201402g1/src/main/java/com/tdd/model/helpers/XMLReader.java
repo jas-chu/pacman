@@ -99,6 +99,12 @@ public class XMLReader extends XMLIO {
         throw new NoNodeWithThatNameException();
     }
 	
+	public static String getNodeValue(Node node) {
+		NodeList nodeList = node.getChildNodes();
+		Node nValue = (Node) nodeList.item(0);
+		return nValue.getNodeValue();
+	}
+	
 	/**
      *
 	 * @param givenNode
@@ -108,7 +114,7 @@ public class XMLReader extends XMLIO {
      */
     public static String getFirstNodeValueWithName(Node givenNode, String tagName) throws NoNodeWithThatNameException {
         Node node = XMLReader.getFirstNodeWithName(givenNode, tagName);
-		return node.getNodeValue();
+		return XMLReader.getNodeValue(node);
     }
 	
 	/**

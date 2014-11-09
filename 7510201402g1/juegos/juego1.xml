@@ -1,0 +1,15 @@
+<juego>
+	<nivel tipo="conTeclado">
+		<escenario>../doc/xmls/test_fantasma_pacman/laberintos/LaberintoSimple.xml</escenario>
+		<personajes>../doc/xmls/test_fantasma_pacman/laberintos/PersonajesSimple.xml</personajes>
+		<ciclosFuria>
+			<valor>100</valor>
+			<valor>200</valor>
+			<valor>300</valor>
+		</ciclosFuria>
+		<ciclosMuerto>250</ciclosMuerto>
+		<ciclosPresa>175</ciclosPresa>
+		<visionFantasma>3</visionFantasma>
+		<incrementoVision>1</incrementoVision>
+	</nivel>
+</juego>

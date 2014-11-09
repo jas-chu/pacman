@@ -81,7 +81,7 @@ public class LevelConfigurations extends LevelConfigurationsReader {
 			Node angerCyclesNode = XMLReader.getFirstNodeWithName(levelNode, tagName);
 			List<Node> valueNodes = XMLReader.getNodeByName(angerCyclesNode, XMLConstants.VALUE);
 			for (Node valueNode : valueNodes) {
-				long value = Long.parseLong(valueNode.getNodeValue());
+				long value = Long.parseLong(XMLReader.getNodeValue(valueNode));
 				angerCycles.add(value);
 			}
 		} catch (NoNodeWithThatNameException ex) { }
