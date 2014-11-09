@@ -1,6 +1,6 @@
 package com.tdd.application.gameAbstractions;
 
-public interface Game {
+public interface PacmanGame {
 	
 	public void gameLoop();
 	
