@@ -11,8 +11,8 @@ public abstract class LevelConfigurationsReader {
 	// LEVEL PATHS
 	protected String XMLStagePath = "";
 	protected String XMLCharactersPath = "";
-	protected String XMLSerializationPath = "";
 	protected String XMLPacmanMovementDirectory = "";
+	protected String XMLSerializationPath = "";
 	
 	// LEVEL PARAMETERS
 	protected List<Long> ghostAngerWaitingCycles = new ArrayList<Long>();
@@ -20,6 +20,7 @@ public abstract class LevelConfigurationsReader {
 	protected int ghostPreyWaitingCycles = 1;
 	protected int ghostVision = 1;
     protected int ghostIncrementalVision = 1;
+	protected long ticksToRun = 10;
 	
 	public LevelConfigurationsReader(XMLConstants givenConstants) {
 		this.XMLGameConstants = givenConstants;
@@ -27,6 +28,18 @@ public abstract class LevelConfigurationsReader {
 
 	public XMLConstants getGameConstants() {
 		return XMLGameConstants;
+	}
+	
+	public String getStagePath() {
+		return XMLStagePath;
+	}
+
+	public String getCharactersPath() {
+		return XMLCharactersPath;
+	}
+
+	public String getPacmanMovementDirectory() {
+		return XMLPacmanMovementDirectory;
 	}
 
 	public String getSerializationPath() {
@@ -53,16 +66,8 @@ public abstract class LevelConfigurationsReader {
 		return ghostIncrementalVision;
 	}
 
-	public String getStagePath() {
-		return XMLStagePath;
-	}
-
-	public String getCharactersPath() {
-		return XMLCharactersPath;
-	}
-
-	public String getPacmanMovementDirectory() {
-		return XMLPacmanMovementDirectory;
+	public long getTicksToRun() {
+		return ticksToRun;
 	}
 	
 }

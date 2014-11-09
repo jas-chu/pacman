@@ -7,14 +7,13 @@ import org.w3c.dom.Node;
 
 public class LevelConfigurations extends LevelConfigurationsReader {
 	
-	
-	
 	public LevelConfigurations(XMLConstants givenConstants) {
 		super(givenConstants);
 	}
 	
 	public LevelConfigurations(XMLConstants givenConstants, Node levelNode) {
 		super(givenConstants);
+		throw new UnsupportedOperationException("Not supported yet.");
 	}
 	
 	// TO DO
@@ -34,6 +33,18 @@ public class LevelConfigurations extends LevelConfigurationsReader {
 		this.setGhostPreyWaitingCycles(350);
 		this.setGhostVision(4);
 		this.setGhostIncrementalVision(1);
+	}
+	
+	public void setStagePath(String XMLStagePath) {
+		this.XMLStagePath = XMLStagePath;
+	}
+
+	public void setCharactersPath(String XMLCharactersPath) {
+		this.XMLCharactersPath = XMLCharactersPath;
+	}
+
+	public void setPacmanMovementDirectory(String XMLPacmanMovementDirectory) {
+		this.XMLPacmanMovementDirectory = XMLPacmanMovementDirectory;
 	}
 	
 	public void setSerializationPath(String XMLSerializationPath) {
@@ -60,16 +71,8 @@ public class LevelConfigurations extends LevelConfigurationsReader {
 		this.ghostIncrementalVision = ghostIncrementalVision;
 	}
 	
-	public void setStagePath(String XMLStagePath) {
-		this.XMLStagePath = XMLStagePath;
-	}
-
-	public void setCharactersPath(String XMLCharactersPath) {
-		this.XMLCharactersPath = XMLCharactersPath;
-	}
-
-	public void setPacmanMovementDirectory(String XMLPacmanMovementDirectory) {
-		this.XMLPacmanMovementDirectory = XMLPacmanMovementDirectory;
+	public void setTicksToRun(int ticksToRun) {
+		this.ticksToRun = ticksToRun;
 	}
 	
 }
