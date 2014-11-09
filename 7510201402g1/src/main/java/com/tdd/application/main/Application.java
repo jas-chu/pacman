@@ -15,6 +15,7 @@ import org.w3c.dom.NodeList;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class Application extends StateBasedGame {
@@ -35,18 +36,18 @@ public class Application extends StateBasedGame {
     }
 
     private List<GameLevelFactory> createLevels(String xmlGamePath, XMLConstants gameConstants) throws NoAvailableFactoryException {
-		NodeList levelNodes = XMLReader.getNodeByName(xmlGamePath, XMLConstants.LEVEL);
-		
-		GameLevelFactorySearcher levelFactorySearcher = new GameLevelFactorySearcher();
-		List<GameLevelFactory> factories = new ArrayList<GameLevelFactory>();
-		
-		for (int i = 0 ; i < levelNodes.getLength() ; ++i) {
-			GameLevelFactory levelFactory = levelFactorySearcher.getFactory(levelNodes.item(i), gameConstants);
-			factories.add(levelFactory);
-		}
-		
-		return factories;
-	}
+        NodeList levelNodes = XMLReader.getNodeByName(xmlGamePath, XMLConstants.LEVEL);
+
+        GameLevelFactorySearcher levelFactorySearcher = new GameLevelFactorySearcher();
+        List<GameLevelFactory> factories = new ArrayList<GameLevelFactory>();
+
+        for (int i = 0; i < levelNodes.getLength(); ++i) {
+            GameLevelFactory levelFactory = levelFactorySearcher.getFactory(levelNodes.item(i), gameConstants);
+            factories.add(levelFactory);
+        }
+
+        return factories;
+    }
 
     public void run() {
         this.game.gameLoop();
@@ -54,7 +55,8 @@ public class Application extends StateBasedGame {
 
     @Override
     public void initStatesList(GameContainer gc) throws SlickException {
-        
+        BasicGameState basicGame = (BasicGameState) this.game;
+        this.addState(basicGame);
     }
-	
+
 }
