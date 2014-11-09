@@ -1,14 +1,14 @@
 package com.tdd.model.stage;
 
 import com.tdd.model.exceptions.NoExistingCellException;
-import com.tdd.application.gameAbstractions.GameConfigurationsReader;
+import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.model.helpers.LabyrinthLoader;
 import com.tdd.model.cell.cellBuilding.CellBuilder;
 import com.tdd.model.enemy.enemyBuilding.EnemyBuilder;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.exceptions.MalformedXMLException;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
-import com.tdd.model.helpers.GameCharactersLoader;
+import com.tdd.model.helpers.LevelCharactersLoader;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.itemBuilding.ItemBuilder;
@@ -42,7 +42,7 @@ public class Labyrinth implements Stage {
     private Position ghostStart;
     private List<List<Cell>> cells;
     private final LabyrinthLoader labyrinthLoader;
-    private final GameCharactersLoader gameCharactersLoader;
+    private final LevelCharactersLoader gameCharactersLoader;
 
     /**
      *
@@ -51,12 +51,12 @@ public class Labyrinth implements Stage {
 	 * @param XMLCharactersPath
      * @throws com.tdd.model.exceptions.MalformedXMLException
      */
-    public Labyrinth(GameConfigurationsReader givenConfigs, String XMLStagePath, String XMLCharactersPath) throws MalformedXMLException {
+    public Labyrinth(LevelConfigurationsReader givenConfigs) throws MalformedXMLException {
         this.staticItems = new ArrayList<StaticItem>();
 		this.movingItems = new ArrayList<MovingItem>();
         this.enemies = new ArrayList<Enemy>();
-        this.labyrinthLoader = new LabyrinthLoader(XMLStagePath);
-        this.gameCharactersLoader = new GameCharactersLoader(XMLCharactersPath);
+        this.labyrinthLoader = new LabyrinthLoader(givenConfigs.getStagePath());
+        this.gameCharactersLoader = new LevelCharactersLoader(givenConfigs.getCharactersPath());
         try {
             this.loadInitialLabyrinthConfigurations();
             this.loadCells(givenConfigs);
@@ -75,7 +75,7 @@ public class Labyrinth implements Stage {
         this.ghostStart = this.labyrinthLoader.getGhostStartPosition();
     }
 	
-    private void loadCells(GameConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
+    private void loadCells(LevelConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
         NodeList nodes = this.labyrinthLoader.getNodes();
         CellBuilder cellBuilder = new CellBuilder();
         ItemBuilder itemBuilder = new ItemBuilder();
@@ -96,7 +96,7 @@ public class Labyrinth implements Stage {
         }
     }
 	
-    private void loadEnemies(GameConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
+    private void loadEnemies(LevelConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
         NodeList ghostsNodes = this.gameCharactersLoader.getGhostNodes();
 		if (ghostsNodes == null) return;
 		

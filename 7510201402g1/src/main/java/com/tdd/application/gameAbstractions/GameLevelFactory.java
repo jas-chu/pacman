@@ -1,17 +1,14 @@
 package com.tdd.application.gameAbstractions;
 
+import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.model.exceptions.MalformedXMLException;
 
 public abstract class GameLevelFactory {
 	
-	protected GameConfigurationsReader configs;
-	protected String XMLStagePath;
-	protected String XMLCharactersPath;
+	protected LevelConfigurationsReader configs;
 	
-	public GameLevelFactory(GameConfigurationsReader givenConfigs, String givenXMLStagePath, String givenXMLCharactersPath) {
+	public GameLevelFactory(LevelConfigurationsReader givenConfigs) {
 		this.configs = givenConfigs;
-		this.XMLStagePath = givenXMLStagePath;
-		this.XMLCharactersPath = givenXMLCharactersPath;
 	}
 	
 	public abstract GameLevel createLevel() throws MalformedXMLException;

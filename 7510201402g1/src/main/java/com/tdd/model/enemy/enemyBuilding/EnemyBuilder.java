@@ -1,6 +1,6 @@
 package com.tdd.model.enemy.enemyBuilding;
 
-import com.tdd.application.gameAbstractions.GameConfigurationsReader;
+import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.model.directionFactory.DirectionGenerator;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.states.StateFactory;
@@ -32,7 +32,7 @@ public class EnemyBuilder {
      * @throws NoAvailableFactoryException
      * @throws AttributeNotFoundException 
      */
-    public Enemy createEnemy(Stage stage, GameConfigurationsReader givenConfigs, Position givenPosition, Node ghostNode) throws NoAvailableFactoryException, AttributeNotFoundException {
+    public Enemy createEnemy(Stage stage, LevelConfigurationsReader givenConfigs, Position givenPosition, Node ghostNode) throws NoAvailableFactoryException, AttributeNotFoundException {
 
         String sense = XMLReader.getAttributeValue(ghostNode, XMLConstants.SENSE);
         String personality = XMLReader.getAttributeValue(ghostNode, XMLConstants.PERSONALITY);

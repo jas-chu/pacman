@@ -20,19 +20,13 @@ public class XMLIO {
 		return null;
 	}
 	
-	/**
-     *
-     * @param gameConstants
-     */
-    public static void configureLanguage(XMLConstants gameConstants) {
-        XMLIO.CONSTANTS = gameConstants;
-        XMLIO.CONFIGURED = true;
+	public static void configureLanguage(XMLConstants gameConstants) {
+		if (!(XMLIO.CONFIGURED)) {
+			XMLIO.CONSTANTS = gameConstants;
+			XMLIO.CONFIGURED = true;
+		}
     }
 
-    /**
-     *
-	 * @param device
-     */
     protected static void testConfiguration(String device) {
         if (!XMLIO.CONFIGURED) {
             throw new RuntimeException(device + " was not configured correctly");

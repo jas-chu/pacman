@@ -26,6 +26,7 @@ public class SpanishXMLConstants extends XMLConstants {
         this.translationDictionary.put(COLUMN, "columna");
         this.translationDictionary.put(ID, "id");
         this.translationDictionary.put(GAME, "juego");
+		this.translationDictionary.put(LEVEL, "nivel");
         this.translationDictionary.put(PACMAN_POSITION, "posicionPacman");
         this.translationDictionary.put(SENSE, "sentido");
         this.translationDictionary.put(PERSONALITY, "personalidad");
@@ -51,6 +52,7 @@ public class SpanishXMLConstants extends XMLConstants {
         this.translationDictionary.put(CONTENT, "contiene");
         this.translationDictionary.put(DOT, "bolita");
         this.translationDictionary.put(BIG_DOT, "bolon");
+		this.translationDictionary.put(FRUIT, "fruta");
 
         this.translationDictionary.put(HUNTER, "cazador");
         this.translationDictionary.put(DEAD, "muerto");
@@ -81,6 +83,7 @@ public class SpanishXMLConstants extends XMLConstants {
 	private void fillItemValuesDictionary() {
         this.invertedItemValuesDictionary.put("bolita", DOT);
 		this.invertedItemValuesDictionary.put("bolon", BIG_DOT);
+		this.invertedItemValuesDictionary.put("fruta", FRUIT);
     }
 
 }

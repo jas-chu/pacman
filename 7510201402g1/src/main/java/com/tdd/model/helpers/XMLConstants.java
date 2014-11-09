@@ -22,6 +22,7 @@ public abstract class XMLConstants {
     public static final String COLUMN = "column";
     public static final String ID = "id";
     public static final String GAME = "game";
+	public static final String LEVEL = "level";
     public static final String PACMAN_POSITION = "pacmanPosition";
     public static final String SENSE = "sense";
     public static final String PERSONALITY = "personality";
@@ -50,6 +51,7 @@ public abstract class XMLConstants {
     public static final String CONTENT = "content";
     public static final String DOT = "dot";
     public static final String BIG_DOT = "bigDot";
+	public static final String FRUIT = "fruit";
 
     /* STATUS VALUES */
     public static final String HUNTER = "hunter";

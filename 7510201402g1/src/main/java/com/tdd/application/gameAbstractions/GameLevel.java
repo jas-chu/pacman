@@ -1,5 +1,6 @@
 package com.tdd.application.gameAbstractions;
 
+import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.exceptions.MalformedXMLException;
 import com.tdd.model.stage.Labyrinth;
@@ -12,24 +13,21 @@ import java.util.List;
 
 public abstract class GameLevel {
 
-    protected GameConfigurationsReader configs;
+    protected LevelConfigurationsReader configs;
     private Stage stage;
     private List<Enemy> enemies;
 	private List<MovingItem> movingItems;
     protected Protagonist protagonist = null;
 	protected long ticks = 1;
 
-    public GameLevel(GameConfigurationsReader givenConfigs, String XMLStagePath,
-					String XMLCharactersPath) throws MalformedXMLException {
-		
+    public GameLevel(LevelConfigurationsReader givenConfigs) throws MalformedXMLException {
 		this.configs = givenConfigs;
-        this.createModel(XMLStagePath, XMLCharactersPath);
+        this.createModel();
 		this.createViews();
     }
 	
-	private void createModel(String XMLStagePath, String XMLCharactersPath) throws MalformedXMLException {
-		
-		this.stage = new Labyrinth(this.configs, XMLStagePath, XMLCharactersPath);
+	private void createModel() throws MalformedXMLException {
+		this.stage = new Labyrinth(this.configs);
 		this.enemies = this.stage.getEnemies();
 		this.movingItems = this.stage.getMovingItems();
 	}

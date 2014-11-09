@@ -15,13 +15,13 @@ import javax.xml.transform.TransformerException;
  *
  *
  */
-public class GameCharactersSerializer {
+public class LevelCharactersSerializer {
 
     private final XMLConstants gameConstants;
     private final String filePath;
     private final GameLevel game;
 
-    public GameCharactersSerializer(GameLevel givenGame, String filePath, XMLConstants constants) {
+    public LevelCharactersSerializer(GameLevel givenGame, String filePath, XMLConstants constants) {
         this.gameConstants = constants;
         this.filePath = filePath;
         this.game = givenGame;

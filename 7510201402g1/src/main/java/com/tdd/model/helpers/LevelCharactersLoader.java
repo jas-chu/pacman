@@ -9,7 +9,7 @@ import org.w3c.dom.NodeList;
  *
  *
  */
-public class GameCharactersLoader {
+public class LevelCharactersLoader {
 
     private final Node game;
     private final NodeList ghosts;
@@ -18,7 +18,7 @@ public class GameCharactersLoader {
      *
      * @param xmlPath
      */
-    public GameCharactersLoader(String xmlPath) {
+    public LevelCharactersLoader(String xmlPath) {
         this.game = XMLReader.getNodeByName(xmlPath, XMLConstants.GAME).item(0);
         this.ghosts = XMLReader.getNodeByName(xmlPath, XMLConstants.GHOST);
     }

@@ -1,6 +1,6 @@
 package com.tdd.controller.playerController;
 
-import com.tdd.application.gameAbstractions.GameConfigurationsReader;
+import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.directionFactory.DirectionGenerator;
@@ -13,8 +13,7 @@ import org.w3c.dom.Node;
 
 public class XMLPlayerController implements PlayerController {
 	
-	private GameConfigurationsReader configs;
-	private String XMLPacmanDirectory;
+	private LevelConfigurationsReader configs;
 	private DirectionGenerator directionGenerator;
 	private Integer currentCycle;
 	
@@ -22,9 +21,8 @@ public class XMLPlayerController implements PlayerController {
 	 *
 	 * @param givenConfigs
 	 */
-	public XMLPlayerController(GameConfigurationsReader givenConfigs, String XMLPacmanMovementDirectory) {
+	public XMLPlayerController(LevelConfigurationsReader givenConfigs) {
 		this.configs = givenConfigs;
-		this.XMLPacmanDirectory = XMLPacmanMovementDirectory;
 		this.directionGenerator = new DirectionGenerator();
 		this.currentCycle = 1;
 	}
@@ -45,7 +43,7 @@ public class XMLPlayerController implements PlayerController {
 	}
 
 	private String getCurrentCycleXML() {
-		String dir = this.XMLPacmanDirectory;
+		String dir = this.configs.getPacmanMovementDirectory();
 		String prefix = this.configs.getGameConstants().getConstantTranslation(XMLConstants.PACMAN);
 		prefix += this.configs.getGameConstants().getConstantTranslation(XMLConstants.TICK);
 		return dir + File.separator + prefix + this.currentCycle.toString() + ".xml";

@@ -1,27 +1,28 @@
-package com.tdd.application.gameAbstractions;
+package com.tdd.application.configuration;
 
 import com.tdd.model.helpers.XMLConstants;
-import com.tdd.model.helpers.XMLIO;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class GameConfigurationsReader {
+public abstract class LevelConfigurationsReader {
 	
-	protected XMLConstants XMLGameConstants;
+	protected final XMLConstants XMLGameConstants;
 	
-	// PATHS
+	// LEVEL PATHS
+	protected String XMLStagePath = "";
+	protected String XMLCharactersPath = "";
 	protected String XMLSerializationPath = "";
+	protected String XMLPacmanMovementDirectory = "";
 	
-	// GAME PARAMETERS
+	// LEVEL PARAMETERS
 	protected List<Long> ghostAngerWaitingCycles = new ArrayList<Long>();
 	protected int ghostDeadWaitingCycles = 1;
 	protected int ghostPreyWaitingCycles = 1;
 	protected int ghostVision = 1;
     protected int ghostIncrementalVision = 1;
 	
-	public GameConfigurationsReader(XMLConstants givenConstants) {
+	public LevelConfigurationsReader(XMLConstants givenConstants) {
 		this.XMLGameConstants = givenConstants;
-		XMLIO.configureLanguage(this.XMLGameConstants);
 	}
 
 	public XMLConstants getGameConstants() {
@@ -50,6 +51,18 @@ public abstract class GameConfigurationsReader {
 
 	public int getGhostIncrementalVision() {
 		return ghostIncrementalVision;
+	}
+
+	public String getStagePath() {
+		return XMLStagePath;
+	}
+
+	public String getCharactersPath() {
+		return XMLCharactersPath;
+	}
+
+	public String getPacmanMovementDirectory() {
+		return XMLPacmanMovementDirectory;
 	}
 	
 }

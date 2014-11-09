@@ -1,7 +1,7 @@
 package com.tdd.model.mocks;
 
-import com.tdd.application.gameAbstractions.GameConfigurations;
-import com.tdd.application.gameAbstractions.GameConfigurationsReader;
+import com.tdd.application.configuration.LevelConfigurations;
+import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.stageAbstractions.Strategy;
 import com.tdd.model.helpers.XMLConstants;
@@ -23,7 +23,7 @@ public class MockStrategyFactory implements StrategyFactory {
 
     public MockStrategyFactory(String factoryName) {
         XMLConstants xMLConstants = new SpanishXMLConstants();
-        GameConfigurationsReader gameConfigurations = new GameConfigurations(xMLConstants);
+        LevelConfigurationsReader gameConfigurations = new LevelConfigurations(xMLConstants);
         int ghostVision = gameConfigurations.getGhostVision();
         int ghostIncrementalVision = gameConfigurations.getGhostIncrementalVision();
         this.searcher = new StrategyFactorySearcher(ghostVision, ghostIncrementalVision);
