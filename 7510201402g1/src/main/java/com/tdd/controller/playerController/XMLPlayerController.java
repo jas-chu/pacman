@@ -31,7 +31,6 @@ public class XMLPlayerController implements PlayerController {
 	public Direction getNewDirection() throws NoMoreMovementsException {
 		try {
 			String XMLPath = this.getCurrentCycleXML();
-			Node gameNode = XMLReader.getFirstNode(XMLPath);
 			Node pacmanNode = XMLReader.getNodeByName(XMLPath, XMLConstants.PACMAN).item(0);
 			
 			String direction = XMLReader.getAttributeValue(pacmanNode, XMLConstants.DIRECTION);

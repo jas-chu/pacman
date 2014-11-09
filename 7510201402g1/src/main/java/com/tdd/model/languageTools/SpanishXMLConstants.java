@@ -7,6 +7,7 @@ public class SpanishXMLConstants extends XMLConstants {
     public SpanishXMLConstants() {
         super();
         this.fillTranslationDictionary();
+		this.fillLevelTypeValuesDictionary();
         this.fillDirectionValuesDictionary();
         this.fillStrategyValuesDictionary();
         this.fillStatusValuesDictionary();
@@ -26,7 +27,13 @@ public class SpanishXMLConstants extends XMLConstants {
         this.translationDictionary.put(COLUMN, "columna");
         this.translationDictionary.put(ID, "id");
         this.translationDictionary.put(GAME, "juego");
+		
 		this.translationDictionary.put(LEVEL, "nivel");
+		this.translationDictionary.put(LEVEL_TYPE, "tipo");
+		this.translationDictionary.put(KEYBOARD_LEVEL, "conTeclado");
+		this.translationDictionary.put(NO_PACMAN_LEVEL, "sinPacman");
+		this.translationDictionary.put(XML_LEVEL, "conXML");
+		
         this.translationDictionary.put(PACMAN_POSITION, "posicionPacman");
         this.translationDictionary.put(SENSE, "sentido");
         this.translationDictionary.put(PERSONALITY, "personalidad");
@@ -58,7 +65,13 @@ public class SpanishXMLConstants extends XMLConstants {
         this.translationDictionary.put(DEAD, "muerto");
         this.translationDictionary.put(PREY, "presa");
     }
-
+	
+	private void fillLevelTypeValuesDictionary() {
+		this.invertedLevelTypeValuesDictionary.put("conTeclado", KEYBOARD_LEVEL);
+		this.invertedLevelTypeValuesDictionary.put("sinPacman", NO_PACMAN_LEVEL);
+		this.invertedLevelTypeValuesDictionary.put("conXML", XML_LEVEL);
+	}
+	
     private void fillDirectionValuesDictionary() {
 		this.invertedDirectionValuesDictionary.put("direccion", DIRECTION);
         this.invertedDirectionValuesDictionary.put("arriba", DIRECTION_UP);

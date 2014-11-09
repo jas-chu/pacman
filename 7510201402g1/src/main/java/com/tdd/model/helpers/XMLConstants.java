@@ -23,6 +23,10 @@ public abstract class XMLConstants {
     public static final String ID = "id";
     public static final String GAME = "game";
 	public static final String LEVEL = "level";
+	public static final String LEVEL_TYPE = "type";
+	public static final String KEYBOARD_LEVEL = "keyboardLevel";
+	public static final String NO_PACMAN_LEVEL = "noPacmanLevel";
+	public static final String XML_LEVEL = "xmlLevel";
     public static final String PACMAN_POSITION = "pacmanPosition";
     public static final String SENSE = "sense";
     public static final String PERSONALITY = "personality";
@@ -60,6 +64,7 @@ public abstract class XMLConstants {
 
     /* DICTIONARIES */
     protected Map<String, String> translationDictionary;
+	protected Map<String, String> invertedLevelTypeValuesDictionary;
     protected Map<String, String> invertedDirectionValuesDictionary;
     protected Map<String, String> invertedStrategyValuesDictionary;
     protected Map<String, String> invertedStatusValuesDictionary;
@@ -67,6 +72,7 @@ public abstract class XMLConstants {
 
     public XMLConstants() {
         this.translationDictionary = new HashMap<String, String>();
+		this.invertedLevelTypeValuesDictionary = new HashMap<String, String>();
         this.invertedDirectionValuesDictionary = new HashMap<String, String>();
         this.invertedStrategyValuesDictionary = new HashMap<String, String>();
         this.invertedStatusValuesDictionary = new HashMap<String, String>();
@@ -82,7 +88,18 @@ public abstract class XMLConstants {
     public String getConstantTranslation(String key) {
         return this.searchTranslation(this.translationDictionary, key);
     }
-
+	
+	/**
+     * Translates key representing a level type value from specific to default
+     * language.
+     *
+     * @param key
+     * @return
+     */
+    public String getInvertedLevelTypeValueTranslation(String key) {
+        return this.searchTranslation(this.invertedLevelTypeValuesDictionary, key);
+    }
+	
     /**
      * Translates key representing a direction value from specific to default
      * language.
