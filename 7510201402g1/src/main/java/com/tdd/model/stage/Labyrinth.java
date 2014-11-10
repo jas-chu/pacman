@@ -13,6 +13,7 @@ import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.itemBuilding.ItemBuilder;
 import com.tdd.model.stageAbstractions.Cell;
+import com.tdd.model.stageAbstractions.Consumable;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.StaticItem;
@@ -88,7 +89,8 @@ public class Labyrinth implements Stage {
                 String cellContent = XMLReader.getAttributeValue(node, XMLConstants.CONTENT);
                 if (!cellContent.isEmpty()) {
 					String translatedCellContent = givenConfigs.getGameConstants().getInvertedItemValueTranslation(cellContent);
-                    this.staticItems.add(itemBuilder.createItem(this, createdCell.getPosition(), translatedCellContent));
+                    Consumable item = itemBuilder.createItem(this, createdCell.getPosition(), translatedCellContent, givenConfigs);
+					item.addToList(this.staticItems, this.movingItems);
                 }
                 mapRow.add(createdCell);
             }
@@ -115,7 +117,7 @@ public class Labyrinth implements Stage {
 		this.pacman.placeOnStage(this, this.pacmanStart);
         this.placeProtagonistAtHome(this.pacman);
     }
-
+	
     @Override
     public Integer getWidth() {
         return this.width;
@@ -262,17 +264,25 @@ public class Labyrinth implements Stage {
             enemy.turnToPrey();
         }
     }
-
-    @Override
-    public void removeItem(StaticItem givenItem) {
-        try {
-            Position itemPosition = givenItem.getPosition();
-            Cell theCell = this.getCell(itemPosition);
-            theCell.removeElement(givenItem);
-            this.staticItems.remove(givenItem);
-        } catch (NoExistingCellException ex) {
-            Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
-        }
+	
+	private void removeItem(StageElement item) {
+		try {
+			this.removeElementFromCell(item);
+		} catch (NoExistingCellException ex) {
+			Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+	
+	@Override
+    public void removeStaticItem(StaticItem givenItem) {
+		this.removeItem(givenItem);
+		this.staticItems.remove(givenItem);
+    }
+	
+	@Override
+    public void removeMovingItem(MovingItem givenItem) {
+		this.removeItem(givenItem);
+		this.movingItems.remove(givenItem);
     }
 
 }

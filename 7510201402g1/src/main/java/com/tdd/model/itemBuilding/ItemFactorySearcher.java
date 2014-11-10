@@ -17,6 +17,7 @@ public class ItemFactorySearcher {
         this.factorySearcher = new HashMap();
         this.factorySearcher.put(XMLConstants.DOT, new DotFactory());
         this.factorySearcher.put(XMLConstants.BIG_DOT, new BigDotFactory());
+		this.factorySearcher.put(XMLConstants.FRUIT, new FruitFactory());
     }
 
     /**

@@ -1,23 +1,38 @@
 package com.tdd.model.stageAbstractions;
 
+import java.util.List;
+
 public abstract class StaticItem extends StageElement implements Consumable {
 	
 	private boolean consumed;
+	private int awardingPoints;
 	
-	public StaticItem(Stage givenStage, Position givenPosition) {
+	public StaticItem(Stage givenStage, Position givenPosition, int givenAwardingPoints) {
 		super(givenStage, givenPosition);
 		this.consumed = false;
+		this.awardingPoints = givenAwardingPoints;
 	}
 
 	@Override
-	public void consume() {
+	public int consume() {
 		this.consumed = true;
-		this.stage.removeItem(this);
+		this.stage.removeStaticItem(this);
+		return this.awardingPoints;
 	}
 	
 	@Override
 	public boolean isConsumed() {
 		return this.consumed;
+	}
+	
+	@Override
+	public int getAwardingPoints() {
+		return this.awardingPoints;
+	}
+	
+	@Override
+	public void addToList(List<StaticItem> staticItems, List<MovingItem> movingItems) {
+		staticItems.add(this);
 	}
 	
 	// COLLISIONS
@@ -29,11 +44,12 @@ public abstract class StaticItem extends StageElement implements Consumable {
 
 	@Override
 	public void collideWithProtagonist(Protagonist givenProtagonist) {
-		this.consume();
+		int points = this.consume();
+		givenProtagonist.awardPoints(points);
 	}
 
 	@Override
-	public void collideWithConsumable(com.tdd.model.stageAbstractions.Consumable givenConsumable) {
+	public void collideWithConsumable(Consumable givenConsumable) {
 		// does nothing, allows functionality extension.
 	}
 

@@ -18,7 +18,8 @@ public class MockStage implements Stage {
     public boolean placeEnemiesAtHomeMethodCalled = false;
     public boolean placeProtagonistAtHomeMethodCalled = false;
     public boolean turnEnemiesToPreyMethodCalled = false;
-    public boolean removeItemMethodCalled = false;
+    public boolean removeStaticItemMethodCalled = false;
+	public boolean removeMovingItemMethodCalled = false;
 	
 	private MockProtagonist protagonist = new MockProtagonist();
 	
@@ -74,9 +75,14 @@ public class MockStage implements Stage {
     }
 
     @Override
-    public void removeItem(StaticItem givenItem) {
-        this.removeItemMethodCalled = true;
+    public void removeStaticItem(StaticItem givenItem) {
+        this.removeStaticItemMethodCalled = true;
     }
+	
+	@Override
+	public void removeMovingItem(MovingItem givenItem) {
+		this.removeMovingItemMethodCalled = true;
+	}
 
     @Override
     public Cell getCell(Position givenPosition) {

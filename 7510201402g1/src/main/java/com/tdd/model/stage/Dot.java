@@ -7,8 +7,8 @@ import com.tdd.model.stageAbstractions.Stage;
 
 public class Dot extends StaticItem {
 
-	public Dot(Stage givenStage, Position givenPosition) {
-		super(givenStage, givenPosition);
+	public Dot(Stage givenStage, Position givenPosition, int givenAwardingPoints) {
+		super(givenStage, givenPosition, givenAwardingPoints);
 	}
 
 	@Override

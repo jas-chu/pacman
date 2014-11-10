@@ -31,7 +31,7 @@ public abstract class ItemTest {
 	public void consume() {
 		this.item.consume();
 		assertTrue(this.item.isConsumed());
-		assertTrue(this.stage.removeItemMethodCalled);
+		assertTrue(this.stage.removeStaticItemMethodCalled);
 	}
 	
 	@Test

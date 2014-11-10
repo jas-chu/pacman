@@ -10,7 +10,7 @@ public class BigDotTest extends ItemTest {
 	@Override
 	public void setUp() {
 		super.setUp();
-		this.item = new BigDot(this.stage, this.position);
+		this.item = new BigDot(this.stage, this.position, 15);
 	}
 	
 	@Test

@@ -66,6 +66,10 @@ public abstract class Protagonist extends MovingElement {
 		return this.score;
 	}
 	
+	public void awardPoints(int awardingPoints) {
+		this.score += awardingPoints;
+	}
+	
 	// COLLISIONS
     @Override
     public void collideWithElement(StageElement anotherElement) {
@@ -90,6 +94,7 @@ public abstract class Protagonist extends MovingElement {
     public void collideWithConsumable(Consumable givenConsumable) {
 		if (this.isOnStage()) {
 			givenConsumable.consume();
+			this.awardPoints(givenConsumable.getAwardingPoints());
 		}
     }
 	

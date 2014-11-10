@@ -8,12 +8,13 @@ public class MockStaticItem extends StaticItem {
 	public boolean consumeMethodCalled = false;
 	
 	public MockStaticItem() {
-		super(null, new Position(0,0));
+		super(null, new Position(0,0), 5);
 	}
 	
 	@Override
-	public void consume() {
+	public int consume() {
 		this.consumeMethodCalled = true;
+		return 5;
 	}
 	
 	@Override

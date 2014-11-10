@@ -29,7 +29,8 @@ public interface Stage {
     public void placeEnemyAtHome(Enemy givenEnemy);
     public void placeProtagonistAtHome(Protagonist givenProtagonist);
 	
-	public void removeItem(StaticItem givenItem);
+	public void removeStaticItem(StaticItem givenItem);
+	public void removeMovingItem(MovingItem givenItem);
     public void turnEnemiesToPrey();
 	
 }

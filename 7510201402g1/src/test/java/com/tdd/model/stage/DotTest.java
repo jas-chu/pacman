@@ -8,7 +8,7 @@ public class DotTest extends ItemTest {
 	@Override
 	public void setUp() {
 		super.setUp();
-		this.item = new Dot(this.stage, this.position);
+		this.item = new Dot(this.stage, this.position, 5);
 	}
 	
 }
