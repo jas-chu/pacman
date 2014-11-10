@@ -4,8 +4,8 @@ import java.util.List;
 
 public abstract class MovingItem extends MovedByStrategy implements Consumable {
 	
-	private boolean consumed;
-	private int awardingPoints;
+	protected boolean consumed;
+	protected int awardingPoints;
 	
 	public MovingItem(Stage givenStage, Position givenPosition, int givenAwardingPoints, StrategyFactory givenStrategyFactory) {
 		super(givenStage, givenPosition, givenStrategyFactory);

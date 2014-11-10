@@ -8,24 +8,49 @@ import com.tdd.model.strategyFactory.RandomStrategyFactory;
 
 public class Fruit extends MovingItem {
 	
-	private long hiddenCycles;
+	private long hiddenWaitingCycles;
+	private long hiddenCountedCycles;
 	private boolean hidden;
 	
 	public Fruit(Stage givenStage, Position givenPosition, int givenAwardingPoints, int givenSpeed, long givenHiddenCycles) {
 		super(givenStage, givenPosition, givenAwardingPoints, new RandomStrategyFactory());
 		this.setSpeed(givenSpeed);
-		this.hiddenCycles = givenHiddenCycles;
+		this.hiddenWaitingCycles = givenHiddenCycles;
 		this.hidden = false;
 	}
 
 	@Override
 	public int consume() {
-		if (this.hidden) return 0;
-		return super.consume();
+		if (this.isHidden()) return 0;
+		this.hide();
+		return this.awardingPoints;
+	}
+	
+	@Override
+	public void advanceMovementCycle() {
+        super.advanceMovementCycle();
+		if (this.isHidden()) {
+			(this.hiddenCountedCycles)++;
+			if (this.hiddenWaitingCycles == this.hiddenCountedCycles) this.show();
+		}
+    }
+	
+	public boolean isHidden() {
+		return this.hidden;
+	}
+	
+	public void show() {
+		this.hidden = false;
+	}
+
+	public void hide() {
+		this.hidden = true;
+		this.hiddenCountedCycles = 0;
 	}
 	
 	@Override
 	public String getMapSerialization() {
+		if (this.isHidden()) return super.getMapSerialization();
 		return XMLConstants.FRUIT;
 	}
 
