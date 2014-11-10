@@ -9,9 +9,11 @@ import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
+import com.tdd.view.View;
+import com.tdd.view.level.LevelView;
 import java.util.List;
 
-public abstract class GameLevel {
+public abstract class GameLevel  {
 
     protected LevelConfigurationsReader configs;
     private Stage stage;
@@ -19,6 +21,7 @@ public abstract class GameLevel {
     private List<MovingItem> movingItems;
     protected Protagonist protagonist = null;
     protected long ticks = 1;
+    private View view;
 
     public GameLevel(LevelConfigurationsReader givenConfigs) throws MalformedXMLException {
         this.configs = givenConfigs;
@@ -27,18 +30,21 @@ public abstract class GameLevel {
     }
 
     private void createModel() throws MalformedXMLException {
-		this.stage = new Labyrinth(this.configs);
+        this.stage = new Labyrinth(this.configs);
         this.enemies = this.stage.getEnemies();
         this.movingItems = this.stage.getMovingItems();
     }
-	
+
     private void createViews() {
-		// OJO!! NO CREAR NADA DEL PROTAGONIST
+       this.view = new LevelView();
+        // OJO!! NO CREAR NADA DEL PROTAGONIST
         // enemies y moving items son atributos
         List<StaticItem> staticItems = this.stage.getStaticItems();
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    public View getView(){
+        return this.view;
+    }
     public void populateWithProtagonist(Protagonist givenProtagonist) {
         if (givenProtagonist == null) {
             return;
@@ -47,7 +53,7 @@ public abstract class GameLevel {
         this.protagonist = givenProtagonist;
         PlayerController controller = this.createPlayerController();
         this.protagonist.setController(controller);
-		this.protagonist.setSpeed(this.configs.getProtagonistSpeed());
+        this.protagonist.setSpeed(this.configs.getProtagonistSpeed());
         this.stage.populateWithProtagonist(givenProtagonist);
         this.createProtagonistView();
     }

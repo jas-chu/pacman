@@ -9,20 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <natives.version>0.0.7</natives.version>
-        <lwjgl.version>2.9.1</lwjgl.version>
-        <slick.version>1.0.1</slick.version>
     </properties>
-    <repositories>
-        <repository>
-            <id>mavenNatives</id>
-            <name>Maven Natives Repository</name>
-            <url>http://mavennatives.googlecode.com/svn/repo</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -35,50 +22,5 @@
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
         </dependency>
-        <dependency>            
-            <groupId>org.lwjgl.lwjgl</groupId>            
-            <artifactId>lwjgl</artifactId>            
-            <version>2.9.1</version>            
-        </dependency>
-        <dependency>
-            <groupId>org.slick2d</groupId>
-            <artifactId>slick2d-core</artifactId>
-            <version>1.0.1</version>
-        </dependency>
-    </dependencies>
-        <build>
-        <plugins>
- 
- 
-            <plugin>
-                <groupId>com.googlecode.mavennatives</groupId>
-                <artifactId>maven-nativedependencies-plugin</artifactId>
-                <version>0.0.7</version>
-                <executions>
-                    <execution>
-                        <id>unpacknatives</id>
-                        <goals>
-                            <goal>copy</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- Run example executable with goal exec:java and add
-            "-Djava.library.path=target/natives" to the VM arguments.
-            You probably have to execute the package goal once to generate the 
-            target/natives folder. -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>1.1</version>
-                <configuration>
-                    <executable>java</executable>
-                    <arguments>
-                        <argument>-Djava.library.path=target/natives</argument>
-                    </arguments>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    </dependencies>       
 </project>

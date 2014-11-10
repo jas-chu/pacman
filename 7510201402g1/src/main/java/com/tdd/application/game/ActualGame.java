@@ -9,14 +9,9 @@ import com.tdd.model.stageAbstractions.Protagonist;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.newdawn.slick.*;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.BasicGameState;
-import org.newdawn.slick.state.StateBasedGame;
+import javax.swing.JFrame;
 
-public class ActualGame extends BasicGameState implements PacmanGame {
+public class ActualGame implements PacmanGame {
 
     private Protagonist protagonist;
     private List<GameLevelFactory> levelFactories;
@@ -44,22 +39,7 @@ public class ActualGame extends BasicGameState implements PacmanGame {
         }
     }
 
-    @Override
-    public int getID() {
-        return 0;
-    }
-
-    @Override
-    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-    }
-
-    @Override
-    public void render(GameContainer gc, StateBasedGame sbg, Graphics grphcs) throws SlickException {
-        grphcs.drawOval(100, 100, 200, 200);
-    }
-
-    @Override
-    public void update(GameContainer gc, StateBasedGame sbg, int i) throws SlickException {
+    public void setFrame(JFrame frame) {
     }
 
 }
