@@ -26,8 +26,8 @@ public class Application {
         this.name = name;
         List<GameLevelFactory> levelFactories = this.createLevels(xmlGamePath, gameConstants);
         this.game = new ActualGame(levelFactories);
-        this.view.initUI();
-        
+        this.view = new AppView(name);
+        this.view.initUI();        
     }
     
 
