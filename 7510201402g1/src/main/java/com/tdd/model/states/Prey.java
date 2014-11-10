@@ -14,6 +14,8 @@ public class Prey extends Passive {
     @Override
     public void beEaten(Protagonist givenProtagonist) {
         this.enemy.kill();
+		int points = this.enemy.getAwardingPoints();
+		givenProtagonist.awardPoints(points);
     }
 
     @Override

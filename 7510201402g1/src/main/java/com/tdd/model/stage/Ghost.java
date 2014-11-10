@@ -16,8 +16,9 @@ public class Ghost extends Enemy {
     private StateFactory stateFactory;
     private Integer id;
 
-    public Ghost(Stage stage, Position givenPosition, StateFactory givenFactory, StrategyFactory givenStrategyFactory) {
-        super(stage, givenPosition, givenStrategyFactory);
+    public Ghost(Stage stage, Position givenPosition, StateFactory givenFactory,
+				StrategyFactory givenStrategyFactory, int givenAwardingPoints, int givenSpeed) {
+        super(stage, givenPosition, givenStrategyFactory, givenAwardingPoints, givenSpeed);
         this.stateFactory = givenFactory;
 		Ghost.LAST_ID++;
         this.id = Ghost.LAST_ID;

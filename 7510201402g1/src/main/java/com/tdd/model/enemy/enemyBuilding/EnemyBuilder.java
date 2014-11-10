@@ -47,6 +47,8 @@ public class EnemyBuilder {
         List<Long> ghostAngerWaitingCycles = givenConfigs.getGhostAngerWaitingCycles();
         int ghostDeadWaitingCycles = givenConfigs.getGhostDeadWaitingCycles();
         int ghostPreyWaitingCycles = givenConfigs.getGhostPreyWaitingCycles();
+		int ghostPoints = givenConfigs.getEnemiesPoints();
+		int ghostSpeed = givenConfigs.getEnemiesSpeed();
 
         StrategyFactorySearcher strategyFactorySearcher = new StrategyFactorySearcher(ghostVision, ghostIncrementalVision);
         EnemyFactorySearcher enemyFactory = new EnemyFactorySearcher();
@@ -56,7 +58,7 @@ public class EnemyBuilder {
         DirectionGenerator directionGenerator = new DirectionGenerator();
         Direction direction = directionGenerator.createDirection(translateSense);
         
-        Enemy enemy = enemyFactory.getFactory(XMLConstants.GHOST).getEnemy(stage, givenPosition, stateFactory, strategyFactory);
+        Enemy enemy = enemyFactory.getFactory(XMLConstants.GHOST).createEnemy(stage, givenPosition, stateFactory, strategyFactory, ghostPoints, ghostSpeed);
         enemy.setSense(direction);
         return enemy;
     }

@@ -32,16 +32,6 @@ public abstract class GameLevel {
         this.movingItems = this.stage.getMovingItems();
     }
 	
-//	private void configureModel() {
-//		Dot.setAwardingPoints(this.configs.getDotPoints());
-//		BigDot.setAwardingPoints(this.configs.getBigDotPoints());
-//		Fruit.setAwardingPoints(this.configs.getFruitPoints());
-//		Ghost.setAwardingPoints(this.configs.getEnemiesPoints());
-//		
-//		Ghost.setSpeed(this.configs.getEnemiesSpeed());
-//		Fruit.setSpeed(this.configs.getItemsSpeed());
-//	}
-	
     private void createViews() {
 		// OJO!! NO CREAR NADA DEL PROTAGONIST
         // enemies y moving items son atributos
@@ -57,6 +47,7 @@ public abstract class GameLevel {
         this.protagonist = givenProtagonist;
         PlayerController controller = this.createPlayerController();
         this.protagonist.setController(controller);
+		this.protagonist.setSpeed(this.configs.getProtagonistSpeed());
         this.stage.populateWithProtagonist(givenProtagonist);
         this.createProtagonistView();
     }

@@ -31,7 +31,7 @@ public class GhostTest {
         this.factory = new MockStateFactory();
 		this.strategyFactory = new MockStrategyFactory(XMLConstants.STRATEGY_NORMAL_SEARCHER);
         this.stage = new MockStage();
-        this.ghost = new Ghost(this.stage, this.position, this.factory, this.strategyFactory);
+        this.ghost = new Ghost(this.stage, this.position, this.factory, this.strategyFactory, 50, 1);
         this.state = (MockState) ghost.getState();
 		this.strategy = (MockStrategy) ghost.getStrategy();
         this.protagonist = new MockProtagonist();

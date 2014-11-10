@@ -12,7 +12,7 @@ public abstract class Protagonist extends MovingElement {
 	protected PlayerController controller;
 	
 	public Protagonist() {
-        super(null, null);
+        super(null, null, 1);
 		this.score = 0;
 		this.onStage = false;
 		this.controller = null;

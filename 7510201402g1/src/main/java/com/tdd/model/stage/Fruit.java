@@ -13,8 +13,7 @@ public class Fruit extends MovingItem {
 	private boolean hidden;
 	
 	public Fruit(Stage givenStage, Position givenPosition, int givenAwardingPoints, int givenSpeed, long givenHiddenCycles) {
-		super(givenStage, givenPosition, givenAwardingPoints, new RandomStrategyFactory());
-		this.setSpeed(givenSpeed);
+		super(givenStage, givenPosition, givenAwardingPoints, new RandomStrategyFactory(), givenSpeed);
 		this.hiddenWaitingCycles = givenHiddenCycles;
 		this.hidden = false;
 	}

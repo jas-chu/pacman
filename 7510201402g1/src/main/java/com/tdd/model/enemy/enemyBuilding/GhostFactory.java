@@ -15,8 +15,9 @@ public class GhostFactory implements EnemyFactory{
 
 
     @Override
-    public Enemy getEnemy(Stage stage, Position givenPosition, StateFactory givenFactory, StrategyFactory givenStrategy) {
-        return new Ghost(stage, givenPosition, givenFactory, givenStrategy);
+    public Enemy createEnemy(Stage stage, Position givenPosition, StateFactory givenFactory,
+						StrategyFactory givenStrategy, int givenAwardingPoints, int givenSpeed) {
+        return new Ghost(stage, givenPosition, givenFactory, givenStrategy, givenAwardingPoints, givenSpeed);
     }
 
 }

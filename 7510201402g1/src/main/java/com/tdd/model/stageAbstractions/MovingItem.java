@@ -7,8 +7,9 @@ public abstract class MovingItem extends MovedByStrategy implements Consumable {
 	protected boolean consumed;
 	protected int awardingPoints;
 	
-	public MovingItem(Stage givenStage, Position givenPosition, int givenAwardingPoints, StrategyFactory givenStrategyFactory) {
-		super(givenStage, givenPosition, givenStrategyFactory);
+	public MovingItem(Stage givenStage, Position givenPosition, int givenAwardingPoints,
+					StrategyFactory givenStrategyFactory, int givenSpeed) {
+		super(givenStage, givenPosition, givenStrategyFactory, givenSpeed);
 		this.consumed = false;
 		this.awardingPoints = givenAwardingPoints;
 	}

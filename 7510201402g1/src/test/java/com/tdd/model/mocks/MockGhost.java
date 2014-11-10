@@ -19,7 +19,7 @@ public class MockGhost extends Enemy {
     private State state;
 
     public MockGhost() {
-        super(null, new Position(0, 0), new MockStrategyFactory(XMLConstants.LAZY_STRATEGY));
+        super(null, new Position(0, 0), new MockStrategyFactory(XMLConstants.LAZY_STRATEGY), 50, 1);
 		this.stage = new MockStage();
     }
 

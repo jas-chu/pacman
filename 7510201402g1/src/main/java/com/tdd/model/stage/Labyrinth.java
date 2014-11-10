@@ -48,8 +48,6 @@ public class Labyrinth implements Stage {
     /**
      *
 	 * @param givenConfigs
-	 * @param XMLStagePath
-	 * @param XMLCharactersPath
      * @throws com.tdd.model.exceptions.MalformedXMLException
      */
     public Labyrinth(LevelConfigurationsReader givenConfigs) throws MalformedXMLException {

@@ -2,8 +2,12 @@ package com.tdd.model.stageAbstractions;
 
 public abstract class Enemy extends MovedByStrategy {
     
-    public Enemy(Stage givenStage, Position givenPosition, StrategyFactory givenStrategyFactory) {
-        super(givenStage, givenPosition, givenStrategyFactory);
+	private int awardingPoints;
+	
+    public Enemy(Stage givenStage, Position givenPosition, StrategyFactory givenStrategyFactory,
+				int givenAwardingPoints, int givenSpeed) {
+        super(givenStage, givenPosition, givenStrategyFactory, givenSpeed);
+		this.awardingPoints = givenAwardingPoints;
     }
 	
 	public abstract void kill();
@@ -13,6 +17,10 @@ public abstract class Enemy extends MovedByStrategy {
 	
 	public abstract Integer getId();
 	public abstract State getState();
+	
+	public int getAwardingPoints() {
+		return this.awardingPoints;
+	}
 	
     // COLLISIONS	
     @Override

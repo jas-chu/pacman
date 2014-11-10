@@ -7,9 +7,9 @@ public abstract class MovingElement extends StageElement {
 	protected Direction sense;
 	protected Integer speed;
 	
-    public MovingElement(Stage givenStage, Position givenPosition) {
+    public MovingElement(Stage givenStage, Position givenPosition, int givenSpeed) {
         super(givenStage, givenPosition);
-		this.speed = 1;
+		this.speed = givenSpeed;
 		this.sense = new DirectionRight();
     }
 	

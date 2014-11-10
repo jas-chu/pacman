@@ -45,7 +45,7 @@ public abstract class StaticItem extends StageElement implements Consumable {
 	@Override
 	public void collideWithProtagonist(Protagonist givenProtagonist) {
 		int points = this.consume();
-		givenProtagonist.awardPoints(points);
+		if (givenProtagonist != null) givenProtagonist.awardPoints(points);
 	}
 
 	@Override

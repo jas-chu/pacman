@@ -8,8 +8,8 @@ public abstract class MovedByStrategy extends MovingElement {
 	private Strategy strategy;
     private StrategyFactory strategyFactory;
 	
-	public MovedByStrategy(Stage givenStage, Position givenPosition, StrategyFactory givenStrategy) {
-		super(givenStage, givenPosition);
+	public MovedByStrategy(Stage givenStage, Position givenPosition, StrategyFactory givenStrategy, int givenSpeed) {
+		super(givenStage, givenPosition, givenSpeed);
 		this.strategyFactory = givenStrategy;
 		this.strategy = this.strategyFactory.getStrategy(this);
 	}
