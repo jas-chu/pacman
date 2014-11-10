@@ -37,6 +37,7 @@ public abstract class Protagonist extends MovingElement {
 	public abstract void kill();
     public abstract void revive();
     public abstract boolean isAlive();
+	public abstract int getLives();
     
 	public void setController(PlayerController givenController) {
 		this.controller = givenController;

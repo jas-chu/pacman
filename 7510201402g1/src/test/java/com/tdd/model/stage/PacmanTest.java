@@ -35,8 +35,9 @@ public class PacmanTest {
 	
 	@Test
 	public void kill() {
+		int lives = this.pacman.getLives();
 		this.pacman.kill();
-		assertFalse(this.pacman.isAlive());
+		assertTrue(lives - 1 == this.pacman.getLives());
 	}
 
 	@Test

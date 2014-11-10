@@ -5,27 +5,32 @@ import com.tdd.model.stageAbstractions.Protagonist;
 
 public class Pacman extends Protagonist {
 
-    private boolean alive;
+    private int lives;
 
     public Pacman() {
         super();
-        this.alive = true;
+		this.lives = 3;
     }
 
     @Override
     public void kill() {
-        this.alive = false;
+		(this.lives)--;
+		this.revive();
     }
 	
     @Override
     public void revive() {
-        this.alive = true;
+		if (this.lives == 0) return;
         if (this.isOnStage()) this.stage.placeProtagonistAtHome(this);
     }
 	
     @Override
     public boolean isAlive() {
-        return this.alive;
+        return (this.lives > 0);
     }
+	
+	public int getLives() {
+		return this.lives;
+	}
 	
 }
