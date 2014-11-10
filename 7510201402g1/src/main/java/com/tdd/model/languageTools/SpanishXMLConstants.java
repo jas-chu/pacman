@@ -30,6 +30,14 @@ public class SpanishXMLConstants extends XMLConstants {
 		this.translationDictionary.put(PREY_CYCLES, "ciclosPresa");
 		this.translationDictionary.put(GHOST_VISION, "visionFantasma");
 		this.translationDictionary.put(INCREMENTAL_VISION, "incrementoVision");
+		this.translationDictionary.put(FRUIT_CYCLES, "ciclosFruta");
+		this.translationDictionary.put(FRUIT_POINTS, "puntosFruta");
+		this.translationDictionary.put(DOT_POINTS, "puntosBolita");
+		this.translationDictionary.put(BIG_DOT_POINTS, "puntosBolon");
+		this.translationDictionary.put(ENEMY_POINTS, "puntosEnemigo");
+		this.translationDictionary.put(PROTAGONIST_SPEED, "velocidadProtagonista");
+		this.translationDictionary.put(ENEMY_SPEED, "velocidadEnemigo");
+		this.translationDictionary.put(ITEM_SPEED, "velocidadItem");
 		this.translationDictionary.put(TICKS_TO_RUN, "ciclosACorrer");
 		
         this.translationDictionary.put(TICK, "Tick");

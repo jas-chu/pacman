@@ -25,6 +25,14 @@ public abstract class XMLConstants {
 	public static final String PREY_CYCLES = "preyCycles";
 	public static final String GHOST_VISION = "ghostVision";
 	public static final String INCREMENTAL_VISION = "incrementalVision";
+	public static final String FRUIT_CYCLES = "fruitCycles";
+	public static final String FRUIT_POINTS = "fruitPoints";
+	public static final String DOT_POINTS = "dotPoints";
+	public static final String BIG_DOT_POINTS = "bigDotPoints";
+	public static final String ENEMY_POINTS = "enemyPoints";
+	public static final String PROTAGONIST_SPEED = "protagonistSpeed";
+	public static final String ENEMY_SPEED = "enemySpeed";
+	public static final String ITEM_SPEED = "itemSpeed";
 	public static final String TICKS_TO_RUN = "ticksToRun";
 	
     public static final String TICK = "Tick";

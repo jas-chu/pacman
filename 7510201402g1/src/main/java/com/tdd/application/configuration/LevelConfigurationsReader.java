@@ -16,10 +16,21 @@ public abstract class LevelConfigurationsReader {
 	
 	// LEVEL PARAMETERS
 	protected List<Long> ghostAngerWaitingCycles = new ArrayList<Long>();
-	protected int ghostDeadWaitingCycles = 1;
-	protected int ghostPreyWaitingCycles = 1;
+	protected int ghostDeadWaitingCycles = 10;
+	protected int ghostPreyWaitingCycles = 10;
 	protected int ghostVision = 1;
     protected int ghostIncrementalVision = 1;
+	
+	protected long fruitHiddenCycles = 50;
+	protected int fruitPoints = 100;
+	protected int dotPoints = 5;
+	protected int bigDotPoints = 15;
+	protected int enemiesPoints = 50;
+	
+	protected int protagonistSpeed = 1;
+	protected int enemiesSpeed = 1;
+	protected int itemsSpeed = 1;
+	
 	protected long ticksToRun = 10;
 	
 	public LevelConfigurationsReader(XMLConstants givenConstants) {
@@ -66,6 +77,38 @@ public abstract class LevelConfigurationsReader {
 		return ghostIncrementalVision;
 	}
 
+	public long getFruitHiddenCycles() {
+		return fruitHiddenCycles;
+	}
+
+	public int getFruitPoints() {
+		return fruitPoints;
+	}
+
+	public int getDotPoints() {
+		return dotPoints;
+	}
+
+	public int getBigDotPoints() {
+		return bigDotPoints;
+	}
+
+	public int getEnemiesPoints() {
+		return enemiesPoints;
+	}
+
+	public int getProtagonistSpeed() {
+		return protagonistSpeed;
+	}
+
+	public int getEnemiesSpeed() {
+		return enemiesSpeed;
+	}
+
+	public int getItemsSpeed() {
+		return itemsSpeed;
+	}
+	
 	public long getTicksToRun() {
 		return ticksToRun;
 	}

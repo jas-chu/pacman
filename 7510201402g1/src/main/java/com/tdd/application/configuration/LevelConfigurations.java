@@ -32,6 +32,16 @@ public class LevelConfigurations extends LevelConfigurationsReader {
 		ghostVision = this.readIntConfiguration(levelNode, XMLConstants.GHOST_VISION);
 		ghostIncrementalVision = this.readIntConfiguration(levelNode, XMLConstants.INCREMENTAL_VISION);
 		
+		fruitHiddenCycles = this.readLongConfiguration(levelNode, XMLConstants.FRUIT_CYCLES);
+		fruitPoints = this.readIntConfiguration(levelNode, XMLConstants.FRUIT_POINTS);
+		dotPoints = this.readIntConfiguration(levelNode, XMLConstants.DOT_POINTS);
+		bigDotPoints = this.readIntConfiguration(levelNode, XMLConstants.BIG_DOT_POINTS);
+		enemiesPoints = this.readIntConfiguration(levelNode, XMLConstants.ENEMY_POINTS);
+		
+		protagonistSpeed = this.readIntConfiguration(levelNode, XMLConstants.PROTAGONIST_SPEED);
+		enemiesSpeed = this.readIntConfiguration(levelNode, XMLConstants.ENEMY_SPEED);
+		itemsSpeed = this.readIntConfiguration(levelNode, XMLConstants.ITEM_SPEED);
+		
 		ticksToRun = this.readLongConfiguration(levelNode, XMLConstants.TICKS_TO_RUN);
 	}
 	
@@ -69,6 +79,38 @@ public class LevelConfigurations extends LevelConfigurationsReader {
 
 	public void setGhostIncrementalVision(int ghostIncrementalVision) {
 		this.ghostIncrementalVision = ghostIncrementalVision;
+	}
+	
+	public void setFruitHiddenCycles(long fruitHiddenCycles) {
+		this.fruitHiddenCycles = fruitHiddenCycles;
+	}
+
+	public void setFruitPoints(int fruitPoints) {
+		this.fruitPoints = fruitPoints;
+	}
+
+	public void setDotPoints(int dotPoints) {
+		this.dotPoints = dotPoints;
+	}
+
+	public void setBigDotPoints(int bigDotPoints) {
+		this.bigDotPoints = bigDotPoints;
+	}
+
+	public void setEnemiesPoints(int enemiesPoints) {
+		this.enemiesPoints = enemiesPoints;
+	}
+
+	public void setProtagonistSpeed(int protagonistSpeed) {
+		this.protagonistSpeed = protagonistSpeed;
+	}
+
+	public void setEnemiesSpeed(int enemiesSpeed) {
+		this.enemiesSpeed = enemiesSpeed;
+	}
+
+	public void setItemsSpeed(int itemsSpeed) {
+		this.itemsSpeed = itemsSpeed;
 	}
 	
 	public void setTicksToRun(int ticksToRun) {
@@ -109,7 +151,7 @@ public class LevelConfigurations extends LevelConfigurationsReader {
 		try {
 			return XMLReader.getFirstNodeLongValueWithName(levelNode, tagName);
 		} catch (NoNodeWithThatNameException ex) {
-			return 10;
+			return 50;
 		}
 	}
 	

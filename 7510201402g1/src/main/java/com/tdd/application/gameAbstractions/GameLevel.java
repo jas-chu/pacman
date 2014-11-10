@@ -27,11 +27,21 @@ public abstract class GameLevel {
     }
 
     private void createModel() throws MalformedXMLException {
-        this.stage = new Labyrinth(this.configs);
+		this.stage = new Labyrinth(this.configs);
         this.enemies = this.stage.getEnemies();
         this.movingItems = this.stage.getMovingItems();
     }
-
+	
+//	private void configureModel() {
+//		Dot.setAwardingPoints(this.configs.getDotPoints());
+//		BigDot.setAwardingPoints(this.configs.getBigDotPoints());
+//		Fruit.setAwardingPoints(this.configs.getFruitPoints());
+//		Ghost.setAwardingPoints(this.configs.getEnemiesPoints());
+//		
+//		Ghost.setSpeed(this.configs.getEnemiesSpeed());
+//		Fruit.setSpeed(this.configs.getItemsSpeed());
+//	}
+	
     private void createViews() {
 		// OJO!! NO CREAR NADA DEL PROTAGONIST
         // enemies y moving items son atributos
