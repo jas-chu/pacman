@@ -26,5 +26,13 @@ public class FruitStrategy extends Strategy{
             return new DirectionRight();
         }
     } 
-            
+    
+    @Override
+     public void getRandomDirection() {
+        if (inCellBifurcation()) {
+            generateRandomDirections();
+        } else {
+            getNoBifurcationDirections();
+        }
+    }
 }
