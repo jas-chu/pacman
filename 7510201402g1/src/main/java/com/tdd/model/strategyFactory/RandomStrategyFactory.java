@@ -7,6 +7,9 @@ import com.tdd.model.strategy.RandomStrategy;
 
 public class RandomStrategyFactory implements StrategyFactory {
 
+    public RandomStrategyFactory() {
+    }
+
     /**
      * @param givenElement
      * @return Devuelve una instancia de la estrategia RandomStrategy.
