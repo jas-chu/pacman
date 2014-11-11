@@ -4,6 +4,6 @@ import com.tdd.model.stageAbstractions.Direction;
 
 public abstract class DirectionFactory {
 	
-	protected abstract Direction createDirection();
+	public abstract Direction createDirection();
 	
 }

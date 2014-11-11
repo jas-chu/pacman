@@ -6,7 +6,7 @@ import com.tdd.model.stageAbstractions.Direction;
 public class DirectionLeftFactory extends DirectionFactory {
 
 	@Override
-	protected Direction createDirection() {
+	public Direction createDirection() {
 		return new DirectionLeft();
 	}
 
