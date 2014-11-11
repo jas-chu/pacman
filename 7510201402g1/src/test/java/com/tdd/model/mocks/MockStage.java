@@ -19,30 +19,30 @@ public class MockStage implements Stage {
     public boolean placeProtagonistAtHomeMethodCalled = false;
     public boolean turnEnemiesToPreyMethodCalled = false;
     public boolean removeStaticItemMethodCalled = false;
-	public boolean removeMovingItemMethodCalled = false;
-	
-	private MockProtagonist protagonist = new MockProtagonist();
-	
+    public boolean removeMovingItemMethodCalled = false;
+
+    private MockProtagonist protagonist = new MockProtagonist();
+
     @Override
     public List<StaticItem> getStaticItems() {
         return null;
     }
-	
-	@Override
-	public List<MovingItem> getMovingItems() {
-		return null;
-	}
+
+    @Override
+    public List<MovingItem> getMovingItems() {
+        return null;
+    }
 
     @Override
     public List<Enemy> getEnemies() {
         return null;
     }
-	
-	@Override
-	public void populateWithProtagonist(Protagonist givenProtagonist) {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-	
+
+    @Override
+    public void populateWithProtagonist(Protagonist givenProtagonist) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
     @Override
     public Protagonist getProtagonist() {
         return this.protagonist;
@@ -78,11 +78,11 @@ public class MockStage implements Stage {
     public void removeStaticItem(StaticItem givenItem) {
         this.removeStaticItemMethodCalled = true;
     }
-	
-	@Override
-	public void removeMovingItem(MovingItem givenItem) {
-		this.removeMovingItemMethodCalled = true;
-	}
+
+    @Override
+    public void removeMovingItem(MovingItem givenItem) {
+        this.removeMovingItemMethodCalled = true;
+    }
 
     @Override
     public Cell getCell(Position givenPosition) {
@@ -123,5 +123,5 @@ public class MockStage implements Stage {
     public List<List<Cell>> getCells() {
         return null;
     }
-	
+
 }
