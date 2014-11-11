@@ -5,9 +5,9 @@ import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.MovedByStrategy;
 import com.tdd.model.stageAbstractions.Strategy;
 
-public class FruitStrategy extends Strategy{
+public class RandomStrategy extends Strategy{
 
-    public FruitStrategy(MovedByStrategy givenElement) {
+    public RandomStrategy(MovedByStrategy givenElement) {
         super(givenElement, 0);
     }
     
