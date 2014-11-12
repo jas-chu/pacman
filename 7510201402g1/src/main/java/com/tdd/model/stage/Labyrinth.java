@@ -32,7 +32,7 @@ import org.w3c.dom.NodeList;
 public class Labyrinth implements Stage {
 
     private List<StaticItem> staticItems;
-	private List<MovingItem> movingItems;
+    private List<MovingItem> movingItems;
     private List<Enemy> enemies;
     private Protagonist pacman;
     private Integer width;
@@ -47,25 +47,25 @@ public class Labyrinth implements Stage {
 
     /**
      *
-	 * @param givenConfigs
+     * @param givenConfigs
      * @throws com.tdd.model.exceptions.MalformedXMLException
      */
     public Labyrinth(LevelConfigurationsReader givenConfigs) throws MalformedXMLException {
         this.staticItems = new ArrayList<StaticItem>();
-		this.movingItems = new ArrayList<MovingItem>();
+        this.movingItems = new ArrayList<MovingItem>();
         this.enemies = new ArrayList<Enemy>();
         this.labyrinthLoader = new LabyrinthLoader(givenConfigs.getStagePath());
         this.gameCharactersLoader = new LevelCharactersLoader(givenConfigs.getCharactersPath());
         try {
             this.loadInitialLabyrinthConfigurations();
             this.loadCells(givenConfigs);
-			this.loadEnemies(givenConfigs);
+            this.loadEnemies(givenConfigs);
         } catch (NoAvailableFactoryException | AttributeNotFoundException ex) {
             throw new MalformedXMLException();
         }
     }
-	
-	private void loadInitialLabyrinthConfigurations() throws AttributeNotFoundException {
+
+    private void loadInitialLabyrinthConfigurations() throws AttributeNotFoundException {
         this.width = this.labyrinthLoader.getLabyrinthWidth();
         this.height = this.labyrinthLoader.getLabyrinthHeight();
         this.nodeWidth = this.labyrinthLoader.getNodeWidth();
@@ -73,7 +73,7 @@ public class Labyrinth implements Stage {
         this.pacmanStart = this.labyrinthLoader.getPacmanStartPosition();
         this.ghostStart = this.labyrinthLoader.getGhostStartPosition();
     }
-	
+
     private void loadCells(LevelConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
         NodeList nodes = this.labyrinthLoader.getNodes();
         CellBuilder cellBuilder = new CellBuilder();
@@ -86,36 +86,38 @@ public class Labyrinth implements Stage {
                 Cell createdCell = cellBuilder.createCell(nodes, node);
                 String cellContent = XMLReader.getAttributeValue(node, XMLConstants.CONTENT);
                 if (!cellContent.isEmpty()) {
-					String translatedCellContent = givenConfigs.getGameConstants().getInvertedItemValueTranslation(cellContent);
+                    String translatedCellContent = givenConfigs.getGameConstants().getInvertedItemValueTranslation(cellContent);
                     Consumable item = itemBuilder.createItem(this, createdCell.getPosition(), translatedCellContent, givenConfigs);
-					item.addToList(this.staticItems, this.movingItems);
+                    item.addToList(this.staticItems, this.movingItems);
                 }
                 mapRow.add(createdCell);
             }
             this.cells.add(mapRow);
         }
     }
-	
+
     private void loadEnemies(LevelConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
         NodeList ghostsNodes = this.gameCharactersLoader.getGhostNodes();
-		if (ghostsNodes == null) return;
-		
-		EnemyBuilder enemyBuilder = new EnemyBuilder();
-		for (int i = 0; i < ghostsNodes.getLength(); i++) {
-			Node ghostNode = ghostsNodes.item(i);
-			Enemy enemy = enemyBuilder.createEnemy(this, givenConfigs, this.ghostStart, ghostNode);
-			this.enemies.add(enemy);
-			this.placeEnemyAtHome(enemy);
-		}
+        if (ghostsNodes == null) {
+            return;
+        }
+
+        EnemyBuilder enemyBuilder = new EnemyBuilder();
+        for (int i = 0; i < ghostsNodes.getLength(); i++) {
+            Node ghostNode = ghostsNodes.item(i);
+            Enemy enemy = enemyBuilder.createEnemy(this, givenConfigs, this.ghostStart, ghostNode);
+            this.enemies.add(enemy);
+            this.placeEnemyAtHome(enemy);
+        }
     }
 
     @Override
     public void populateWithProtagonist(Protagonist givenProtagonist) {
         this.pacman = givenProtagonist;
-		this.pacman.placeOnStage(this, this.pacmanStart);
+        this.pacman.placeOnStage(this, this.pacmanStart);
         this.placeProtagonistAtHome(this.pacman);
     }
-	
+
     @Override
     public Integer getWidth() {
         return this.width;
@@ -155,12 +157,12 @@ public class Labyrinth implements Stage {
     public List<StaticItem> getStaticItems() {
         return this.staticItems;
     }
-	
-	@Override
+
+    @Override
     public List<MovingItem> getMovingItems() {
         return this.movingItems;
     }
-	
+
     @Override
     public List<Enemy> getEnemies() {
         return this.enemies;
@@ -217,7 +219,7 @@ public class Labyrinth implements Stage {
     public void placeElement(Position position, StageElement element) throws BlockedCellException, NoExistingCellException {
         Cell targetCell = this.getCell(position);
         targetCell.testPlaceElement();
-		this.removeElementFromCell(element);
+        this.removeElementFromCell(element);
         targetCell.placeElement(element);
     }
 
@@ -262,25 +264,25 @@ public class Labyrinth implements Stage {
             enemy.turnToPrey();
         }
     }
-	
-	private void removeItem(StageElement item) {
-		try {
-			this.removeElementFromCell(item);
-		} catch (NoExistingCellException ex) {
-			Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
-	
-	@Override
-    public void removeStaticItem(StaticItem givenItem) {
-		this.removeItem(givenItem);
-		this.staticItems.remove(givenItem);
+
+    private void removeItem(StageElement item) {
+        try {
+            this.removeElementFromCell(item);
+        } catch (NoExistingCellException ex) {
+            Logger.getLogger(Labyrinth.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-	
-	@Override
+
+    @Override
+    public void removeStaticItem(StaticItem givenItem) {
+        this.removeItem(givenItem);
+        this.staticItems.remove(givenItem);
+    }
+
+    @Override
     public void removeMovingItem(MovingItem givenItem) {
-		this.removeItem(givenItem);
-		this.movingItems.remove(givenItem);
+        this.removeItem(givenItem);
+        this.movingItems.remove(givenItem);
     }
 
 }

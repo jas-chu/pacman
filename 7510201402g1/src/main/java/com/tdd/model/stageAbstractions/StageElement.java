@@ -3,8 +3,9 @@ package com.tdd.model.stageAbstractions;
 import com.tdd.model.exceptions.AlreadyTeleportedException;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.exceptions.NoExistingCellException;
+import java.util.Observable;
 
-public abstract class StageElement implements Collidable {
+public abstract class StageElement extends Observable implements Collidable {
 	
 	protected Stage stage;
 	protected Position position = null;

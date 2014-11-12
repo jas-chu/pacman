@@ -7,23 +7,23 @@ import com.tdd.application.gameAbstractions.GameLevelFactory;
 import com.tdd.model.exceptions.MalformedXMLException;
 
 public class KeyboardConductedLevelFactory extends GameLevelFactory {
-	
-	public KeyboardConductedLevelFactory() {
-		super();
-	}
-	
-	private KeyboardConductedLevelFactory(LevelConfigurationsReader givenConfigs) {
-		super(givenConfigs);
-	}
-	
-	@Override
-	public GameLevelFactory createFactory(LevelConfigurationsReader givenConfigs) {
-		return new KeyboardConductedLevelFactory(givenConfigs);
-	}
-	
-	@Override
-	public GameLevel createLevel() throws MalformedXMLException {
-		return new KeyboardConductedLevel(this.configs);
-	}
+
+    public KeyboardConductedLevelFactory() {
+        super();
+    }
+
+    private KeyboardConductedLevelFactory(LevelConfigurationsReader givenConfigs) {
+        super(givenConfigs);
+    }
+
+    @Override
+    public GameLevelFactory createFactory(LevelConfigurationsReader givenConfigs) {
+        return new KeyboardConductedLevelFactory(givenConfigs);
+    }
+
+    @Override
+    public GameLevel createLevel() throws MalformedXMLException {
+        return new KeyboardConductedLevel(this.configs);
+    }
 
 }

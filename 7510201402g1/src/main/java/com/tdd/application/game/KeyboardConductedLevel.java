@@ -9,12 +9,12 @@ import com.tdd.model.exceptions.MalformedXMLException;
 public class KeyboardConductedLevel extends GameLevel {
 
     public KeyboardConductedLevel(LevelConfigurationsReader givenConfigs) throws MalformedXMLException {
-		super(givenConfigs);
-	}
+        super(givenConfigs);
+    }
 
     @Override
     protected PlayerController createPlayerController() {
-        return new KeyboardPlayerController();
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

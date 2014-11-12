@@ -4,8 +4,9 @@ import com.tdd.model.exceptions.BlockedCellException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Observable;
 
-public abstract class Cell {
+public abstract class Cell extends Observable{
 
     private Integer id;
     private Position position;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tdd.view.app;
+package com.tdd.view.window;
 
 import javax.swing.JFrame;
 
@@ -11,12 +11,13 @@ import javax.swing.JFrame;
  *
  *
  */
-public class AppView extends JFrame {
+public class WindowView extends JFrame {
 
     private String name;
 
-    public AppView(String name) {
+    public WindowView(String name) {
         this.name = name;
+        this.initUI();
     }
 
     public void initUI() {

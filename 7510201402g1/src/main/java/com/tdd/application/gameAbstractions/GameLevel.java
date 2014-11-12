@@ -4,13 +4,13 @@ import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.exceptions.MalformedXMLException;
 import com.tdd.model.stage.Labyrinth;
+import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.MovingItem;
-import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
-import com.tdd.view.View;
-import com.tdd.view.level.LevelView;
+import com.tdd.view.manager.ViewManager;
+import java.util.Iterator;
 import java.util.List;
 
 public abstract class GameLevel  {
@@ -21,12 +21,11 @@ public abstract class GameLevel  {
     private List<MovingItem> movingItems;
     protected Protagonist protagonist = null;
     protected long ticks = 1;
-    private View view;
+    protected ViewManager viewManager;
 
     public GameLevel(LevelConfigurationsReader givenConfigs) throws MalformedXMLException {
         this.configs = givenConfigs;
         this.createModel();
-        this.createViews();
     }
 
     private void createModel() throws MalformedXMLException {
@@ -36,15 +35,17 @@ public abstract class GameLevel  {
     }
 
     private void createViews() {
-       this.view = new LevelView();
-        // OJO!! NO CREAR NADA DEL PROTAGONIST
-        // enemies y moving items son atributos
-        List<StaticItem> staticItems = this.stage.getStaticItems();
-        throw new UnsupportedOperationException("Not supported yet.");
+        for (List<Cell> cells : this.stage.getCells()) {
+            for (Cell cell : cells) {
+                this.viewManager.addObserver(cell);
+            }
+        }
+        this.enemies.forEach(this.viewManager::addObserver);
+        this.stage.getStaticItems().stream().forEach(this.viewManager::addObserver);
+        this.stage.getMovingItems().stream().forEach(this.viewManager::addObserver);
+
     }
-    public View getView(){
-        return this.view;
-    }
+
     public void populateWithProtagonist(Protagonist givenProtagonist) {
         if (givenProtagonist == null) {
             return;
@@ -59,7 +60,7 @@ public abstract class GameLevel  {
     }
 
     private void createProtagonistView() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.viewManager.addObserver(this.getProtagonist());
     }
 
     protected abstract PlayerController createPlayerController();
@@ -102,7 +103,15 @@ public abstract class GameLevel  {
     }
 
     private void updateViews() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.viewManager.updateViews();
+    }
+
+    public void setViewManager(ViewManager viewManager) {
+        if (this.viewManager != null) {
+            return;
+        }
+        this.viewManager = viewManager;
+        this.createViews();
     }
 
 }

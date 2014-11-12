@@ -9,28 +9,41 @@ public interface Stage {
     public void populateWithProtagonist(Protagonist givenProtagonist);
 
     public List<StaticItem> getStaticItems();
-	public List<MovingItem> getMovingItems();
+
+    public List<MovingItem> getMovingItems();
+
     public List<Enemy> getEnemies();
+
     public Protagonist getProtagonist();
 
     public Integer getWidth();
+
     public Integer getHeight();
+
     public Integer getNodeWidth();
+
     public Integer getNodeHeight();
+
     public Position getGhostStart();
+
     public Position getPacmanStart();
 
     public List<List<Cell>> getCells();
-	public Cell getCell(Position givenPosition) throws NoExistingCellException;
-	
-	public boolean hasStaticItems();
-	
+
+    public Cell getCell(Position givenPosition) throws NoExistingCellException;
+
+    public boolean hasStaticItems();
+
     public void placeElement(Position position, StageElement element) throws BlockedCellException, NoExistingCellException;
+
     public void placeEnemyAtHome(Enemy givenEnemy);
+
     public void placeProtagonistAtHome(Protagonist givenProtagonist);
-	
-	public void removeStaticItem(StaticItem givenItem);
-	public void removeMovingItem(MovingItem givenItem);
+
+    public void removeStaticItem(StaticItem givenItem);
+
+    public void removeMovingItem(MovingItem givenItem);
+
     public void turnEnemiesToPrey();
-	
+
 }

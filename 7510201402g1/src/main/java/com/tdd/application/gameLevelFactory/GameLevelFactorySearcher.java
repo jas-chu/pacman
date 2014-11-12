@@ -11,39 +11,42 @@ import javax.management.AttributeNotFoundException;
 import org.w3c.dom.Node;
 
 public class GameLevelFactorySearcher {
-	
-	private Map<String,GameLevelFactory> availableFactories;
+
+    private Map<String, GameLevelFactory> availableFactories;
 
     public GameLevelFactorySearcher() {
-        this.availableFactories = new HashMap<String,GameLevelFactory>();
-		this.availableFactories.put(XMLConstants.KEYBOARD_LEVEL, new KeyboardConductedLevelFactory());
+        this.availableFactories = new HashMap<String, GameLevelFactory>();
+        this.availableFactories.put(XMLConstants.KEYBOARD_LEVEL, new KeyboardConductedLevelFactory());
         this.availableFactories.put(XMLConstants.XML_LEVEL, new XMLConductedLevelFactory());
         this.availableFactories.put(XMLConstants.NO_PACMAN_LEVEL, new NoPacmanLevelFactory());
     }
 
     /**
      * Gets a new GameLevelFactory that corresponds with the levelNode.
-	 * @param gameConstants
-	 * @param levelNode
+     *
+     * @param gameConstants
+     * @param levelNode
      * @return
-	 * @throws com.tdd.model.exceptions.NoAvailableFactoryException
+     * @throws com.tdd.model.exceptions.NoAvailableFactoryException
      */
     public GameLevelFactory getFactory(Node levelNode, XMLConstants gameConstants) throws NoAvailableFactoryException {
-		LevelConfigurations levelConfigs = new LevelConfigurations(gameConstants, levelNode);
-		String levelType = this.getLevelType(levelNode, gameConstants);
-		
-		GameLevelFactory factory = this.availableFactories.get(levelType);
-		if (factory == null) throw new NoAvailableFactoryException();
-		return factory.createFactory(levelConfigs);
+        LevelConfigurations levelConfigs = new LevelConfigurations(gameConstants, levelNode);
+        String levelType = this.getLevelType(levelNode, gameConstants);
+
+        GameLevelFactory factory = this.availableFactories.get(levelType);
+        if (factory == null) {
+            throw new NoAvailableFactoryException();
+        }
+        return factory.createFactory(levelConfigs);
     }
 
-	private String getLevelType(Node levelNode, XMLConstants gameConstants) throws NoAvailableFactoryException {
-		try {
-			String type = XMLReader.getAttributeValue(levelNode, XMLConstants.LEVEL_TYPE);
-			return gameConstants.getInvertedLevelTypeValueTranslation(type);
-		} catch (AttributeNotFoundException ex) {
-			throw new NoAvailableFactoryException();
-		}
-	}
-	
+    private String getLevelType(Node levelNode, XMLConstants gameConstants) throws NoAvailableFactoryException {
+        try {
+            String type = XMLReader.getAttributeValue(levelNode, XMLConstants.LEVEL_TYPE);
+            return gameConstants.getInvertedLevelTypeValueTranslation(type);
+        } catch (AttributeNotFoundException ex) {
+            throw new NoAvailableFactoryException();
+        }
+    }
+
 }
