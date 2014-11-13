@@ -6,77 +6,88 @@ import com.tdd.model.exceptions.NoExistingCellException;
 import com.tdd.model.exceptions.NoMoreMovementsException;
 
 public abstract class Protagonist extends MovingElement {
-	
-	protected Integer score;
-	protected boolean onStage;
-	protected PlayerController controller;
-	
-	public Protagonist() {
+
+    protected Integer score;
+    protected boolean onStage;
+    protected PlayerController controller;
+    protected Direction lastDirection;
+
+    public Protagonist() {
         super(null, null, 1);
-		this.score = 0;
-		this.onStage = false;
-		this.controller = null;
+        this.score = 0;
+        this.onStage = false;
+        this.controller = null;
+        this.lastDirection = null;
     }
-	
-	public void placeOnStage(Stage givenStage, Position givenPosition) {
-		this.stage = givenStage;
-		this.setPosition(givenPosition);
-		this.onStage = true;
-	}
-	
-	public void removeFromStage() {
-		this.stage = null;
-		this.position = null;
-		this.onStage = false;
-	}
-	
-	public boolean isOnStage() {
-		return this.onStage;
-	}
-	
-	public abstract void kill();
+
+    public void placeOnStage(Stage givenStage, Position givenPosition) {
+        this.stage = givenStage;
+        this.setPosition(givenPosition);
+        this.onStage = true;
+    }
+
+    public void removeFromStage() {
+        this.stage = null;
+        this.position = null;
+        this.onStage = false;
+    }
+
+    public boolean isOnStage() {
+        return this.onStage;
+    }
+
+    public abstract void kill();
+
     public abstract void revive();
+
     public abstract boolean isAlive();
-	public abstract int getLives();
+
+    public abstract int getLives();
+
+    public void setController(PlayerController givenController) {
+        this.controller = givenController;
+    }
+
+    @Override
+    protected void moveOneTime() {
+
+        if (!(this.isOnStage()) || this.controller == null) {
+            return;
+        }
+
+        try {
+            Direction direction = this.controller.getNewDirection();
+            System.out.println("direction:" + direction.toString());
+            try {
+                this.stage.placeElement(direction, this);
+            } catch (BlockedCellException | NoExistingCellException error2) {
+                // player hit wall
+            }
+            this.setSense(direction);
+        } catch (NoMoreMovementsException error1) {
+            // don't know where to move
+        }
+
+    }
+
+    public Integer getScore() {
+        return this.score;
+    }
     
-	public void setController(PlayerController givenController) {
-		this.controller = givenController;
-	}
-	
-	@Override
-	protected void moveOneTime() {
-            
-		if (!(this.isOnStage()) || this.controller == null) return;
-		
-		try {
-			Direction direction = this.controller.getNewDirection();
-                        System.out.println("direction:" + direction.toString());
-			try {
-				this.stage.placeElement(direction, this);
-			} catch (BlockedCellException | NoExistingCellException error2) {
-				// player hit wall
-			}
-			this.setSense(direction);
-		} catch (NoMoreMovementsException error1) {
-			// don't know where to move
-		}
-		
-	}
-	
-	public Integer getScore() {
-		return this.score;
-	}
-	
-	public void awardPoints(int awardingPoints) {
-		this.score += awardingPoints;
-	}
-	
-	// COLLISIONS
+    public Direction getLastDirection(){
+        return this.lastDirection;
+    }
+
+    public void awardPoints(int awardingPoints) {
+        this.score += awardingPoints;
+    }
+
+    // COLLISIONS
     @Override
     public void collideWithElement(StageElement anotherElement) {
-		if (this.isOnStage()) {
-			anotherElement.collideWithProtagonist(this);
-		}
+        if (this.isOnStage()) {
+            anotherElement.collideWithProtagonist(this);
+        }
     }
 
     @Override
@@ -86,17 +97,17 @@ public abstract class Protagonist extends MovingElement {
 
     @Override
     public void collideWithEnemy(Enemy givenEnemy) {
-		if (this.isOnStage()) {
-			givenEnemy.collideWithProtagonist(this);
-		}
+        if (this.isOnStage()) {
+            givenEnemy.collideWithProtagonist(this);
+        }
     }
 
     @Override
     public void collideWithConsumable(Consumable givenConsumable) {
-		if (this.isOnStage()) {
-			givenConsumable.consume();
-			this.awardPoints(givenConsumable.getAwardingPoints());
-		}
+        if (this.isOnStage()) {
+            givenConsumable.consume();
+            this.awardPoints(givenConsumable.getAwardingPoints());
+        }
     }
-	
+
 }

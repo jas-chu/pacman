@@ -20,7 +20,7 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
 
     private final List<Direction> directionsToBeProcessed;
     private final Map<Integer, DirectionFactory> directionsDictionary;
-	private Mutex mutex;
+    private Mutex mutex;
 
     public KeyboardPlayerController() {
         this.directionsToBeProcessed = new ArrayList<Direction>();
@@ -29,33 +29,33 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
         this.directionsDictionary.put(KeyEvent.VK_LEFT, new DirectionLeftFactory());
         this.directionsDictionary.put(KeyEvent.VK_UP, new DirectionUpFactory());
         this.directionsDictionary.put(KeyEvent.VK_DOWN, new DirectionDownFactory());
-		this.mutex = new Mutex();
+        this.mutex = new Mutex();
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        System.out.println("KEY TYPED");        
+        System.out.println("KEY TYPED");
         // does nothing
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
+        System.out.println("keyPressed=" + KeyEvent.getKeyText(e.getKeyCode()));
         System.out.println("KEY PRESSED");
         DirectionFactory factory = this.directionsDictionary.get(e.getKeyCode());
         if (factory == null) {
             return;
         }
-		
-		try {
-			mutex.acquire();
-			try {
-				this.directionsToBeProcessed.add(factory.createDirection());
-			} finally {
-				mutex.release();
-			}
-		} catch (InterruptedException ie) {
-		}
+
+        try {
+            mutex.acquire();
+            try {
+                this.directionsToBeProcessed.add(factory.createDirection());                
+            } finally {
+                mutex.release();
+            }
+        } catch (InterruptedException ie) {
+        }
     }
 
     @Override
@@ -66,18 +66,18 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
 
     @Override
     public Direction getNewDirection() throws NoMoreMovementsException {
-		try {
-			mutex.acquire();
-			try {
-				if (!(this.directionsToBeProcessed.isEmpty())) {
-					return this.directionsToBeProcessed.remove(0);
-				}
-			} finally {
-				mutex.release();
-			}
-		} catch (InterruptedException ie) {
-		}
-		throw new NoMoreMovementsException();
+        try {
+            mutex.acquire();
+            try {
+                if (!(this.directionsToBeProcessed.isEmpty())) {                    
+                    return this.directionsToBeProcessed.remove(0);
+                }
+            } finally {
+                mutex.release();
+            }
+        } catch (InterruptedException ie) {
+        }
+        throw new NoMoreMovementsException();
     }
 
 }
