@@ -32,8 +32,8 @@ public abstract class View extends JPanel implements Observer {
 
     }
 
-    public void setPosition(int x, int y) {
-        this.x = x + offset;
+    public void setViewPosition(int x, int y) {
+        this.x = x ;
         this.y = y;
     }
 
