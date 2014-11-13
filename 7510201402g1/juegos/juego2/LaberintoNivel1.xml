@@ -1,0 +1,19 @@
+<laberinto ancho="7" alto="2" nodoAncho="45" nodoAlto="45" inicioPacman="0103" inicioFantasmas="0003">
+
+  <nodo id="0000" fila="00" columna="00" contiene="bolon"  izquierda=""     derecha="0001" arriba=""     abajo="0100" />
+  <nodo id="0001" fila="00" columna="01" contiene="bolita" izquierda="0000" derecha="0002" arriba=""     abajo="" />
+  <nodo id="0002" fila="00" columna="02" contiene="bolita" izquierda="0001" derecha="0003" arriba=""     abajo="" />
+  <nodo id="0003" fila="00" columna="03" contiene=""       izquierda="0002" derecha="0004" arriba=""     abajo="" />
+  <nodo id="0004" fila="00" columna="04" contiene="bolita" izquierda="0003" derecha="0005" arriba=""     abajo="" />
+  <nodo id="0005" fila="00" columna="05" contiene="bolita" izquierda="0004" derecha="0006" arriba=""     abajo="" />
+  <nodo id="0006" fila="00" columna="06" contiene="bolita" izquierda="0005" derecha=""     arriba=""     abajo="0106" />
+  
+  <nodo id="0100" fila="01" columna="00" contiene="bolita" izquierda=""     derecha="0101" arriba="0000" abajo="" />
+  <nodo id="0101" fila="01" columna="01" contiene="bolita" izquierda="0100" derecha="0102" arriba=""     abajo="" />
+  <nodo id="0102" fila="01" columna="02" contiene="bolita" izquierda="0101" derecha="0103" arriba=""     abajo="" />
+  <nodo id="0103" fila="01" columna="03" contiene=""       izquierda="0102" derecha="0104" arriba=""     abajo="" />
+  <nodo id="0104" fila="01" columna="04" contiene="bolita" izquierda="0103" derecha="0105" arriba=""     abajo="" />
+  <nodo id="0105" fila="01" columna="05" contiene="bolita" izquierda="0104" derecha="0106" arriba=""     abajo="" />
+  <nodo id="0106" fila="01" columna="06" contiene="bolita" izquierda="0105" derecha=""     arriba="0006" abajo="" />
+  
+</laberinto>

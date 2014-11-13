@@ -37,12 +37,10 @@ public class ViewFactory {
     public View getView(StaticItem staticItem) {
         String itemType = staticItem.getMapSerialization();
         View observer = null;
-        switch (itemType) {
-            case XMLConstants.BIG_DOT:
-                observer = new BigDotView((BigDot) staticItem);
-            case XMLConstants.DOT:
-                observer = new DotView((Dot) staticItem);
-        }
+        if (itemType.equals(XMLConstants.BIG_DOT))
+			observer = new BigDotView((BigDot) staticItem);
+        else
+            observer = new DotView((Dot) staticItem);
         return observer;
     }
 
