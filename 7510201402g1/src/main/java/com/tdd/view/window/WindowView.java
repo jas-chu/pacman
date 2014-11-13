@@ -20,7 +20,7 @@ public class WindowView extends JFrame {
     public WindowView(String name) {
         this.name = name;
         setTitle(this.name);
-        this.setSize(600, 400);
+        this.setSize(800, 600);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         

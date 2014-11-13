@@ -24,8 +24,8 @@ public abstract class View extends JPanel implements Observer {
         //TODO-> levantar esto de configuracion
         this.x = 0;
         this.y = 0;
-        this.width = 32;
-        this.heigth = 32;
+        this.width = 64;
+        this.heigth = 64;
 
     }
 

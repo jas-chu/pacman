@@ -2,10 +2,8 @@ package com.tdd.application.main;
 
 import com.tdd.application.gameAbstractions.PacmanGame;
 import com.tdd.application.game.ActualGame;
-import com.tdd.application.gameAbstractions.GameLevel;
 import com.tdd.application.gameAbstractions.GameLevelFactory;
 import com.tdd.application.gameLevelFactory.GameLevelFactorySearcher;
-import com.tdd.controller.playerController.KeyboardPlayerController;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.helpers.XMLIO;
@@ -22,9 +20,6 @@ public class Application {
     private ViewManager view;
     private String name;
     
-    private KeyboardPlayerController keyController;
-            
-
     public Application(String name, String xmlGamePath) throws NoAvailableFactoryException {
         XMLConstants gameConstants = new SpanishXMLConstants();
         XMLIO.configureLanguage(gameConstants);
