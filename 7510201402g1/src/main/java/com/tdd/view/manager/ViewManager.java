@@ -6,7 +6,7 @@ import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.StaticItem;
-import com.tdd.view.View;
+import com.tdd.view.abstractions.View;
 import com.tdd.view.viewFactory.ViewFactory;
 import java.util.ArrayList;
 import java.util.List;

@@ -6,8 +6,8 @@
 package com.tdd.view.stage.protagonist;
 
 import com.tdd.model.stageAbstractions.Protagonist;
-import com.tdd.view.View;
-import com.tdd.view.ViewConstants;
+import com.tdd.view.abstractions.View;
+import com.tdd.view.helpers.ViewConstants;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.tdd.view;
+package com.tdd.view.abstractions;
 
 import java.util.Observable;
 import java.util.Observer;

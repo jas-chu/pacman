@@ -7,8 +7,8 @@ package com.tdd.view.stage.labyrinth;
 
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Cell;
-import com.tdd.view.View;
-import com.tdd.view.ViewConstants;
+import com.tdd.view.abstractions.View;
+import com.tdd.view.helpers.ViewConstants;
 import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
