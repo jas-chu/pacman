@@ -126,5 +126,6 @@ public class ViewManager {
     public void addController(KeyboardPlayerController controller) {
         this.window.addKeyListener(controller);
         this.window.setFocusable(true);
+        
     }
 }
