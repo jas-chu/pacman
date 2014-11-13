@@ -9,13 +9,13 @@ import java.util.Observable;
  *
  * 
  */
-public class BigDotView extends View{
+public class BigDotView extends ItemView{
 
     public BigDotView(StaticItem bigDot) {
         super();
         this.setViewPosition(bigDot.getPosition().getX(), bigDot.getPosition().getY());
         this.observable = bigDot;
-        this.imgPath = ViewConstants.BIG_DOT;
+        this.img = this.factory.getBigDotImage();
     }
     
     @Override

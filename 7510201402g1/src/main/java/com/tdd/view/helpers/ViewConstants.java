@@ -6,15 +6,36 @@ package com.tdd.view.helpers;
  */
 public class ViewConstants {
 
-    private static final String INIT = "./media/img/";
-    
-    public static final String GHOST = INIT + "ghost.png";
-    public static final String GHOST2 = INIT + "ghost2.png";
-    public static final String PACMAN = INIT + "pacman.png";
-    public static final String FRUIT  = INIT + "fruit.png";
-    public static final String DOT  = INIT + "dot.png";
-    public static final String BIG_DOT  = INIT + "bigDot.png";
-    
+    private static final String INIT_GHOST = "./media/img/ghost/";
+
+    public static final String GHOST_DEATH = INIT_GHOST + "death/ghost.png";
+//TODO: Crear estas imagenes
+//    public static final String GHOST_RED_UP = INIT_GHOST + "red/ghost_up.png";
+//    public static final String GHOST_RED_DOW = INIT_GHOST + "red/ghost_down.png";
+    public static final String GHOST_RED_LEFT = INIT_GHOST + "red/ghost_left.png";
+    public static final String GHOST_RED_RIGHT = INIT_GHOST + "red/ghost_right.png";
+//TODO: Crear estas imagenes
+//    public static final String GHOST_YELLOW_UP = INIT_GHOST + "yellow/ghost_up.png";
+//    public static final String GHOST_YELLOW_DOW = INIT_GHOST + "yellow/ghost_down.png";
+    public static final String GHOST_YELLOW_LEFT = INIT_GHOST + "yellow/ghost_left.png";
+    public static final String GHOST_YELLOW_RIGHT = INIT_GHOST + "yellow/ghost_right.png";
+//TODO: Crear estas imagenes
+//    public static final String GHOST_BLUE_UP = INIT_GHOST + "blue/ghost_up.png";
+//    public static final String GHOST_BLUE_DOW = INIT_GHOST + "blue/ghost_down.png";
+    public static final String GHOST_BLUE_LEFT = INIT_GHOST + "blue/ghost_left.png";
+    public static final String GHOST_BLUE_RIGHT = INIT_GHOST + "blue/ghost_right.png";
+
+    private static final String INIT_PACMAN = "./media/img/pacman/";
+    public static final String PACMAN_UP = INIT_PACMAN + "pacman_up.png";
+    public static final String PACMAN_DOWN = INIT_PACMAN + "pacman_down.png";
+    public static final String PACMAN_LEFT = INIT_PACMAN + "pacman_left.png";
+    public static final String PACMAN_RIGHT = INIT_PACMAN + "pacman_right.png";
+
+    private static final String INIT_ITEM = "./media/img/item/";
+    public static final String FRUIT = INIT_ITEM + "fruit/fruit.png";
+    public static final String DOT = INIT_ITEM + "dot/dot.png";
+    public static final String BIG_DOT = INIT_ITEM + "bigDot/bigDot.png";
+
     //Cell path constants
     private static final String INIT_CELL = "./media/img/cell/";
     public static final String CLEAN_CELL = INIT_CELL + "clean.png";
@@ -33,5 +54,5 @@ public class ViewConstants {
     public static final String LEFT_RIGHT_CELL = INIT_CELL + "left_right.png";
     public static final String LEFT_CELL = INIT_CELL + "left.png";
     public static final String RIGHT_CELL = INIT_CELL + "right.png";
-    
+
 }

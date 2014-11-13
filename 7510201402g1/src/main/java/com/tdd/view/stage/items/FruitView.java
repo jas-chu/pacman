@@ -9,13 +9,13 @@ import java.util.Observable;
  *
  *
  */
-public class FruitView extends View {
+public class FruitView extends ItemView {
 
     public FruitView(MovingItem movingItem) {
         super();
         this.setViewPosition(movingItem.getPosition().getX(), movingItem.getPosition().getY());
         this.observable = movingItem;
-        this.imgPath = ViewConstants.FRUIT;
+        this.img = this.factory.getFruitImage();
     }
 
     @Override

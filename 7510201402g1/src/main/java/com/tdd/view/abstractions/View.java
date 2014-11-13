@@ -21,8 +21,7 @@ public abstract class View extends JPanel implements Observer {
     protected Observable observable;
     protected int x, y, width, heigth;
     private static final int offset = 32;
-    protected String imgPath;
-
+    protected ImageIcon img;
     public View() {
         //TODO-> levantar esto de configuracion
         this.x = 0;
@@ -41,7 +40,6 @@ public abstract class View extends JPanel implements Observer {
     public void paintComponents(Graphics graphics) {
 
         super.paintComponents(graphics);
-        ImageIcon img = new ImageIcon(this.imgPath);
         graphics.drawImage(img.getImage(), getXRender(), getYRender(), width, heigth, null);
     }
 

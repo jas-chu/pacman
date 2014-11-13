@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tdd.view.stage.labyrinth;
 
 import com.tdd.model.helpers.XMLConstants;
@@ -12,6 +7,7 @@ import com.tdd.view.helpers.ViewConstants;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -75,7 +71,7 @@ public class CellView extends View {
         this.observable = cell;
         int index = this.getImageIndex(cell);
         this.resourcePath = RESOURCES.get(index);
-        this.imgPath = this.resourcePath;
+        this.img = new ImageIcon(this.resourcePath);
         this.setViewPosition(cell.getColumn(), cell.getRow());
     }
 
