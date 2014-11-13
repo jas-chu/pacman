@@ -13,7 +13,7 @@ import com.tdd.view.manager.ViewManager;
 import java.util.Iterator;
 import java.util.List;
 
-public abstract class GameLevel  {
+public abstract class GameLevel {
 
     protected LevelConfigurationsReader configs;
     private Stage stage;
@@ -56,7 +56,7 @@ public abstract class GameLevel  {
         this.protagonist.setController(controller);
         this.protagonist.setSpeed(this.configs.getProtagonistSpeed());
         this.stage.populateWithProtagonist(givenProtagonist);
-        this.createProtagonistView();
+//        this.createProtagonistView();
     }
 
     private void createProtagonistView() {
@@ -93,13 +93,23 @@ public abstract class GameLevel  {
     private void updateModel() {
         if (this.protagonist != null) {
             this.protagonist.move();
+            if (protagonist.hasChanged()) {
+                protagonist.notifyObservers();
+            }
         }
         for (Enemy enemy : this.enemies) {
             enemy.move();
-            
+            if (enemy.hasChanged()) {
+                enemy.notifyObservers();
+            }
+
         }
         for (MovingItem item : this.movingItems) {
             item.move();
+            if (item.hasChanged()) {
+                item.notifyObservers();
+
+            }
         }
     }
 

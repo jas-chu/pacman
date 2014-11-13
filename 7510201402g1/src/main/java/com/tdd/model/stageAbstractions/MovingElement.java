@@ -18,7 +18,6 @@ public abstract class MovingElement extends StageElement {
             this.moveOneTime();
         }
         this.setChanged();
-        this.notifyObservers();
     }
 
     protected abstract void moveOneTime();

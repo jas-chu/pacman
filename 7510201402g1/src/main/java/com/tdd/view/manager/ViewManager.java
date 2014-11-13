@@ -75,7 +75,6 @@ public class ViewManager {
     public void updateViews() {
        
         observers.stream().forEach((Observador observer) -> {
-//            observer.update();
             observer.paintComponents(this.window.getGraphics());
         });
         
