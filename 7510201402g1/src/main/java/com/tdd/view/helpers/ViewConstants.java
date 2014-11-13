@@ -9,6 +9,7 @@ public class ViewConstants {
     private static final String INIT = "./media/img/";
     
     public static final String GHOST = INIT + "ghost.png";
+    public static final String GHOST2 = INIT + "ghost2.png";
     public static final String PACMAN = INIT + "pacman.png";
     public static final String FRUIT  = INIT + "fruit.png";
     public static final String DOT  = INIT + "dot.png";
