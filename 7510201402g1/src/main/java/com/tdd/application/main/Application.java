@@ -31,9 +31,9 @@ public class Application {
         List<GameLevelFactory> levelFactories = this.createLevels(xmlGamePath, gameConstants);
         this.view = ViewManager.getInstance();
         this.view.createWindow(name);
-        this.game = new ActualGame(levelFactories,this.view);
-        
-        this.controller = new KeyboardPlayerController(this.view, this.game);
+        this.game = new ActualGame(levelFactories, this.view);
+
+//        this.controller = new KeyboardPlayerController();
     }
 
     private List<GameLevelFactory> createLevels(String xmlGamePath, XMLConstants gameConstants) throws NoAvailableFactoryException {
@@ -51,11 +51,8 @@ public class Application {
     }
 
     public void run() {
-        this.game.gameLoop();
-    }
-
-    public void show() {
         this.view.showWindow();
+        this.game.gameLoop();
     }
 
 }

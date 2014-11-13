@@ -5,6 +5,7 @@
  */
 package com.tdd.view.window;
 
+import java.awt.Dimension;
 import javax.swing.JFrame;
 
 /**
@@ -17,17 +18,13 @@ public class WindowView extends JFrame {
 
     public WindowView(String name) {
         this.name = name;
-        this.initUI();
-    }
-
-    public void initUI() {
         setTitle(this.name);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(380, 420);
-
+        this.setSize(600, 400);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-    
-    public JFrame getFrame(){
+
+    public JFrame getFrame() {
         return this;
     }
 }

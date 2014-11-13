@@ -19,13 +19,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class KeyboardPlayerController extends Controller implements PlayerController, KeyListener {
+public class KeyboardPlayerController  implements PlayerController, KeyListener {
 
     private List<Direction> directionsToBeProcessed;
     private Map<Integer, DirectionFactory> directionsDictionary;
 
-    public KeyboardPlayerController(ViewManager view, PacmanGame level) {
-        super(view, level);
+    public KeyboardPlayerController() {
         this.directionsToBeProcessed = new ArrayList<Direction>();
         this.directionsDictionary = new HashMap<Integer, DirectionFactory>();
         this.directionsDictionary.put(KeyEvent.VK_RIGHT, new DirectionRightFactory());

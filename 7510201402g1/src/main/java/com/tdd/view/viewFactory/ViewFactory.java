@@ -5,6 +5,7 @@ import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.StaticItem;
+import com.tdd.view.Observador;
 import com.tdd.view.stage.enemy.GhostView;
 import com.tdd.view.stage.items.DotView;
 import com.tdd.view.stage.items.FruitView;
@@ -25,23 +26,23 @@ public class ViewFactory {
 
     }
 
-    public Observer getView(Enemy enemy) {
+    public Observador getView(Enemy enemy) {
         return new GhostView(enemy);
     }
 
-    public Observer getView(StaticItem staticItem) {
+    public Observador getView(StaticItem staticItem) {
         //TODO por ahora retorno una bolita-> Ver como difereciar bolita/bolon
         return new DotView(staticItem);
     }
 
-    public Observer getView(MovingItem movingItem) {
+    public Observador getView(MovingItem movingItem) {
         return new FruitView(movingItem);
     }
 
-    public Observer getView(Protagonist protagonist) {
+    public Observador getView(Protagonist protagonist) {
         return new ProtagonistView(protagonist);
     }
-    public Observer getView(Cell cell) {
+    public Observador getView(Cell cell) {
         return new CellView(cell);
     }
     public JFrame getWindow(String name) {

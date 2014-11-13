@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 
-public class Cell extends Observable{
+public class Cell extends Observable {
 
     private Integer id;
     private Position position;
@@ -19,10 +19,10 @@ public class Cell extends Observable{
         this.position = new Position(givenPosition);
         this.elements = new ArrayList<StageElement>();
         if (givenNeighbours != null) {
-			this.neighbours = givenNeighbours;
-		} else {
-			this.neighbours = new HashMap<String, Position>();
-		}
+            this.neighbours = givenNeighbours;
+        } else {
+            this.neighbours = new HashMap<String, Position>();
+        }
     }
 
     public Integer getId() {
@@ -56,16 +56,17 @@ public class Cell extends Observable{
     public List<StageElement> getElements() {
         return this.elements;
     }
-	
-	public boolean hasNeighbour(String neighbourKey) {
-		return this.neighbours.containsKey(neighbourKey);
-	}
-	
+
+    public boolean hasNeighbour(String neighbourKey) {
+        return this.neighbours.containsKey(neighbourKey);
+    }
+
     public String getNeighbour(String neighbourKey) {
         if (this.hasNeighbour(neighbourKey)) {
-			return this.neighbours.get(neighbourKey).toString();
-		}
-		else return "";
+            return this.neighbours.get(neighbourKey).toString();
+        } else {
+            return "";
+        }
     }
 
     public boolean isEmpty() {
@@ -78,13 +79,13 @@ public class Cell extends Observable{
         }
         return this.elements.get(0).getMapSerialization();
     }
-	
-	public Position getTargetPosition(Direction direction) throws BlockedCellException {
-		String targetKey = direction.toString();
-		if (this.hasNeighbour(targetKey)) {
-			return this.neighbours.get(targetKey);
-		}
-		throw new BlockedCellException();
-	}
-	
+
+    public Position getTargetPosition(Direction direction) throws BlockedCellException {
+        String targetKey = direction.toString();
+        if (this.hasNeighbour(targetKey)) {
+            return this.neighbours.get(targetKey);
+        }
+        throw new BlockedCellException();
+    }
+
 }

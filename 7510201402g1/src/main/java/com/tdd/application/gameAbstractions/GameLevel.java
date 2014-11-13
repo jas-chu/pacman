@@ -35,14 +35,14 @@ public abstract class GameLevel  {
     }
 
     private void createViews() {
-        for (List<Cell> cells : this.stage.getCells()) {
-            for (Cell cell : cells) {
-                this.viewManager.addObserver(cell);
-            }
-        }
+//        for (List<Cell> cells : this.stage.getCells()) {
+//            for (Cell cell : cells) {
+//                this.viewManager.addObserver(cell);
+//            }
+//        }
         this.enemies.forEach(this.viewManager::addObserver);
-        this.stage.getStaticItems().stream().forEach(this.viewManager::addObserver);
-        this.stage.getMovingItems().stream().forEach(this.viewManager::addObserver);
+//        this.stage.getStaticItems().stream().forEach(this.viewManager::addObserver);
+//        this.stage.getMovingItems().stream().forEach(this.viewManager::addObserver);
 
     }
 

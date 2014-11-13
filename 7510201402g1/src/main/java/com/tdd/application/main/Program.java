@@ -11,10 +11,8 @@ public class Program {
         EventQueue.invokeLater(() -> {
             if (args.length > 0) {
                 try {
-                    Application app = new Application("Pacman", args[0]);
-                    app.show();
-                    //app.run();
-
+                    Application app = new Application("Pacman", args[0]);                    
+                    app.run();
                 } catch (NoAvailableFactoryException ex) {
                     Logger.getLogger(Program.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -5,7 +5,6 @@
  */
 package com.tdd.view;
 
-
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
@@ -18,10 +17,22 @@ import javax.swing.JPanel;
 public abstract class Observador extends JPanel implements Observer {
 
     protected Observable observable;
+    protected int x, y, width, heigth;
 
-    public void update(){
-        this.update(observable, this);
+    public Observador() {
+
     }
 
+    public Observador(int x, int y, int width, int heigth) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.heigth = heigth;
+
+    }
+
+    public void update() {
+        this.update(observable, this);
+    }
 
 }
