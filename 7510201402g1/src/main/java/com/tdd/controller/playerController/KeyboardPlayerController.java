@@ -1,5 +1,6 @@
 package com.tdd.controller.playerController;
 
+import com.sun.corba.se.impl.orbutil.concurrent.Mutex;
 import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.directionFactory.DirectionDownFactory;
 import com.tdd.model.directionFactory.DirectionFactory;
@@ -17,8 +18,9 @@ import java.util.Map;
 
 public class KeyboardPlayerController implements PlayerController, KeyListener {
 
-    private List<Direction> directionsToBeProcessed;
-    private Map<Integer, DirectionFactory> directionsDictionary;
+    private final List<Direction> directionsToBeProcessed;
+    private final Map<Integer, DirectionFactory> directionsDictionary;
+    private Mutex mutex;
 
     public KeyboardPlayerController() {
         this.directionsToBeProcessed = new ArrayList<Direction>();
@@ -27,23 +29,33 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
         this.directionsDictionary.put(KeyEvent.VK_LEFT, new DirectionLeftFactory());
         this.directionsDictionary.put(KeyEvent.VK_UP, new DirectionUpFactory());
         this.directionsDictionary.put(KeyEvent.VK_DOWN, new DirectionDownFactory());
+        this.mutex = new Mutex();
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        System.out.println("KEY TYPED");        
+        System.out.println("KEY TYPED");
         // does nothing
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
+        System.out.println("keyPressed=" + KeyEvent.getKeyText(e.getKeyCode()));
         System.out.println("KEY PRESSED");
         DirectionFactory factory = this.directionsDictionary.get(e.getKeyCode());
         if (factory == null) {
             return;
         }
-        this.directionsToBeProcessed.add(factory.createDirection());
+
+        try {
+            mutex.acquire();
+            try {
+                this.directionsToBeProcessed.add(factory.createDirection());                
+            } finally {
+                mutex.release();
+            }
+        } catch (InterruptedException ie) {
+        }
     }
 
     @Override
@@ -53,12 +65,19 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
     }
 
     @Override
-    public Direction getNewDirection() throws NoMoreMovementsException {        
-        if (!(this.directionsToBeProcessed.isEmpty())) {
-            return this.directionsToBeProcessed.remove(0);
-        }        
+    public Direction getNewDirection() throws NoMoreMovementsException {
+        try {
+            mutex.acquire();
+            try {
+                if (!(this.directionsToBeProcessed.isEmpty())) {                    
+                    return this.directionsToBeProcessed.remove(0);
+                }
+            } finally {
+                mutex.release();
+            }
+        } catch (InterruptedException ie) {
+        }
         throw new NoMoreMovementsException();
-        
     }
 
 }

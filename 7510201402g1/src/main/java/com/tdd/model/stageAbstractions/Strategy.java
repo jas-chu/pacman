@@ -161,4 +161,7 @@ public abstract class Strategy {
         return this.possibleDirections.size();
     }
 
+    public Direction getLastDirection(){
+        return this.lastDirection;
+    }
 }

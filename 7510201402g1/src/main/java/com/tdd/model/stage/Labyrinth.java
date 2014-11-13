@@ -66,7 +66,7 @@ public class Labyrinth implements Stage {
         }
     }
 
-    private void loadInitialLabyrinthConfigurations() throws AttributeNotFoundException {
+    private synchronized void loadInitialLabyrinthConfigurations() throws AttributeNotFoundException {
         this.width = this.labyrinthLoader.getLabyrinthWidth();
         this.height = this.labyrinthLoader.getLabyrinthHeight();
         this.nodeWidth = this.labyrinthLoader.getNodeWidth();
@@ -75,7 +75,7 @@ public class Labyrinth implements Stage {
         this.ghostStart = this.labyrinthLoader.getGhostStartPosition();
     }
 
-    private void loadCells(LevelConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
+    private synchronized void loadCells(LevelConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
         NodeList nodes = this.labyrinthLoader.getNodes();
         CellBuilder cellBuilder = new CellBuilder();
         ItemBuilder itemBuilder = new ItemBuilder();
@@ -98,7 +98,7 @@ public class Labyrinth implements Stage {
         }
     }
 
-    private void loadEnemies(LevelConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
+    private synchronized void loadEnemies(LevelConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
         NodeList ghostsNodes = this.gameCharactersLoader.getGhostNodes();
         if (ghostsNodes == null) {
             return;
@@ -114,69 +114,69 @@ public class Labyrinth implements Stage {
     }
 
     @Override
-    public void populateWithProtagonist(Protagonist givenProtagonist) {
+    public synchronized void populateWithProtagonist(Protagonist givenProtagonist) {
         this.pacman = givenProtagonist;
         this.pacman.placeOnStage(this, this.pacmanStart);
         this.placeProtagonistAtHome(this.pacman);
     }
 
     @Override
-    public Integer getWidth() {
+    public synchronized Integer getWidth() {
         return this.width;
     }
 
     @Override
-    public Integer getHeight() {
+    public synchronized Integer getHeight() {
         return this.height;
     }
 
     @Override
-    public Integer getNodeWidth() {
+    public synchronized Integer getNodeWidth() {
         return this.nodeWidth;
     }
 
     @Override
-    public Integer getNodeHeight() {
+    public synchronized Integer getNodeHeight() {
         return this.nodeHeight;
     }
 
     @Override
-    public Position getGhostStart() {
+    public synchronized Position getGhostStart() {
         return this.ghostStart;
     }
 
     @Override
-    public Position getPacmanStart() {
+    public synchronized Position getPacmanStart() {
         return this.pacmanStart;
     }
 
     @Override
-    public List<List<Cell>> getCells() {
+    public synchronized List<List<Cell>> getCells() {
         return this.cells;
     }
 
     @Override
-    public List<StaticItem> getStaticItems() {
+    public synchronized List<StaticItem> getStaticItems() {
         return this.staticItems;
     }
 
     @Override
-    public List<MovingItem> getMovingItems() {
+    public synchronized List<MovingItem> getMovingItems() {
         return this.movingItems;
     }
 
     @Override
-    public List<Enemy> getEnemies() {
+    public synchronized List<Enemy> getEnemies() {
         return this.enemies;
     }
 
     @Override
-    public Protagonist getProtagonist() {
+    public synchronized Protagonist getProtagonist() {
         return this.pacman;
     }
 
     @Override
-    public boolean hasStaticItems() {
+    public synchronized boolean hasStaticItems() {
         return !(this.staticItems.isEmpty());
     }
 
@@ -187,7 +187,7 @@ public class Labyrinth implements Stage {
      * @throws com.tdd.model.exceptions.NoExistingCellException
      */
     @Override
-    public Cell getCell(Position givenPosition) throws NoExistingCellException {
+    public synchronized Cell getCell(Position givenPosition) throws NoExistingCellException {
 		if (givenPosition == null) throw new NoExistingCellException();
         int rowIndex = givenPosition.getY();
         int colIndex = givenPosition.getX();
@@ -206,7 +206,7 @@ public class Labyrinth implements Stage {
      *
      * @param element
      */
-    private void removeElementFromCell(StageElement element) throws NoExistingCellException {
+    private synchronized void removeElementFromCell(StageElement element) throws NoExistingCellException {
         Cell sourceCell = this.getCell(element.getPosition());
         sourceCell.removeElement(element);
     }
@@ -219,7 +219,7 @@ public class Labyrinth implements Stage {
      * @throws com.tdd.model.exceptions.NoExistingCellException
      */
     @Override
-    public void placeElement(Direction direction, StageElement element) throws BlockedCellException, NoExistingCellException {
+    public synchronized void placeElement(Direction direction, StageElement element) throws BlockedCellException, NoExistingCellException {
         Cell currentCell = this.getCell(element.getPosition());
         Position targetPosition = currentCell.getTargetPosition(direction);
 		Cell targetCell = this.getCell(targetPosition);
@@ -232,7 +232,7 @@ public class Labyrinth implements Stage {
      * @param position
      * @param element
      */
-    private void forcePlaceElement(Position position, StageElement element) {
+    private synchronized void forcePlaceElement(Position position, StageElement element) {
         try {
             this.removeElementFromCell(element);
             this.getCell(position).placeElement(element);
@@ -246,7 +246,7 @@ public class Labyrinth implements Stage {
      * @param givenEnemy
      */
     @Override
-    public void placeEnemyAtHome(Enemy givenEnemy) {
+    public synchronized void placeEnemyAtHome(Enemy givenEnemy) {
         this.forcePlaceElement(this.ghostStart, givenEnemy);
     }
 
@@ -255,7 +255,7 @@ public class Labyrinth implements Stage {
      * @param givenProtagonist
      */
     @Override
-    public void placeProtagonistAtHome(Protagonist givenProtagonist) {
+    public synchronized void placeProtagonistAtHome(Protagonist givenProtagonist) {
         this.forcePlaceElement(this.pacmanStart, givenProtagonist);
     }
 
@@ -263,13 +263,13 @@ public class Labyrinth implements Stage {
      *
      */
     @Override
-    public void turnEnemiesToPrey() {
+    public synchronized void turnEnemiesToPrey() {
         for (Enemy enemy : this.enemies) {
             enemy.turnToPrey();
         }
     }
 
-    private void removeItem(StageElement item) {
+    private synchronized void removeItem(StageElement item) {
         try {
             this.removeElementFromCell(item);
         } catch (NoExistingCellException ex) {
@@ -278,13 +278,13 @@ public class Labyrinth implements Stage {
     }
 
     @Override
-    public void removeStaticItem(StaticItem givenItem) {
+    public synchronized void removeStaticItem(StaticItem givenItem) {
         this.removeItem(givenItem);
         this.staticItems.remove(givenItem);
     }
 
     @Override
-    public void removeMovingItem(MovingItem givenItem) {
+    public synchronized void removeMovingItem(MovingItem givenItem) {
         this.removeItem(givenItem);
         this.movingItems.remove(givenItem);
     }
