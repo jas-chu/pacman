@@ -5,7 +5,6 @@ import com.tdd.application.game.ActualGame;
 import com.tdd.application.gameAbstractions.GameLevel;
 import com.tdd.application.gameAbstractions.GameLevelFactory;
 import com.tdd.application.gameLevelFactory.GameLevelFactorySearcher;
-import com.tdd.controller.controllerAbstractions.Controller;
 import com.tdd.controller.playerController.KeyboardPlayerController;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.helpers.XMLConstants;
@@ -22,7 +21,6 @@ public class Application {
     private PacmanGame game;
     private ViewManager view;
     private String name;
-    private Controller controller;
 
     public Application(String name, String xmlGamePath) throws NoAvailableFactoryException {
         XMLConstants gameConstants = new SpanishXMLConstants();
@@ -33,7 +31,6 @@ public class Application {
         this.view.createWindow(name);
         this.game = new ActualGame(levelFactories, this.view);
 
-//        this.controller = new KeyboardPlayerController();
     }
 
     private List<GameLevelFactory> createLevels(String xmlGamePath, XMLConstants gameConstants) throws NoAvailableFactoryException {
