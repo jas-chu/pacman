@@ -13,7 +13,7 @@ public class BigDotView extends View{
 
     public BigDotView(StaticItem bigDot) {
         super();
-        this.setPosition(bigDot.getPosition().getX(), bigDot.getPosition().getY());
+        this.setViewPosition(bigDot.getPosition().getX(), bigDot.getPosition().getY());
         this.observable = bigDot;
         this.imgPath = ViewConstants.BIG_DOT;
     }
@@ -21,7 +21,7 @@ public class BigDotView extends View{
     @Override
     public void update(Observable o, Object arg) {
         StaticItem staticItem = (StaticItem) observable;
-        this.setPosition(staticItem.getPosition().getX(), staticItem.getPosition().getY());
+        this.setViewPosition(staticItem.getPosition().getX(), staticItem.getPosition().getY());
     }
     
 

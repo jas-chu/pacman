@@ -13,7 +13,7 @@ public class FruitView extends View {
 
     public FruitView(MovingItem movingItem) {
         super();
-        this.setPosition(movingItem.getPosition().getX(), movingItem.getPosition().getY());
+        this.setViewPosition(movingItem.getPosition().getX(), movingItem.getPosition().getY());
         this.observable = movingItem;
         this.imgPath = ViewConstants.FRUIT;
     }
@@ -21,7 +21,7 @@ public class FruitView extends View {
     @Override
     public void update(Observable observable, Object obj) {
         MovingItem movingItem = (MovingItem) observable;
-        this.setPosition(movingItem.getPosition().getX(), movingItem.getPosition().getY());
+        this.setViewPosition(movingItem.getPosition().getX(), movingItem.getPosition().getY());
 
     }
 
