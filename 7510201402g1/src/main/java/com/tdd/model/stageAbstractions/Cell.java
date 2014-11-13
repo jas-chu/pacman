@@ -56,9 +56,13 @@ public class Cell extends Observable{
     public List<StageElement> getElements() {
         return this.elements;
     }
-
+	
+	public boolean hasNeighbour(String neighbourKey) {
+		return this.neighbours.containsKey(neighbourKey);
+	}
+	
     public String getNeighbour(String neighbourKey) {
-        if (this.neighbours.containsKey(neighbourKey)) {
+        if (this.hasNeighbour(neighbourKey)) {
 			return this.neighbours.get(neighbourKey).toString();
 		}
 		else return "";
@@ -77,7 +81,7 @@ public class Cell extends Observable{
 	
 	public Position getTargetPosition(Direction direction) throws BlockedCellException {
 		String targetKey = direction.toString();
-		if (this.neighbours.containsKey(targetKey)) {
+		if (this.hasNeighbour(targetKey)) {
 			return this.neighbours.get(targetKey);
 		}
 		throw new BlockedCellException();
