@@ -49,11 +49,6 @@ public class MockProtagonist extends Protagonist {
 	}
 	
 	@Override
-	public void teleport(Position givenPosition) throws AlreadyTeleportedException {
-		this.teleportMethodCalled = true;
-	}
-	
-	@Override
 	public void collideWithProtagonist(Protagonist givenProtagonist) {
 		this.collideWithProtagonistMethodCalled = true;
 	}

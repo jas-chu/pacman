@@ -24,13 +24,9 @@ public class CellBuilder {
     public Cell createCell(NodeList nodes, Node node) throws AttributeNotFoundException, NoAvailableFactoryException {
         int cellId = XMLReader.getNodeId(node);
         Position cellPosition = XMLReader.getNodePosition(node);
-        Map<String,String> neighboursIds = XMLReader.getNeighboursIds(node);
+        Map<String,Position> neighbours = XMLReader.getNeighbours(node);
 		
-		boolean hasNeighbours = !(neighboursIds.isEmpty());
-        Position targetPosition = getTeleportTargetCellPosition(cellPosition, neighboursIds, nodes);
-        CellFactorySearcher cellFactorySearcher = new CellFactorySearcher();
-        CellFactory cellFactory = cellFactorySearcher.getFactory(hasNeighbours, targetPosition);
-		return cellFactory.getCell(cellId, cellPosition, neighboursIds);
+		return new Cell(cellId, cellPosition, neighbours);
     }
 
     /**

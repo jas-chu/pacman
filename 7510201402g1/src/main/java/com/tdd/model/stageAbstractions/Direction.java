@@ -8,4 +8,7 @@ public abstract class Direction {
 	
 	public abstract Position getNewPosition(Position position);
 	public abstract Direction invert();
+	
+	@Override
+	public abstract String toString();
 }

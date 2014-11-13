@@ -1,25 +1,32 @@
 package com.tdd.model.cell;
 
+import com.tdd.model.direction.DirectionRight;
 import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.mocks.MockProtagonist;
+import com.tdd.model.mocks.MockStaticItem;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Position;
+import java.util.HashMap;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public abstract class CellTest {
 	
-	protected int cellId;
-	protected Position position;
-	protected Cell cell;
-	protected MockProtagonist protagonist;
+	private int cellId;
+	private Position position;
+	private Cell cell;
+	private MockProtagonist protagonist;
 
     @Before
 	public void setUp() {
 		this.cellId = 103;
 		this.position = new Position(7, 3);
 		this.protagonist = new MockProtagonist();
+		HashMap<String,Position> neighbours = new HashMap<String,Position>();
+		neighbours.put(XMLConstants.DIRECTION_RIGHT, this.position.createPositionAddingX(1));
+		this.cell = new Cell(this.cellId, this.position, neighbours);
 	}
 	
 	@Test
@@ -43,9 +50,9 @@ public abstract class CellTest {
     }
 	
 	@Test
-    public void testPlaceElement() {
+    public void getTargetPosition() {
 		try {
-			this.cell.testPlaceElement();
+			this.cell.getTargetPosition(new DirectionRight());
 			assert(true);
 		} catch (BlockedCellException ex) {
 			fail();
@@ -69,6 +76,10 @@ public abstract class CellTest {
 	@Test
     public void getContent() {
         assertEquals(this.cell.getContent(),"");
+		
+		MockStaticItem item = new MockStaticItem();
+		this.cell.placeElement(item);
+		assertEquals(item.getMapSerialization(), this.cell.getContent());
     }
 	
 }

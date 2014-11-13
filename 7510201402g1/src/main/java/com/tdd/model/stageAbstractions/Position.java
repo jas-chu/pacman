@@ -4,6 +4,11 @@ public class Position {
 
     private Integer x, y;
 
+	public Position(String id) {
+		this.y = Integer.parseInt(id.substring(0, 2));
+		this.x = Integer.parseInt(id.substring(2, id.length()));
+	}
+
     private void initialize(int x, int y) {
         this.x = x;
         this.y = y;

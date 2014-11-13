@@ -3,20 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.tdd.view.stage.labyrinth;
 
-import com.tdd.model.cell.BlockedCell;
+import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.view.Observador;
 import java.util.Observable;
 
 /**
  *
- *
+ * 
  */
-public class BlockedCellView extends Observador {
+public class CellView extends Observador{
 
-    public BlockedCellView(BlockedCell blockedCell) {
-        this.observable = blockedCell;
+    public CellView(Cell cell) {
+        this.observable = cell;
     }
 
     @Override

@@ -2,22 +2,27 @@ package com.tdd.model.stageAbstractions;
 
 import com.tdd.model.exceptions.BlockedCellException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 
-public abstract class Cell extends Observable{
+public class Cell extends Observable{
 
     private Integer id;
     private Position position;
     private List<StageElement> elements;
-    private Map<String, String> neighboursIds;
+    private Map<String, Position> neighbours;
 
-    public Cell(int givenId, Position givenPosition, Map<String, String> givenNeighboursIds) {
+    public Cell(int givenId, Position givenPosition, Map<String, Position> givenNeighbours) {
         this.id = givenId;
         this.position = new Position(givenPosition);
         this.elements = new ArrayList<StageElement>();
-        this.neighboursIds = givenNeighboursIds;
+        if (givenNeighbours != null) {
+			this.neighbours = givenNeighbours;
+		} else {
+			this.neighbours = new HashMap<String, Position>();
+		}
     }
 
     public Integer getId() {
@@ -36,9 +41,6 @@ public abstract class Cell extends Observable{
         return this.position;
     }
 
-    public void testPlaceElement() throws BlockedCellException {
-    }
-
     public void placeElement(StageElement givenElement) {
         givenElement.setPosition(this.position);
         for (StageElement element : this.elements) {
@@ -55,22 +57,30 @@ public abstract class Cell extends Observable{
         return this.elements;
     }
 
-    public String getNeighbour(String neighbour) {
-        return this.neighboursIds.get(neighbour);
+    public String getNeighbour(String neighbourKey) {
+        if (this.neighbours.containsKey(neighbourKey)) {
+			return this.neighbours.get(neighbourKey).toString();
+		}
+		else return "";
     }
 
     public boolean isEmpty() {
         return this.elements.isEmpty();
     }
 
-       /**
-        * TODO: Revisar
-        * @return 
-        */
     public String getContent() {
         if (this.elements.isEmpty()) {
             return "";
         }
         return this.elements.get(0).getMapSerialization();
     }
+	
+	public Position getTargetPosition(Direction direction) throws BlockedCellException {
+		String targetKey = direction.toString();
+		if (this.neighbours.containsKey(targetKey)) {
+			return this.neighbours.get(targetKey);
+		}
+		throw new BlockedCellException();
+	}
+	
 }

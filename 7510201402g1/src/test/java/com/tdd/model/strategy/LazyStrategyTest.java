@@ -40,13 +40,13 @@ public class LazyStrategyTest {
     public void ChasePacman() {
         Position position = new Position(0,3);
         this.instance.chasePacman(position);
-        assertEquals(this.instance.getNumberOfPossibleDirections(), 4);        
+        assertEquals(4, this.instance.getNumberOfPossibleDirections());        
     }
 
     @Test
     public void GetRandomDirection() {
         this.instance.getRandomDirection();        
-        assertEquals(this.instance.getNumberOfPossibleDirections(), 4);                
+        assertEquals(2, this.instance.getNumberOfPossibleDirections());
     }  
     
 }

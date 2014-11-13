@@ -46,7 +46,7 @@ public class SillyStrategyTest {
     @Test
     public void GetRandomDirection() {
         this.instance.getRandomDirection();        
-        assertEquals(this.instance.getNumberOfPossibleDirections(), 4);                
+        assertEquals(2, this.instance.getNumberOfPossibleDirections());
     }  
     
 }

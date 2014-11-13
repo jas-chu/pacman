@@ -34,7 +34,7 @@ public interface Stage {
 
     public boolean hasStaticItems();
 
-    public void placeElement(Position position, StageElement element) throws BlockedCellException, NoExistingCellException;
+    public void placeElement(Direction direction, StageElement element) throws BlockedCellException, NoExistingCellException;
 
     public void placeEnemyAtHome(Enemy givenEnemy);
 

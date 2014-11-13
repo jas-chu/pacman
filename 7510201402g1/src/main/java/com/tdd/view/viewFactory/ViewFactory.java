@@ -8,7 +8,7 @@ import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.view.stage.enemy.GhostView;
 import com.tdd.view.stage.items.DotView;
 import com.tdd.view.stage.items.FruitView;
-import com.tdd.view.stage.labyrinth.ClearCellView;
+import com.tdd.view.stage.labyrinth.CellView;
 import com.tdd.view.stage.protagonist.ProtagonistView;
 import com.tdd.view.window.WindowView;
 
@@ -42,7 +42,7 @@ public class ViewFactory {
         return new ProtagonistView(protagonist);
     }
     public Observer getView(Cell cell) {
-        return new ClearCellView(cell);
+        return new CellView(cell);
     }
     public JFrame getWindow(String name) {
         return new WindowView(name);

@@ -36,13 +36,13 @@ public class RandomStrategyTest {
     @Test
     public void getDirection() {
         this.instance.getDirection();
-        assertEquals(this.instance.getNumberOfPossibleDirections(),4);                 
+        assertEquals(2, this.instance.getNumberOfPossibleDirections());
     }
     
     @Test
     public void GetRandomDirection() {
-        this.instance.getRandomDirection();        
-        assertEquals(this.instance.getNumberOfPossibleDirections(), 4);                
+		this.instance.getRandomDirection();        
+        assertEquals(2, this.instance.getNumberOfPossibleDirections());
     }  
     
 

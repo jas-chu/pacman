@@ -5,6 +5,7 @@ import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.exceptions.NoExistingCellException;
 import com.tdd.model.stage.SquaredArea;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public abstract class Strategy {
@@ -21,7 +22,7 @@ public abstract class Strategy {
         this.element = givenElement;
         this.vision = vision;
         this.possibleDirections = new ArrayList<>();
-        this.lastDirection = null;
+        if (this.element != null) this.lastDirection = this.element.getSense();
     }
 
     public void advanceCycle() {
@@ -97,18 +98,16 @@ public abstract class Strategy {
 
     protected boolean inCellBifurcation() {
         int unblockedCells = 0;
-        ArrayList<Position> positions = getAllPossibleNextPositions();
-        for (Position position : positions) {
+        List<Direction> directions = getAllDirections();
+		Position elementPosition = this.element.getPosition();
+        for (Direction direction : directions) {
             try {
-                this.element.getStage().getCell(position).testPlaceElement();
+                this.element.getStage().getCell(elementPosition).getTargetPosition(direction);
                 unblockedCells++;
             } catch (BlockedCellException | NoExistingCellException error) {
             }
         }
-        if (unblockedCells >= bifurcationCells) {
-            return true;
-        }
-        return false;
+        return (unblockedCells >= bifurcationCells);
     }
 
     protected void generateRandomDirections() {
@@ -120,8 +119,10 @@ public abstract class Strategy {
     }
 
     protected void getNoBifurcationDirections() {
-        this.possibleDirections.add(this.lastDirection);
-        this.possibleDirections.add(this.lastDirection.invert());
+		if (this.lastDirection != null) {
+			this.possibleDirections.add(this.lastDirection);
+			this.possibleDirections.add(this.lastDirection.invert());
+		}
     }
 
     private int getRandomNumber(int min, int max) {

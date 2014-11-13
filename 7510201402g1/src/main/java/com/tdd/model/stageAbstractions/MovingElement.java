@@ -19,9 +19,7 @@ public abstract class MovingElement extends StageElement {
 		}
     }
 	
-	protected void moveOneTime() {
-		this.removeTeleportedState();
-	}
+	protected abstract void moveOneTime();
 	
     public void setSense(Direction sense) {
         this.sense = sense;

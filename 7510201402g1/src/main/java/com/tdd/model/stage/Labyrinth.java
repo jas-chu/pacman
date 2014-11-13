@@ -14,6 +14,7 @@ import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.itemBuilding.ItemBuilder;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Consumable;
+import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.StaticItem;
@@ -89,6 +90,7 @@ public class Labyrinth implements Stage {
                     String translatedCellContent = givenConfigs.getGameConstants().getInvertedItemValueTranslation(cellContent);
                     Consumable item = itemBuilder.createItem(this, createdCell.getPosition(), translatedCellContent, givenConfigs);
                     item.addToList(this.staticItems, this.movingItems);
+					createdCell.placeElement((StageElement)item);
                 }
                 mapRow.add(createdCell);
             }
@@ -186,6 +188,7 @@ public class Labyrinth implements Stage {
      */
     @Override
     public Cell getCell(Position givenPosition) throws NoExistingCellException {
+		if (givenPosition == null) throw new NoExistingCellException();
         int rowIndex = givenPosition.getY();
         int colIndex = givenPosition.getX();
         if (rowIndex < 0 || rowIndex >= this.cells.size()) {
@@ -210,16 +213,17 @@ public class Labyrinth implements Stage {
 
     /**
      *
-     * @param position
+	 * @param direction
      * @param element
      * @throws BlockedCellException
      * @throws com.tdd.model.exceptions.NoExistingCellException
      */
     @Override
-    public void placeElement(Position position, StageElement element) throws BlockedCellException, NoExistingCellException {
-        Cell targetCell = this.getCell(position);
-        targetCell.testPlaceElement();
-        this.removeElementFromCell(element);
+    public void placeElement(Direction direction, StageElement element) throws BlockedCellException, NoExistingCellException {
+        Cell currentCell = this.getCell(element.getPosition());
+        Position targetPosition = currentCell.getTargetPosition(direction);
+		Cell targetCell = this.getCell(targetPosition);
+        currentCell.removeElement(element);
         targetCell.placeElement(element);
     }
 

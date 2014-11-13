@@ -48,11 +48,9 @@ public abstract class Protagonist extends MovingElement {
 		if (!(this.isOnStage()) || this.controller == null) return;
 		
 		try {
-			super.moveOneTime();
 			Direction direction = this.controller.getNewDirection();
-			Position nextPosition = direction.getNewPosition(this.position);
 			try {
-				this.stage.placeElement(nextPosition, this);
+				this.stage.placeElement(direction, this);
 			} catch (BlockedCellException | NoExistingCellException error2) {
 				// player hit wall
 			}

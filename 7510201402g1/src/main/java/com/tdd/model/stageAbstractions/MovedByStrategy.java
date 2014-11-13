@@ -28,13 +28,11 @@ public abstract class MovedByStrategy extends MovingElement {
 
     @Override
     public void moveOneTime() {
-        super.moveOneTime();
         int i = Direction.getNumberOfPossibleDirections();
         while (i > 0) {
             Direction direction = this.getNextDirection();
-            Position nextPosition = direction.getNewPosition(this.position);
             try {
-                this.stage.placeElement(nextPosition, this);
+                this.stage.placeElement(direction, this);
                 this.sense = direction;
                 i = 0;
             } catch (BlockedCellException | NoExistingCellException error) {

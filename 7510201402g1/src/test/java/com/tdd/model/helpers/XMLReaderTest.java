@@ -78,10 +78,10 @@ public class XMLReaderTest extends ReadingSetUpTest {
     @Test
 	public void getNeighboursIds() throws AttributeNotFoundException {
 		Node node = XMLReader.getNodeById(this.childrenNodes, 104);
-		Map<String, String> neighbours = XMLReader.getNeighboursIds(node);
-		assert(neighbours.get(XMLConstants.DIRECTION_LEFT).equals("0103"));
-		assert(neighbours.get(XMLConstants.DIRECTION_RIGHT).equals("0105"));
-		assert(neighbours.get(XMLConstants.DIRECTION_DOWN).equals("0204"));
+		Map<String, Position> neighbours = XMLReader.getNeighbours(node);
+		assert(neighbours.get(XMLConstants.DIRECTION_LEFT).toString().equals("0103"));
+		assert(neighbours.get(XMLConstants.DIRECTION_RIGHT).toString().equals("0105"));
+		assert(neighbours.get(XMLConstants.DIRECTION_DOWN).toString().equals("0204"));
 		assertFalse(neighbours.containsKey(XMLConstants.DIRECTION_UP));
 	}
 	

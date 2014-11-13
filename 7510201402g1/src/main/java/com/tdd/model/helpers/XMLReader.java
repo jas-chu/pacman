@@ -250,8 +250,8 @@ public class XMLReader extends XMLIO {
      * @return
      * @throws AttributeNotFoundException
      */
-    public static Map<String, String> getNeighboursIds(Node node) throws AttributeNotFoundException {
-        Map<String, String> neighbours = new HashMap<>();
+    public static Map<String, Position> getNeighbours(Node node) throws AttributeNotFoundException {
+        Map<String, Position> neighbours = new HashMap<>();
         XMLReader.addNeighbourId(neighbours, node, XMLConstants.DIRECTION_UP);
 		XMLReader.addNeighbourId(neighbours, node, XMLConstants.DIRECTION_DOWN);
 		XMLReader.addNeighbourId(neighbours, node, XMLConstants.DIRECTION_LEFT);
@@ -259,9 +259,9 @@ public class XMLReader extends XMLIO {
         return neighbours;
     }
 	
-	private static void addNeighbourId(Map<String, String> neighbours, Node node, String constant) throws AttributeNotFoundException {
+	private static void addNeighbourId(Map<String, Position> neighbours, Node node, String constant) throws AttributeNotFoundException {
 		String id = XMLReader.getAttributeValue(node, constant);
-		if (!(id.isEmpty())) neighbours.put(constant, id);
+		if (!(id.isEmpty())) neighbours.put(constant, new Position(id));
 	}
 
 }

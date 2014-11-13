@@ -55,36 +55,6 @@ public class PacmanTest {
 	}
 	
 	@Test
-	public void teleport() {
-		try {
-			Position teleportPosition = new Position (4,2);
-			this.pacman.teleport(teleportPosition);
-			assertTrue(this.stage.placeElementMethodCalled);
-			assertTrue(teleportPosition.equals(this.pacman.getPosition()));
-		} catch (AlreadyTeleportedException ex) {
-			fail();
-		}
-	}
-	
-	@Test
-	public void teleportLoop() {
-		Position firstTeleportPosition = new Position (4,2);
-		Position secondTeleportPosition = new Position (8,5);
-		try {
-			this.pacman.teleport(firstTeleportPosition);
-		} catch (AlreadyTeleportedException ex) {
-			fail();
-		}
-		
-		try {
-			this.pacman.teleport(secondTeleportPosition);
-			fail();
-		} catch (AlreadyTeleportedException ex) {
-			assertTrue(firstTeleportPosition.equals(this.pacman.getPosition()));
-		}
-	}
-	
-	@Test
 	public void collideWithElement() {
 		MockProtagonist protagonist = new MockProtagonist();
 		this.pacman.collideWithElement(protagonist);

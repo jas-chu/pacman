@@ -1,8 +1,9 @@
 package com.tdd.model.mocks;
 
-import com.tdd.model.cell.ClearCell;
 import com.tdd.model.exceptions.BlockedCellException;
+import com.tdd.model.exceptions.NoExistingCellException;
 import com.tdd.model.stageAbstractions.Cell;
+import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.StaticItem;
@@ -52,12 +53,12 @@ public class MockStage implements Stage {
     public boolean hasStaticItems() {
         return false;
     }
-
-    @Override
-    public void placeElement(Position position, StageElement element) throws BlockedCellException {
-        this.placeElementMethodCalled = true;
-        element.setPosition(position);
-    }
+	
+	@Override
+	public void placeElement(Direction direction, StageElement element) throws BlockedCellException, NoExistingCellException {
+		this.placeElementMethodCalled = true;
+        element.setPosition(direction.getNewPosition(element.getPosition()));
+	}
 
     @Override
     public void placeEnemyAtHome(Enemy givenEnemy) {
@@ -86,7 +87,7 @@ public class MockStage implements Stage {
 
     @Override
     public Cell getCell(Position givenPosition) {
-        return new ClearCell(0, givenPosition, null);
+        return new Cell(0, givenPosition, null);
     }
 
     @Override
