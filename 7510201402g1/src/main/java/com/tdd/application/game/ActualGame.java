@@ -3,6 +3,7 @@ package com.tdd.application.game;
 import com.tdd.application.gameAbstractions.GameLevelFactory;
 import com.tdd.application.gameAbstractions.PacmanGame;
 import com.tdd.application.gameAbstractions.GameLevel;
+import com.tdd.controller.playerController.KeyboardPlayerController;
 import com.tdd.model.exceptions.MalformedXMLException;
 import com.tdd.model.stage.Pacman;
 import com.tdd.model.stageAbstractions.Protagonist;
@@ -16,11 +17,14 @@ public class ActualGame implements PacmanGame {
     private Protagonist protagonist;
     private List<GameLevelFactory> levelFactories;
     private ViewManager viewManager;
+	private KeyboardPlayerController keyboardController;
 
     public ActualGame(List<GameLevelFactory> givenLevelFactories,ViewManager viewManager) {
         this.protagonist = new Pacman();
         this.levelFactories = givenLevelFactories;
         this.viewManager = viewManager;
+		this.keyboardController = new KeyboardPlayerController();
+		this.viewManager.addController(keyboardController);
     }
 
     @Override
@@ -32,7 +36,7 @@ public class ActualGame implements PacmanGame {
                     GameLevelFactory levelFactory = this.levelFactories.get(i);
                     GameLevel level = levelFactory.createLevel();
                     level.setViewManager(this.viewManager);
-                    level.populateWithProtagonist(this.protagonist);
+                    level.populateWithProtagonist(this.protagonist, this.keyboardController);
                     level.levelLoop();
                 } catch (MalformedXMLException ex) {
                     Logger.getLogger(ActualGame.class.getName()).log(Level.SEVERE, null, ex);

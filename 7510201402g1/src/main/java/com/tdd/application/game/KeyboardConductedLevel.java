@@ -13,8 +13,7 @@ public class KeyboardConductedLevel extends GameLevel {
     }
 
     @Override
-    //protected PlayerController createPlayerController() {
-    protected KeyboardPlayerController createPlayerController() {
+    protected PlayerController createPlayerController() {
         return new KeyboardPlayerController();
     }
 
