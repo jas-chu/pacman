@@ -9,11 +9,9 @@ import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.view.abstractions.View;
 import com.tdd.view.helpers.ViewConstants;
-import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -77,8 +75,8 @@ public class CellView extends View {
         this.observable = cell;
         int index = this.getImageIndex(cell);
         this.resourcePath = RESOURCES.get(index);
-        this.x = cell.getColumn();
-        this.y = cell.getRow();
+        this.imgPath = this.resourcePath;
+        this.setPosition(cell.getColumn(), cell.getRow());
     }
 
     @Override
@@ -92,14 +90,6 @@ public class CellView extends View {
         index += getPowValue(LEFT_POW) * boolToInt(cell.hasNeighbour(XMLConstants.DIRECTION_LEFT));
         index += getPowValue(DOWN_POW) * boolToInt(cell.hasNeighbour(XMLConstants.DIRECTION_DOWN));
         return index;
-    }
-
-    @Override
-    public void paintComponents(Graphics graphics) {
-
-        super.paintComponents(graphics);
-        ImageIcon img = new ImageIcon(this.resourcePath);
-        graphics.drawImage(img.getImage(), x*width, y*heigth, width, heigth, null);
     }
 
 }

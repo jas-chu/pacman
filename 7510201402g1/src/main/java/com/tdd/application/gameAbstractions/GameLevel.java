@@ -54,36 +54,33 @@ public abstract class GameLevel {
         KeyboardPlayerController controller = this.createPlayerController();
         this.protagonist.setController(controller);
         this.viewManager.addController(controller);
-        
+
         KeyListener listener = new MyKeyListener();
 //	this.viewManager.addController(listener);
-        
+
         this.protagonist.setSpeed(this.configs.getProtagonistSpeed());
         this.stage.populateWithProtagonist(givenProtagonist);
         this.createProtagonistView();
     }
-    
-    
-    
+
     public class MyKeyListener implements KeyListener {
-		@Override
-		public void keyTyped(KeyEvent e) {
-                    System.out.println("typed");
-		}
 
-		@Override
-		public void keyPressed(KeyEvent e) {
-			System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
-		}
+        @Override
+        public void keyTyped(KeyEvent e) {
+            System.out.println("typed");
+        }
 
-		@Override
-		public void keyReleased(KeyEvent e) {
-			System.out.println("keyReleased="+KeyEvent.getKeyText(e.getKeyCode()));
-		}
-	}
-    
+        @Override
+        public void keyPressed(KeyEvent e) {
+            System.out.println("keyPressed=" + KeyEvent.getKeyText(e.getKeyCode()));
+        }
 
-    
+        @Override
+        public void keyReleased(KeyEvent e) {
+            System.out.println("keyReleased=" + KeyEvent.getKeyText(e.getKeyCode()));
+        }
+    }
+
     private void createProtagonistView() {
         this.viewManager.addObserver(this.getProtagonist());
     }
@@ -139,8 +136,9 @@ public abstract class GameLevel {
         }
     }
 
-    private void updateViews() throws InterruptedException{
-        Thread.sleep(1000);        
+//    private void updateViews() throws InterruptedException{
+    private void updateViews()  {
+//        Thread.sleep(1000);        
         this.viewManager.updateViews();
     }
 
