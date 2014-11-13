@@ -5,7 +5,6 @@ import com.tdd.application.game.ActualGame;
 import com.tdd.application.gameAbstractions.GameLevel;
 import com.tdd.application.gameAbstractions.GameLevelFactory;
 import com.tdd.application.gameLevelFactory.GameLevelFactorySearcher;
-import com.tdd.controller.controllerAbstractions.Controller;
 import com.tdd.controller.playerController.KeyboardPlayerController;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.helpers.XMLConstants;

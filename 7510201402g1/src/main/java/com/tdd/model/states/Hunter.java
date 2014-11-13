@@ -45,7 +45,9 @@ public class Hunter extends State {
         if (this.waitingCycles.isEmpty()) {
             return false;
         }
-        return (this.countedCycles == this.waitingCycles.get(angerLevel));
+        if (angerLevel < waitingCycles.size())
+			return (this.countedCycles == this.waitingCycles.get(angerLevel));
+		return false;
     }
 
     @Override

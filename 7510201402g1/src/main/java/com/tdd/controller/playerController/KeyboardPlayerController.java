@@ -2,7 +2,6 @@ package com.tdd.controller.playerController;
 
 import com.tdd.application.gameAbstractions.GameLevel;
 import com.tdd.application.gameAbstractions.PacmanGame;
-import com.tdd.controller.controllerAbstractions.Controller;
 import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.directionFactory.DirectionDownFactory;
 import com.tdd.model.directionFactory.DirectionFactory;
