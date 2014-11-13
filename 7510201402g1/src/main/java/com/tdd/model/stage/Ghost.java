@@ -10,17 +10,17 @@ import com.tdd.model.stageAbstractions.Stage;
 import com.tdd.model.stageAbstractions.StrategyFactory;
 
 public class Ghost extends Enemy {
-	
-	private static Integer LAST_ID = 0;
+
+    private static Integer LAST_ID = 0;
     private State state;
     private StateFactory stateFactory;
     private Integer id;
 
     public Ghost(Stage stage, Position givenPosition, StateFactory givenFactory,
-				StrategyFactory givenStrategyFactory, int givenAwardingPoints, int givenSpeed) {
+            StrategyFactory givenStrategyFactory, int givenAwardingPoints, int givenSpeed) {
         super(stage, givenPosition, givenStrategyFactory, givenAwardingPoints, givenSpeed);
         this.stateFactory = givenFactory;
-		Ghost.LAST_ID++;
+        Ghost.LAST_ID++;
         this.id = Ghost.LAST_ID;
         this.state = this.stateFactory.createHunter(this);
     }
@@ -45,32 +45,32 @@ public class Ghost extends Enemy {
     public State getState() {
         return this.state;
     }
-	
-	@Override
-	protected Direction getNextDirection() {
-		Direction firstDirection = super.getNextDirection();
-		return this.state.getDirection(firstDirection);
-	}
-	
-	@Override
-	public void move() {
-		super.move();
-		this.advanceGameCycle();
-	}
-    
+
+    @Override
+    protected Direction getNextDirection() {
+        Direction firstDirection = super.getNextDirection();
+        return this.state.getDirection(firstDirection);
+    }
+
+    @Override
+    public void move() {
+        super.move();
+        this.advanceGameCycle();
+    }
+
     private void advanceGameCycle() {
         this.state.advanceCycle();
     }
-	
-	@Override
+
+    @Override
     public Integer getId() {
         return this.id;
     }
-	
+
     // COLLISIONS
     @Override
     public void collideWithProtagonist(Protagonist givenProtagonist) {
         this.state.collideWithProtagonist(givenProtagonist);
     }
-	
+
 }

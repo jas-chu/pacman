@@ -3,40 +3,42 @@ package com.tdd.model.stageAbstractions;
 import com.tdd.model.direction.DirectionRight;
 
 public abstract class MovingElement extends StageElement {
-	
-	protected Direction sense;
-	protected Integer speed;
-	
+
+    protected Direction sense;
+    protected Integer speed;
+
     public MovingElement(Stage givenStage, Position givenPosition, int givenSpeed) {
         super(givenStage, givenPosition);
-		this.speed = givenSpeed;
-		this.sense = new DirectionRight();
+        this.speed = givenSpeed;
+        this.sense = new DirectionRight();
     }
-	
-	public void move() {
-		for (Integer i = 0 ; i < this.speed ; ++i) {
-			this.moveOneTime();
-		}
+
+    public void move() {
+        for (Integer i = 0; i < this.speed; ++i) {
+            this.moveOneTime();
+        }
+        this.setChanged();
+        this.notifyObservers();
     }
-	
-	protected abstract void moveOneTime();
-	
+
+    protected abstract void moveOneTime();
+
     public void setSense(Direction sense) {
         this.sense = sense;
     }
-	
+
     public Direction getSense() {
         return this.sense;
     }
-	
-	public void setSpeed(Integer givenSpeed) {
-		this.speed = givenSpeed;
-	}
 
-	public Integer getSpeed() {
-		return this.speed;
-	}
-	
+    public void setSpeed(Integer givenSpeed) {
+        this.speed = givenSpeed;
+    }
+
+    public Integer getSpeed() {
+        return this.speed;
+    }
+
     @Override
     public String getMapSerialization() {
         return "";

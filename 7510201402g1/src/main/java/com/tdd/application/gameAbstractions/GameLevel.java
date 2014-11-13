@@ -96,6 +96,7 @@ public abstract class GameLevel  {
         }
         for (Enemy enemy : this.enemies) {
             enemy.move();
+            
         }
         for (MovingItem item : this.movingItems) {
             item.move();

@@ -31,8 +31,8 @@ public abstract class Observador extends JPanel implements Observer {
 
     }
 
-    public void update() {
-        this.update(observable, this);
-    }
+//    public void update() {
+//        this.update(observable, this);
+//    }
 
 }

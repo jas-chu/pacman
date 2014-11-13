@@ -16,17 +16,18 @@ import javax.swing.ImageIcon;
 public class GhostView extends Observador {
 
     public GhostView(Enemy enemy) {
-        super(0,0,32,32);
+        super(0, 0, 32, 32);
         this.observable = enemy;
          //TODO-> levantar esto de configuracion
-        
+
     }
 
     @Override
     public void update(Observable observable, Object obj) {
-        Ghost ghost = (Ghost) observable;
-        this.x = ghost.getPosition().getX();
-        this.y = ghost.getPosition().getY();
+            Ghost ghost = (Ghost) observable;
+            this.x = ghost.getPosition().getX();
+            this.y = ghost.getPosition().getY();
+
     }
 
     @Override
@@ -34,7 +35,7 @@ public class GhostView extends Observador {
 
         super.paintComponents(graphics);
         ImageIcon img = new ImageIcon(ViewConstants.ghostViewPath);
-    
-        graphics.drawImage(img.getImage(), x, y,width,heigth, null);
+
+        graphics.drawImage(img.getImage(), x, y, width, heigth, null);
     }
 }
