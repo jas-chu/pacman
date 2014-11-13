@@ -52,8 +52,9 @@ public class ViewManager {
 
     public void createCell(Cell cell) {
         View observer = this.getView(cell);
+        cell.addObserver(observer);
         this.window.add(observer);
-        observer.paintComponents(this.window.getGraphics());
+        this.observers.add(observer);
     }
 
     public void addObserver(StaticItem staticItem) {
@@ -90,6 +91,7 @@ public class ViewManager {
         for (List<Cell> cells : cellsStage) {
             for (Cell cell : cells) {
                 this.createCell(cell);
+                
             }
         }
     }

@@ -6,6 +6,11 @@ package com.tdd.view.helpers;
  */
 public class ViewConstants {
 
+    //CONFIG Constants
+    public static final int IMAGE_WIDTH_DEFAULT = 32;
+    public static final int IMAGE_HEIGHT_DEFAULT = 32;
+    public static final int OFFSET_DEFAULT = 32;
+    
     private static final String INIT_GHOST = "./media/img/ghost/";
 
     public static final String GHOST_DEATH = INIT_GHOST + "death/ghost.png";

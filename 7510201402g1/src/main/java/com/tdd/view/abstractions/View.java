@@ -5,6 +5,7 @@
  */
 package com.tdd.view.abstractions;
 
+import com.tdd.view.helpers.ViewConstants;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
@@ -20,14 +21,12 @@ public abstract class View extends JPanel implements Observer {
 
     protected Observable observable;
     protected int x, y, width, heigth;
-    private static final int offset = 32;
     protected ImageIcon img;
     public View() {
-        //TODO-> levantar esto de configuracion
         this.x = 0;
         this.y = 0;
-        this.width = 64;
-        this.heigth = 64;
+        this.width = ViewConstants.IMAGE_WIDTH_DEFAULT;
+        this.heigth = ViewConstants.IMAGE_HEIGHT_DEFAULT;
 
     }
 
