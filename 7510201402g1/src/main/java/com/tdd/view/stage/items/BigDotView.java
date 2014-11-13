@@ -1,28 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.tdd.view.stage.items;
 
-import com.tdd.model.stage.BigDot;
-import com.tdd.view.Observador;
+import com.tdd.model.stageAbstractions.StaticItem;
+import com.tdd.view.View;
+import com.tdd.view.ViewConstants;
+import java.awt.Graphics;
 import java.util.Observable;
+import javax.swing.ImageIcon;
 
 /**
  *
  * 
  */
-public class BigDotView extends Observador{
+public class BigDotView extends View{
 
-    public BigDotView(BigDot bigDot) {
+    public BigDotView(StaticItem bigDot) {
+        super();
+        this.x = bigDot.getPosition().getX();
+        this.y = bigDot.getPosition().getY();
         this.observable = bigDot;
     }
     
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("actualizacion de "+o+arg);
+        StaticItem movingItem = (StaticItem) observable;
+        this.x = movingItem.getPosition().getX();
+        this.y = movingItem.getPosition().getY();
+    }
+    
+    @Override
+    public void paintComponents(Graphics graphics) {
+
+        super.paintComponents(graphics);
+        ImageIcon img = new ImageIcon(ViewConstants.BIG_DOT);
+        graphics.drawImage(img.getImage(), x, y, width, heigth, null);
     }
 
 }

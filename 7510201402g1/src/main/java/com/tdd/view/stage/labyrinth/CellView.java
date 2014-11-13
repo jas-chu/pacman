@@ -7,7 +7,7 @@ package com.tdd.view.stage.labyrinth;
 
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Cell;
-import com.tdd.view.Observador;
+import com.tdd.view.View;
 import com.tdd.view.ViewConstants;
 import java.awt.Graphics;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ import javax.swing.ImageIcon;
  *
  *
  */
-public class CellView extends Observador {
+public class CellView extends View {
 
     // STATIC
     private static final double RIGHT_POW = 0.0;

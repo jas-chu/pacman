@@ -1,12 +1,16 @@
 package com.tdd.view.viewFactory;
 
+import com.tdd.model.helpers.XMLConstants;
+import com.tdd.model.stage.BigDot;
+import com.tdd.model.stage.Dot;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.StaticItem;
-import com.tdd.view.Observador;
+import com.tdd.view.View;
 import com.tdd.view.stage.enemy.GhostView;
+import com.tdd.view.stage.items.BigDotView;
 import com.tdd.view.stage.items.DotView;
 import com.tdd.view.stage.items.FruitView;
 import com.tdd.view.stage.labyrinth.CellView;
@@ -26,25 +30,34 @@ public class ViewFactory {
 
     }
 
-    public Observador getView(Enemy enemy) {
+    public View getView(Enemy enemy) {
         return new GhostView(enemy);
     }
 
-    public Observador getView(StaticItem staticItem) {
-        //TODO por ahora retorno una bolita-> Ver como difereciar bolita/bolon
-        return new DotView(staticItem);
+    public View getView(StaticItem staticItem) {
+        String itemType = staticItem.getMapSerialization();
+        View observer = null;
+        switch (itemType) {
+            case XMLConstants.BIG_DOT:
+                observer = new BigDotView((BigDot) staticItem);
+            case XMLConstants.DOT:
+                observer = new DotView((Dot) staticItem);
+        }
+        return observer;
     }
 
-    public Observador getView(MovingItem movingItem) {
+    public View getView(MovingItem movingItem) {
         return new FruitView(movingItem);
     }
 
-    public Observador getView(Protagonist protagonist) {
+    public View getView(Protagonist protagonist) {
         return new ProtagonistView(protagonist);
     }
-    public Observador getView(Cell cell) {
+
+    public View getView(Cell cell) {
         return new CellView(cell);
     }
+
     public JFrame getWindow(String name) {
         return new WindowView(name);
     }

@@ -14,13 +14,13 @@ import javax.swing.JPanel;
  *
  * @author agu
  */
-public abstract class Observador extends JPanel implements Observer {
+public abstract class View extends JPanel implements Observer {
 
     protected Observable observable;
     protected int x, y, width, heigth;
 
  
-    public Observador() {
+    public View() {
         //TODO-> levantar esto de configuracion
         this.x = 0;
         this.y = 0;

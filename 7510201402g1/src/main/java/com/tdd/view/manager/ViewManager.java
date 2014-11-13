@@ -1,11 +1,12 @@
 package com.tdd.view.manager;
 
+import com.tdd.controller.playerController.KeyboardPlayerController;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.StaticItem;
-import com.tdd.view.Observador;
+import com.tdd.view.View;
 import com.tdd.view.viewFactory.ViewFactory;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class ViewManager {
 
     private JFrame window;
     private ViewFactory factory;
-    protected List<Observador> observers;
+    protected List<View> observers;
 
     private ViewManager() {
         this.factory = new ViewFactory();
@@ -41,34 +42,34 @@ public class ViewManager {
     }
 
     public void addObserver(Enemy enemy) {
-        Observador observer = this.getView(enemy);
+        View observer = this.getView(enemy);
         enemy.addObserver(observer);
         this.observers.add(observer);
         this.window.add(observer);
     }
 
     public void createCell(Cell cell) {
-        Observador observer = this.getView(cell);
+        View observer = this.getView(cell);
         this.window.add(observer);
         observer.paintComponents(this.window.getGraphics());
     }
 
     public void addObserver(StaticItem staticItem) {
-        Observador observer = this.getView(staticItem);
+        View observer = this.getView(staticItem);
         staticItem.addObserver(observer);
         this.observers.add(observer);
         this.window.add(observer);
     }
 
     public void addObserver(MovingItem movingItem) {
-        Observador observer = this.getView(movingItem);
+        View observer = this.getView(movingItem);
         movingItem.addObserver(observer);
         this.observers.add(observer);
         this.window.add(observer);
     }
 
     public void addObserver(Protagonist protagonist) {
-        Observador observer = this.getView(protagonist);
+        View observer = this.getView(protagonist);
         protagonist.addObserver(observer);
         this.observers.add(observer);
         this.window.add(observer);
@@ -77,7 +78,7 @@ public class ViewManager {
 
     public void updateViews() {
 
-        observers.stream().forEach((Observador observer) -> {
+        observers.stream().forEach((View observer) -> {
             observer.paintComponents(this.window.getGraphics());
         });
 
@@ -88,23 +89,31 @@ public class ViewManager {
         private static final ViewManager INSTANCE = new ViewManager();
     }
 
-    private Observador getView(Cell cell) {
+    private View getView(Cell cell) {
         return this.factory.getView(cell);
     }
 
-    private Observador getView(Enemy enemy) {
+    private View getView(Enemy enemy) {
         return this.factory.getView(enemy);
     }
 
-    private Observador getView(StaticItem staticItem) {
+    private View getView(StaticItem staticItem) {
         return this.factory.getView(staticItem);
     }
 
-    private Observador getView(MovingItem movingItem) {
+    private View getView(MovingItem movingItem) {
         return this.factory.getView(movingItem);
     }
 
-    private Observador getView(Protagonist protagonist) {
+    private View getView(Protagonist protagonist) {
         return this.factory.getView(protagonist);
+    }
+
+    /**
+     * Assign KeyBoard controller to window
+     * @param controller 
+     */
+    public void addController(KeyboardPlayerController controller) {
+        this.window.addKeyListener(controller);
     }
 }

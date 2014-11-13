@@ -7,10 +7,13 @@ package com.tdd.view;
 public class ViewConstants {
 
     private static final String INIT = "./media/img/";
-    public static final String SAMPLE = INIT + "cat.jpg";
+    
     public static final String GHOST = INIT + "ghost.png";
-    public static final String PACMAN = INIT + "pacman.jpg";
-
+    public static final String PACMAN = INIT + "pacman.png";
+    public static final String FRUIT  = INIT + "fruit.png";
+    public static final String DOT  = INIT + "dot.png";
+    public static final String BIG_DOT  = INIT + "bigDot.png";
+    
     //Cell path constants
     private static final String INIT_CELL = "./media/img/cell/";
     public static final String CLEAN_CELL = INIT_CELL + "clean.png";
@@ -29,4 +32,5 @@ public class ViewConstants {
     public static final String LEFT_RIGHT_CELL = INIT_CELL + "left_right.png";
     public static final String LEFT_CELL = INIT_CELL + "left.png";
     public static final String RIGHT_CELL = INIT_CELL + "right.png";
+    
 }

@@ -1,30 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.tdd.view.stage.items;
 
 import com.tdd.model.stageAbstractions.StaticItem;
-import com.tdd.view.Observador;
+import com.tdd.view.View;
+import com.tdd.view.ViewConstants;
+import java.awt.Graphics;
 import java.util.Observable;
 
-import java.util.Observer;
+import javax.swing.ImageIcon;
 
 /**
  *
- * 
+ *
  */
-public class DotView extends Observador{
+public class DotView extends View {
 
-    public DotView(StaticItem staticItem) {
-        this.observable = staticItem;
+    public DotView(StaticItem dot) {
+        super();
+        this.x = dot.getPosition().getX();
+        this.y = dot.getPosition().getY();
+        this.observable = dot;
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("actualizacion de " + o + arg);
+        StaticItem movingItem = (StaticItem) observable;
+        this.x = movingItem.getPosition().getX();
+        this.y = movingItem.getPosition().getY();
     }
 
+    @Override
+    public void paintComponents(Graphics graphics) {
+
+        super.paintComponents(graphics);
+        ImageIcon img = new ImageIcon(ViewConstants.DOT);
+        graphics.drawImage(img.getImage(), x, y, width, heigth, null);
+    }
 }

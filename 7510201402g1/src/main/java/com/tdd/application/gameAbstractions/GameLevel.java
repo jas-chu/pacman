@@ -10,7 +10,6 @@ import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
 import com.tdd.view.manager.ViewManager;
-import java.util.Iterator;
 import java.util.List;
 
 public abstract class GameLevel {
@@ -41,8 +40,8 @@ public abstract class GameLevel {
             }
         }
         this.enemies.forEach(this.viewManager::addObserver);
-//        this.stage.getStaticItems().stream().forEach(this.viewManager::addObserver);
-//        this.stage.getMovingItems().stream().forEach(this.viewManager::addObserver);
+        this.stage.getStaticItems().stream().forEach(this.viewManager::addObserver);
+        this.stage.getMovingItems().stream().forEach(this.viewManager::addObserver);
 
     }
 

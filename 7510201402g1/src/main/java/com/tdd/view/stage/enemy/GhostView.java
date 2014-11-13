@@ -2,7 +2,7 @@ package com.tdd.view.stage.enemy;
 
 import com.tdd.model.stage.Ghost;
 import com.tdd.model.stageAbstractions.Enemy;
-import com.tdd.view.Observador;
+import com.tdd.view.View;
 import com.tdd.view.ViewConstants;
 import java.awt.Graphics;
 import java.util.Observable;
@@ -13,7 +13,7 @@ import javax.swing.ImageIcon;
  *
  * @author agu
  */
-public class GhostView extends Observador {
+public class GhostView extends View {
 
     public GhostView(Enemy enemy) {
         super();

@@ -6,7 +6,7 @@
 package com.tdd.view.stage.protagonist;
 
 import com.tdd.model.stageAbstractions.Protagonist;
-import com.tdd.view.Observador;
+import com.tdd.view.View;
 import com.tdd.view.ViewConstants;
 import java.awt.Graphics;
 import java.util.Observable;
@@ -17,7 +17,7 @@ import javax.swing.ImageIcon;
  *
  *
  */
-public class ProtagonistView extends Observador {
+public class ProtagonistView extends View {
 
     public ProtagonistView(Protagonist protagonist) {
         super();
