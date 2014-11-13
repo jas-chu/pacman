@@ -2,6 +2,7 @@ package com.tdd.application.gameAbstractions;
 
 import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.controller.controllerAbstractions.PlayerController;
+import com.tdd.controller.playerController.KeyboardPlayerController;
 import com.tdd.model.exceptions.MalformedXMLException;
 import com.tdd.model.stage.Labyrinth;
 import com.tdd.model.stageAbstractions.Cell;
@@ -10,6 +11,8 @@ import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
 import com.tdd.view.manager.ViewManager;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.List;
 
 public abstract class GameLevel {
@@ -47,18 +50,46 @@ public abstract class GameLevel {
         }
 
         this.protagonist = givenProtagonist;
-        PlayerController controller = this.createPlayerController();
+        //PlayerController controller = this.createPlayerController();
+        KeyboardPlayerController controller = this.createPlayerController();
         this.protagonist.setController(controller);
+        this.viewManager.addController(controller);
+        
+        KeyListener listener = new MyKeyListener();
+//	this.viewManager.addController(listener);
+        
         this.protagonist.setSpeed(this.configs.getProtagonistSpeed());
         this.stage.populateWithProtagonist(givenProtagonist);
         this.createProtagonistView();
     }
+    
+    
+    
+    public class MyKeyListener implements KeyListener {
+		@Override
+		public void keyTyped(KeyEvent e) {
+                    System.out.println("typed");
+		}
 
+		@Override
+		public void keyPressed(KeyEvent e) {
+			System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
+		}
+
+		@Override
+		public void keyReleased(KeyEvent e) {
+			System.out.println("keyReleased="+KeyEvent.getKeyText(e.getKeyCode()));
+		}
+	}
+    
+
+    
     private void createProtagonistView() {
         this.viewManager.addObserver(this.getProtagonist());
     }
 
-    protected abstract PlayerController createPlayerController();
+    //protected abstract PlayerController createPlayerController();
+    protected abstract KeyboardPlayerController createPlayerController();
 
     public List<Enemy> getEnemies() {
         return this.enemies;
@@ -108,7 +139,8 @@ public abstract class GameLevel {
         }
     }
 
-    private void updateViews() {
+    private void updateViews() throws InterruptedException{
+        Thread.sleep(1000);        
         this.viewManager.updateViews();
     }
 

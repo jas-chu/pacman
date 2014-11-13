@@ -1,7 +1,5 @@
 package com.tdd.controller.playerController;
 
-import com.tdd.application.gameAbstractions.GameLevel;
-import com.tdd.application.gameAbstractions.PacmanGame;
 import com.tdd.controller.controllerAbstractions.PlayerController;
 import com.tdd.model.directionFactory.DirectionDownFactory;
 import com.tdd.model.directionFactory.DirectionFactory;
@@ -10,7 +8,6 @@ import com.tdd.model.directionFactory.DirectionRightFactory;
 import com.tdd.model.directionFactory.DirectionUpFactory;
 import com.tdd.model.exceptions.NoMoreMovementsException;
 import com.tdd.model.stageAbstractions.Direction;
-import com.tdd.view.manager.ViewManager;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
@@ -18,7 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class KeyboardPlayerController  implements PlayerController, KeyListener {
+public class KeyboardPlayerController implements PlayerController, KeyListener {
 
     private List<Direction> directionsToBeProcessed;
     private Map<Integer, DirectionFactory> directionsDictionary;
@@ -40,6 +37,7 @@ public class KeyboardPlayerController  implements PlayerController, KeyListener 
 
     @Override
     public void keyPressed(KeyEvent e) {
+        System.out.println("keyPressed="+KeyEvent.getKeyText(e.getKeyCode()));
         System.out.println("KEY PRESSED");
         DirectionFactory factory = this.directionsDictionary.get(e.getKeyCode());
         if (factory == null) {
@@ -55,12 +53,10 @@ public class KeyboardPlayerController  implements PlayerController, KeyListener 
     }
 
     @Override
-    public Direction getNewDirection() throws NoMoreMovementsException {
-        System.out.println("getNewDirection en KeyboardPlayerController");
+    public Direction getNewDirection() throws NoMoreMovementsException {        
         if (!(this.directionsToBeProcessed.isEmpty())) {
             return this.directionsToBeProcessed.remove(0);
-        }
-        System.out.println("NoMoreMovements");
+        }        
         throw new NoMoreMovementsException();
         
     }

@@ -45,10 +45,12 @@ public abstract class Protagonist extends MovingElement {
 	
 	@Override
 	protected void moveOneTime() {
+            
 		if (!(this.isOnStage()) || this.controller == null) return;
 		
 		try {
 			Direction direction = this.controller.getNewDirection();
+                        System.out.println("direction:" + direction.toString());
 			try {
 				this.stage.placeElement(direction, this);
 			} catch (BlockedCellException | NoExistingCellException error2) {

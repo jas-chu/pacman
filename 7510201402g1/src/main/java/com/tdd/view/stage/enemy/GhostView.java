@@ -17,7 +17,7 @@ public class GhostView extends View {
 
     public GhostView(Enemy enemy) {
         super();
-        this.x = enemy.getPosition().getX();
+        this.x = enemy.getPosition().getX(); 
         this.y = enemy.getPosition().getY();
         this.observable = enemy;
         
