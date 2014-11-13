@@ -34,11 +34,7 @@ public abstract class GameLevel {
     }
 
     private void createViews() {
-        for (List<Cell> cells : this.stage.getCells()) {
-            for (Cell cell : cells) {
-                this.viewManager.createCell(cell);
-            }
-        }
+        this.viewManager.createCellsView(this.stage.getCells());
         this.enemies.forEach(this.viewManager::addObserver);
         this.stage.getStaticItems().stream().forEach(this.viewManager::addObserver);
         this.stage.getMovingItems().stream().forEach(this.viewManager::addObserver);

@@ -37,6 +37,7 @@ public class ViewManager {
     }
 
     public void showWindow() {
+
         this.window.setVisible(true);
 
     }
@@ -84,6 +85,14 @@ public class ViewManager {
 
     }
 
+    public void createCellsView(List<List<Cell>> cellsStage) {
+        for (List<Cell> cells : cellsStage) {
+            for (Cell cell : cells) {
+                this.createCell(cell);
+            }
+        }
+    }
+
     private static class ViewManagerHolder {
 
         private static final ViewManager INSTANCE = new ViewManager();
@@ -111,7 +120,8 @@ public class ViewManager {
 
     /**
      * Assign KeyBoard controller to window
-     * @param controller 
+     *
+     * @param controller
      */
     public void addController(KeyboardPlayerController controller) {
         this.window.addKeyListener(controller);
