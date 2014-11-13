@@ -34,11 +34,13 @@ public class KeyboardPlayerController  implements PlayerController, KeyListener 
 
     @Override
     public void keyTyped(KeyEvent e) {
+        System.out.println("KEY TYPED");        
         // does nothing
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
+        System.out.println("KEY PRESSED");
         DirectionFactory factory = this.directionsDictionary.get(e.getKeyCode());
         if (factory == null) {
             return;
@@ -48,15 +50,19 @@ public class KeyboardPlayerController  implements PlayerController, KeyListener 
 
     @Override
     public void keyReleased(KeyEvent e) {
+        System.out.println("KEY REALEASED");
         // does nothing
     }
 
     @Override
     public Direction getNewDirection() throws NoMoreMovementsException {
+        System.out.println("getNewDirection en KeyboardPlayerController");
         if (!(this.directionsToBeProcessed.isEmpty())) {
             return this.directionsToBeProcessed.remove(0);
         }
+        System.out.println("NoMoreMovements");
         throw new NoMoreMovementsException();
+        
     }
 
 }

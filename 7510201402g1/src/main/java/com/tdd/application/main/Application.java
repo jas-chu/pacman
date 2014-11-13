@@ -21,6 +21,9 @@ public class Application {
     private PacmanGame game;
     private ViewManager view;
     private String name;
+    
+    private KeyboardPlayerController keyController;
+            
 
     public Application(String name, String xmlGamePath) throws NoAvailableFactoryException {
         XMLConstants gameConstants = new SpanishXMLConstants();
@@ -30,7 +33,6 @@ public class Application {
         this.view = ViewManager.getInstance();
         this.view.createWindow(name);
         this.game = new ActualGame(levelFactories, this.view);
-
     }
 
     private List<GameLevelFactory> createLevels(String xmlGamePath, XMLConstants gameConstants) throws NoAvailableFactoryException {
