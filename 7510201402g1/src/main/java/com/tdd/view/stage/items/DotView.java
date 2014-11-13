@@ -16,7 +16,7 @@ public class DotView extends View {
 
     public DotView(StaticItem dot) {
         super();
-        this.setPosition(dot.getPosition().getX(), dot.getPosition().getY());
+        this.setViewPosition(dot.getPosition().getX(), dot.getPosition().getY());
         this.observable = dot;
         this.imgPath = ViewConstants.DOT;
     }
@@ -24,7 +24,7 @@ public class DotView extends View {
     @Override
     public void update(Observable o, Object arg) {
         StaticItem staticItem = (StaticItem) observable;
-        this.setPosition(staticItem.getPosition().getX(), staticItem.getPosition().getY());
+        this.setViewPosition(staticItem.getPosition().getX(), staticItem.getPosition().getY());
     }
 
 }

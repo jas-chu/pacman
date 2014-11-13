@@ -76,7 +76,7 @@ public class CellView extends View {
         int index = this.getImageIndex(cell);
         this.resourcePath = RESOURCES.get(index);
         this.imgPath = this.resourcePath;
-        this.setPosition(cell.getColumn(), cell.getRow());
+        this.setViewPosition(cell.getColumn(), cell.getRow());
     }
 
     @Override

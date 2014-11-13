@@ -20,7 +20,7 @@ public class ProtagonistView extends View {
 
     public ProtagonistView(Protagonist protagonist) {
         super();
-        this.setPosition(protagonist.getPosition().getX(), protagonist.getPosition().getY());
+        this.setViewPosition(protagonist.getPosition().getX(), protagonist.getPosition().getY());
         this.observable = protagonist;
         this.imgPath = ViewConstants.PACMAN;
     }
@@ -29,7 +29,7 @@ public class ProtagonistView extends View {
     public void update(Observable o, Object arg) {
         Protagonist protagonist = (Protagonist) observable;
         //this.img = protagonist.getDirection().toString();
-       this.setPosition(protagonist.getPosition().getX(), protagonist.getPosition().getY());
+       this.setViewPosition(protagonist.getPosition().getX(), protagonist.getPosition().getY());
     }
     
  

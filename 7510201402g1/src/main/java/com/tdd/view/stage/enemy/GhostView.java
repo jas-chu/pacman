@@ -17,7 +17,7 @@ public class GhostView extends View {
 
     public GhostView(Enemy enemy) {
         super();
-        this.setPosition(enemy.getPosition().getX(), enemy.getPosition().getY());
+        this.setViewPosition(enemy.getPosition().getX(), enemy.getPosition().getY());
         this.observable = enemy;
         this.imgPath = ViewConstants.GHOST;
 
@@ -27,7 +27,7 @@ public class GhostView extends View {
     public void update(Observable observable, Object obj) {
         Ghost ghost = (Ghost) observable;
         //this.img = ghost.getStatus().toString();
-        this.setPosition(ghost.getPosition().getX(), ghost.getPosition().getY());
+        this.setViewPosition(ghost.getPosition().getX(), ghost.getPosition().getY());
     }
 
 }
