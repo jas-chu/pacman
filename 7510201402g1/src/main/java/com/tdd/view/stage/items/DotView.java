@@ -16,23 +16,15 @@ public class DotView extends View {
 
     public DotView(StaticItem dot) {
         super();
-        this.x = dot.getPosition().getX();
-        this.y = dot.getPosition().getY();
+        this.setPosition(dot.getPosition().getX(), dot.getPosition().getY());
         this.observable = dot;
+        this.imgPath = ViewConstants.DOT;
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        StaticItem movingItem = (StaticItem) observable;
-        this.x = movingItem.getPosition().getX();
-        this.y = movingItem.getPosition().getY();
+        StaticItem staticItem = (StaticItem) observable;
+        this.setPosition(staticItem.getPosition().getX(), staticItem.getPosition().getY());
     }
 
-    @Override
-    public void paintComponents(Graphics graphics) {
-
-        super.paintComponents(graphics);
-        ImageIcon img = new ImageIcon(ViewConstants.DOT);
-        graphics.drawImage(img.getImage(), x, y, width, heigth, null);
-    }
 }

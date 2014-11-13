@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.w3c.dom.NodeList;
 
-public class Application {
+public class Application implements Runnable{
 
     private PacmanGame game;
     private ViewManager view;
@@ -44,6 +44,7 @@ public class Application {
         return factories;
     }
 
+    @Override
     public void run() {
         this.view.showWindow();
         this.game.gameLoop();

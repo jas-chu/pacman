@@ -10,7 +10,6 @@ import com.tdd.view.abstractions.View;
 import com.tdd.view.helpers.ViewConstants;
 import java.awt.Graphics;
 import java.util.Observable;
-import java.util.Observer;
 import javax.swing.ImageIcon;
 
 /**
@@ -21,24 +20,18 @@ public class ProtagonistView extends View {
 
     public ProtagonistView(Protagonist protagonist) {
         super();
-        this.x = protagonist.getPosition().getX();
-        this.y = protagonist.getPosition().getY();
+        this.setPosition(protagonist.getPosition().getX(), protagonist.getPosition().getY());
         this.observable = protagonist;
+        this.imgPath = ViewConstants.PACMAN;
     }
 
     @Override
     public void update(Observable o, Object arg) {
         Protagonist protagonist = (Protagonist) observable;
-        this.x = protagonist.getPosition().getX();
-        this.y = protagonist.getPosition().getY();
+        //this.img = protagonist.getDirection().toString();
+       this.setPosition(protagonist.getPosition().getX(), protagonist.getPosition().getY());
     }
     
-        @Override
-    public void paintComponents(Graphics graphics) {
-
-        super.paintComponents(graphics);
-        ImageIcon img = new ImageIcon(ViewConstants.PACMAN);
-        graphics.drawImage(img.getImage(), x, y, width, heigth, null);
-    }
+ 
 
 }

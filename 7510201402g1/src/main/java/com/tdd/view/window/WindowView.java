@@ -14,7 +14,7 @@ import javax.swing.JFrame;
  *
  *
  */
-public class WindowView extends JFrame  implements WindowListener{
+public class WindowView extends JFrame implements WindowListener {
 
     private String name;
 
@@ -56,13 +56,12 @@ public class WindowView extends JFrame  implements WindowListener{
 
     @Override
     public void windowActivated(WindowEvent e) {
-         System.out.print("windowActivated");
+        System.out.print("windowActivated");
     }
 
     @Override
     public void windowDeactivated(WindowEvent e) {
         System.out.print("windowDeactivated");
     }
-  
 
 }

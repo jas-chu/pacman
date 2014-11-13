@@ -17,26 +17,17 @@ public class GhostView extends View {
 
     public GhostView(Enemy enemy) {
         super();
-        this.x = enemy.getPosition().getX(); 
-        this.y = enemy.getPosition().getY();
+        this.setPosition(enemy.getPosition().getX(), enemy.getPosition().getY());
         this.observable = enemy;
-        
+        this.imgPath = ViewConstants.GHOST;
 
     }
 
     @Override
     public void update(Observable observable, Object obj) {
         Ghost ghost = (Ghost) observable;
-        this.x = ghost.getPosition().getX();
-        this.y = ghost.getPosition().getY();
-
+        //this.img = ghost.getStatus().toString();
+        this.setPosition(ghost.getPosition().getX(), ghost.getPosition().getY());
     }
 
-    @Override
-    public void paintComponents(Graphics graphics) {
-
-        super.paintComponents(graphics);
-        ImageIcon img = new ImageIcon(ViewConstants.GHOST);
-        graphics.drawImage(img.getImage(), x, y, width, heigth, null);
-    }
 }

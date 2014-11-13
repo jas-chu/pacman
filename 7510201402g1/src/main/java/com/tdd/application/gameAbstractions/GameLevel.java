@@ -2,17 +2,13 @@ package com.tdd.application.gameAbstractions;
 
 import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.controller.controllerAbstractions.PlayerController;
-import com.tdd.controller.playerController.KeyboardPlayerController;
 import com.tdd.model.exceptions.MalformedXMLException;
 import com.tdd.model.stage.Labyrinth;
-import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
 import com.tdd.view.manager.ViewManager;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,7 +39,6 @@ public abstract class GameLevel {
         this.enemies.forEach(this.viewManager::addObserver);
         this.stage.getStaticItems().stream().forEach(this.viewManager::addObserver);
         this.stage.getMovingItems().stream().forEach(this.viewManager::addObserver);
-
     }
     
     public void populateWithProtagonist(Protagonist givenProtagonist) {
@@ -58,7 +53,6 @@ public abstract class GameLevel {
 
         this.protagonist = givenProtagonist;
 		this.protagonist.setController(givenController);
-        
         this.protagonist.setSpeed(this.configs.getProtagonistSpeed());
         this.stage.populateWithProtagonist(givenProtagonist);
         this.createProtagonistView();
