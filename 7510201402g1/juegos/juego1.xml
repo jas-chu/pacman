@@ -1,6 +1,6 @@
 <juego>
 	<nivel tipo="conTeclado">
-		<escenario>./doc/xmls/test_fantasma_pacman/laberintos/LaberintoSimple.xml</escenario>
+		<escenario>./doc/xmls/test_fantasma_pacman/laberintos/LaberintoSimple2.xml</escenario>
 		<personajes>./doc/xmls/test_fantasma_pacman/laberintos/PersonajesSimple.xml</personajes>
 		<ciclosFuria>
 			<valor>100</valor>

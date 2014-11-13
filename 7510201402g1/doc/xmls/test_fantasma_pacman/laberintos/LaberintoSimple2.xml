@@ -1,0 +1,13 @@
+<laberinto ancho="11" alto="1" nodoAncho="30" nodoAlto="30" inicioPacman="0004" inicioFantasmas="0001">
+    <nodo id="0000" fila="00" columna="00" contiene="" izquierda="" derecha="" arriba="" abajo="" />
+    <nodo id="0001" fila="00" columna="01" contiene="" izquierda="" derecha="" arriba="" abajo="" />
+    <nodo id="0002" fila="00" columna="02" contiene="" izquierda="" derecha="" arriba="" abajo="" />
+    <nodo id="0003" fila="00" columna="03" contiene="" izquierda="" derecha="" arriba="" abajo="" />
+    <nodo id="0004" fila="00" columna="04" contiene="" izquierda="" derecha="" arriba="" abajo="" />
+    <nodo id="0005" fila="00" columna="05" contiene="" izquierda="" derecha="" arriba="" abajo="" />
+    <nodo id="0006" fila="00" columna="06" contiene="" izquierda="" derecha="" arriba="" abajo="" />
+    <nodo id="0007" fila="00" columna="07" contiene="" izquierda="" derecha="" arriba="" abajo="" />
+    <nodo id="0008" fila="00" columna="08" contiene="" izquierda="" derecha="" arriba="" abajo="" />
+    <nodo id="0009" fila="00" columna="09" contiene="" izquierda="" derecha="" arriba="" abajo="" />
+    <nodo id="0010" fila="00" columna="10" contiene="" izquierda="" derecha="" arriba="" abajo="" />
+</laberinto>

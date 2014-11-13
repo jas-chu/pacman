@@ -6,6 +6,7 @@
 package com.tdd.view.window;
 
 import java.awt.Dimension;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 
 /**
@@ -22,6 +23,7 @@ public class WindowView extends JFrame {
         this.setSize(600, 400);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
     }
 
     public JFrame getFrame() {

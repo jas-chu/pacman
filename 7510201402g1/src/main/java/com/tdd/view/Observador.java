@@ -19,19 +19,14 @@ public abstract class Observador extends JPanel implements Observer {
     protected Observable observable;
     protected int x, y, width, heigth;
 
+ 
     public Observador() {
+        //TODO-> levantar esto de configuracion
+        this.x = 0;
+        this.y = 0;
+        this.width = 32;
+        this.heigth = 32;
 
     }
 
-    public Observador(int x, int y, int width, int heigth) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.heigth = heigth;
-
-    }
-
-//    public void update() {
-//        this.update(observable, this);
-//    }
 }

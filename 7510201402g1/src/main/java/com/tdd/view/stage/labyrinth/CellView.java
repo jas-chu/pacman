@@ -8,9 +8,12 @@ package com.tdd.view.stage.labyrinth;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.view.Observador;
+import com.tdd.view.ViewConstants;
+import java.awt.Graphics;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -39,46 +42,48 @@ public class CellView extends Observador {
     // TO DO: COMPLETAR PATHS A IMAGENES
     private static Map<Integer, String> createResources() {
         Map<Integer, String> theResources = new HashMap<Integer, String>();
-        theResources.put(0, "PATH DE IMAGEN SIN BORDES");
+        theResources.put(0, ViewConstants.CLEAN_CELL);
 
         // UN BORDE
-        theResources.put(getPowValue(RIGHT_POW), "PATH DE IMAGEN SOLO BORDE DERECHO");
-        theResources.put(getPowValue(UP_POW), "PATH DE IMAGEN SOLO BORDE SUPERIOR");
-        theResources.put(getPowValue(LEFT_POW), "PATH DE IMAGEN SOLO BORDE IZQUIERDO");
-        theResources.put(getPowValue(DOWN_POW), "PATH DE IMAGEN SOLO BORDE INFERIOR");
+        theResources.put(getPowValue(RIGHT_POW), ViewConstants.LEFT_CELL);
+        theResources.put(getPowValue(UP_POW), ViewConstants.UP_CELL);
+        theResources.put(getPowValue(LEFT_POW), ViewConstants.LEFT_CELL);
+        theResources.put(getPowValue(DOWN_POW), ViewConstants.DOWN_CELL);
 
         // DOS BORDES
-        theResources.put(getPowValue(RIGHT_POW) + getPowValue(UP_POW), "PATH DE IMAGEN SOLO BORDES DERECHO Y SUPERIOR");
-        theResources.put(getPowValue(RIGHT_POW) + getPowValue(LEFT_POW), "PATH DE IMAGEN SOLO BORDES DERECHO E IZQUIERDO");
-        theResources.put(getPowValue(RIGHT_POW) + getPowValue(DOWN_POW), "PATH DE IMAGEN SOLO BORDES DERECHO E INFERIOR");
-        theResources.put(getPowValue(UP_POW) + getPowValue(LEFT_POW), "PATH DE IMAGEN SOLO BORDES SUPERIOR E IZQUIERDO");
-        theResources.put(getPowValue(UP_POW) + getPowValue(DOWN_POW), "PATH DE IMAGEN SOLO BORDES SUPERIOR E INFERIOR");
-        theResources.put(getPowValue(LEFT_POW) + getPowValue(DOWN_POW), "PATH DE IMAGEN SOLO BORDES IZQUIERDO E INFERIOR");
+        theResources.put(getPowValue(RIGHT_POW) + getPowValue(UP_POW), ViewConstants.UP_RIGHT_CELL);
+        theResources.put(getPowValue(RIGHT_POW) + getPowValue(LEFT_POW), ViewConstants.LEFT_RIGHT_CELL);
+        theResources.put(getPowValue(RIGHT_POW) + getPowValue(DOWN_POW), ViewConstants.DOWN_RIGHT_CELL);
+        theResources.put(getPowValue(UP_POW) + getPowValue(LEFT_POW), ViewConstants.UP_LEFT_CELL);
+        theResources.put(getPowValue(UP_POW) + getPowValue(DOWN_POW), ViewConstants.UP_DOWN_CELL);
+        theResources.put(getPowValue(LEFT_POW) + getPowValue(DOWN_POW), ViewConstants.DOWN_LEFT_CELL);
 
         // TRES BORDES
-        theResources.put(getPowValue(RIGHT_POW) + getPowValue(UP_POW) + getPowValue(LEFT_POW), "PATH DE IMAGEN SOLO BORDES DERECHO, SUPERIOR E IZQUIERDO");
-        theResources.put(getPowValue(RIGHT_POW) + getPowValue(UP_POW) + getPowValue(DOWN_POW), "PATH DE IMAGEN SOLO BORDES DERECHO, SUPERIOR E INFERIOR");
-        theResources.put(getPowValue(RIGHT_POW) + getPowValue(LEFT_POW) + getPowValue(DOWN_POW), "PATH DE IMAGEN SOLO BORDES DERECHO, IZQUIERDO E INFERIOR");
-        theResources.put(getPowValue(UP_POW) + getPowValue(LEFT_POW) + getPowValue(DOWN_POW), "PATH DE IMAGEN SOLO BORDES SUPERIOR, IZQUIERDO E INFERIOR");
+        theResources.put(getPowValue(RIGHT_POW) + getPowValue(UP_POW) + getPowValue(LEFT_POW), ViewConstants.UP_LEFT_RIGHT_CELL);
+        theResources.put(getPowValue(RIGHT_POW) + getPowValue(UP_POW) + getPowValue(DOWN_POW), ViewConstants.UP_RIGHT_DOWN_CELL);
+        theResources.put(getPowValue(RIGHT_POW) + getPowValue(LEFT_POW) + getPowValue(DOWN_POW), ViewConstants.DOWN_LEFT_RIGHT_CELL);
+        theResources.put(getPowValue(UP_POW) + getPowValue(LEFT_POW) + getPowValue(DOWN_POW), ViewConstants.UP_LEFT_DOWN_CELL);
 
         // CUATRO BORDES
-        theResources.put(getPowValue(RIGHT_POW) + getPowValue(UP_POW) + getPowValue(LEFT_POW) + getPowValue(DOWN_POW), "PATH DE IMAGEN CON TODOS LOS BORDES");
+        theResources.put(getPowValue(RIGHT_POW) + getPowValue(UP_POW) + getPowValue(LEFT_POW) + getPowValue(DOWN_POW), ViewConstants.COMPLETE_CELL);
 
         return theResources;
     }
 
-	// INSTANCE
+    // INSTANCE
     private String resourcePath;
 
     public CellView(Cell cell) {
         this.observable = cell;
         int index = this.getImageIndex(cell);
         this.resourcePath = RESOURCES.get(index);
+        this.x = cell.getColumn();
+        this.y = cell.getRow();
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.println("actualizacion de " + o + arg);
+
     }
 
     private int getImageIndex(Cell cell) {
@@ -87,6 +92,14 @@ public class CellView extends Observador {
         index += getPowValue(LEFT_POW) * boolToInt(cell.hasNeighbour(XMLConstants.DIRECTION_LEFT));
         index += getPowValue(DOWN_POW) * boolToInt(cell.hasNeighbour(XMLConstants.DIRECTION_DOWN));
         return index;
+    }
+
+    @Override
+    public void paintComponents(Graphics graphics) {
+
+        super.paintComponents(graphics);
+        ImageIcon img = new ImageIcon(this.resourcePath);
+        graphics.drawImage(img.getImage(), x*width, y*heigth, width, heigth, null);
     }
 
 }

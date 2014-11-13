@@ -35,9 +35,9 @@ public class ViewManager {
         this.window = this.factory.getWindow(name);
     }
 
-    public void showWindow() {        
+    public void showWindow() {
         this.window.setVisible(true);
-        
+
     }
 
     public void addObserver(Enemy enemy) {
@@ -47,37 +47,40 @@ public class ViewManager {
         this.window.add(observer);
     }
 
-    public void addObserver(Cell cell) {
+    public void createCell(Cell cell) {
         Observador observer = this.getView(cell);
-        cell.addObserver(observer);
-        this.observers.add(observer);
+        this.window.add(observer);
+        observer.paintComponents(this.window.getGraphics());
     }
 
     public void addObserver(StaticItem staticItem) {
         Observador observer = this.getView(staticItem);
         staticItem.addObserver(observer);
         this.observers.add(observer);
+        this.window.add(observer);
     }
 
     public void addObserver(MovingItem movingItem) {
         Observador observer = this.getView(movingItem);
         movingItem.addObserver(observer);
         this.observers.add(observer);
+        this.window.add(observer);
     }
 
     public void addObserver(Protagonist protagonist) {
         Observador observer = this.getView(protagonist);
         protagonist.addObserver(observer);
         this.observers.add(observer);
-        
+        this.window.add(observer);
+
     }
 
     public void updateViews() {
-       
+
         observers.stream().forEach((Observador observer) -> {
             observer.paintComponents(this.window.getGraphics());
         });
-        
+
     }
 
     private static class ViewManagerHolder {
