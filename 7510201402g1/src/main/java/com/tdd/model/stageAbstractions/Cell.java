@@ -25,43 +25,44 @@ public class Cell extends Observable {
         }
     }
 
-    public Integer getId() {
+    public synchronized Integer getId() {
         return this.id;
     }
 
-    public Integer getRow() {
+    public synchronized Integer getRow() {
         return this.position.getY();
     }
 
-    public Integer getColumn() {
+    public synchronized Integer getColumn() {
         return this.position.getX();
     }
 
-    public Position getPosition() {
+    public synchronized Position getPosition() {
         return this.position;
     }
 
-    public void placeElement(StageElement givenElement) {
+    public synchronized void placeElement(StageElement givenElement) {
         givenElement.setPosition(this.position);
-        for (StageElement element : this.elements) {
-            givenElement.collideWithElement(element);
+		for (int i = 0; i < this.elements.size(); ++i) {
+			StageElement element = this.elements.get(i);
+			givenElement.collideWithElement(element);
         }
         this.elements.add(givenElement);
     }
 
-    public void removeElement(StageElement element) {
+    public synchronized void removeElement(StageElement element) {
         this.elements.remove(element);
     }
 
-    public List<StageElement> getElements() {
+    public synchronized List<StageElement> getElements() {
         return this.elements;
     }
 
-    public boolean hasNeighbour(String neighbourKey) {
+    public synchronized boolean hasNeighbour(String neighbourKey) {
         return this.neighbours.containsKey(neighbourKey);
     }
 
-    public String getNeighbour(String neighbourKey) {
+    public synchronized String getNeighbour(String neighbourKey) {
         if (this.hasNeighbour(neighbourKey)) {
             return this.neighbours.get(neighbourKey).toString();
         } else {
@@ -69,18 +70,18 @@ public class Cell extends Observable {
         }
     }
 
-    public boolean isEmpty() {
+    public synchronized boolean isEmpty() {
         return this.elements.isEmpty();
     }
 
-    public String getContent() {
+    public synchronized String getContent() {
         if (this.elements.isEmpty()) {
             return "";
         }
         return this.elements.get(0).getMapSerialization();
     }
 
-    public Position getTargetPosition(Direction direction) throws BlockedCellException {
+    public synchronized Position getTargetPosition(Direction direction) throws BlockedCellException {
         String targetKey = direction.toString();
         if (this.hasNeighbour(targetKey)) {
             return this.neighbours.get(targetKey);

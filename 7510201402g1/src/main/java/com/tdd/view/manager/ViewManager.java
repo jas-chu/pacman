@@ -11,6 +11,7 @@ import com.tdd.view.viewFactory.ViewFactory;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -124,7 +125,9 @@ public class ViewManager {
      * @param controller
      */
     public void addController(KeyboardPlayerController controller) {
-        this.window.addKeyListener(controller);
-        this.window.setFocusable(true);
+		JPanel panel = new JPanel();
+		panel.addKeyListener(controller);
+        panel.setFocusable(true);
+		this.window.add(panel);
     }
 }

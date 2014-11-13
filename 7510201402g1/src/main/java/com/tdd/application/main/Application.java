@@ -47,7 +47,23 @@ public class Application implements Runnable{
     @Override
     public void run() {
         this.view.showWindow();
-        this.game.gameLoop();
+		MyThread thread = new MyThread(this.game);
+        thread.start();
+		//this.game.gameLoop();
     }
+	
+	private class MyThread extends Thread {
+		
+		private PacmanGame myGame;
+		
+		public MyThread(PacmanGame givenGame) {
+			this.myGame = givenGame;
+		}
+		
+		@Override
+		public void run() {
+			this.myGame.gameLoop();
+		}
+	}
 
 }
