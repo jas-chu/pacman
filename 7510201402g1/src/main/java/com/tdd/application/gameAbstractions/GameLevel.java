@@ -87,7 +87,7 @@ public abstract class GameLevel {
             endOfLevel = this.isEndOfLevel();
             ++(this.ticks);
 			try {
-				Thread.sleep(500);
+				Thread.sleep(200);
 			} catch (InterruptedException ex) {
 				Logger.getLogger(GameLevel.class.getName()).log(Level.SEVERE, null, ex);
 			}

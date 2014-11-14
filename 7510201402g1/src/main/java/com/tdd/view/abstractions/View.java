@@ -47,6 +47,6 @@ public abstract class View extends JPanel implements Observer {
     }
 
     private int getYRender() {
-        return y * heigth;
+        return y * heigth + 30;
     }
 }

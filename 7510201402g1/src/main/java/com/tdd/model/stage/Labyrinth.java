@@ -83,7 +83,7 @@ public class Labyrinth implements Stage {
         for (int row = 0; row < this.height; row++) {
             List<Cell> mapRow = new ArrayList<Cell>();
             for (int col = 0; col < this.width; col++) {
-                Node node = nodes.item(row + col);
+                Node node = nodes.item(row * this.width + col);
                 Cell createdCell = cellBuilder.createCell(nodes, node);
                 String cellContent = XMLReader.getAttributeValue(node, XMLConstants.CONTENT);
                 if (!cellContent.isEmpty()) {
