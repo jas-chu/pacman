@@ -22,6 +22,10 @@ public class ViewManager {
     private JFrame window;
     private ViewFactory factory;
     protected List<View> observers;
+    private int nodeWidth;
+    private int nodeHeight;
+    private int width;
+    private int height;
 
     private ViewManager() {
         this.factory = new ViewFactory();
@@ -91,9 +95,16 @@ public class ViewManager {
         for (List<Cell> cells : cellsStage) {
             for (Cell cell : cells) {
                 this.createCell(cell);
-                
+
             }
         }
+    }
+
+    public void setConfigValues(Integer width, Integer height, Integer nodeWidth, Integer nodeHeight) {
+        this.width = width;
+        this.height = height;
+        this.nodeHeight = nodeHeight;
+        this.nodeWidth = nodeWidth;
     }
 
     private static class ViewManagerHolder {
@@ -127,9 +138,9 @@ public class ViewManager {
      * @param controller
      */
     public void addController(KeyboardPlayerController controller) {
-		JPanel panel = new JPanel();
-		panel.addKeyListener(controller);
+        JPanel panel = new JPanel();
+        panel.addKeyListener(controller);
         panel.setFocusable(true);
-		this.window.add(panel);
+        this.window.add(panel);
     }
 }

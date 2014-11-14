@@ -17,14 +17,14 @@ public class ActualGame implements PacmanGame {
     private Protagonist protagonist;
     private List<GameLevelFactory> levelFactories;
     private ViewManager viewManager;
-    private KeyboardPlayerController keyboardController;
+	private KeyboardPlayerController keyboardController;
 
-    public ActualGame(List<GameLevelFactory> givenLevelFactories, ViewManager viewManager) {
+    public ActualGame(List<GameLevelFactory> givenLevelFactories,ViewManager viewManager) {
         this.protagonist = new Pacman();
         this.levelFactories = givenLevelFactories;
         this.viewManager = viewManager;
-        this.keyboardController = new KeyboardPlayerController();
-        this.viewManager.addController(keyboardController);
+		this.keyboardController = new KeyboardPlayerController();
+		this.viewManager.addController(keyboardController);
     }
 
     @Override
@@ -45,5 +45,7 @@ public class ActualGame implements PacmanGame {
             }
         }
     }
+
+
 
 }

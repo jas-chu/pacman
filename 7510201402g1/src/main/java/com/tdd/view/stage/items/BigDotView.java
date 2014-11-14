@@ -21,7 +21,10 @@ public class BigDotView extends ItemView{
     @Override
     public void update(Observable o, Object arg) {
         StaticItem staticItem = (StaticItem) observable;
-        this.setViewPosition(staticItem.getPosition().getX(), staticItem.getPosition().getY());
+        if(staticItem.isConsumed()){
+            this.observable.deleteObserver(this);
+            this.isShow = false;
+        }
     }
     
 
