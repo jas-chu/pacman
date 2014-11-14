@@ -17,19 +17,20 @@ public class ActualGame implements PacmanGame {
     private Protagonist protagonist;
     private List<GameLevelFactory> levelFactories;
     private ViewManager viewManager;
-	private KeyboardPlayerController keyboardController;
+    private KeyboardPlayerController keyboardController;
 
-    public ActualGame(List<GameLevelFactory> givenLevelFactories,ViewManager viewManager) {
+    public ActualGame(List<GameLevelFactory> givenLevelFactories, ViewManager viewManager) {
         this.protagonist = new Pacman();
         this.levelFactories = givenLevelFactories;
         this.viewManager = viewManager;
-		this.keyboardController = new KeyboardPlayerController();
-		this.viewManager.addController(keyboardController);
+        this.keyboardController = new KeyboardPlayerController();
+
     }
 
     @Override
     public void gameLoop() {
         while (this.protagonist.isAlive()) {
+            this.viewManager.addController(keyboardController);
             int i = 0;
             while (i < this.levelFactories.size() && this.protagonist.isAlive()) {
                 try {
@@ -42,10 +43,9 @@ public class ActualGame implements PacmanGame {
                     Logger.getLogger(ActualGame.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 ++i;
+                this.viewManager.reset();
             }
         }
     }
-
-
 
 }

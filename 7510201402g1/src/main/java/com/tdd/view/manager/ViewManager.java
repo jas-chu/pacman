@@ -39,6 +39,12 @@ public class ViewManager {
 
     public void createWindow(String name) {
         this.window = this.factory.getWindow(name);
+
+    }
+
+    public void reset() {
+        this.window.removeAll();
+//        this.window.dispose();
     }
 
     public void showWindow() {
