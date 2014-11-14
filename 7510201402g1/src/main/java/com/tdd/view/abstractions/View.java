@@ -22,24 +22,29 @@ public abstract class View extends JPanel implements Observer {
     protected Observable observable;
     protected int x, y, width, heigth;
     protected ImageIcon img;
+    protected boolean isShow;
+
     public View() {
         this.x = 0;
         this.y = 0;
         this.width = ViewConstants.IMAGE_WIDTH_DEFAULT;
         this.heigth = ViewConstants.IMAGE_HEIGHT_DEFAULT;
+        this.isShow = true;
 
     }
 
     public void setViewPosition(int x, int y) {
-        this.x = x ;
+        this.x = x;
         this.y = y;
     }
 
     @Override
     public void paintComponents(Graphics graphics) {
+        if (isShow) {
+            super.paintComponents(graphics);
+            graphics.drawImage(img.getImage(), getXRender(), getYRender(), width, heigth, null);
+        }
 
-        super.paintComponents(graphics);
-        graphics.drawImage(img.getImage(), getXRender(), getYRender(), width, heigth, null);
     }
 
     private int getXRender() {

@@ -35,29 +35,31 @@ public abstract class GameLevel {
     }
 
     private void createViews() {
+        this.viewManager.setConfigValues(this.stage.getWidth(), this.stage.getHeight(), 
+                            this.stage.getNodeWidth(),this.stage.getNodeHeight());
         this.viewManager.createCellsView(this.stage.getCells());
         this.enemies.forEach(this.viewManager::addObserver);
         this.stage.getStaticItems().stream().forEach(this.viewManager::addObserver);
         this.stage.getMovingItems().stream().forEach(this.viewManager::addObserver);
     }
-    
+
     public void populateWithProtagonist(Protagonist givenProtagonist) {
         PlayerController controller = this.createPlayerController();
-		this.populateWithProtagonist(givenProtagonist, controller);
+        this.populateWithProtagonist(givenProtagonist, controller);
     }
-	
-	public void populateWithProtagonist(Protagonist givenProtagonist, PlayerController givenController) {
+
+    public void populateWithProtagonist(Protagonist givenProtagonist, PlayerController givenController) {
         if (givenProtagonist == null) {
             return;
         }
 
         this.protagonist = givenProtagonist;
-		this.protagonist.setController(givenController);
+        this.protagonist.setController(givenController);
         this.protagonist.setSpeed(this.configs.getProtagonistSpeed());
         this.stage.populateWithProtagonist(givenProtagonist);
         this.createProtagonistView();
     }
-    
+
     private void createProtagonistView() {
         this.viewManager.addObserver(this.getProtagonist());
     }
