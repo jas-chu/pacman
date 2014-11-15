@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tdd.view.abstractions;
 
 import com.tdd.view.helpers.ViewConstants;
@@ -10,14 +5,13 @@ import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 
 /**
  *
  *
  * @author agu
  */
-public abstract class View extends JPanel implements Observer {
+public abstract class View implements Observer {
 
     protected Observable observable;
     protected int x, y, width, heigth;
@@ -37,15 +31,11 @@ public abstract class View extends JPanel implements Observer {
         this.x = x;
         this.y = y;
     }
-
-    @Override
-    public void paintComponents(Graphics graphics) {
-        if (isShow) {
-            super.paintComponents(graphics);
-            graphics.drawImage(img.getImage(), getXRender(), getYRender(), width, heigth, null);
-        }
-
+    
+    public void paint (Graphics graphics){
+        graphics.drawImage(img.getImage(), getXRender(), getYRender(), width, heigth, null);
     }
+
 
     private int getXRender() {
         return x * width;

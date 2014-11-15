@@ -15,7 +15,7 @@ import com.tdd.view.stage.items.DotView;
 import com.tdd.view.stage.items.FruitView;
 import com.tdd.view.stage.labyrinth.CellView;
 import com.tdd.view.stage.protagonist.ProtagonistView;
-import com.tdd.view.window.WindowView;
+import com.tdd.view.windowElements.WindowView;
 
 import java.util.Observer;
 import javax.swing.JFrame;

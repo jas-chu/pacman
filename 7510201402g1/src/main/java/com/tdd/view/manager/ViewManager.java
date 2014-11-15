@@ -8,7 +8,7 @@ import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.view.abstractions.View;
 import com.tdd.view.viewFactory.ViewFactory;
-import java.util.ArrayList;
+import com.tdd.view.windowElements.GameContainer;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,8 +20,8 @@ import javax.swing.JPanel;
 public class ViewManager {
 
     private JFrame window;
+    private GameContainer panel;
     private ViewFactory factory;
-    protected List<View> observers;
     private int nodeWidth;
     private int nodeHeight;
     private int width;
@@ -29,7 +29,8 @@ public class ViewManager {
 
     private ViewManager() {
         this.factory = new ViewFactory();
-        this.observers = new ArrayList<>();
+        this.panel = new GameContainer();
+        
 
     }
 
@@ -39,7 +40,7 @@ public class ViewManager {
 
     public void createWindow(String name) {
         this.window = this.factory.getWindow(name);
-
+        this.window.add(panel);
     }
 
     public void reset() {
@@ -56,44 +57,44 @@ public class ViewManager {
     public void addObserver(Enemy enemy) {
         View observer = this.getView(enemy);
         enemy.addObserver(observer);
-        this.observers.add(observer);
-        this.window.add(observer);
+        panel.observers.add(observer);
+//        this.window.add(observer);
     }
 
     public void createCell(Cell cell) {
         View observer = this.getView(cell);
         cell.addObserver(observer);
-        this.window.add(observer);
-        this.observers.add(observer);
+//        this.window.add(observer);
+        panel.observers.add(observer);
     }
 
     public void addObserver(StaticItem staticItem) {
         View observer = this.getView(staticItem);
         staticItem.addObserver(observer);
-        this.observers.add(observer);
-        this.window.add(observer);
+        panel.observers.add(observer);
+//        this.window.add(observer);
     }
 
     public void addObserver(MovingItem movingItem) {
         View observer = this.getView(movingItem);
         movingItem.addObserver(observer);
-        this.observers.add(observer);
-        this.window.add(observer);
+        panel.observers.add(observer);
+//        this.window.add(observer);
     }
 
     public void addObserver(Protagonist protagonist) {
         View observer = this.getView(protagonist);
         protagonist.addObserver(observer);
-        this.observers.add(observer);
-        this.window.add(observer);
+        panel.observers.add(observer);
+//        this.window.add(observer);
 
     }
 
     public void updateViews() {
-
-        observers.stream().forEach((View observer) -> {
-            observer.paintComponents(this.window.getGraphics());
-        });
+        this.panel.repaint();
+//        panel.observers.stream().forEach((View observer) -> {
+//            observer.paintComponents(this.window.getGraphics());
+//        });
 
     }
 
