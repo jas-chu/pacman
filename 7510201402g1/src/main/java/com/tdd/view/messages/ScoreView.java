@@ -10,21 +10,19 @@ import java.util.Observable;
 public class ScoreView extends DinamycMessage {
 
     private int score;
-
+    private int lives;
     public ScoreView() {
-        super("");
-
-        this.updateScore(0);
+        this.updateScore(0,0);
     }
 
     @Override
     public void update(Observable o, Object arg) {
         Protagonist protagonist = (Protagonist) o;
-        this.updateScore(protagonist.getScore());
+        this.updateScore(protagonist.getScore(),protagonist.getLives());
     }
 
-    public void updateScore(int score){
-        this.score = score;
-         this.setText("Score: "+this.score);
+    public void updateScore(int score,int lives){
+
+        this.setText("Score: "+score+" Lives:"+ lives);
     }
 }

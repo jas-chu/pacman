@@ -19,7 +19,7 @@ public class GhostView extends View {
     HashMap<String, ImageIcon> images;
     GhostViewFactory ghostViewFactory;
 
-    public GhostView(Enemy enemy,GameContainer container) {
+    public GhostView(Enemy enemy, GameContainer container) {
         super(container);
         this.setViewPosition(enemy.getPosition().getX(), enemy.getPosition().getY());
         this.observable = enemy;
@@ -29,10 +29,17 @@ public class GhostView extends View {
         this.img = this.images.get(XMLConstants.DIRECTION_LEFT);
     }
 
-      @Override
+    @Override
     public void update(Observable observable, Object obj) {
         Ghost ghost = (Ghost) observable;
-//        this.img = this.images.get(ghost.getStrategy().getDirection().toString());
+        if (ghost.getState().toString().equals(XMLConstants.PREY)) {
+            this.img = this.ghostViewFactory.getGhostPreyImage();
+        } else if (ghost.getState().toString().equals(XMLConstants.DEAD)) {
+            this.img = this.ghostViewFactory.getGhostDeathImage();
+        } else {
+            this.images.get(ghost.getStrategy().getDirection().toString());
+        }
+
         this.setViewPosition(ghost.getPosition().getX(), ghost.getPosition().getY());
     }
 

@@ -35,6 +35,8 @@ public class GhostViewFactory {
         HashMap<String, ImageIcon> ghostBluePaths = new HashMap<>();
         ghostBluePaths.put(XMLConstants.DIRECTION_LEFT, new ImageIcon(ViewConstants.GHOST_BLUE_RIGHT));
         ghostBluePaths.put(XMLConstants.DIRECTION_RIGHT, new ImageIcon(ViewConstants.GHOST_BLUE_LEFT));
+        ghostBluePaths.put(XMLConstants.DIRECTION_UP, new ImageIcon(ViewConstants.GHOST_BLUE_UP));
+        ghostBluePaths.put(XMLConstants.DIRECTION_DOWN, new ImageIcon(ViewConstants.GHOST_BLUE_DOWN));
         return ghostBluePaths;
     }
 
@@ -42,6 +44,8 @@ public class GhostViewFactory {
         HashMap<String, ImageIcon> ghostRedPaths = new HashMap<>();
         ghostRedPaths.put(XMLConstants.DIRECTION_LEFT, new ImageIcon(ViewConstants.GHOST_RED_RIGHT));
         ghostRedPaths.put(XMLConstants.DIRECTION_RIGHT, new ImageIcon(ViewConstants.GHOST_RED_LEFT));
+        ghostRedPaths.put(XMLConstants.DIRECTION_UP, new ImageIcon(ViewConstants.GHOST_RED_UP));
+        ghostRedPaths.put(XMLConstants.DIRECTION_DOWN, new ImageIcon(ViewConstants.GHOST_RED_DOWN));
         return ghostRedPaths;
     }
 
@@ -49,11 +53,17 @@ public class GhostViewFactory {
         HashMap<String, ImageIcon> yellowGhostPaths = new HashMap<>();
         yellowGhostPaths.put(XMLConstants.DIRECTION_LEFT, new ImageIcon(ViewConstants.GHOST_YELLOW_RIGHT));
         yellowGhostPaths.put(XMLConstants.DIRECTION_RIGHT, new ImageIcon(ViewConstants.GHOST_YELLOW_LEFT));
+        yellowGhostPaths.put(XMLConstants.DIRECTION_UP, new ImageIcon(ViewConstants.GHOST_YELLOW_UP));
+        yellowGhostPaths.put(XMLConstants.DIRECTION_DOWN, new ImageIcon(ViewConstants.GHOST_YELLOW_DOWN));
         return yellowGhostPaths;
     }
 
     public ImageIcon getGhostDeathImage() {
         return new ImageIcon(ViewConstants.GHOST_DEATH);
+    }
+    
+    public ImageIcon getGhostPreyImage() {
+        return new ImageIcon(ViewConstants.GHOST_PREY);
     }
 
 }

@@ -15,20 +15,22 @@ public class ViewConstants {
     
     private static final String INIT_GHOST = "./media/img/ghost/";
 
-    public static final String GHOST_DEATH = INIT_GHOST + "death/ghost.png";
-//TODO: Crear estas imagenes
-//    public static final String GHOST_RED_UP = INIT_GHOST + "red/ghost_up.png";
-//    public static final String GHOST_RED_DOW = INIT_GHOST + "red/ghost_down.png";
+    public static final String GHOST_DEATH = INIT_GHOST + "death/death.png";
+    
+    public static final String GHOST_PREY = INIT_GHOST + "prey/prey.png";
+
+    public static final String GHOST_RED_UP = INIT_GHOST + "red/ghost_up.png";
+    public static final String GHOST_RED_DOWN = INIT_GHOST + "red/ghost_down.png";
     public static final String GHOST_RED_LEFT = INIT_GHOST + "red/ghost_left.png";
     public static final String GHOST_RED_RIGHT = INIT_GHOST + "red/ghost_right.png";
-//TODO: Crear estas imagenes
-//    public static final String GHOST_YELLOW_UP = INIT_GHOST + "yellow/ghost_up.png";
-//    public static final String GHOST_YELLOW_DOW = INIT_GHOST + "yellow/ghost_down.png";
+
+    public static final String GHOST_YELLOW_UP = INIT_GHOST + "yellow/ghost_up.png";
+    public static final String GHOST_YELLOW_DOWN = INIT_GHOST + "yellow/ghost_down.png";
     public static final String GHOST_YELLOW_LEFT = INIT_GHOST + "yellow/ghost_left.png";
     public static final String GHOST_YELLOW_RIGHT = INIT_GHOST + "yellow/ghost_right.png";
-//TODO: Crear estas imagenes
-//    public static final String GHOST_BLUE_UP = INIT_GHOST + "blue/ghost_up.png";
-//    public static final String GHOST_BLUE_DOW = INIT_GHOST + "blue/ghost_down.png";
+
+    public static final String GHOST_BLUE_UP = INIT_GHOST + "blue/ghost_up.png";
+    public static final String GHOST_BLUE_DOWN = INIT_GHOST + "blue/ghost_down.png";
     public static final String GHOST_BLUE_LEFT = INIT_GHOST + "blue/ghost_left.png";
     public static final String GHOST_BLUE_RIGHT = INIT_GHOST + "blue/ghost_right.png";
 

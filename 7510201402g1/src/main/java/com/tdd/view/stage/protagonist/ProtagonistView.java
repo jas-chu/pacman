@@ -15,8 +15,10 @@ import java.util.Observable;
  *
  */
 public class ProtagonistView extends View {
+
     private ProtagonistViewFactory factory;
-    public ProtagonistView(Protagonist protagonist,GameContainer container) {
+
+    public ProtagonistView(Protagonist protagonist, GameContainer container) {
         super(container);
         this.setViewPosition(protagonist.getPosition().getX(), protagonist.getPosition().getY());
         this.observable = protagonist;
@@ -28,9 +30,7 @@ public class ProtagonistView extends View {
     public void update(Observable o, Object arg) {
         Protagonist protagonist = (Protagonist) observable;
         this.img = this.factory.getImage(protagonist.getSense().toString());
-       this.setViewPosition(protagonist.getPosition().getX(), protagonist.getPosition().getY());
+        this.setViewPosition(protagonist.getPosition().getX(), protagonist.getPosition().getY());
     }
-    
- 
 
 }
