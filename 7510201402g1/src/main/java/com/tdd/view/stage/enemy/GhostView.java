@@ -4,6 +4,7 @@ import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stage.Ghost;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.view.abstractions.View;
+import com.tdd.view.windowElements.GameContainer;
 import java.util.HashMap;
 import java.util.Observable;
 import javax.swing.ImageIcon;
@@ -18,8 +19,8 @@ public class GhostView extends View {
     HashMap<String, ImageIcon> images;
     GhostViewFactory ghostViewFactory;
 
-    public GhostView(Enemy enemy) {
-        super();
+    public GhostView(Enemy enemy,GameContainer container) {
+        super(container);
         this.setViewPosition(enemy.getPosition().getX(), enemy.getPosition().getY());
         this.observable = enemy;
         this.ghostViewFactory = new GhostViewFactory();

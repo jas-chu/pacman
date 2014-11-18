@@ -1,8 +1,7 @@
 package com.tdd.view.stage.items;
 
 import com.tdd.model.stageAbstractions.StaticItem;
-import com.tdd.view.abstractions.View;
-import com.tdd.view.helpers.ViewConstants;
+import com.tdd.view.windowElements.GameContainer;
 import java.util.Observable;
 
 /**
@@ -11,8 +10,8 @@ import java.util.Observable;
  */
 public class BigDotView extends ItemView{
 
-    public BigDotView(StaticItem bigDot) {
-        super();
+    public BigDotView(StaticItem bigDot,GameContainer container) {
+        super(container);
         this.setViewPosition(bigDot.getPosition().getX(), bigDot.getPosition().getY());
         this.observable = bigDot;
         this.img = this.factory.getBigDotImage();
@@ -20,11 +19,7 @@ public class BigDotView extends ItemView{
     
     @Override
     public void update(Observable o, Object arg) {
-        StaticItem staticItem = (StaticItem) observable;
-        if(staticItem.isConsumed()){
-            this.observable.deleteObserver(this);
-            this.isShow = false;
-        }
+
     }
     
 

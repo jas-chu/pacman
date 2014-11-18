@@ -7,6 +7,7 @@ package com.tdd.view.stage.protagonist;
 
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.view.abstractions.View;
+import com.tdd.view.windowElements.GameContainer;
 import java.util.Observable;
 
 /**
@@ -15,8 +16,8 @@ import java.util.Observable;
  */
 public class ProtagonistView extends View {
     private ProtagonistViewFactory factory;
-    public ProtagonistView(Protagonist protagonist) {
-        super();
+    public ProtagonistView(Protagonist protagonist,GameContainer container) {
+        super(container);
         this.setViewPosition(protagonist.getPosition().getX(), protagonist.getPosition().getY());
         this.observable = protagonist;
         this.factory = ProtagonistViewFactory.getInstance();

@@ -7,20 +7,21 @@ import com.tdd.model.stageAbstractions.Stage;
 
 public class BigDot extends StaticItem {
 
-	public BigDot(Stage givenStage, Position givenPosition, int givenAwardingPoints) {
-		super(givenStage, givenPosition, givenAwardingPoints);
-	}
-	
-	@Override
-	public int consume() {
-		int points = super.consume();
-		this.stage.turnEnemiesToPrey();
-		return points;
-	}
-	
-	@Override
-	public String getMapSerialization() {
-		return XMLConstants.BIG_DOT;
-	}
-	
+    public BigDot(Stage givenStage, Position givenPosition, int givenAwardingPoints) {
+        super(givenStage, givenPosition, givenAwardingPoints);
+    }
+
+    @Override
+    public int consume() {
+        int points = super.consume();
+        this.stage.turnEnemiesToPrey();
+        this.setChanged();
+        return points;
+    }
+
+    @Override
+    public String getMapSerialization() {
+        return XMLConstants.BIG_DOT;
+    }
+
 }

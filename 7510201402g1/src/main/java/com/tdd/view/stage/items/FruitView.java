@@ -3,6 +3,7 @@ package com.tdd.view.stage.items;
 import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.view.abstractions.View;
 import com.tdd.view.helpers.ViewConstants;
+import com.tdd.view.windowElements.GameContainer;
 import java.util.Observable;
 
 /**
@@ -11,8 +12,8 @@ import java.util.Observable;
  */
 public class FruitView extends ItemView {
 
-    public FruitView(MovingItem movingItem) {
-        super();
+    public FruitView(MovingItem movingItem,GameContainer container) {
+        super(container);
         this.setViewPosition(movingItem.getPosition().getX(), movingItem.getPosition().getY());
         this.observable = movingItem;
         this.img = this.factory.getFruitImage();
@@ -23,7 +24,7 @@ public class FruitView extends ItemView {
         MovingItem movingItem = (MovingItem) observable;
         if(movingItem.isConsumed()){
             this.observable.deleteObserver(this);
-            this.isShow = false;
+            this.container.removeView(this);
         }
         this.setViewPosition(movingItem.getPosition().getX(), movingItem.getPosition().getY());
 

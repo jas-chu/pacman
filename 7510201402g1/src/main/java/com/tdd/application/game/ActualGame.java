@@ -44,8 +44,11 @@ public class ActualGame implements PacmanGame {
                 }
                 ++i;
                 this.viewManager.reset();
+              
             }
         }
+        this.viewManager.gameOver();
+        System.out.println("perdi");
     }
 
 }

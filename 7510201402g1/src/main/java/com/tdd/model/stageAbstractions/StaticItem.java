@@ -16,7 +16,9 @@ public abstract class StaticItem extends StageElement implements Consumable {
     @Override
     public int consume() {
         this.consumed = true;
+        this.setChanged();
         this.stage.removeStaticItem(this);
+        
         return this.awardingPoints;
     }
 

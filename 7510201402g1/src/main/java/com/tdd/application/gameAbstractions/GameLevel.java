@@ -8,6 +8,7 @@ import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.Stage;
+import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.view.manager.ViewManager;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,6 +20,7 @@ public abstract class GameLevel {
     private Stage stage;
     private List<Enemy> enemies;
     private List<MovingItem> movingItems;
+    private List<StaticItem> staticItems;
     protected Protagonist protagonist = null;
     protected long ticks = 1;
     protected ViewManager viewManager;
@@ -32,15 +34,16 @@ public abstract class GameLevel {
         this.stage = new Labyrinth(this.configs);
         this.enemies = this.stage.getEnemies();
         this.movingItems = this.stage.getMovingItems();
+        this.staticItems = this.stage.getStaticItems();
     }
 
     private void createViews() {
-        this.viewManager.setConfigValues(this.stage.getWidth(), this.stage.getHeight(), 
-                            this.stage.getNodeWidth(),this.stage.getNodeHeight());
+        this.viewManager.setConfigValues(this.stage.getWidth(), this.stage.getHeight(),
+                this.stage.getNodeWidth(), this.stage.getNodeHeight());
         this.viewManager.createCellsView(this.stage.getCells());
-        this.enemies.forEach(this.viewManager::addObserver);
-        this.stage.getStaticItems().stream().forEach(this.viewManager::addObserver);
-        this.stage.getMovingItems().stream().forEach(this.viewManager::addObserver);
+        this.enemies.stream().forEach(this.viewManager::createEnemy);
+        this.viewManager.createItemViews(this.staticItems, this.movingItems);
+
     }
 
     public void populateWithProtagonist(Protagonist givenProtagonist) {
@@ -61,7 +64,8 @@ public abstract class GameLevel {
     }
 
     private void createProtagonistView() {
-        this.viewManager.addObserver(this.getProtagonist());
+        this.viewManager.createProtagonist(this.getProtagonist());
+        this.viewManager.createScore(this.getProtagonist());
     }
 
     protected abstract PlayerController createPlayerController();
@@ -88,11 +92,11 @@ public abstract class GameLevel {
             this.updateViews();
             endOfLevel = this.isEndOfLevel();
             ++(this.ticks);
-			try {
-				Thread.sleep(200);
-			} catch (InterruptedException ex) {
-				Logger.getLogger(GameLevel.class.getName()).log(Level.SEVERE, null, ex);
-			}
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(GameLevel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
@@ -117,9 +121,16 @@ public abstract class GameLevel {
 
             }
         }
+        for (StaticItem item : this.staticItems) {
+            if (item.hasChanged()) {
+                item.notifyObservers();
+
+            }
+        }
     }
 
     private void updateViews() {
+        this.viewManager.reLoadItemsViews(this.staticItems, this.movingItems);
         this.viewManager.updateViews();
     }
 

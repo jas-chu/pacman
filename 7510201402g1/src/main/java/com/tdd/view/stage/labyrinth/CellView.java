@@ -4,6 +4,7 @@ import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.view.abstractions.View;
 import com.tdd.view.helpers.ViewConstants;
+import com.tdd.view.windowElements.GameContainer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
@@ -67,7 +68,8 @@ public class CellView extends View {
     // INSTANCE
     private String resourcePath;
 
-    public CellView(Cell cell) {
+    public CellView(Cell cell,GameContainer container) {
+        super(container);
         this.observable = cell;
         int index = this.getImageIndex(cell);
         this.resourcePath = RESOURCES.get(index);

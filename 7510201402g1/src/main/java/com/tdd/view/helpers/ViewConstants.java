@@ -7,9 +7,11 @@ package com.tdd.view.helpers;
 public class ViewConstants {
 
     //CONFIG Constants
-    public static final int IMAGE_WIDTH_DEFAULT = 32;
+    public static final int IMAGE_WIDTH_DEFAULT  = 32;
     public static final int IMAGE_HEIGHT_DEFAULT = 32;
-    public static final int OFFSET_DEFAULT = 32;
+    public static final int OFFSET_DEFAULT       = 32;
+    public static final int LABEL_WIDTH          = 100;
+    public static final int LABEL_HEIGHT         = 50;
     
     private static final String INIT_GHOST = "./media/img/ghost/";
 
@@ -59,5 +61,8 @@ public class ViewConstants {
     public static final String LEFT_RIGHT_CELL = INIT_CELL + "left_right.png";
     public static final String LEFT_CELL = INIT_CELL + "left.png";
     public static final String RIGHT_CELL = INIT_CELL + "right.png";
+    
+    
+    
 
 }
