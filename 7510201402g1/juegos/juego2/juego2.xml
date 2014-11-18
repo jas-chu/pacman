@@ -3,12 +3,12 @@
 		<escenario>./juegos/juego2/LaberintoNivel1.xml</escenario>
 		<personajes>./juegos/juego2/PersonajesNivel1.xml</personajes>
 		<ciclosFuria>
-			<valor>100</valor>
-			<valor>200</valor>
-			<valor>300</valor>
+			<valor>10</valor>
+			<valor>20</valor>
+			<valor>30</valor>
 		</ciclosFuria>
-		<ciclosMuerto>250</ciclosMuerto>
-		<ciclosPresa>175</ciclosPresa>
+		<ciclosMuerto>10</ciclosMuerto>
+		<ciclosPresa>10</ciclosPresa>
 		<visionFantasma>3</visionFantasma>
 		<incrementoVision>1</incrementoVision>
 		<ciclosFruta>1500</ciclosFruta>
@@ -24,12 +24,12 @@
 		<escenario>./juegos/juego2/LaberintoNivel3.xml</escenario>
 		<personajes>./juegos/juego2/PersonajesNivel3.xml</personajes>
 		<ciclosFuria>
-			<valor>100</valor>
-			<valor>200</valor>
-			<valor>300</valor>
+			<valor>10</valor>
+			<valor>20</valor>
+			<valor>30</valor>
 		</ciclosFuria>
-		<ciclosMuerto>250</ciclosMuerto>
-		<ciclosPresa>175</ciclosPresa>
+		<ciclosMuerto>10</ciclosMuerto>
+		<ciclosPresa>5</ciclosPresa>
 		<visionFantasma>2</visionFantasma>
 		<incrementoVision>1</incrementoVision>
 		<ciclosFruta>1500</ciclosFruta>

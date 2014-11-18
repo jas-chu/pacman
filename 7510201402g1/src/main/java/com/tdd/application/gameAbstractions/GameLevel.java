@@ -114,19 +114,6 @@ public abstract class GameLevel {
             }
 
         }
-        for (MovingItem item : this.movingItems) {
-            item.move();
-            if (item.hasChanged()) {
-                item.notifyObservers();
-
-            }
-        }
-        for (StaticItem item : this.staticItems) {
-            if (item.hasChanged()) {
-                item.notifyObservers();
-
-            }
-        }
     }
 
     private void updateViews() {

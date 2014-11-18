@@ -14,16 +14,17 @@ public class Prey extends Passive {
     @Override
     public void beEaten(Protagonist givenProtagonist) {
         this.enemy.kill();
-		int points = this.enemy.getAwardingPoints();
-		givenProtagonist.awardPoints(points);
+        int points = this.enemy.getAwardingPoints();
+        givenProtagonist.awardPoints(points);
     }
 
     @Override
     public Direction getDirection(Direction givenDirection) {
         return givenDirection.invert();
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return XMLConstants.PREY;
     }
 }
