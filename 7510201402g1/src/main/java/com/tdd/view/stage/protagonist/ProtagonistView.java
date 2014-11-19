@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.tdd.view.stage.protagonist;
 
+import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.view.abstractions.View;
 import com.tdd.view.windowElements.GameContainer;
@@ -30,6 +26,12 @@ public class ProtagonistView extends View {
     public void update(Observable o, Object arg) {
         Protagonist protagonist = (Protagonist) observable;
         this.img = this.factory.getImage(protagonist.getSense().toString());
+        //Si me movi que reproduzca el sonido
+        
+        if (!protagonist.getPosition().equals(new Position(this.x, this.y))){
+            System.out.println("movi");
+            this.audio.playSound();
+        }
         this.setViewPosition(protagonist.getPosition().getX(), protagonist.getPosition().getY());
     }
 

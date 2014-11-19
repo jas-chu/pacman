@@ -10,6 +10,7 @@ import com.tdd.view.abstractions.View;
 import com.tdd.view.messages.DinamycMessage;
 import com.tdd.view.viewFactory.ViewFactory;
 import com.tdd.view.windowElements.GameContainer;
+import com.tdd.view.audio.AudioFactory;
 import java.util.List;
 import javax.swing.JFrame;
 
@@ -21,7 +22,8 @@ public class ViewManager {
 
     private JFrame window;
     private GameContainer panel;
-    private ViewFactory factory;
+    private ViewFactory viewFactory;
+    private AudioFactory audioFactory;
 
     private int nodeWidth;
     private int nodeHeight;
@@ -30,7 +32,9 @@ public class ViewManager {
 
     private ViewManager() {
         this.panel = new GameContainer();
-        this.factory = new ViewFactory(this.panel);
+        this.viewFactory = new ViewFactory(this.panel);
+        this.audioFactory = AudioFactory.getInstance();
+        this.panel.loadBeginningSong(this.audioFactory.getPacmanBeginning());
 
     }
 
@@ -39,7 +43,7 @@ public class ViewManager {
     }
 
     public void createWindow(String name) {
-        this.window = this.factory.getWindow(name);
+        this.window = this.viewFactory.getWindow(name);
         this.window.add(panel);
     }
 
@@ -76,7 +80,7 @@ public class ViewManager {
 
     public void gameOver() {
         this.reset();
-        this.panel.addLabel(this.factory.getGameOverView());
+        this.panel.addLabel(this.viewFactory.getGameOverView());
         this.panel.repaint();
     }
 
@@ -104,7 +108,7 @@ public class ViewManager {
     }
 
     public void createScore(Protagonist protagonist) {
-        DinamycMessage scoreView = this.factory.getScoreView();
+        DinamycMessage scoreView = this.viewFactory.getScoreView();
         protagonist.addObserver(scoreView);
         this.panel.addLabel(scoreView);
     }
@@ -141,28 +145,29 @@ public class ViewManager {
     private void addObserver(Protagonist protagonist) {
         View observer = this.getView(protagonist);
         protagonist.addObserver(observer);
+        observer.addSound(this.audioFactory.getPacmanChomp());
         panel.addStableView(observer);
 
     }
 
     private View getView(Cell cell) {
-        return this.factory.getView(cell);
+        return this.viewFactory.getView(cell);
     }
 
     private View getView(Enemy enemy) {
-        return this.factory.getView(enemy);
+        return this.viewFactory.getView(enemy);
     }
 
     private View getView(StaticItem staticItem) {
-        return this.factory.getView(staticItem);
+        return this.viewFactory.getView(staticItem);
     }
 
     private View getView(MovingItem movingItem) {
-        return this.factory.getView(movingItem);
+        return this.viewFactory.getView(movingItem);
     }
 
     private View getView(Protagonist protagonist) {
-        return this.factory.getView(protagonist);
+        return this.viewFactory.getView(protagonist);
     }
 
     /**

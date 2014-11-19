@@ -46,7 +46,7 @@ public class ViewConstants {
     public static final String BIG_DOT = INIT_ITEM + "bigDot/bigDot.png";
 
     //Cell path constants
-    private static final String INIT_CELL = "./media/img/cell/";
+    private static final String INIT_CELL = "./media/img/cell2/";
     public static final String CLEAN_CELL = INIT_CELL + "clean.png";
     public static final String COMPLETE_CELL = INIT_CELL + "complete.png";
     public static final String DOWN_CELL = INIT_CELL + "down.png";
@@ -56,10 +56,10 @@ public class ViewConstants {
     public static final String UP_CELL = INIT_CELL + "up.png";
     public static final String UP_DOWN_CELL = INIT_CELL + "up_down.png";
     public static final String UP_LEFT_CELL = INIT_CELL + "up_left.png";
-    public static final String UP_LEFT_DOWN_CELL = INIT_CELL + "up_left_down.png";
+    public static final String UP_LEFT_DOWN_CELL = INIT_CELL + "up_down_left.png";
     public static final String UP_LEFT_RIGHT_CELL = INIT_CELL + "up_left_right.png";
     public static final String UP_RIGHT_CELL = INIT_CELL + "up_right.png";
-    public static final String UP_RIGHT_DOWN_CELL = INIT_CELL + "up_right_down.png";
+    public static final String UP_RIGHT_DOWN_CELL = INIT_CELL + "up_down_right.png";
     public static final String LEFT_RIGHT_CELL = INIT_CELL + "left_right.png";
     public static final String LEFT_CELL = INIT_CELL + "left.png";
     public static final String RIGHT_CELL = INIT_CELL + "right.png";

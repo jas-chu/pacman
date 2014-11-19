@@ -1,6 +1,7 @@
 package com.tdd.view.windowElements;
 
 import com.tdd.view.abstractions.View;
+import com.tdd.view.audio.Sound;
 import com.tdd.view.messages.DinamycMessage;
 import com.tdd.view.messages.Message;
 import java.awt.Graphics;
@@ -28,6 +29,7 @@ public class GameContainer extends JPanel {
 
     private List<Message> labels;
 
+    
     public GameContainer() {
         this.stableViews = new ArrayList<>();
         this.volatileViews = new ArrayList<>();
@@ -87,5 +89,9 @@ public class GameContainer extends JPanel {
 
     public void resetVolatileViews() {
         this.volatileViews.clear();
+    }
+
+    public void loadBeginningSong(Sound pacmanBeginning) {
+        pacmanBeginning.playSound();
     }
 }

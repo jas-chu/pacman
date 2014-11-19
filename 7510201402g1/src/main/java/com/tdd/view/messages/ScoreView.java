@@ -9,8 +9,7 @@ import java.util.Observable;
  */
 public class ScoreView extends DinamycMessage {
 
-    private int score;
-    private int lives;
+
     public ScoreView() {
         this.updateScore(0,0);
     }

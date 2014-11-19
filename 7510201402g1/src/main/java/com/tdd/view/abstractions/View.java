@@ -1,5 +1,6 @@
 package com.tdd.view.abstractions;
 
+import com.tdd.view.audio.Sound;
 import com.tdd.view.helpers.ViewConstants;
 import com.tdd.view.windowElements.GameContainer;
 import java.awt.Graphics;
@@ -18,6 +19,7 @@ public abstract class View implements Observer {
     protected int x, y, width, heigth;
     protected ImageIcon img;
     protected GameContainer container;
+    protected Sound audio;
 
     public View(GameContainer container) {
         this.x = 0;
@@ -44,5 +46,9 @@ public abstract class View implements Observer {
 
     private int getYRender() {
         return y * heigth + 30;
+    }
+
+    public void addSound(Sound audio) {
+        this.audio = audio;
     }
 }
