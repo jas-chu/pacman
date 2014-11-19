@@ -34,8 +34,7 @@ public class Fruit extends MovingItem {
     }
 
     @Override
-    public void advanceMovementCycle() {
-        System.out.println("Fruit AdvanceMovementCycle");
+    public void advanceMovementCycle() {        
         super.advanceMovementCycle();
         if (this.isHidden()) {
             (this.hiddenCountedCycles)++;
