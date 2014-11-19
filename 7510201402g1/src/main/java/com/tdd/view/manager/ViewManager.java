@@ -89,7 +89,9 @@ public class ViewManager {
             this.addObserver(item);
         }
         for (MovingItem item : movingItems) {
-            this.addObserver(item);
+            if (!item.isConsumed()){
+                this.addObserver(item);
+            }
         }
 
     }
