@@ -56,11 +56,11 @@ public abstract class Protagonist extends MovingElement {
         }
 
         try {
-            Direction direction = this.controller.getNewDirection();
-            System.out.println("direction:" + direction.toString());
+            Direction direction = this.controller.getNewDirection();            
             try {
                 this.stage.placeElement(direction, this);
             } catch (BlockedCellException | NoExistingCellException error2) {
+                System.out.println("excepcion de PlaceElement en direction");
                 // player hit wall
             }
             this.setSense(direction);

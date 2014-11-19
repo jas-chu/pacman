@@ -41,7 +41,7 @@ public class ViewConstants {
     public static final String PACMAN_RIGHT = INIT_PACMAN + "pacman_right.png";
 
     private static final String INIT_ITEM = "./media/img/items/";
-    public static final String FRUIT = INIT_ITEM + "fruit/fruit.png";
+    public static final String FRUIT = INIT_ITEM + "fruits/fruit.png";
     public static final String DOT = INIT_ITEM + "dot/dot.png";
     public static final String BIG_DOT = INIT_ITEM + "bigDot/bigDot.png";
 
