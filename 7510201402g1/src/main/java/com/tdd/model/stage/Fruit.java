@@ -20,10 +20,13 @@ public class Fruit extends MovingItem {
 
     @Override
     public int consume() {
+        System.out.println("FRUIT CONSUME");
         if (this.isHidden()) {
             return 0;
         }
-        this.hide();
+        this.hide();        
+        this.consumed = true;
+        this.stage.removeMovingItem(this);
         return this.awardingPoints;
     }
 	
