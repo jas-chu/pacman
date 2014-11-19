@@ -84,4 +84,9 @@ public class MockGhost extends Enemy {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+	@Override
+	public void setAsPrey() {
+		throw new UnsupportedOperationException("Not supported yet.");
+	}
+
 }

@@ -25,7 +25,7 @@ public abstract class Message extends JLabel {
     protected void setDefaultLayout() {
         this.setFont(new Font("Arial", 0, 40));
         this.setForeground(Color.blue);
-        this.setBounds(100, 0, 200, 200);
+        this.setBounds(150, 0, 500, 200);
 
     }
 

@@ -47,7 +47,11 @@ public class GameContainer extends JPanel {
             this.volatileViews.remove(view);
         }
     }
-
+	
+	public boolean hasView(View view) {
+		return (this.stableViews.contains(view) || this.volatileViews.contains(view));
+	}
+	
     @Override
     public void paint(Graphics g) {
         super.paint(g);

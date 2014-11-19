@@ -26,6 +26,11 @@ public class Fruit extends MovingItem {
         this.hide();
         return this.awardingPoints;
     }
+	
+	@Override
+	public boolean isConsumed() {
+		return this.isHidden();
+	}
 
     @Override
     public void advanceMovementCycle() {

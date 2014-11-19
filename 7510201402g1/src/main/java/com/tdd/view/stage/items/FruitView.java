@@ -23,9 +23,11 @@ public class FruitView extends ItemView {
     public void update(Observable observable, Object obj) {
         MovingItem movingItem = (MovingItem) observable;
         if(movingItem.isConsumed()){
-            this.observable.deleteObserver(this);
+            //this.observable.deleteObserver(this);
             this.container.removeView(this);
-        }
+        } else {
+			if (!(this.container.hasView(this))) this.container.addVolatileView(this);
+		}
         this.setViewPosition(movingItem.getPosition().getX(), movingItem.getPosition().getY());
 
     }
