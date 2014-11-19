@@ -14,6 +14,11 @@ public class Dead extends Passive {
     public void beEaten(Protagonist givenProtagonist) {
         // does nothing, allows functionality extension.
     }
+	
+	@Override
+	public void turnToPrey() {
+		// does nothing, allows functionality extension.
+	}
 
     @Override
     public String toString() {
