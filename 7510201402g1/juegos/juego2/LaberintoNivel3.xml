@@ -4,7 +4,7 @@
   <nodo id="0001" fila="00" columna="01" contiene="bolita" izquierda="0000" derecha="0002" arriba=""     abajo="" />
   <nodo id="0002" fila="00" columna="02" contiene="bolita" izquierda="0001" derecha=""     arriba=""     abajo="0102" />
   <nodo id="0003" fila="00" columna="03" contiene="bolita" izquierda=""     derecha="0004" arriba=""     abajo="0103" />
-  <nodo id="0004" fila="00" columna="04" contiene="bolita" izquierda="0003" derecha="0005" arriba=""     abajo="" />
+  <nodo id="0004" fila="00" columna="04" contiene="fruta" izquierda="0003" derecha="0005" arriba=""     abajo="" />
   <nodo id="0005" fila="00" columna="05" contiene="bolita" izquierda="0004" derecha="0006" arriba=""     abajo="" />
   <nodo id="0006" fila="00" columna="06" contiene="bolita" izquierda="0005" derecha="0007" arriba=""     abajo="" />
   <nodo id="0007" fila="00" columna="07" contiene="bolita" izquierda="0006" derecha="0008" arriba=""     abajo="" />

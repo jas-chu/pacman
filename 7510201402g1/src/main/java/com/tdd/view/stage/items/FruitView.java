@@ -18,8 +18,7 @@ public class FruitView extends ItemView {
     }
 
     @Override
-    public void update(Observable observable, Object obj) {
-        System.out.println("FRUIT UPDATE");
+    public void update(Observable observable, Object obj) {        
         MovingItem movingItem = (MovingItem) observable;
         if (movingItem.isConsumed()) {
             //this.observable.deleteObserver(this);

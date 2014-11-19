@@ -43,7 +43,7 @@ public abstract class MovingItem extends MovedByStrategy implements Consumable {
     }
 
     @Override
-    public void collideWithProtagonist(Protagonist givenProtagonist) {
+    public void collideWithProtagonist(Protagonist givenProtagonist) {        
         int points = this.consume();
         givenProtagonist.awardPoints(points);
     }
