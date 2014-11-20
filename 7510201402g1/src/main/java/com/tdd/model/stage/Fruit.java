@@ -10,30 +10,33 @@ public class Fruit extends MovingItem {
 
     private long hiddenWaitingCycles;
     private long hiddenCountedCycles;
+    private int hiddenAwardingPoints;
     private boolean hidden;
 
     public Fruit(Stage givenStage, Position givenPosition, int givenAwardingPoints, int givenSpeed, long givenHiddenCycles) {
         super(givenStage, givenPosition, givenAwardingPoints, new RandomStrategyFactory(), givenSpeed);
         this.hiddenWaitingCycles = givenHiddenCycles;
         this.hidden = false;
+        this.hiddenAwardingPoints = 0;
     }
 
     @Override
     public int consume() {
+        System.out.println("FRUIT CONSUME");
         if (this.isHidden()) {
             return 0;
         }
-        this.hide();
+        this.hide();        
         return this.awardingPoints;
     }
-	
-	@Override
-	public boolean isConsumed() {
-		return this.isHidden();
-	}
 
     @Override
-    public void advanceMovementCycle() {
+    public boolean isConsumed() {
+        return this.isHidden();
+    }
+
+    @Override
+    public void advanceMovementCycle() {        
         super.advanceMovementCycle();
         if (this.isHidden()) {
             (this.hiddenCountedCycles)++;
@@ -62,6 +65,14 @@ public class Fruit extends MovingItem {
             return super.getMapSerialization();
         }
         return XMLConstants.FRUIT;
+    }
+    
+    @Override
+    public int getAwardingPoints() {
+        if(isHidden()){
+            return this.hiddenAwardingPoints;
+        }
+        return this.awardingPoints;
     }
 
 }

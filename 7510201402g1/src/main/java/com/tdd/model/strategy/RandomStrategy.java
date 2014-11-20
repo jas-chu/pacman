@@ -5,15 +5,15 @@ import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.MovedByStrategy;
 import com.tdd.model.stageAbstractions.Strategy;
 
-public class RandomStrategy extends Strategy{
+public class RandomStrategy extends Strategy {
 
     public RandomStrategy(MovedByStrategy givenElement) {
         super(givenElement, 0);
     }
-    
+
     @Override
-    public Direction getDirection() {
-        if (possibleDirections.isEmpty()) {            
+    public Direction getDirection() {        
+        if (possibleDirections.isEmpty()) {
             this.getRandomDirection();
         }
         this.directionIndex++;
@@ -25,14 +25,21 @@ public class RandomStrategy extends Strategy{
         } else {
             return new DirectionRight();
         }
-    } 
-    
+    }
+
     @Override
-     public void getRandomDirection() {
+    public void getRandomDirection() {
         if (inCellBifurcation()) {
             generateRandomDirections();
         } else {
             getNoBifurcationDirections();
         }
+    }
+
+    @Override
+    public void advanceCycle() {
+        this.possibleDirections.clear();
+        this.directionIndex = 0;
+
     }
 }

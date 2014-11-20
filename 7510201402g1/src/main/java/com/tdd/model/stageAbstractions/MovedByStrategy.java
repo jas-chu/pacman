@@ -30,7 +30,7 @@ public abstract class MovedByStrategy extends MovingElement {
     public void moveOneTime() {
         int i = Direction.getNumberOfPossibleDirections();
         while (i > 0) {
-            Direction direction = this.getNextDirection();
+            Direction direction = this.getNextDirection();            
             try {
                 this.stage.placeElement(direction, this);
                 this.sense = direction;

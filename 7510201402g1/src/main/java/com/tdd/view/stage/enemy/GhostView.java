@@ -37,10 +37,9 @@ public class GhostView extends View {
             this.img = this.ghostViewFactory.getGhostPreyImage();
         } else if (ghost.getState().toString().equals(XMLConstants.DEAD)) {
             this.img = this.ghostViewFactory.getGhostDeathImage();
-        } else if (ghost.getState().toString().equals(XMLConstants.HUNTER)){
-                    System.out.println("SOY HUNTER");
-
-             this.img= this.images.get(ghost.getStrategy().getDirection().toString());
+        } else if (ghost.getState().toString().equals(XMLConstants.HUNTER)) {
+            //System.out.println("SOY HUNTER");
+            this.img = this.images.get(ghost.getStrategy().getDirection().toString());
         }
 
         this.setViewPosition(ghost.getPosition().getX(), ghost.getPosition().getY());
