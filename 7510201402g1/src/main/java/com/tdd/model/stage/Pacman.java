@@ -19,7 +19,7 @@ public class Pacman extends Protagonist {
 
     @Override
     public void revive() {
-        if (this.lives == 0) {
+        if (this.lives <= 0) {
             return;
         }
         if (this.isOnStage()) {

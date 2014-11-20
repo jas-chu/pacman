@@ -7,11 +7,32 @@
 			<valor>20</valor>
 			<valor>30</valor>
 		</ciclosFuria>
-		<ciclosMuerto>10</ciclosMuerto>
-		<ciclosPresa>10</ciclosPresa>
+		<ciclosMuerto>30</ciclosMuerto>
+		<ciclosPresa>50</ciclosPresa>
 		<visionFantasma>3</visionFantasma>
 		<incrementoVision>1</incrementoVision>
-		<ciclosFruta>1500</ciclosFruta>
+		<ciclosFruta>60</ciclosFruta>
+		<puntosFruta>100</puntosFruta>
+		<puntosBolita>5</puntosBolita>
+		<puntosBolon>15</puntosBolon>
+		<puntosEnemigo>50</puntosEnemigo>
+		<velocidadProtagonista>1</velocidadProtagonista>
+		<velocidadEnemigo>1</velocidadEnemigo>
+		<velocidadItem>1</velocidadItem>
+	</nivel>
+	<nivel tipo="conTeclado">
+		<escenario>./juegos/juego2/LaberintoNivel2.xml</escenario>
+		<personajes>./juegos/juego2/PersonajesNivel2.xml</personajes>
+		<ciclosFuria>
+			<valor>10</valor>
+			<valor>20</valor>
+			<valor>30</valor>
+		</ciclosFuria>
+		<ciclosMuerto>25</ciclosMuerto>
+		<ciclosPresa>35</ciclosPresa>
+		<visionFantasma>5</visionFantasma>
+		<incrementoVision>1</incrementoVision>
+		<ciclosFruta>30</ciclosFruta>
 		<puntosFruta>100</puntosFruta>
 		<puntosBolita>5</puntosBolita>
 		<puntosBolon>15</puntosBolon>
@@ -28,11 +49,11 @@
 			<valor>20</valor>
 			<valor>30</valor>
 		</ciclosFuria>
-		<ciclosMuerto>10</ciclosMuerto>
-		<ciclosPresa>5</ciclosPresa>
-		<visionFantasma>2</visionFantasma>
+		<ciclosMuerto>20</ciclosMuerto>
+		<ciclosPresa>30</ciclosPresa>
+		<visionFantasma>6</visionFantasma>
 		<incrementoVision>1</incrementoVision>
-		<ciclosFruta>1500</ciclosFruta>
+		<ciclosFruta>30</ciclosFruta>
 		<puntosFruta>100</puntosFruta>
 		<puntosBolita>5</puntosBolita>
 		<puntosBolon>15</puntosBolon>

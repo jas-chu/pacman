@@ -40,7 +40,7 @@ public class CellView extends View {
         theResources.put(0, ViewConstants.CLEAN_CELL);
 
         // UN BORDE
-        theResources.put(getPowValue(RIGHT_POW), ViewConstants.LEFT_CELL);
+        theResources.put(getPowValue(RIGHT_POW), ViewConstants.RIGHT_CELL);
         theResources.put(getPowValue(UP_POW), ViewConstants.UP_CELL);
         theResources.put(getPowValue(LEFT_POW), ViewConstants.LEFT_CELL);
         theResources.put(getPowValue(DOWN_POW), ViewConstants.DOWN_CELL);
