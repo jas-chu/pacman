@@ -1,5 +1,6 @@
 package com.tdd.view.windowElements;
 
+import com.tdd.view.helpers.ViewConstants;
 import java.awt.Dimension;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -12,16 +13,19 @@ import javax.swing.JFrame;
 public class WindowView extends JFrame implements WindowListener {
 
     private String name;
+    private static final int PREF_W = 600;
+    private static final int PREF_H = 300;
 
     public WindowView(String name) {
         super(name);
         this.name = name;
-        this.setPreferredSize(new Dimension(600, 400));
+        this.setPreferredSize(new Dimension(PREF_W, PREF_H));
+        this.setResizable(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.addWindowListener(this);
         this.pack();
-        
+
     }
 
     @Override
@@ -57,6 +61,11 @@ public class WindowView extends JFrame implements WindowListener {
     @Override
     public void windowDeactivated(WindowEvent e) {
         System.out.print("windowDeactivated");
+    }
+
+    public void changeSize(int width, int height) {
+         this.setPreferredSize(new Dimension(width,height+ViewConstants.LABEL_WIDTH));
+         this.pack();
     }
 
 }

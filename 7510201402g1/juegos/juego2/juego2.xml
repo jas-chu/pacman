@@ -3,14 +3,14 @@
 		<escenario>./juegos/juego2/LaberintoNivel1.xml</escenario>
 		<personajes>./juegos/juego2/PersonajesNivel1.xml</personajes>
 		<ciclosFuria>
-			<valor>10</valor>
 			<valor>20</valor>
-			<valor>30</valor>
+			<valor>40</valor>
+			<valor>60</valor>
 		</ciclosFuria>
 		<ciclosMuerto>30</ciclosMuerto>
 		<ciclosPresa>50</ciclosPresa>
-		<visionFantasma>3</visionFantasma>
-		<incrementoVision>1</incrementoVision>
+		<visionFantasma>5</visionFantasma>
+		<incrementoVision>2</incrementoVision>
 		<ciclosFruta>60</ciclosFruta>
 		<puntosFruta>100</puntosFruta>
 		<puntosBolita>5</puntosBolita>

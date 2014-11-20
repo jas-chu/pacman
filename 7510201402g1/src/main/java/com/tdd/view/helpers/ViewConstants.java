@@ -10,8 +10,8 @@ public class ViewConstants {
     public static final int IMAGE_WIDTH_DEFAULT  = 32;
     public static final int IMAGE_HEIGHT_DEFAULT = 32;
     public static final int OFFSET_DEFAULT       = 32;
-    public static final int LABEL_WIDTH          = 100;
-    public static final int LABEL_HEIGHT         = 50;
+    public static final int LABEL_WIDTH          = 40;
+    public static final int LABEL_HEIGHT         = 20;
     
     private static final String INIT_GHOST = "./media/img/ghost/";
 

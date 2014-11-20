@@ -11,8 +11,8 @@ import com.tdd.view.messages.DinamycMessage;
 import com.tdd.view.viewFactory.ViewFactory;
 import com.tdd.view.windowElements.GameContainer;
 import com.tdd.view.audio.AudioFactory;
+import com.tdd.view.windowElements.WindowView;
 import java.util.List;
-import javax.swing.JFrame;
 
 /**
  *
@@ -20,7 +20,7 @@ import javax.swing.JFrame;
  */
 public class ViewManager {
 
-    private JFrame window;
+    private WindowView window;
     private GameContainer panel;
     private ViewFactory viewFactory;
     private AudioFactory audioFactory;
@@ -69,6 +69,7 @@ public class ViewManager {
 
             }
         }
+       this.window.changeSize(this.width*this.nodeWidth,this.height*this.nodeHeight);
     }
 
     public void setConfigValues(Integer width, Integer height, Integer nodeWidth, Integer nodeHeight) {
@@ -141,6 +142,7 @@ public class ViewManager {
     private void addObserver(MovingItem movingItem) {
         View observer = this.getView(movingItem);
         movingItem.addObserver(observer);
+        observer.addSound(this.audioFactory.getPacmanEatFruit());
         panel.addVolatileView(observer);
     }
 

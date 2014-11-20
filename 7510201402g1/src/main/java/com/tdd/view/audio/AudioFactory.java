@@ -25,4 +25,8 @@ public class AudioFactory {
     public Sound getPacmanChomp(){
         return new Sound(AudioConstants.PACMAN_CHOMP);
     }
+    
+    public Sound getPacmanEatFruit(){
+        return new Sound(AudioConstants.PACMAN_FRUIT);
+    }
 }

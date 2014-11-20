@@ -25,7 +25,6 @@ public abstract class State {
 
     public void advanceCycle() {
         this.countedCycles++;
-        System.out.println(this.countedCycles);
         this.testStateChange();
     }
 
