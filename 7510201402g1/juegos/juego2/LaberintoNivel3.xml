@@ -32,8 +32,8 @@
   
   <nodo id="0200" fila="02" columna="00" contiene="bolita" izquierda="0213" derecha="0201" arriba="0100" abajo="0300" />
   <nodo id="0201" fila="02" columna="01" contiene="bolita" izquierda="0200" derecha="0202" arriba="0101" abajo="0301" />
-  <nodo id="0202" fila="02" columna="02" contiene="bolita" izquierda="0201" derecha="0203" arriba=""     abajo="" />
-  <nodo id="0203" fila="02" columna="03" contiene="bolita" izquierda="0202" derecha=""     arriba="0103" abajo="0303" />
+  <nodo id="0202" fila="02" columna="02" contiene="bolita" izquierda="0201" derecha=""     arriba=""     abajo="" />
+  <nodo id="0203" fila="02" columna="03" contiene="bolita" izquierda=""     derecha=""     arriba="0103" abajo="0303" />
   <nodo id="0204" fila="02" columna="04" contiene=""       izquierda=""     derecha="0205" arriba=""     abajo="" />
   <nodo id="0205" fila="02" columna="05" contiene=""       izquierda="0204" derecha="0206" arriba=""     abajo="" />
   <nodo id="0206" fila="02" columna="06" contiene=""       izquierda="0205" derecha="0207" arriba="0106" abajo="" />
