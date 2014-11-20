@@ -10,12 +10,14 @@ public class Fruit extends MovingItem {
 
     private long hiddenWaitingCycles;
     private long hiddenCountedCycles;
+    private int hiddenAwardingPoints;
     private boolean hidden;
 
     public Fruit(Stage givenStage, Position givenPosition, int givenAwardingPoints, int givenSpeed, long givenHiddenCycles) {
         super(givenStage, givenPosition, givenAwardingPoints, new RandomStrategyFactory(), givenSpeed);
         this.hiddenWaitingCycles = givenHiddenCycles;
         this.hidden = false;
+        this.hiddenAwardingPoints = 0;
     }
 
     @Override
@@ -63,6 +65,14 @@ public class Fruit extends MovingItem {
             return super.getMapSerialization();
         }
         return XMLConstants.FRUIT;
+    }
+    
+    @Override
+    public int getAwardingPoints() {
+        if(isHidden()){
+            return this.hiddenAwardingPoints;
+        }
+        return this.awardingPoints;
     }
 
 }
