@@ -15,7 +15,8 @@ public class Ghost extends Enemy {
     private State state;
     private StateFactory stateFactory;
     private Integer id;
-
+    private Position spawnPosition;
+    
     public Ghost(Stage stage, Position givenPosition, StateFactory givenFactory,
             StrategyFactory givenStrategyFactory, int givenAwardingPoints, int givenSpeed) {
         super(stage, givenPosition, givenStrategyFactory, givenAwardingPoints, givenSpeed);
@@ -23,6 +24,7 @@ public class Ghost extends Enemy {
         Ghost.LAST_ID++;
         this.id = Ghost.LAST_ID;
         this.state = this.stateFactory.createHunter(this);
+        this.spawnPosition = givenPosition;
     }
 
     @Override
@@ -43,6 +45,7 @@ public class Ghost extends Enemy {
 
     @Override
     public void revive() {
+        this.position = spawnPosition;
         this.state = this.stateFactory.createHunter(this);
     }
 
@@ -77,5 +80,6 @@ public class Ghost extends Enemy {
     public void collideWithProtagonist(Protagonist givenProtagonist) {
         this.state.collideWithProtagonist(givenProtagonist);
     }
+    
 
 }
