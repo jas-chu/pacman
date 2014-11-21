@@ -22,7 +22,6 @@ import com.tdd.view.stage.labyrinth.CellView;
 import com.tdd.view.stage.protagonist.ProtagonistView;
 import com.tdd.view.windowElements.GameContainer;
 import com.tdd.view.windowElements.WindowView;
-import javax.swing.JFrame;
 
 /**
  *

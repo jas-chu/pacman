@@ -1,11 +1,9 @@
 package com.tdd.model.cell.cellBuilding;
 
 import com.tdd.model.exceptions.NoAvailableFactoryException;
-import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.helpers.XMLReader;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Position;
-import java.util.HashMap;
 import java.util.Map;
 import javax.management.AttributeNotFoundException;
 import org.w3c.dom.Node;
