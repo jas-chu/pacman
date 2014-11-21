@@ -24,7 +24,7 @@ public class Fruit extends MovingItem {
     public int consume() {
         System.out.println("FRUIT CONSUME");
         if (this.isHidden()) {
-            return 0;
+            return this.hiddenAwardingPoints;
         }
         this.hide();        
         return this.awardingPoints;
