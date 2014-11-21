@@ -1,18 +1,19 @@
 package com.tdd.model.stageAbstractions;
 
 public abstract class Enemy extends MovedByStrategy {
-    
-	private int awardingPoints;
-	
+
+    private int awardingPoints;
+
     public Enemy(Stage givenStage, Position givenPosition, StrategyFactory givenStrategyFactory,
-				int givenAwardingPoints, int givenSpeed) {
+            int givenAwardingPoints, int givenSpeed) {
         super(givenStage, givenPosition, givenStrategyFactory, givenSpeed);
-		this.awardingPoints = givenAwardingPoints;
+        this.awardingPoints = givenAwardingPoints;
     }
-	
-	public abstract void kill();
+
+    public abstract void kill();
+
     public abstract void revive();
-	
+
     public abstract void turnToPrey();
 	public abstract void setAsPrey();
 	public abstract void setAsHunter();
@@ -39,5 +40,5 @@ public abstract class Enemy extends MovedByStrategy {
     public void collideWithEnemy(Enemy givenEnemy) {
         // does nothing, allows functionality extension.
     }
-	
+
 }

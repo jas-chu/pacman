@@ -5,7 +5,7 @@ import com.tdd.model.exceptions.NoExistingCellException;
 
 public abstract class MovedByStrategy extends MovingElement {
 
-    private Strategy strategy;
+    protected Strategy strategy;
     private StrategyFactory strategyFactory;
 
     public MovedByStrategy(Stage givenStage, Position givenPosition, StrategyFactory givenStrategy, int givenSpeed) {
