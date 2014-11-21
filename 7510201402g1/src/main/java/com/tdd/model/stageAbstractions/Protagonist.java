@@ -104,7 +104,7 @@ public abstract class Protagonist extends MovingElement {
 
     @Override
     public void collideWithConsumable(Consumable givenConsumable) {
-        if (this.isOnStage()) {            
+        if (this.isOnStage()) {
             this.awardPoints(givenConsumable.consume());
         }
     }
