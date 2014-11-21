@@ -56,8 +56,7 @@ public abstract class Strategy {
         Protagonist pacman = this.element.getProtagonist();
         if (pacman != null) {
             boolean pacmanIsVisible = pacman.isInArea(this.area);
-            if (pacmanIsVisible == true) {
-                System.out.println("PACMAN VISIBLE");                
+            if (pacmanIsVisible == true) {             
                 this.chasePacman(pacman.getPosition());
                 return;
             }
@@ -82,9 +81,6 @@ public abstract class Strategy {
             }
             this.possibleDirections.add(directions.remove(indexMin));
             distances.remove(indexMin);
-        }
-        for (int i = 0; i < this.possibleDirections.size(); i++) {
-            System.out.println(this.possibleDirections.get(i));
         }
     }
 

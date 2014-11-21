@@ -30,16 +30,13 @@ public abstract class MovedByStrategy extends MovingElement {
     public void moveOneTime() {
         int i = Direction.getNumberOfPossibleDirections();
         while (i > 0) {
-            Direction direction = this.getNextDirection();            
-            System.out.println("direccionSugerida: " + direction.toString());
+            Direction direction = this.getNextDirection();                        
             try {
                 this.stage.placeElement(direction, this);
                 this.sense = direction;                
-                this.strategy.setLastDirection(direction);
-                System.out.println("direccionMOVIDA: " + direction.toString());
+                this.strategy.setLastDirection(direction);                
                 i = 0;
-            } catch (BlockedCellException | NoExistingCellException error) {
-                System.out.println("BLOCKED CELL EXCEPTION");
+            } catch (BlockedCellException | NoExistingCellException error) {                
                 this.strategy.nextDirection();
                 i--; // must look another way
             }
