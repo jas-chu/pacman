@@ -1,5 +1,6 @@
 package com.tdd.view.stage.items;
 
+import com.tdd.model.stage.Fruit;
 import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.view.windowElements.GameContainer;
 import java.util.Observable;
@@ -19,19 +20,18 @@ public class FruitView extends ItemView {
 
     @Override
     public void update(Observable observable, Object obj) {        
-        MovingItem movingItem = (MovingItem) observable;
-        if (movingItem.isConsumed()) {
+        Fruit fruit = (Fruit) observable;
+        if (fruit.isConsumed()) {
+            this.setVisible(false);
             //saco por ahora el sonido de comer a la fruta
             //this.audio.playSound();
-            this.container.removeView(this);
-            
         } else {
-            if (!(this.container.hasView(this))) {
-                this.container.addVolatileView(this);
-            }
+            this.setVisible(true);
         }
-        this.setViewPosition(movingItem.getPosition().getX(), movingItem.getPosition().getY());
+        this.setViewPosition(fruit.getPosition().getX(), fruit.getPosition().getY());
 
     }
+
+
 
 }
