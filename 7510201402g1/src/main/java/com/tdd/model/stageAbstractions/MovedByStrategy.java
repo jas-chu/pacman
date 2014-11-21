@@ -31,9 +31,11 @@ public abstract class MovedByStrategy extends MovingElement {
         int i = Direction.getNumberOfPossibleDirections();
         while (i > 0) {
             Direction direction = this.getNextDirection();            
+            System.out.println("direccion: " + direction.toString());
             try {
                 this.stage.placeElement(direction, this);
-                this.sense = direction;
+                this.sense = direction;                
+                this.strategy.setLastDirection(direction);
                 i = 0;
             } catch (BlockedCellException | NoExistingCellException error) {
                 i--; // must look another way

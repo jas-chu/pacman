@@ -84,9 +84,9 @@
     <nodo id="0502" fila="05" columna="02" contiene="bolita" izquierda="0501" derecha="0503" arriba=""     abajo="" />
     <nodo id="0503" fila="05" columna="03" contiene="bolita" izquierda="0502" derecha="0504" arriba="0403" abajo="" />
     <nodo id="0504" fila="05" columna="04" contiene="bolita" izquierda="0503" derecha="0505" arriba=""     abajo="" />
-    <nodo id="0505" fila="05" columna="05" contiene="bolita" izquierda="0504" derecha=""     arriba="0405" abajo="0605" />
+    <nodo id="0505" fila="05" columna="05" contiene=""      izquierda="0504" derecha=""     arriba="0405" abajo="0605" />
     <nodo id="0506" fila="05" columna="06" contiene=""       izquierda=""     derecha=""     arriba="0406" abajo="0606" />
-    <nodo id="0507" fila="05" columna="07" contiene="bolita" izquierda=""     derecha=""     arriba="0407" abajo="0607" />
+    <nodo id="0507" fila="05" columna="07" contiene="fruta" izquierda=""     derecha=""     arriba="0407" abajo="0607" />
     <nodo id="0508" fila="05" columna="08" contiene=""       izquierda=""     derecha=""     arriba="0408" abajo="0608" />
     <nodo id="0509" fila="05" columna="09" contiene="bolita" izquierda=""     derecha="0510" arriba="0409" abajo="0609" />
     <nodo id="0510" fila="05" columna="10" contiene="bolita" izquierda="0509" derecha="0511" arriba=""     abajo="" />

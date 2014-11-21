@@ -12,16 +12,15 @@ public class RandomStrategy extends Strategy {
     }
 
     @Override
-    public Direction getDirection() {        
-        if (possibleDirections.isEmpty()) {
+    public Direction getDirection() {
+        if (possibleDirections.isEmpty() || this.lastDirection == null) {
             this.getRandomDirection();
+            this.directionIndex = 0;
         }
         this.directionIndex++;
-        int size = possibleDirections.size();
-        if (this.directionIndex <= size) {
+        if (this.directionIndex <= possibleDirections.size()) {
+            this.lastDirection = possibleDirections.get(this.directionIndex - 1);
             return possibleDirections.get(this.directionIndex - 1);
-        } else if (size > 0) {
-            return possibleDirections.get(size - 1);
         } else {
             return new DirectionRight();
         }
@@ -32,6 +31,9 @@ public class RandomStrategy extends Strategy {
         if (inCellBifurcation()) {
             generateRandomDirections();
         } else {
+            if (this.lastDirection != null) {
+                this.possibleDirections.add(this.lastDirection);
+            }
             getNoBifurcationDirections();
         }
     }
@@ -40,6 +42,5 @@ public class RandomStrategy extends Strategy {
     public void advanceCycle() {
         this.possibleDirections.clear();
         this.directionIndex = 0;
-
     }
 }
