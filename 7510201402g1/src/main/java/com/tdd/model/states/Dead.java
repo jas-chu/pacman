@@ -19,7 +19,12 @@ public class Dead extends Passive {
 	public void turnToPrey() {
 		// does nothing, allows functionality extension.
 	}
-
+	
+	@Override
+    protected void changeState() {
+        this.enemy.revive();
+    }
+	
     @Override
     public String toString() {
         return XMLConstants.DEAD;

@@ -22,6 +22,11 @@ public class Prey extends Passive {
     public Direction getDirection(Direction givenDirection) {
         return givenDirection.invert();
     }
+	
+	@Override
+    protected void changeState() {
+        this.enemy.setAsHunter();
+    }
 
     @Override
     public String toString() {

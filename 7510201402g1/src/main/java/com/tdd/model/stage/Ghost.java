@@ -42,6 +42,11 @@ public class Ghost extends Enemy {
     public void setAsPrey() {
         this.state = this.stateFactory.createPrey(this);
     }
+	
+	@Override
+    public void setAsHunter() {
+        this.state = this.stateFactory.createHunter(this);
+    }
 
     @Override
     public void revive() {
