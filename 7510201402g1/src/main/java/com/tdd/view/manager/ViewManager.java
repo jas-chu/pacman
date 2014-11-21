@@ -128,7 +128,7 @@ public class ViewManager {
     private void createCell(Cell cell) {
         View observer = this.getView(cell);
         cell.addObserver(observer);
-        panel.addStableView(observer);
+        panel.addBackgroundView(observer);
     }
 
     private void addObserver(Enemy enemy) {

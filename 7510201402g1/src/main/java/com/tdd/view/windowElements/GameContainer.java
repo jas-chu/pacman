@@ -27,12 +27,18 @@ public class GameContainer extends JPanel {
      */
     private List<View> volatileViews;
 
+    /**
+     *
+     */
+    private List<View> backgroundViews;
+
     private List<Message> labels;
 
     public GameContainer() {
         this.stableViews = new ArrayList<>();
         this.volatileViews = new ArrayList<>();
         this.labels = new ArrayList<>();
+        this.backgroundViews = new ArrayList<>();
     }
 
     public void addStableView(View view) {
@@ -52,30 +58,35 @@ public class GameContainer extends JPanel {
     }
 
     public void update() {
-        
+
         Graphics2D g2d = (Graphics2D) this.getGraphics();
 
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
+//        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+//                RenderingHints.VALUE_ANTIALIAS_ON);
+        this.backgroundViews.stream().forEach((View backgroundView)->{
+            backgroundView.paint(g2d);
+        });
+        
+        this.volatileViews.stream().forEach((View observer) -> {
+            observer.paint(g2d);
 
+        });
 
         this.stableViews.stream().filter((stableView) -> (stableView.isVisible())).forEach((stableView) -> {
             stableView.paint(g2d);
         });
 
-        this.volatileViews.stream().forEach((View observer) -> {
-            observer.paint(g2d);
-        });
-
         this.labels.stream().forEach((Message label) -> {
             label.paint(g2d);
         });
+
     }
 
     public void clear() {
         this.removeAll();
         this.stableViews.clear();
         this.volatileViews.clear();
+        this.backgroundViews.clear();
     }
 
     public void addLabel(JLabel label) {
@@ -96,5 +107,9 @@ public class GameContainer extends JPanel {
 
     public void loadBeginningSong(Sound pacmanBeginning) {
         pacmanBeginning.playSound();
+    }
+
+    public void addBackgroundView(View observer) {
+        this.backgroundViews.add(observer);
     }
 }

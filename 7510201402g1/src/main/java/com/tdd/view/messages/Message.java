@@ -29,5 +29,8 @@ public abstract class Message extends JLabel {
         this.setBounds(150, 0, ViewConstants.LABEL_WIDTH, ViewConstants.LABEL_HEIGHT);
 
     }
+    
+
+    
 
 }
