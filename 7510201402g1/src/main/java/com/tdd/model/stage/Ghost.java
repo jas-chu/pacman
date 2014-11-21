@@ -38,8 +38,6 @@ public class Ghost extends Enemy {
         this.state = this.stateFactory.createDead(this);
         this.stage.placeEnemyAtHome(this);
         this.strategy = this.deadStrategyFactory.getStrategy(this);
-        
-        
     }
 
     @Override
@@ -51,15 +49,9 @@ public class Ghost extends Enemy {
     public void setAsPrey() {
         this.state = this.stateFactory.createPrey(this);
     }
-	
-	@Override
-    public void setAsHunter() {
-        this.state = this.stateFactory.createHunter(this);
-    }
 
     @Override
     public void revive() {
-        this.position = spawnPosition;
         this.state = this.stateFactory.createHunter(this);
         this.strategy = this.strategyFactory.getStrategy(this);
     }

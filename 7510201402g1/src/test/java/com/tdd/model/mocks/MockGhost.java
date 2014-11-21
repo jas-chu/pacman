@@ -89,9 +89,4 @@ public class MockGhost extends Enemy {
 		throw new UnsupportedOperationException("Not supported yet.");
 	}
 
-	@Override
-	public void setAsHunter() {
-		throw new UnsupportedOperationException("Not supported yet.");
-	}
-
 }

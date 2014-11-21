@@ -22,5 +22,10 @@ public abstract class Passive extends State {
     protected boolean shouldChangeState() {
         return (this.countedCycles == this.waitingCycles);
     }
+	
+	@Override
+    protected void changeState() {
+        this.enemy.revive();
+    }
 
 }
