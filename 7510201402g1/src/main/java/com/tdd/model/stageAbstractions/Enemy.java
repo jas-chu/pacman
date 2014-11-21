@@ -16,7 +16,6 @@ public abstract class Enemy extends MovedByStrategy {
 
     public abstract void turnToPrey();
 	public abstract void setAsPrey();
-	public abstract void setAsHunter();
 	
 	public abstract Integer getId();
 	public abstract State getState();
