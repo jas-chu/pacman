@@ -1,9 +1,9 @@
-<laberinto ancho="7" alto="2" nodoAncho="45" nodoAlto="45" inicioPacman="0103" inicioFantasmas="0003">
+<laberinto ancho="7" alto="2" nodoAncho="32" nodoAlto="32" inicioPacman="0103" inicioFantasmas="0003">
 
   <nodo id="0000" fila="00" columna="00" contiene="bolon"  izquierda=""     derecha="0001" arriba=""     abajo="0100" />
-  <nodo id="0001" fila="00" columna="01" contiene="bolita" izquierda="0000" derecha="0002" arriba=""     abajo="" />
+  <nodo id="0001" fila="00" columna="01" contiene="fruta" izquierda="0000" derecha="0002" arriba=""     abajo="" />
   <nodo id="0002" fila="00" columna="02" contiene="bolita" izquierda="0001" derecha="0003" arriba=""     abajo="" />
-  <nodo id="0003" fila="00" columna="03" contiene=""       izquierda="0002" derecha="0004" arriba=""     abajo="" />
+  <nodo id="0003" fila="00" columna="03" contiene="fruta"       izquierda="0002" derecha="0004" arriba=""     abajo="" />
   <nodo id="0004" fila="00" columna="04" contiene="bolita" izquierda="0003" derecha="0005" arriba=""     abajo="" />
   <nodo id="0005" fila="00" columna="05" contiene="bolita" izquierda="0004" derecha="0006" arriba=""     abajo="" />
   <nodo id="0006" fila="00" columna="06" contiene="bolita" izquierda="0005" derecha=""     arriba=""     abajo="0106" />

@@ -22,7 +22,9 @@ public abstract class Strategy {
         this.element = givenElement;
         this.vision = vision;
         this.possibleDirections = new ArrayList<>();
-        if (this.element != null) this.lastDirection = this.element.getSense();
+        if (this.element != null) {
+            this.lastDirection = this.element.getSense();
+        }
     }
 
     public void advanceCycle() {
@@ -99,7 +101,7 @@ public abstract class Strategy {
     protected boolean inCellBifurcation() {
         int unblockedCells = 0;
         List<Direction> directions = getAllDirections();
-		Position elementPosition = this.element.getPosition();
+        Position elementPosition = this.element.getPosition();
         for (Direction direction : directions) {
             try {
                 this.element.getStage().getCell(elementPosition).getTargetPosition(direction);
@@ -119,10 +121,12 @@ public abstract class Strategy {
     }
 
     protected void getNoBifurcationDirections() {
-		if (this.lastDirection != null) {
-			this.possibleDirections.add(this.lastDirection);
-			this.possibleDirections.add(this.lastDirection.invert());
-		}
+        System.out.println("GET NO BIFURCATION DIRECTIONS");
+        if (this.lastDirection != null) {
+            this.possibleDirections.add(this.lastDirection);
+            this.possibleDirections.add(this.lastDirection.invert());
+        }
+        this.generateRandomDirections();        
     }
 
     private int getRandomNumber(int min, int max) {
@@ -161,7 +165,11 @@ public abstract class Strategy {
         return this.possibleDirections.size();
     }
 
-    public Direction getLastDirection(){
+    public Direction getLastDirection() {
         return this.lastDirection;
+    }
+
+    void setLastDirection(Direction direction) {
+        this.lastDirection = direction;
     }
 }

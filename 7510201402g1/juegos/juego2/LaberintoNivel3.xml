@@ -1,4 +1,4 @@
-<laberinto ancho="14" alto="5" nodoAncho="45" nodoAlto="45" inicioPacman="0307" inicioFantasmas="0206">
+<laberinto ancho="14" alto="5" nodoAncho="32" nodoAlto="32" inicioPacman="0307" inicioFantasmas="0206">
 
   <nodo id="0000" fila="00" columna="00" contiene="bolon"  izquierda=""     derecha="0001" arriba=""     abajo="0100" />
   <nodo id="0001" fila="00" columna="01" contiene="bolita" izquierda="0000" derecha="0002" arriba=""     abajo="" />

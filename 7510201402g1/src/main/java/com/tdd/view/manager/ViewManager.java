@@ -11,8 +11,8 @@ import com.tdd.view.messages.DinamycMessage;
 import com.tdd.view.viewFactory.ViewFactory;
 import com.tdd.view.windowElements.GameContainer;
 import com.tdd.view.audio.AudioFactory;
+import com.tdd.view.windowElements.WindowView;
 import java.util.List;
-import javax.swing.JFrame;
 
 /**
  *
@@ -20,7 +20,7 @@ import javax.swing.JFrame;
  */
 public class ViewManager {
 
-    private JFrame window;
+    private WindowView window;
     private GameContainer panel;
     private ViewFactory viewFactory;
     private AudioFactory audioFactory;
@@ -52,13 +52,11 @@ public class ViewManager {
     }
 
     public void showWindow() {
-
         this.window.setVisible(true);
-
     }
 
     public void updateViews() {
-        this.panel.repaint();
+        this.panel.update();
 
     }
 
@@ -69,6 +67,7 @@ public class ViewManager {
 
             }
         }
+        this.window.changeSize(this.width * this.nodeWidth, this.height * this.nodeHeight);
     }
 
     public void setConfigValues(Integer width, Integer height, Integer nodeWidth, Integer nodeHeight) {
@@ -85,20 +84,13 @@ public class ViewManager {
     }
 
     public void createItemViews(List<StaticItem> staticItems, List<MovingItem> movingItems) {
-        for (StaticItem item : staticItems) {
-            this.addObserver(item);
-        }
-        for (MovingItem item : movingItems) {
-            if (!item.isConsumed()){
-                this.addObserver(item);
-            }
-        }
-
+        this.createStaticItemViews(staticItems);
+        this.createMovingItemViews(movingItems);
     }
 
-    public void reLoadItemsViews(List<StaticItem> staticItems, List<MovingItem> movingItems) {
+    public void reLoadItemsViews(List<StaticItem> staticItems) {
         this.panel.resetVolatileViews();
-        this.createItemViews(staticItems, movingItems);
+        this.createStaticItemViews(staticItems);
     }
 
     public void createProtagonist(Protagonist protagonist) {
@@ -120,15 +112,27 @@ public class ViewManager {
         private static final ViewManager INSTANCE = new ViewManager();
     }
 
-    private void addObserver(Enemy enemy) {
-        View observer = this.getView(enemy);
-        enemy.addObserver(observer);
-        panel.addStableView(observer);
+    private void createStaticItemViews(List<StaticItem> staticItems) {
+        for (StaticItem item : staticItems) {
+            this.addObserver(item);
+        }
+    }
+
+    private void createMovingItemViews(List<MovingItem> movingItems) {
+        for (MovingItem item : movingItems) {
+            this.addObserver(item);
+        }
     }
 
     private void createCell(Cell cell) {
         View observer = this.getView(cell);
         cell.addObserver(observer);
+        panel.addStableView(observer);
+    }
+
+    private void addObserver(Enemy enemy) {
+        View observer = this.getView(enemy);
+        enemy.addObserver(observer);
         panel.addStableView(observer);
     }
 
@@ -141,7 +145,8 @@ public class ViewManager {
     private void addObserver(MovingItem movingItem) {
         View observer = this.getView(movingItem);
         movingItem.addObserver(observer);
-        panel.addVolatileView(observer);
+        observer.addSound(this.audioFactory.getPacmanEatFruit());
+        panel.addStableView(observer);
     }
 
     private void addObserver(Protagonist protagonist) {

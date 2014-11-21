@@ -9,4 +9,5 @@ public class AudioConstants {
      
      public static final String BEGINNING = INIT + "pacman_beginning.wav";
      public static final String PACMAN_CHOMP = INIT + "pacman_chomp.wav";
+     public static final String PACMAN_FRUIT = INIT + "pacman_eatfruit.wav";
 }

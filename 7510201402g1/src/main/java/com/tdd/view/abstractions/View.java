@@ -20,6 +20,7 @@ public abstract class View implements Observer {
     protected ImageIcon img;
     protected GameContainer container;
     protected Sound audio;
+    protected boolean visible;
 
     public View(GameContainer container) {
         this.x = 0;
@@ -27,6 +28,7 @@ public abstract class View implements Observer {
         this.width = ViewConstants.IMAGE_WIDTH_DEFAULT;
         this.heigth = ViewConstants.IMAGE_HEIGHT_DEFAULT;
         this.container = container;
+        this.visible = true;
 
     }
 
@@ -50,5 +52,13 @@ public abstract class View implements Observer {
 
     public void addSound(Sound audio) {
         this.audio = audio;
+    }
+
+    public void setVisible(boolean b) {
+        this.visible = b;
+    }
+    
+    public boolean isVisible(){
+        return this.visible;
     }
 }

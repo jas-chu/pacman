@@ -32,13 +32,11 @@ public class GhostView extends View {
     @Override
     public void update(Observable observable, Object obj) {
         Ghost ghost = (Ghost) observable;
-        System.out.println(ghost.getState().toString());
         if (ghost.getState().toString().equals(XMLConstants.PREY)) {
             this.img = this.ghostViewFactory.getGhostPreyImage();
         } else if (ghost.getState().toString().equals(XMLConstants.DEAD)) {
             this.img = this.ghostViewFactory.getGhostDeathImage();
         } else if (ghost.getState().toString().equals(XMLConstants.HUNTER)) {
-            //System.out.println("SOY HUNTER");
             this.img = this.images.get(ghost.getStrategy().getDirection().toString());
         }
 

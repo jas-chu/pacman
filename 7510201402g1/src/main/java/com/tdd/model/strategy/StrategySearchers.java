@@ -15,10 +15,12 @@ public abstract class StrategySearchers extends Strategy {
     }
 
     @Override
-    public void getPossibleDirections() {        
+    public void getPossibleDirections() {
         this.area = new SquaredArea(this.element.getPosition(), this.vision);
         Protagonist pacman = this.element.getProtagonist();
-		if (pacman == null) return;
+        if (pacman == null) {
+            return;
+        }
         boolean pacmanIsVisible = pacman.isInArea(this.area);
         if (pacmanIsVisible == true) {
             this.lastPosition = pacman.getPosition();

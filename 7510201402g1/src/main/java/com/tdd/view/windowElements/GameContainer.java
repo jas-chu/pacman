@@ -29,7 +29,6 @@ public class GameContainer extends JPanel {
 
     private List<Message> labels;
 
-    
     public GameContainer() {
         this.stableViews = new ArrayList<>();
         this.volatileViews = new ArrayList<>();
@@ -47,30 +46,30 @@ public class GameContainer extends JPanel {
             this.volatileViews.remove(view);
         }
     }
-	
-	public boolean hasView(View view) {
-		return (this.stableViews.contains(view) || this.volatileViews.contains(view));
-	}
-	
-    @Override
-    public void paint(Graphics g) {
-        super.paint(g);
-        Graphics2D g2d = (Graphics2D) g;
+
+    public boolean hasView(View view) {
+        return (this.stableViews.contains(view) || this.volatileViews.contains(view));
+    }
+
+    public void update() {
+        
+        Graphics2D g2d = (Graphics2D) this.getGraphics();
 
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
-        this.stableViews.stream().forEach((View observer) -> {
-            observer.paint(g2d);
+
+        this.stableViews.stream().filter((stableView) -> (stableView.isVisible())).forEach((stableView) -> {
+            stableView.paint(g2d);
         });
 
         this.volatileViews.stream().forEach((View observer) -> {
             observer.paint(g2d);
         });
+
         this.labels.stream().forEach((Message label) -> {
             label.paint(g2d);
         });
-
     }
 
     public void clear() {

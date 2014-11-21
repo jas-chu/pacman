@@ -61,7 +61,7 @@ public class ViewFactory {
         return new CellView(cell,container);
     }
 
-    public JFrame getWindow(String name) {
+    public WindowView getWindow(String name) {
         return new WindowView(name);
     }
 
