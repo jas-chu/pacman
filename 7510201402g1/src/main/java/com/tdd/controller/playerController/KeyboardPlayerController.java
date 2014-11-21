@@ -21,6 +21,7 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
     private final List<Direction> directionsToBeProcessed;
     private final Map<Integer, DirectionFactory> directionsDictionary;
     private Mutex mutex;
+    private Direction lastDirection = null;
 
     public KeyboardPlayerController() {
         this.directionsToBeProcessed = new ArrayList<Direction>();
@@ -33,21 +34,24 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {        
+    public void keyTyped(KeyEvent e) {
         // does nothing
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {        
+    public void keyPressed(KeyEvent e) {
         DirectionFactory factory = this.directionsDictionary.get(e.getKeyCode());
         if (factory == null) {
             return;
         }
-
         try {
             mutex.acquire();
             try {
-                this.directionsToBeProcessed.add(factory.createDirection());                
+                Direction direction = factory.createDirection();
+                if (this.lastDirection == null || 
+                           !direction.toString().equals(this.lastDirection.toString())) {
+                    this.directionsToBeProcessed.add(direction);
+                }
             } finally {
                 mutex.release();
             }
@@ -56,7 +60,7 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {        
+    public void keyReleased(KeyEvent e) {
         // does nothing
     }
 
@@ -65,8 +69,13 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
         try {
             mutex.acquire();
             try {
-                if (!(this.directionsToBeProcessed.isEmpty())) {                    
-                    return this.directionsToBeProcessed.remove(0);
+                if (!(this.directionsToBeProcessed.isEmpty())) {
+                    this.lastDirection = this.directionsToBeProcessed.remove(0);
+                    return this.lastDirection;
+                }else{
+                    if (this.lastDirection != null){
+                        return this.lastDirection;
+                    }
                 }
             } finally {
                 mutex.release();
