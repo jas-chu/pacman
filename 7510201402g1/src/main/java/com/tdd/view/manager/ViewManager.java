@@ -11,6 +11,7 @@ import com.tdd.view.messages.DinamycMessage;
 import com.tdd.view.viewFactory.ViewFactory;
 import com.tdd.view.windowElements.GameContainer;
 import com.tdd.view.audio.AudioFactory;
+import com.tdd.view.helpers.ViewConstants;
 import com.tdd.view.windowElements.WindowView;
 import java.util.List;
 
@@ -67,7 +68,7 @@ public class ViewManager {
 
             }
         }
-        this.window.changeSize(this.width * this.nodeWidth, this.height * this.nodeHeight);
+        this.window.changeSize(this.width * this.nodeWidth, this.height * this.nodeHeight + ViewConstants.LABEL_HEIGHT);
     }
 
     public void setConfigValues(Integer width, Integer height, Integer nodeWidth, Integer nodeHeight) {
