@@ -33,4 +33,15 @@ public abstract class StrategySearchers extends Strategy {
         }
     }
 
+    @Override
+    public void getRandomDirection() {        
+        if (inCellBifurcation() || this.lastDirection == null) {
+            generateRandomDirections();
+        } else {
+            if (this.lastDirection != null) {
+                this.possibleDirections.add(this.lastDirection);
+            }
+            getNoBifurcationDirections();
+        }
+    }
 }

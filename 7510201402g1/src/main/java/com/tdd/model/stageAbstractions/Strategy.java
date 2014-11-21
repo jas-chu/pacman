@@ -29,13 +29,11 @@ public abstract class Strategy {
 
     public void advanceCycle() {
         this.area = new SquaredArea(this.element.getPosition(), this.vision);
-
         try {
-            this.lastDirection = this.possibleDirections.get(this.directionIndex - 1);
+            this.lastDirection = this.possibleDirections.get(this.directionIndex);
         } catch (Exception arrayIndexOutOfBoundsException) {
             return;
         }
-
         this.possibleDirections.clear();
         this.directionIndex = 0;
     }
@@ -43,14 +41,12 @@ public abstract class Strategy {
     public Direction getDirection() {
         if (possibleDirections.isEmpty()) {
             this.getPossibleDirections();
+            this.directionIndex = 0;
         }
-        this.directionIndex++;
-        int size = possibleDirections.size();
-        if (this.directionIndex <= size) {
-            return possibleDirections.get(this.directionIndex - 1);
-        } else if (size > 0) {
-            return possibleDirections.get(size - 1);
-        } else {
+        if (this.directionIndex <= possibleDirections.size()) {
+            this.lastDirection = possibleDirections.get(this.directionIndex);
+            return possibleDirections.get(this.directionIndex);
+        } else {            
             return new DirectionRight();
         }
     }
@@ -58,10 +54,10 @@ public abstract class Strategy {
     public void getPossibleDirections() {
         this.area = new SquaredArea(this.element.getPosition(), this.vision);
         Protagonist pacman = this.element.getProtagonist();
-
         if (pacman != null) {
             boolean pacmanIsVisible = pacman.isInArea(this.area);
             if (pacmanIsVisible == true) {
+                System.out.println("PACMAN VISIBLE");                
                 this.chasePacman(pacman.getPosition());
                 return;
             }
@@ -73,7 +69,6 @@ public abstract class Strategy {
         if (givenPosition == null) {
             return;
         }
-
         ArrayList<Direction> directions = this.getAllDirections();
         ArrayList<Double> distances = this.getAllDistances(givenPosition);
         while (!distances.isEmpty()) {
@@ -88,9 +83,15 @@ public abstract class Strategy {
             this.possibleDirections.add(directions.remove(indexMin));
             distances.remove(indexMin);
         }
+        for (int i = 0; i < this.possibleDirections.size(); i++) {
+            System.out.println(this.possibleDirections.get(i));
+        }
     }
 
     public void getRandomDirection() {
+        if (this.lastDirection != null) {
+            this.possibleDirections.add(this.lastDirection);
+        }
         if (inCellBifurcation() || this.lastDirection == null) {
             generateRandomDirections();
         } else {
@@ -121,12 +122,11 @@ public abstract class Strategy {
     }
 
     protected void getNoBifurcationDirections() {
-        System.out.println("GET NO BIFURCATION DIRECTIONS");
         if (this.lastDirection != null) {
             this.possibleDirections.add(this.lastDirection);
             this.possibleDirections.add(this.lastDirection.invert());
         }
-        this.generateRandomDirections();        
+        this.generateRandomDirections();
     }
 
     private int getRandomNumber(int min, int max) {
@@ -169,7 +169,11 @@ public abstract class Strategy {
         return this.lastDirection;
     }
 
-    void setLastDirection(Direction direction) {
+    public void setLastDirection(Direction direction) {
         this.lastDirection = direction;
+    }
+
+    public void nextDirection() {
+        this.directionIndex++;
     }
 }
