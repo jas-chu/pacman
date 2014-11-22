@@ -114,15 +114,16 @@ public class ViewManager {
     }
 
     private void createStaticItemViews(List<StaticItem> staticItems) {
-        for (StaticItem item : staticItems) {
+        staticItems.stream().forEach((item) -> {
             this.addObserver(item);
-        }
+        });
+       
     }
 
     private void createMovingItemViews(List<MovingItem> movingItems) {
-        for (MovingItem item : movingItems) {
+        movingItems.stream().forEach((item) -> {
             this.addObserver(item);
-        }
+        });
     }
 
     private void createCell(Cell cell) {

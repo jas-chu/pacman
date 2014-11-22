@@ -2,11 +2,8 @@ package com.tdd.view.windowElements;
 
 import com.tdd.view.abstractions.View;
 import com.tdd.view.audio.Sound;
-import com.tdd.view.messages.DinamycMessage;
 import com.tdd.view.messages.Message;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JLabel;
@@ -45,41 +42,17 @@ public class GameContainer extends JPanel {
         this.stableViews.add(view);
     }
 
-    public void removeView(View view) {
-        if (this.stableViews.contains(view)) {
-            this.stableViews.remove(view);
-        } else {
-            this.volatileViews.remove(view);
-        }
-    }
-
-    public boolean hasView(View view) {
-        return (this.stableViews.contains(view) || this.volatileViews.contains(view));
-    }
 
     public void update() {
 
         Graphics2D g2d = (Graphics2D) this.getGraphics();
 
-//        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-//                RenderingHints.VALUE_ANTIALIAS_ON);
-        this.backgroundViews.stream().forEach((View backgroundView)->{
-            backgroundView.paint(g2d);
-        });
-        
-        this.volatileViews.stream().forEach((View observer) -> {
-            observer.paint(g2d);
-
-        });
-
+        this.backgroundViews.stream().forEach(backgroundView -> backgroundView.paint(g2d));
+        this.volatileViews.stream().forEach(volatileView -> volatileView.paint(g2d));
         this.stableViews.stream().filter((stableView) -> (stableView.isVisible())).forEach((stableView) -> {
             stableView.paint(g2d);
         });
-
-        this.labels.stream().forEach((Message label) -> {
-            label.paint(g2d);
-        });
-
+        this.labels.stream().forEach(label -> label.paint(g2d));
     }
 
     public void clear() {
@@ -91,10 +64,6 @@ public class GameContainer extends JPanel {
 
     public void addLabel(JLabel label) {
         this.add(label);
-    }
-
-    public void addDinamycLabel(DinamycMessage label) {
-        this.labels.add(label);
     }
 
     public void addVolatileView(View view) {

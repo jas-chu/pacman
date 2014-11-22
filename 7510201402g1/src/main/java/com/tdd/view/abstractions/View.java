@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 /**
  *
  *
- * @author agu
+ * 
  */
 public abstract class View implements Observer {
 

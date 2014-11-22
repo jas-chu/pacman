@@ -2,7 +2,7 @@ package com.tdd.view.audio;
 
 /**
  *
- * @author agu
+ * 
  */
 public class AudioFactory {
     
