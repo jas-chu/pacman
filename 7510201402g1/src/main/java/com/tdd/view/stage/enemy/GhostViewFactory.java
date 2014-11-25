@@ -1,5 +1,6 @@
 package com.tdd.view.stage.enemy;
 
+import com.tdd.model.helpers.RandomNumberGenerator;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.view.helpers.ViewConstants;
 import java.util.HashMap;
@@ -22,41 +23,33 @@ public class GhostViewFactory {
     }
 
     public HashMap<String, ImageIcon> getGhostImages() {
-        int index = getRandomNumber(0, images.size() - 1);
+        int index = RandomNumberGenerator.getRandomNumber(0, images.size() - 1);
         return this.images.get(index);
     }
 
-    private int getRandomNumber(int min, int max) {
-        Random random = new Random();
-        return random.nextInt(max - min + 1) + min;
-    }
-
     private HashMap<String, ImageIcon> getGhostBluePaths() {
-        HashMap<String, ImageIcon> ghostBluePaths = new HashMap<>();
-        ghostBluePaths.put(XMLConstants.DIRECTION_LEFT, new ImageIcon(ViewConstants.GHOST_BLUE_RIGHT));
-        ghostBluePaths.put(XMLConstants.DIRECTION_RIGHT, new ImageIcon(ViewConstants.GHOST_BLUE_LEFT));
-        ghostBluePaths.put(XMLConstants.DIRECTION_UP, new ImageIcon(ViewConstants.GHOST_BLUE_UP));
-        ghostBluePaths.put(XMLConstants.DIRECTION_DOWN, new ImageIcon(ViewConstants.GHOST_BLUE_DOWN));
-        return ghostBluePaths;
+        return getGhostColorPaths(ViewConstants.GHOST_BLUE_RIGHT, ViewConstants.GHOST_BLUE_LEFT,
+								  ViewConstants.GHOST_BLUE_UP, ViewConstants.GHOST_BLUE_DOWN);
     }
 
     private HashMap<String, ImageIcon> getGhostRedPaths() {
-        HashMap<String, ImageIcon> ghostRedPaths = new HashMap<>();
-        ghostRedPaths.put(XMLConstants.DIRECTION_LEFT, new ImageIcon(ViewConstants.GHOST_RED_RIGHT));
-        ghostRedPaths.put(XMLConstants.DIRECTION_RIGHT, new ImageIcon(ViewConstants.GHOST_RED_LEFT));
-        ghostRedPaths.put(XMLConstants.DIRECTION_UP, new ImageIcon(ViewConstants.GHOST_RED_UP));
-        ghostRedPaths.put(XMLConstants.DIRECTION_DOWN, new ImageIcon(ViewConstants.GHOST_RED_DOWN));
-        return ghostRedPaths;
+        return getGhostColorPaths(ViewConstants.GHOST_RED_RIGHT, ViewConstants.GHOST_RED_LEFT,
+								  ViewConstants.GHOST_RED_UP, ViewConstants.GHOST_RED_DOWN);
     }
 
     private HashMap<String, ImageIcon> getGhostYellowPaths() {
-        HashMap<String, ImageIcon> yellowGhostPaths = new HashMap<>();
-        yellowGhostPaths.put(XMLConstants.DIRECTION_LEFT, new ImageIcon(ViewConstants.GHOST_YELLOW_RIGHT));
-        yellowGhostPaths.put(XMLConstants.DIRECTION_RIGHT, new ImageIcon(ViewConstants.GHOST_YELLOW_LEFT));
-        yellowGhostPaths.put(XMLConstants.DIRECTION_UP, new ImageIcon(ViewConstants.GHOST_YELLOW_UP));
-        yellowGhostPaths.put(XMLConstants.DIRECTION_DOWN, new ImageIcon(ViewConstants.GHOST_YELLOW_DOWN));
-        return yellowGhostPaths;
+        return getGhostColorPaths(ViewConstants.GHOST_YELLOW_RIGHT, ViewConstants.GHOST_YELLOW_LEFT,
+								  ViewConstants.GHOST_YELLOW_UP, ViewConstants.GHOST_YELLOW_DOWN);
     }
+	
+	private HashMap<String, ImageIcon> getGhostColorPaths(String rightPath, String leftPath, String upPath, String downPath) {
+		HashMap<String, ImageIcon> colorGhostPaths = new HashMap<>();
+        colorGhostPaths.put(XMLConstants.DIRECTION_LEFT, new ImageIcon(rightPath));
+        colorGhostPaths.put(XMLConstants.DIRECTION_RIGHT, new ImageIcon(leftPath));
+        colorGhostPaths.put(XMLConstants.DIRECTION_UP, new ImageIcon(upPath));
+        colorGhostPaths.put(XMLConstants.DIRECTION_DOWN, new ImageIcon(downPath));
+        return colorGhostPaths;
+	}
 
     public ImageIcon getGhostDeathImage() {
         return new ImageIcon(ViewConstants.GHOST_DEATH);

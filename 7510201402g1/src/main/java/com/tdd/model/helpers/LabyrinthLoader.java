@@ -42,14 +42,7 @@ public class LabyrinthLoader {
      * @return @throws AttributeNotFoundException
      */
     public Position getPacmanStartPosition() throws AttributeNotFoundException {
-        Position pacmanPosition = null;
-        int pacmanNodeId = XMLReader.getIntAttributeValue(this.headerNode, XMLConstants.PACMAN_START);
-        try {
-            pacmanPosition = this.loadStageElementPosition(pacmanNodeId);
-        } catch (NumberFormatException ex) {
-            Logger.getLogger(LabyrinthLoader.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return pacmanPosition;
+        return getCharacterStartPosition(XMLConstants.PACMAN_START);
     }
 
     /**
@@ -57,16 +50,25 @@ public class LabyrinthLoader {
      * @return @throws AttributeNotFoundException
      */
     public Position getGhostStartPosition() throws AttributeNotFoundException {
-        Position ghostPosition = null;
-        int ghostNodeId = XMLReader.getIntAttributeValue(this.headerNode, XMLConstants.GHOST_START);
+        return getCharacterStartPosition(XMLConstants.GHOST_START);
+    }
+	
+	/**
+     *
+	 * @param characterAttributeName
+     * @return @throws AttributeNotFoundException
+     */
+    public Position getCharacterStartPosition(String characterAttributeName) throws AttributeNotFoundException {
+        Position characterPosition = null;
+        int characterNodeId = XMLReader.getIntAttributeValue(this.headerNode, characterAttributeName);
         try {
-            ghostPosition = this.loadStageElementPosition(ghostNodeId);
+            characterPosition = this.loadStageElementPosition(characterNodeId);
         } catch (NumberFormatException ex) {
             Logger.getLogger(LabyrinthLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return ghostPosition;
+        return characterPosition;
     }
-
+	
     /**
      *
      * @return

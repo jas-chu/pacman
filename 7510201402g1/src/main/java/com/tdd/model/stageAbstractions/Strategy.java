@@ -3,6 +3,7 @@ package com.tdd.model.stageAbstractions;
 import com.tdd.model.direction.*;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.exceptions.NoExistingCellException;
+import com.tdd.model.helpers.RandomNumberGenerator;
 import com.tdd.model.stage.SquaredArea;
 import java.util.ArrayList;
 import java.util.List;
@@ -112,7 +113,7 @@ public abstract class Strategy {
     protected void generateRandomDirections() {
         ArrayList<Direction> directions = this.getAllDirections();
         while (!directions.isEmpty()) {
-            int index = getRandomNumber(0, directions.size() - 1);
+            int index = RandomNumberGenerator.getRandomNumber(0, directions.size() - 1);
             this.possibleDirections.add(directions.remove(index));
         }
     }
@@ -123,11 +124,6 @@ public abstract class Strategy {
             this.possibleDirections.add(this.lastDirection.invert());
         }
         this.generateRandomDirections();
-    }
-
-    private int getRandomNumber(int min, int max) {
-        Random random = new Random();
-        return random.nextInt(max - min + 1) + min;
     }
 
     private ArrayList<Direction> getAllDirections() {
