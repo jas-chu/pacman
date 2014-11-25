@@ -75,10 +75,7 @@ public abstract class GameLevel {
     }
 
     public boolean isEndOfLevel() {
-        if (this.protagonist == null) {
-            return true;
-        }
-        return !(this.stage.hasStaticItems() && this.protagonist.isAlive());
+        return protagonist == null || !(stage.hasStaticItems() && protagonist.isAlive());
     }
 
     public void levelLoop() {
