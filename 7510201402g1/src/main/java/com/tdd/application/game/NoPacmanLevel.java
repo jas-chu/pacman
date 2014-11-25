@@ -23,7 +23,7 @@ public class NoPacmanLevel extends GameLevel {
 	}
 	
 	@Override
-	public void populateWithProtagonist(Protagonist givenProtagonist) {
+	public void populateWithProtagonist(Protagonist givenProtagonist, PlayerController givenController) {
 		// nope, i won't do that
 	}
 

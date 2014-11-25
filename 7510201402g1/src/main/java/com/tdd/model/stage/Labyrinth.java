@@ -84,7 +84,7 @@ public class Labyrinth implements Stage {
             List<Cell> mapRow = new ArrayList<Cell>();
             for (int col = 0; col < this.width; col++) {
                 Node node = nodes.item(row * this.width + col);
-                Cell createdCell = cellBuilder.createCell(nodes, node);
+                Cell createdCell = cellBuilder.createCell(node);
                 String cellContent = XMLReader.getAttributeValue(node, XMLConstants.CONTENT);
                 if (!cellContent.isEmpty()) {
                     String translatedCellContent = givenConfigs.getGameConstants().getInvertedItemValueTranslation(cellContent);

@@ -27,11 +27,6 @@ public abstract class MovingItem extends MovedByStrategy implements Consumable {
     }
 
     @Override
-    public int getAwardingPoints() {
-        return this.awardingPoints;
-    }
-
-    @Override
     public void addToList(List<StaticItem> staticItems, List<MovingItem> movingItems) {
         movingItems.add(this);
     }

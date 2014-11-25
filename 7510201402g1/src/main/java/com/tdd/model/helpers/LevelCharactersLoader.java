@@ -27,17 +27,6 @@ public class LevelCharactersLoader {
      *
      * @return @throws AttributeNotFoundException
      */
-    public Position getPacmanPosition() throws AttributeNotFoundException {
-
-        int row = XMLReader.getIntAttributeValue(this.game, XMLConstants.ROW);
-        int column = XMLReader.getIntAttributeValue(this.game, XMLConstants.COLUMN);
-        return new Position(column, row);
-    }
-
-    /**
-     *
-     * @return @throws AttributeNotFoundException
-     */
     public String getPacmanSense() throws AttributeNotFoundException {
         return XMLReader.getAttributeValue(this.game, XMLConstants.SENSE);
     }

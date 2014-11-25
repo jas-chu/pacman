@@ -16,11 +16,11 @@ import javax.swing.JPanel;
 public class GameContainer extends JPanel {
 
     /**
-     * Lista of stable views (Eg. Protagonis,enemy,cell)
+     * List of stable views (Eg. Protagonis,enemy,cell)
      */
     private List<View> stableViews;
     /**
-     * Lista of volatile views (Eg. dot,bigDot)
+     * List of volatile views (Eg. dot,bigDot)
      */
     private List<View> volatileViews;
 

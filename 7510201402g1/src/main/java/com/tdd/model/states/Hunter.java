@@ -16,8 +16,8 @@ public class Hunter extends State {
         super(givenEnemy);
         this.angerLevel = 0;
         
-        this.waitingCycles = new ArrayList<Long>();
-        Long accumulated = new Long(0);
+        this.waitingCycles = new ArrayList<>();
+        Long accumulated = 0L;
         for (Long theAngerWaitingCycles : angerWaitingCycles) {
             accumulated += theAngerWaitingCycles;
             this.waitingCycles.add(accumulated);

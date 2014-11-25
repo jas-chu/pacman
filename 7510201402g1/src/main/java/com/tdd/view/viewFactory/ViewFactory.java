@@ -9,7 +9,7 @@ import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.view.abstractions.View;
-import com.tdd.view.messages.DinamycMessage;
+import com.tdd.view.messages.DynamicMessage;
 import com.tdd.view.messages.GameOverView;
 import com.tdd.view.messages.LevelUpView;
 import com.tdd.view.messages.Message;
@@ -72,7 +72,7 @@ public class ViewFactory {
         return new GameOverView();
     }
     
-    public DinamycMessage getScoreView() {
+    public DynamicMessage getScoreView() {
         return new ScoreView();
     }
 }

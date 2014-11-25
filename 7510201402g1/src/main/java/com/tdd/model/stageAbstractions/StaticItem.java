@@ -28,11 +28,6 @@ public abstract class StaticItem extends StageElement implements Consumable {
     }
 
     @Override
-    public int getAwardingPoints() {
-        return this.awardingPoints;
-    }
-
-    @Override
     public void addToList(List<StaticItem> staticItems, List<MovingItem> movingItems) {
         staticItems.add(this);
     }

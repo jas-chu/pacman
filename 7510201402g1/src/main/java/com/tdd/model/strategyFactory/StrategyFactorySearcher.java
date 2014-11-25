@@ -19,7 +19,7 @@ public class StrategyFactorySearcher {
     public StrategyFactorySearcher(int givenVision, int givenIncrementalVision) {
 		this.vision = givenVision;
 		this.incrementalVision = givenIncrementalVision;
-        this.factorySearcher = new HashMap();
+        this.factorySearcher = new HashMap<>();
         this.factorySearcher.put(LAZY, new LazyStrategyFactory(this.vision));
         this.factorySearcher.put(SILLY, new SillyStrategyFactory(this.vision));
         this.factorySearcher.put(NORMAL_SEARCHER, new StrategyNormalSearcherFactory(this.vision));

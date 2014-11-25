@@ -18,12 +18,10 @@ public class Application implements Runnable{
 
     private PacmanGame game;
     private ViewManager view;
-    private String name;
     
     public Application(String name, String xmlGamePath) throws NoAvailableFactoryException {
         XMLConstants gameConstants = new SpanishXMLConstants();
         XMLIO.configureLanguage(gameConstants);
-        this.name = name;
         List<GameLevelFactory> levelFactories = this.createLevels(xmlGamePath, gameConstants);
         this.view = ViewManager.getInstance();
         this.view.createWindow(name);
@@ -49,7 +47,6 @@ public class Application implements Runnable{
         this.view.showWindow();
 		MyThread thread = new MyThread(this.game);
         thread.start();
-		//this.game.gameLoop();
     }
 	
 	private class MyThread extends Thread {

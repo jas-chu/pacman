@@ -13,7 +13,7 @@ public class EnemyFactorySearcher {
     private final HashMap<String, EnemyFactory> factorySearcher;
 
     public EnemyFactorySearcher() {
-        this.factorySearcher = new HashMap();
+        this.factorySearcher = new HashMap<>();
         this.factorySearcher.put(XMLConstants.GHOST, new GhostFactory());
     }
         /**

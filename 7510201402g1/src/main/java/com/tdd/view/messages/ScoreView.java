@@ -7,7 +7,7 @@ import java.util.Observable;
  *
  *
  */
-public class ScoreView extends DinamycMessage {
+public class ScoreView extends DynamicMessage {
 
 
     public ScoreView() {

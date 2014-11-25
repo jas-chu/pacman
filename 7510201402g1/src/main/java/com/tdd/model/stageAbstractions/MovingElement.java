@@ -14,7 +14,7 @@ public abstract class MovingElement extends StageElement {
     }
 
     public void move() {
-        for (Integer i = 0; i < this.speed; ++i) {
+        for (Integer i = 0; i < this.getSpeed(); ++i) {
             this.moveOneTime();
         }
         this.setChanged();

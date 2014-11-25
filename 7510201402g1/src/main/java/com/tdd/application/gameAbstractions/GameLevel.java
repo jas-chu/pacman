@@ -47,11 +47,6 @@ public abstract class GameLevel {
 
     }
 
-    public void populateWithProtagonist(Protagonist givenProtagonist) {
-        PlayerController controller = this.createPlayerController();
-        this.populateWithProtagonist(givenProtagonist, controller);
-    }
-
     public void populateWithProtagonist(Protagonist givenProtagonist, PlayerController givenController) {
         if (givenProtagonist == null) {
             return;

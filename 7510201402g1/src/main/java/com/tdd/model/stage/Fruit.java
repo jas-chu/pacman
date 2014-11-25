@@ -22,7 +22,6 @@ public class Fruit extends MovingItem {
 
     @Override
     public int consume() {
-       
         this.setChanged();
         if (this.isHidden()) {
             return this.hiddenAwardingPoints;

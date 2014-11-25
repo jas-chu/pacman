@@ -8,10 +8,6 @@ public abstract class Area {
 		this.center = new Position(givenCenter);
 	}
 	
-	public void centerOn(Position position) {
-		this.center = new Position(position);
-	}
-	
 	public abstract boolean positionIsWithinArea(Position position);
 	
 }

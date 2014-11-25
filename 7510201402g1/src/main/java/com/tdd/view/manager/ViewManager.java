@@ -7,7 +7,7 @@ import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.view.abstractions.View;
-import com.tdd.view.messages.DinamycMessage;
+import com.tdd.view.messages.DynamicMessage;
 import com.tdd.view.viewFactory.ViewFactory;
 import com.tdd.view.windowElements.GameContainer;
 import com.tdd.view.audio.AudioFactory;
@@ -103,7 +103,7 @@ public class ViewManager {
     }
 
     public void createScore(Protagonist protagonist) {
-        DinamycMessage scoreView = this.viewFactory.getScoreView();
+        DynamicMessage scoreView = this.viewFactory.getScoreView();
         protagonist.addObserver(scoreView);
         this.panel.addLabel(scoreView);
     }
