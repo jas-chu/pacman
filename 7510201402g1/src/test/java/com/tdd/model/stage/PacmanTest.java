@@ -1,7 +1,6 @@
 package com.tdd.model.stage;
 
 import com.tdd.model.mocks.MockStaticItem;
-import com.tdd.model.exceptions.AlreadyTeleportedException;
 import com.tdd.model.mocks.MockController;
 import com.tdd.model.mocks.MockGhost;
 import com.tdd.model.mocks.MockProtagonist;

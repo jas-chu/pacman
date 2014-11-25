@@ -40,7 +40,6 @@ public class EnemyBuilder {
 
         String translatePersonality = givenConfigs.getGameConstants().getInvertedStrategyValueTranslation(personality);
         String translateSense = givenConfigs.getGameConstants().getInvertedDirectionValueTranslation(sense);
-        String translateStatus = givenConfigs.getGameConstants().getInvertedStatusValueTranslation(status);
         
         int ghostVision = givenConfigs.getGhostVision();
         int ghostIncrementalVision = givenConfigs.getGhostIncrementalVision();

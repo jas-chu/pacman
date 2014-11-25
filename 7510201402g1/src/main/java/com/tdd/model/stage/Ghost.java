@@ -8,7 +8,6 @@ import com.tdd.model.stageAbstractions.Stage;
 import com.tdd.model.stageAbstractions.State;
 import com.tdd.model.stageAbstractions.StrategyFactory;
 import com.tdd.model.states.StateFactory;
-import com.tdd.model.strategy.RandomStrategy;
 import com.tdd.model.strategyFactory.RandomStrategyFactory;
 
 public class Ghost extends Enemy {

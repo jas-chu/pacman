@@ -29,7 +29,6 @@ public class ProtagonistView extends View {
         //Si me movi que reproduzca el sonido
         
         if (!protagonist.getPosition().equals(new Position(this.x, this.y))){
-            //System.out.println("movi");
             this.audio.playSound();
         }
         this.setViewPosition(protagonist.getPosition().getX(), protagonist.getPosition().getY());

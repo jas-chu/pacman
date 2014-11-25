@@ -41,7 +41,8 @@ public abstract class GameLevel {
         this.viewManager.setConfigValues(this.stage.getWidth(), this.stage.getHeight(),
         this.stage.getNodeWidth(), this.stage.getNodeHeight());
         this.viewManager.createCellsView(this.stage.getCells());
-        this.enemies.stream().forEach(this.viewManager::createEnemy);
+		for (Enemy enemy : this.enemies)
+			this.viewManager.createEnemy(enemy);
         this.viewManager.createItemViews(this.staticItems, this.movingItems);
 
     }

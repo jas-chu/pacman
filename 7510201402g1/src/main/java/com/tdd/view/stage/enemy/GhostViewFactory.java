@@ -4,7 +4,6 @@ import com.tdd.model.helpers.RandomNumberGenerator;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.view.helpers.ViewConstants;
 import java.util.HashMap;
-import java.util.Random;
 import javax.swing.ImageIcon;
 
 /**

@@ -7,7 +7,6 @@ import com.tdd.model.helpers.RandomNumberGenerator;
 import com.tdd.model.stage.SquaredArea;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public abstract class Strategy {
 

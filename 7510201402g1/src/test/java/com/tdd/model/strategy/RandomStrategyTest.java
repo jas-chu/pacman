@@ -2,7 +2,6 @@ package com.tdd.model.strategy;
 
 import com.tdd.model.mocks.MockFruit;
 import com.tdd.model.mocks.MockStage;
-import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.strategyFactory.RandomStrategyFactory;
 import static org.junit.Assert.assertEquals;

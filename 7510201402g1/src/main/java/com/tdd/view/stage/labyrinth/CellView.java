@@ -33,8 +33,7 @@ public class CellView extends View {
         }
         return 1;
     }
-
-    // TO DO: COMPLETAR PATHS A IMAGENES
+	
     private static Map<Integer, String> createResources() {
         Map<Integer, String> theResources = new HashMap<Integer, String>();
         theResources.put(0, ViewConstants.CLEAN_CELL);

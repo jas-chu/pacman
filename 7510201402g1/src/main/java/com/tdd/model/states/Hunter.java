@@ -18,8 +18,8 @@ public class Hunter extends State {
         
         this.waitingCycles = new ArrayList<Long>();
         Long accumulated = new Long(0);
-        for (int i = 0; i < angerWaitingCycles.size(); ++i) {
-            accumulated += angerWaitingCycles.get(i);
+        for (Long theAngerWaitingCycles : angerWaitingCycles) {
+            accumulated += theAngerWaitingCycles;
             this.waitingCycles.add(accumulated);
         }
     }
