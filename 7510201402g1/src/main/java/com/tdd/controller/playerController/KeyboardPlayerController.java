@@ -20,7 +20,6 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
 
     private final List<Direction> directionsToBeProcessed;
     private final Map<Integer, DirectionFactory> directionsDictionary;
-    private Mutex mutex;
     private Direction lastDirection = null;
 
     public KeyboardPlayerController() {
@@ -30,7 +29,6 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
         this.directionsDictionary.put(KeyEvent.VK_LEFT, new DirectionLeftFactory());
         this.directionsDictionary.put(KeyEvent.VK_UP, new DirectionUpFactory());
         this.directionsDictionary.put(KeyEvent.VK_DOWN, new DirectionDownFactory());
-        this.mutex = new Mutex();
     }
 
     @Override
@@ -39,24 +37,16 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public synchronized void keyPressed(KeyEvent e) {
         DirectionFactory factory = this.directionsDictionary.get(e.getKeyCode());
         if (factory == null) {
             return;
         }
-        try {
-            mutex.acquire();
-            try {
-                Direction direction = factory.createDirection();
-                if (this.lastDirection == null || 
-                           !direction.toString().equals(this.lastDirection.toString())) {
-                    this.directionsToBeProcessed.add(direction);
-                }
-            } finally {
-                mutex.release();
-            }
-        } catch (InterruptedException ie) {
-        }
+        Direction direction = factory.createDirection();
+		if (this.lastDirection == null || 
+				   !direction.toString().equals(this.lastDirection.toString())) {
+			this.directionsToBeProcessed.add(direction);
+		}
     }
 
     @Override
@@ -65,23 +55,15 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
     }
 
     @Override
-    public Direction getNewDirection() throws NoMoreMovementsException {
-        try {
-            mutex.acquire();
-            try {
-                if (!(this.directionsToBeProcessed.isEmpty())) {
-                    this.lastDirection = this.directionsToBeProcessed.remove(0);
-                    return this.lastDirection;
-                }else{
-                    if (this.lastDirection != null){
-                        return this.lastDirection;
-                    }
-                }
-            } finally {
-                mutex.release();
-            }
-        } catch (InterruptedException ie) {
-        }
+    public synchronized Direction getNewDirection() throws NoMoreMovementsException {
+        if (!(this.directionsToBeProcessed.isEmpty())) {
+			this.lastDirection = this.directionsToBeProcessed.remove(0);
+			return this.lastDirection;
+		}else{
+			if (this.lastDirection != null){
+				return this.lastDirection;
+			}
+		}
         throw new NoMoreMovementsException();
     }
 
