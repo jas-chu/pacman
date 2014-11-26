@@ -33,11 +33,11 @@ public class ViewFactory {
         this.container = container;
     }
 
-    public View getView(Enemy enemy) {
+    public View createView(Enemy enemy) {
         return new GhostView(enemy,container);
     }
 
-    public View getView(StaticItem staticItem) {
+    public View createView(StaticItem staticItem) {
         String itemType = staticItem.getMapSerialization();
         View observer = null;
         if (itemType.equals(XMLConstants.BIG_DOT)) {
@@ -48,31 +48,31 @@ public class ViewFactory {
         return observer;
     }
 
-    public View getView(MovingItem movingItem) {
+    public View createView(MovingItem movingItem) {
         return new FruitView(movingItem,container);
     }
 
-    public View getView(Protagonist protagonist) {
+    public View createView(Protagonist protagonist) {
         return new ProtagonistView(protagonist,container);
     }
 
-    public View getView(Cell cell) {
+    public View createView(Cell cell) {
         return new CellView(cell,container);
     }
 
-    public WindowView getWindow(String name) {
+    public WindowView createWindow(String name) {
         return new WindowView(name);
     }
 
-    public Message getLevelUpView() {
+    public Message createLevelUpView() {
         return new LevelUpView();
     }
 
-    public Message getGameOverView() {
+    public Message createGameOverView() {
         return new GameOverView();
     }
     
-    public DynamicMessage getScoreView() {
+    public DynamicMessage createScoreView() {
         return new ScoreView();
     }
 }

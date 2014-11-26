@@ -44,7 +44,7 @@ public class ViewManager {
     }
 
     public void createWindow(String name) {
-        this.window = this.viewFactory.getWindow(name);
+        this.window = this.viewFactory.createWindow(name);
         this.window.add(panel);
     }
 
@@ -65,7 +65,6 @@ public class ViewManager {
         for (List<Cell> cells : cellsStage) {
             for (Cell cell : cells) {
                 this.createCell(cell);
-
             }
         }
         this.window.changeSize(this.width * this.nodeWidth, this.height * this.nodeHeight + ViewConstants.LABEL_HEIGHT);
@@ -80,7 +79,7 @@ public class ViewManager {
 
     public void gameOver() {
         this.reset();
-        this.panel.addLabel(this.viewFactory.getGameOverView());
+        this.panel.addLabel(this.viewFactory.createGameOverView());
         this.panel.repaint();
     }
 
@@ -95,88 +94,85 @@ public class ViewManager {
     }
 
     public void createProtagonist(Protagonist protagonist) {
-        this.addObserver(protagonist);
+        this.createObserver(protagonist);
     }
 
     public void createEnemy(Enemy enemy) {
-        this.addObserver(enemy);
+        this.createObserver(enemy);
     }
 
     public void createScore(Protagonist protagonist) {
-        DynamicMessage scoreView = this.viewFactory.getScoreView();
+        DynamicMessage scoreView = this.viewFactory.createScoreView();
         protagonist.addObserver(scoreView);
         this.panel.addLabel(scoreView);
     }
 
     private static class ViewManagerHolder {
-
         private static final ViewManager INSTANCE = new ViewManager();
     }
 
     private void createStaticItemViews(List<StaticItem> staticItems) {
         staticItems.stream().forEach((item) -> {
-            this.addObserver(item);
+            this.createObserver(item);
         });
-       
     }
 
     private void createMovingItemViews(List<MovingItem> movingItems) {
         movingItems.stream().forEach((item) -> {
-            this.addObserver(item);
+            this.createObserver(item);
         });
     }
 
     private void createCell(Cell cell) {
-        View observer = this.getView(cell);
+        View observer = this.createView(cell);
         cell.addObserver(observer);
         panel.addBackgroundView(observer);
     }
 
-    private void addObserver(Enemy enemy) {
-        View observer = this.getView(enemy);
+    private void createObserver(Enemy enemy) {
+        View observer = this.createView(enemy);
         enemy.addObserver(observer);
         panel.addStableView(observer);
     }
 
-    private void addObserver(StaticItem staticItem) {
-        View observer = this.getView(staticItem);
+    private void createObserver(StaticItem staticItem) {
+        View observer = this.createView(staticItem);
         staticItem.addObserver(observer);
         panel.addVolatileView(observer);
     }
 
-    private void addObserver(MovingItem movingItem) {
-        View observer = this.getView(movingItem);
+    private void createObserver(MovingItem movingItem) {
+        View observer = this.createView(movingItem);
         movingItem.addObserver(observer);
         observer.addSound(this.audioFactory.getPacmanEatFruit());
         panel.addStableView(observer);
     }
 
-    private void addObserver(Protagonist protagonist) {
-        View observer = this.getView(protagonist);
+    private void createObserver(Protagonist protagonist) {
+        View observer = this.createView(protagonist);
         protagonist.addObserver(observer);
         observer.addSound(this.audioFactory.getPacmanChomp());
         panel.addStableView(observer);
-
     }
 
-    private View getView(Cell cell) {
-        return this.viewFactory.getView(cell);
+    private View createView(Cell cell) {
+        return this.viewFactory.createView(cell);
     }
 
-    private View getView(Enemy enemy) {
-        return this.viewFactory.getView(enemy);
+    private View createView(Enemy enemy) {
+        return this.viewFactory.createView(enemy);
     }
 
-    private View getView(StaticItem staticItem) {
-        return this.viewFactory.getView(staticItem);
+    private View createView(StaticItem staticItem) {
+        return this.viewFactory.createView(staticItem);
     }
 
-    private View getView(MovingItem movingItem) {
-        return this.viewFactory.getView(movingItem);
+    private View createView(MovingItem movingItem) {
+        return this.viewFactory.createView(movingItem);
     }
 
-    private View getView(Protagonist protagonist) {
-        return this.viewFactory.getView(protagonist);
+    private View createView(Protagonist protagonist) {
+        return this.viewFactory.createView(protagonist);
     }
 
     /**
@@ -187,6 +183,5 @@ public class ViewManager {
     public void addController(KeyboardPlayerController controller) {
         this.panel.addKeyListener(controller);
         this.panel.setFocusable(true);
-
     }
 }
