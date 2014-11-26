@@ -2,12 +2,10 @@ package com.tdd.view.stage.labyrinth;
 
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Cell;
-import com.tdd.model.stageAbstractions.StageElement;
 import com.tdd.view.abstractions.View;
 import com.tdd.view.helpers.ViewConstants;
 import com.tdd.view.windowElements.GameContainer;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import javax.swing.ImageIcon;

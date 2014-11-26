@@ -1,9 +1,7 @@
 package com.tdd.view.stage.protagonist;
 
-import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.view.abstractions.View;
-import com.tdd.view.manager.ViewManager;
 import com.tdd.view.windowElements.GameContainer;
 import java.util.Observable;
 
