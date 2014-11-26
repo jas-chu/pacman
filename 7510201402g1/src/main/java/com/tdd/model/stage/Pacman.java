@@ -32,6 +32,7 @@ public class Pacman extends Protagonist {
         return (this.lives > 0);
     }
 
+	@Override
     public int getLives() {
         return this.lives;
     }

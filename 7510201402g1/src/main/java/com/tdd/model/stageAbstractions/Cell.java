@@ -52,8 +52,11 @@ public class Cell extends Observable {
 
     public synchronized void removeElement(StageElement element) {
         this.elements.remove(element);
+		for (int i = 0; i < this.elements.size(); ++i) {
+			this.elements.get(i).changeAndNotify();
+        }
     }
-
+	
     public synchronized boolean hasNeighbour(String neighbourKey) {
         return this.neighbours.containsKey(neighbourKey);
     }

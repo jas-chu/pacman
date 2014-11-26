@@ -116,7 +116,6 @@ public abstract class GameLevel {
     }
 
     private void updateViews() {
-        this.viewManager.reLoadItemsViews(this.staticItems);
         this.viewManager.updateViews();        
     }
 

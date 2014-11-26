@@ -4,6 +4,7 @@ import com.tdd.controller.playerController.KeyboardPlayerController;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.MovingItem;
+import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.view.abstractions.View;
@@ -57,7 +58,6 @@ public class ViewManager {
 
     public void updateViews() {
         this.panel.update();
-
     }
 
     public void createCellsView(List<List<Cell>> cellsStage) {
@@ -87,11 +87,10 @@ public class ViewManager {
         this.createStaticItemViews(staticItems);
         this.createMovingItemViews(movingItems);
     }
-
-    public void reLoadItemsViews(List<StaticItem> staticItems) {
-        this.panel.resetVolatileViews();
-        this.createStaticItemViews(staticItems);
-    }
+	
+	public void removeVolatileView(View volatileView) {
+		this.panel.removeVolatileView(volatileView);
+	}
 
     public void createProtagonist(Protagonist protagonist) {
         this.createObserver(protagonist);
@@ -174,7 +173,11 @@ public class ViewManager {
     private View createView(Protagonist protagonist) {
         return this.viewFactory.createView(protagonist);
     }
-
+	
+	public void orderCellRepaint(Position position) {
+		this.panel.orderCellRepaint(position);
+	}
+	
     /**
      * Assign KeyBoard controller to window
      *

@@ -1,11 +1,14 @@
 package com.tdd.view.windowElements;
 
+import com.tdd.model.stageAbstractions.Position;
 import com.tdd.view.abstractions.View;
 import com.tdd.view.audio.Sound;
 import com.tdd.view.messages.Message;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -28,6 +31,7 @@ public class GameContainer extends JPanel {
      *
      */
     private List<View> backgroundViews;
+	private Map<String,View> backgroundViewsMap;
 
     private List<Message> labels;
 
@@ -36,6 +40,7 @@ public class GameContainer extends JPanel {
         this.volatileViews = new ArrayList<>();
         this.labels = new ArrayList<>();
         this.backgroundViews = new ArrayList<>();
+		this.backgroundViewsMap = new HashMap<>();
     }
 
     public void addStableView(View view) {
@@ -44,7 +49,6 @@ public class GameContainer extends JPanel {
 
 
     public void update() {
-
         Graphics2D g2d = (Graphics2D) this.getGraphics();
 
         this.backgroundViews.stream().forEach(backgroundView -> backgroundView.paint(g2d));
@@ -69,6 +73,10 @@ public class GameContainer extends JPanel {
     public void addVolatileView(View view) {
         this.volatileViews.add(view);
     }
+	
+	public void removeVolatileView(View view) {
+        this.volatileViews.remove(view);
+    }
 
     public void resetVolatileViews() {
         this.volatileViews.clear();
@@ -80,5 +88,13 @@ public class GameContainer extends JPanel {
 
     public void addBackgroundView(View observer) {
         this.backgroundViews.add(observer);
+		this.backgroundViewsMap.put(observer.getViewPosition().toString(), observer);
     }
+	
+	public void orderCellRepaint(Position position) {
+		String key = position.toString();
+		if (this.backgroundViewsMap.containsKey(key)) {
+			this.backgroundViewsMap.get(key).orderRepaint();
+		}
+	}
 }

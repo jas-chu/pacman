@@ -13,10 +13,8 @@ public class BigDot extends StaticItem {
 
     @Override
     public int consume() {
-        int points = super.consume();
-        this.stage.turnEnemiesToPrey();
-        this.setChanged();
-        return points;
+		this.stage.turnEnemiesToPrey();
+        return super.consume();
     }
 
     @Override

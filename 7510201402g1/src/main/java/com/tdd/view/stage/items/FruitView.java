@@ -26,9 +26,8 @@ public class FruitView extends ItemView {
             this.audio.playSound();
         } else {
             this.setVisible(true);
+			super.update(observable, obj);
         }
-        this.setViewPosition(fruit.getPosition().getX(), fruit.getPosition().getY());
-
     }
 
 

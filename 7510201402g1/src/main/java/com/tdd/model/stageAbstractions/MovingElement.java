@@ -17,7 +17,7 @@ public abstract class MovingElement extends StageElement {
         for (Integer i = 0; i < this.getSpeed(); ++i) {
             this.moveOneTime();
         }
-        this.setChanged();
+        this.changeAndNotify();
     }
 
     protected abstract void moveOneTime();

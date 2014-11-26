@@ -36,4 +36,8 @@ public abstract class StageElement extends Observable implements Collidable {
 
 	public abstract String getMapSerialization();
 	
+	public void changeAndNotify() {
+		this.setChanged();
+		this.notifyObservers();
+	}
 }

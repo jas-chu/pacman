@@ -2,7 +2,6 @@ package com.tdd.view.stage.items;
 
 import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.view.windowElements.GameContainer;
-import java.util.Observable;
 
 /**
  *
@@ -16,12 +15,5 @@ public class BigDotView extends ItemView{
         this.observable = bigDot;
         this.img = this.factory.getBigDotImage();
     }
-    
-    @Override
-    public void update(Observable o, Object arg) {
-
-    }
-    
-
 
 }

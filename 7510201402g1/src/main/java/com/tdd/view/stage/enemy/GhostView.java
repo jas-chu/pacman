@@ -40,7 +40,7 @@ public class GhostView extends View {
             this.img = this.images.get(ghost.getStrategy().getDirection().toString());
         }
 
-        this.setViewPosition(ghost.getPosition().getX(), ghost.getPosition().getY());
+        super.update(observable, obj);
     }
 
 }
