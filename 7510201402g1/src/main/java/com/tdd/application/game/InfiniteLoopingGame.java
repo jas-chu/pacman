@@ -12,14 +12,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ActualGame implements PacmanGame {
+public class InfiniteLoopingGame implements PacmanGame {
 
     private Protagonist protagonist;
     private List<GameLevelFactory> levelFactories;
     private ViewManager viewManager;
     private KeyboardPlayerController keyboardController;
 
-    public ActualGame(List<GameLevelFactory> givenLevelFactories, ViewManager viewManager) {
+    public InfiniteLoopingGame(List<GameLevelFactory> givenLevelFactories, ViewManager viewManager) {
         this.protagonist = new Pacman();
         this.levelFactories = givenLevelFactories;
         this.viewManager = viewManager;
@@ -40,7 +40,7 @@ public class ActualGame implements PacmanGame {
                     level.populateWithProtagonist(this.protagonist, this.keyboardController);
                     level.levelLoop();
                 } catch (MalformedXMLException ex) {
-                    Logger.getLogger(ActualGame.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(InfiniteLoopingGame.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 ++i;
                 this.viewManager.reset();
