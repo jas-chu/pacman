@@ -23,8 +23,7 @@ public class FruitView extends ItemView {
         Fruit fruit = (Fruit) observable;
         if (fruit.isConsumed()) {
             this.setVisible(false);
-            //saco por ahora el sonido de comer a la fruta
-            //this.audio.playSound();
+            this.audio.playSound();
         } else {
             this.setVisible(true);
         }

@@ -36,7 +36,6 @@ public class ViewManager {
         this.viewFactory = new ViewFactory(this.panel);
         this.audioFactory = AudioFactory.getInstance();
         this.panel.loadBeginningSong(this.audioFactory.getPacmanBeginning());
-
     }
 
     public static ViewManager getInstance() {
@@ -81,6 +80,7 @@ public class ViewManager {
         this.reset();
         this.panel.addLabel(this.viewFactory.createGameOverView());
         this.panel.repaint();
+		this.panel.revalidate();
     }
 
     public void createItemViews(List<StaticItem> staticItems, List<MovingItem> movingItems) {

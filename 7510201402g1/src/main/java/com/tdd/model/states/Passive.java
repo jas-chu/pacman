@@ -14,8 +14,7 @@ public abstract class Passive extends State {
 
     @Override
     public void increaseAnger() {
-        // por el momento no hace nada
-        // permite agregar funcionalidad
+        // does nothing, allows functionality extension.
     }
 
     @Override

@@ -12,20 +12,17 @@ import javax.swing.JFrame;
  */
 public class WindowView extends JFrame implements WindowListener {
 
-    private String name;
     private static final int PREF_W = 600;
     private static final int PREF_H = 300;
 
     public WindowView(String name) {
         super(name);
-        this.name = name;
         this.setPreferredSize(new Dimension(PREF_W, PREF_H));
         this.setResizable(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.addWindowListener(this);
         this.pack();
-
     }
 
     @Override

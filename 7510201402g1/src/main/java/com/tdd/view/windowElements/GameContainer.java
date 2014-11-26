@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 public class GameContainer extends JPanel {
 
     /**
-     * List of stable views (Eg. Protagonis,enemy,cell)
+     * List of stable views (Eg. Protagonist,enemy,cell)
      */
     private List<View> stableViews;
     /**
