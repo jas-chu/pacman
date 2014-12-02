@@ -1,9 +1,9 @@
 package com.tdd.model.stageAbstractions;
 
-import com.tdd.model.direction.*;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.exceptions.NoExistingCellException;
 import com.tdd.model.helpers.RandomNumberGenerator;
+import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stage.SquaredArea;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,7 @@ public abstract class Strategy {
             this.lastDirection = possibleDirections.get(this.directionIndex);
             return possibleDirections.get(this.directionIndex);
         } else {            
-            return new DirectionRight();
+            return new Direction(XMLConstants.DIRECTION_RIGHT);
         }
     }
 
@@ -127,10 +127,10 @@ public abstract class Strategy {
 
     private ArrayList<Direction> getAllDirections() {
         ArrayList<Direction> directions = new ArrayList<>();
-        directions.add(new DirectionLeft());
-        directions.add(new DirectionRight());
-        directions.add(new DirectionUp());
-        directions.add(new DirectionDown());
+        directions.add(new Direction(XMLConstants.DIRECTION_LEFT));
+        directions.add(new Direction(XMLConstants.DIRECTION_RIGHT));
+        directions.add(new Direction(XMLConstants.DIRECTION_UP));
+        directions.add(new Direction(XMLConstants.DIRECTION_DOWN));
         return directions;
     }
 

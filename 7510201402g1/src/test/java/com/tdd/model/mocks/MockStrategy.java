@@ -1,6 +1,6 @@
 package com.tdd.model.mocks;
 
-import com.tdd.model.direction.DirectionRight;
+import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Strategy;
 import com.tdd.model.stageAbstractions.Direction;
 
@@ -17,7 +17,7 @@ public class MockStrategy extends Strategy {
 	@Override
 	public Direction getDirection(){
 		this.getDirectionMethodCalled = true;
-        return new DirectionRight();
+        return new Direction(XMLConstants.DIRECTION_RIGHT);
     }
 
 	@Override

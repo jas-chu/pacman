@@ -2,8 +2,16 @@ package com.tdd.model.directionFactory;
 
 import com.tdd.model.stageAbstractions.Direction;
 
-public abstract class DirectionFactory {
+public class DirectionFactory {
 	
-	public abstract Direction createDirection();
+	private String direction;
+	
+	public DirectionFactory(String givenDirection) {
+		this.direction = givenDirection;
+	}
+	
+	public Direction createDirection() {
+		return new Direction(direction);
+	}
 	
 }

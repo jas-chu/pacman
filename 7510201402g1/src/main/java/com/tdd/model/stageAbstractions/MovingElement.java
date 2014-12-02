@@ -1,6 +1,6 @@
 package com.tdd.model.stageAbstractions;
 
-import com.tdd.model.direction.DirectionRight;
+import com.tdd.model.helpers.XMLConstants;
 
 public abstract class MovingElement extends StageElement {
 
@@ -10,7 +10,7 @@ public abstract class MovingElement extends StageElement {
     public MovingElement(Stage givenStage, Position givenPosition, int givenSpeed) {
         super(givenStage, givenPosition);
         this.speed = givenSpeed;
-        this.sense = new DirectionRight();
+        this.sense = new Direction(XMLConstants.DIRECTION_RIGHT);
     }
 
     public void move() {

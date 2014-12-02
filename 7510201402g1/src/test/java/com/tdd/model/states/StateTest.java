@@ -1,7 +1,7 @@
 package com.tdd.model.states;
 
 import com.tdd.model.mocks.MockGhost;
-import com.tdd.model.direction.DirectionRight;
+import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.State;
 import com.tdd.model.stageAbstractions.Direction;
 import static org.junit.Assert.assertEquals;
@@ -20,7 +20,7 @@ public abstract class StateTest {
 	
 	@Test
 	public void getDirection() {
-		Direction direction = new DirectionRight();
+		Direction direction = new Direction(XMLConstants.DIRECTION_RIGHT);
 		Direction otherDirection = this.state.getDirection(direction);
 		assertEquals(direction.getClass(), otherDirection.getClass());
 	}

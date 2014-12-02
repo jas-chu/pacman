@@ -1,6 +1,6 @@
 package com.tdd.model.strategy;
 
-import com.tdd.model.direction.DirectionRight;
+import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.MovedByStrategy;
 import com.tdd.model.stageAbstractions.Strategy;
@@ -22,7 +22,7 @@ public class RandomStrategy extends Strategy {
             this.lastDirection = possibleDirections.get(this.directionIndex - 1);
             return possibleDirections.get(this.directionIndex - 1);
         } else {
-            return new DirectionRight();
+            return new Direction(XMLConstants.DIRECTION_RIGHT);
         }
     }
 

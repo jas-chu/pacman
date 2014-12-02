@@ -1,11 +1,11 @@
 package com.tdd.model.cell;
 
-import com.tdd.model.direction.DirectionRight;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.mocks.MockProtagonist;
 import com.tdd.model.mocks.MockStaticItem;
 import com.tdd.model.stageAbstractions.Cell;
+import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Position;
 import java.util.HashMap;
 import org.junit.Before;
@@ -41,7 +41,7 @@ public abstract class CellTest {
 	
 	@Test
     public void getColumn() {
-        assert(this.position.getX() == this.cell.getColumn());
+        assert(this.position.hasEqualX(this.cell.getColumn()));
     }
 	
 	@Test
@@ -52,7 +52,7 @@ public abstract class CellTest {
 	@Test
     public void getTargetPosition() {
 		try {
-			this.cell.getTargetPosition(new DirectionRight());
+			this.cell.getTargetPosition(new Direction(XMLConstants.DIRECTION_RIGHT));
 			assert(true);
 		} catch (BlockedCellException ex) {
 			fail();

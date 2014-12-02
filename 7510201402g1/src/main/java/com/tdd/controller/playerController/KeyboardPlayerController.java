@@ -1,12 +1,9 @@
 package com.tdd.controller.playerController;
 
 import com.tdd.controller.controllerAbstractions.PlayerController;
-import com.tdd.model.directionFactory.DirectionDownFactory;
 import com.tdd.model.directionFactory.DirectionFactory;
-import com.tdd.model.directionFactory.DirectionLeftFactory;
-import com.tdd.model.directionFactory.DirectionRightFactory;
-import com.tdd.model.directionFactory.DirectionUpFactory;
 import com.tdd.model.exceptions.NoMoreMovementsException;
+import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Direction;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -22,12 +19,12 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
     private Direction lastDirection = null;
 
     public KeyboardPlayerController() {
-        this.directionsToBeProcessed = new ArrayList<Direction>();
-        this.directionsDictionary = new HashMap<Integer, DirectionFactory>();
-        this.directionsDictionary.put(KeyEvent.VK_RIGHT, new DirectionRightFactory());
-        this.directionsDictionary.put(KeyEvent.VK_LEFT, new DirectionLeftFactory());
-        this.directionsDictionary.put(KeyEvent.VK_UP, new DirectionUpFactory());
-        this.directionsDictionary.put(KeyEvent.VK_DOWN, new DirectionDownFactory());
+        this.directionsToBeProcessed = new ArrayList<>();
+        this.directionsDictionary = new HashMap<>();
+        this.directionsDictionary.put(KeyEvent.VK_RIGHT, new DirectionFactory(XMLConstants.DIRECTION_RIGHT));
+        this.directionsDictionary.put(KeyEvent.VK_LEFT, new DirectionFactory(XMLConstants.DIRECTION_LEFT));
+        this.directionsDictionary.put(KeyEvent.VK_UP, new DirectionFactory(XMLConstants.DIRECTION_UP));
+        this.directionsDictionary.put(KeyEvent.VK_DOWN, new DirectionFactory(XMLConstants.DIRECTION_DOWN));
     }
 
     @Override

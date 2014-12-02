@@ -184,4 +184,20 @@ public class Position {
     public String toString() {
         return this.componentToString(this.y) + this.componentToString(this.x);
     }
+	
+	public static Position createRightAdjacentPosition(Position position) {
+		return position.createPositionAddingX(1);
+	}
+	
+	public static Position createLeftAdjacentPosition(Position position) {
+		return position.createPositionSubstractingX(1);
+	}
+	
+	public static Position createDownAdjacentPosition(Position position) {
+		return position.createPositionAddingY(1);
+	}
+	
+	public static Position createUpAdjacentPosition(Position position) {
+		return position.createPositionSubstractingY(1);
+	}
 }
