@@ -1,7 +1,6 @@
 package com.tdd.application.main;
 
 import com.tdd.application.gameAbstractions.PacmanGame;
-import com.tdd.application.game.InfiniteLoopingGame;
 import com.tdd.application.gameAbstractions.GameLevelFactory;
 import com.tdd.application.gameLevelFactory.GameLevelFactorySearcher;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
@@ -25,7 +24,7 @@ public class Application implements Runnable{
         List<GameLevelFactory> levelFactories = this.createLevels(xmlGamePath, gameConstants);
         this.view = ViewManager.getInstance();
         this.view.createWindow(name);
-        this.game = new InfiniteLoopingGame(levelFactories, this.view);
+        this.game = new PacmanGame(levelFactories, this.view);
     }
 
     private List<GameLevelFactory> createLevels(String xmlGamePath, XMLConstants gameConstants) throws NoAvailableFactoryException {

@@ -6,6 +6,7 @@ import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.states.StateFactory;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.helpers.XMLReader;
+import com.tdd.model.stage.Ghost;
 import com.tdd.model.stageAbstractions.Direction;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Position;
@@ -36,7 +37,6 @@ public class EnemyBuilder {
 
         String sense = XMLReader.getAttributeValue(ghostNode, XMLConstants.SENSE);
         String personality = XMLReader.getAttributeValue(ghostNode, XMLConstants.PERSONALITY);
-        String status = XMLReader.getAttributeValue(ghostNode, XMLConstants.STATUS);
 
         String translatePersonality = givenConfigs.getGameConstants().getInvertedStrategyValueTranslation(personality);
         String translateSense = givenConfigs.getGameConstants().getInvertedDirectionValueTranslation(sense);
@@ -50,14 +50,13 @@ public class EnemyBuilder {
 		int ghostSpeed = givenConfigs.getEnemiesSpeed();
 
         StrategyFactorySearcher strategyFactorySearcher = new StrategyFactorySearcher(ghostVision, ghostIncrementalVision);
-        EnemyFactorySearcher enemyFactory = new EnemyFactorySearcher();
 
         StrategyFactory strategyFactory = strategyFactorySearcher.getFactory(translatePersonality);
         StateFactory stateFactory = new StateFactory(ghostAngerWaitingCycles, ghostDeadWaitingCycles, ghostPreyWaitingCycles);
         DirectionGenerator directionGenerator = new DirectionGenerator();
         Direction direction = directionGenerator.createDirection(translateSense);
         
-        Enemy enemy = enemyFactory.getFactory(XMLConstants.GHOST).createEnemy(stage, givenPosition, stateFactory, strategyFactory, ghostPoints, ghostSpeed);
+        Enemy enemy = new Ghost(stage, givenPosition, stateFactory, strategyFactory, ghostPoints, ghostSpeed);
         enemy.setSense(direction);
         return enemy;
     }
