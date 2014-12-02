@@ -87,10 +87,6 @@ public class ViewManager {
         this.createStaticItemViews(staticItems);
         this.createMovingItemViews(movingItems);
     }
-	
-	public void removeVolatileView(View volatileView) {
-		this.panel.removeVolatileView(volatileView);
-	}
 
     public void createProtagonist(Protagonist protagonist) {
         this.createObserver(protagonist);
@@ -131,27 +127,27 @@ public class ViewManager {
     private void createObserver(Enemy enemy) {
         View observer = this.createView(enemy);
         enemy.addObserver(observer);
-        panel.addStableView(observer);
+        panel.mustPaintStableView(observer);
     }
 
     private void createObserver(StaticItem staticItem) {
         View observer = this.createView(staticItem);
         staticItem.addObserver(observer);
-        panel.addVolatileView(observer);
+        panel.mustPaintVolatileView(observer);
     }
 
     private void createObserver(MovingItem movingItem) {
         View observer = this.createView(movingItem);
         movingItem.addObserver(observer);
         observer.addSound(this.audioFactory.getPacmanEatFruit());
-        panel.addStableView(observer);
+        panel.mustPaintStableView(observer);
     }
 
     private void createObserver(Protagonist protagonist) {
         View observer = this.createView(protagonist);
         protagonist.addObserver(observer);
         observer.addSound(this.audioFactory.getPacmanChomp());
-        panel.addStableView(observer);
+        panel.mustPaintStableView(observer);
     }
 
     private View createView(Cell cell) {
@@ -173,10 +169,6 @@ public class ViewManager {
     private View createView(Protagonist protagonist) {
         return this.viewFactory.createView(protagonist);
     }
-	
-	public void orderCellRepaint(Position position) {
-		this.panel.orderCellRepaint(position);
-	}
 	
     /**
      * Assign KeyBoard controller to window

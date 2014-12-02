@@ -17,7 +17,12 @@ public class FruitView extends ItemView {
         this.observable = movingItem;
         this.img = this.factory.getFruitImage();
     }
-
+	
+	@Override
+	protected void tellContainerIMustBePainted() {
+		this.container.mustPaintStableView(this);
+	}
+	
     @Override
     public void update(Observable observable, Object obj) {        
         Fruit fruit = (Fruit) observable;
@@ -29,7 +34,5 @@ public class FruitView extends ItemView {
 			super.update(observable, obj);
         }
     }
-
-
 
 }

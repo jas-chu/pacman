@@ -75,7 +75,12 @@ public class CellView extends View {
         this.img = new ImageIcon(this.resourcePath);
         this.setViewPosition(cell.getColumn(), cell.getRow());
     }
-
+	
+	@Override
+	protected void tellContainerIMustBePainted() {
+		this.container.mustPaintBackgroundView(this);
+	}
+	
     @Override
     public void update(Observable o, Object arg) {
 		this.orderRepaint();

@@ -20,7 +20,12 @@ public class ProtagonistView extends View {
         this.factory = ProtagonistViewFactory.getInstance();
         this.img = this.factory.getDefault();
     }
-
+	
+	@Override
+	protected void tellContainerIMustBePainted() {
+		this.container.mustPaintStableView(this);
+	}
+	
     @Override
     public void update(Observable o, Object arg) {
         Protagonist protagonist = (Protagonist) o;

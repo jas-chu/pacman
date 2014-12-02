@@ -28,7 +28,12 @@ public class GhostView extends View {
         //Por defecto los fantasmas van a empezar mirando a la derecha
         this.img = this.images.get(XMLConstants.DIRECTION_LEFT);
     }
-
+	
+	@Override
+	protected void tellContainerIMustBePainted() {
+		this.container.mustPaintStableView(this);
+	}
+	
     @Override
     public void update(Observable observable, Object obj) {
         Ghost ghost = (Ghost) observable;

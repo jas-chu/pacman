@@ -34,6 +34,7 @@ public abstract class View implements Observer {
         this.container = container;
         this.visible = true;
 		this.repaintOrdered = true;
+		this.container.mustPaintBackgroundView(this);
     }
 
     public void setViewPosition(int x, int y) {
@@ -46,10 +47,8 @@ public abstract class View implements Observer {
 	}
 
     public void paint(Graphics graphics) {
-		if (this.repaintOrdered) {
-			graphics.drawImage(img.getImage(), getXRender(), getYRender(), width, heigth, null);
-			this.repaintOrdered = false;
-		}
+		graphics.drawImage(img.getImage(), getXRender(), getYRender(), width, heigth, null);
+		this.repaintOrdered = false;
     }
 
     private int getXRender() {
@@ -77,8 +76,13 @@ public abstract class View implements Observer {
 	}
 	
 	public void orderRepaint() {
-		this.repaintOrdered = true;
+		if (!(this.repaintOrdered) && (this.visible)) {
+			this.repaintOrdered = true;
+			this.tellContainerIMustBePainted();
+		}
 	}
+	
+	protected abstract void tellContainerIMustBePainted();
 	
 	@Override
     public void update(Observable o, Object arg) {
@@ -88,17 +92,12 @@ public abstract class View implements Observer {
 		Position newPosition = element.getPosition();
 		if (!newPosition.equals(lastPosition)){
 			this.otherUpdates();
-			this.orderCellRepaint(lastPosition);
+			this.container.orderCellRepaint(lastPosition);
 		}
 		this.setViewPosition(newPosition.getX(), newPosition.getY());
 		this.orderRepaint();
-		this.orderCellRepaint(newPosition);
+		this.container.orderCellRepaint(newPosition);
     }
-	
-	private void orderCellRepaint(Position position) {
-		ViewManager vm = ViewManager.getInstance();
-		vm.orderCellRepaint(position);
-	}
 	
 	protected void otherUpdates() { }
 }

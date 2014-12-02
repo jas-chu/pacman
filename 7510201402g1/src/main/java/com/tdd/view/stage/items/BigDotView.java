@@ -15,5 +15,5 @@ public class BigDotView extends ItemView{
         this.observable = bigDot;
         this.img = this.factory.getBigDotImage();
     }
-
+	
 }
