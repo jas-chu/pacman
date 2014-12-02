@@ -29,12 +29,15 @@ public class XMLReaderTest extends ReadingSetUpTest {
     }
 
     @Test
-    public void getNodeByName() {
+    public void getNodeByNameHeaderNode() {
         NodeList nodes = XMLReader.getNodeByName(this.XMLpath, XMLConstants.LABYRINTH);
 		assertTrue(nodes.getLength() == 1);
 		assertEquals(nodes.item(0).getNodeName(), this.constants.getConstantTranslation(XMLConstants.LABYRINTH));
-		
-		NodeList allChildrenNodes = XMLReader.getNodeByName(this.XMLpath, XMLConstants.NODE);
+    }
+	
+	@Test
+    public void getNodeByNameChildrenNodes() {
+        NodeList allChildrenNodes = XMLReader.getNodeByName(this.XMLpath, XMLConstants.NODE);
 		for (int i = 0 ; i < allChildrenNodes.getLength() ; ++i)
 			assertEquals(allChildrenNodes.item(i).getNodeName(), this.constants.getConstantTranslation(XMLConstants.NODE));
     }

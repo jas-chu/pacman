@@ -36,7 +36,7 @@ public abstract class CellTest {
 	
 	@Test
     public void getRow() {
-        assert(this.position.getY() == this.cell.getRow());
+        assert(this.position.hasEqualY(this.cell.getRow()));
     }
 	
 	@Test

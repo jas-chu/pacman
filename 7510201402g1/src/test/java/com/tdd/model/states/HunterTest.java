@@ -16,7 +16,7 @@ public class HunterTest extends StateTest {
 	@Override
 	public void setUp() {
 		super.setUp();
-		this.angerWaitingCycles = new ArrayList<Long>();
+		this.angerWaitingCycles = new ArrayList<>();
 		this.angerWaitingCycles.add(new Long(5));
 		this.angerWaitingCycles.add(new Long(6));
 		this.angerWaitingCycles.add(new Long(7));
@@ -34,26 +34,32 @@ public class HunterTest extends StateTest {
 	
 	@Test
     public void getAngerLevel() {
-        assertTrue(this.hunter.getAngerLevel() == 0);
+        assertEquals(this.hunter.getAngerLevel(), 0);
     }
 	
 	@Test
 	public void increaseAnger() {
-		int i = 0;
-		for ( ; i < this.angerWaitingCycles.size() ; ++i) {
-			assertTrue(this.hunter.getAngerLevel() == i);
-			this.hunter.increaseAnger();
-		}
-		assertTrue(this.hunter.getAngerLevel() == i);
+		this.hunter.increaseAnger();
+		assertEquals(this.hunter.getAngerLevel(), 1);
+		this.hunter.increaseAnger();
+		assertEquals(this.hunter.getAngerLevel(), 2);
+		this.hunter.increaseAnger();
+		assertEquals(this.hunter.getAngerLevel(), 3);
 	}
 	
 	@Test
 	public void advanceCycle() {
-		for (int i = 0; i < this.angerWaitingCycles.size() - 1; ++i) {
-			Long cycles = this.angerWaitingCycles.get(i);
-			super.advanceCycle(cycles);
-			assertTrue(this.hunter.getAngerLevel() == i+1);
-		}
+		Long cycles = this.angerWaitingCycles.get(0);
+		super.advanceCycle(cycles);
+		assertEquals(this.hunter.getAngerLevel(), 1);
+		
+		cycles = this.angerWaitingCycles.get(1);
+		super.advanceCycle(cycles);
+		assertEquals(this.hunter.getAngerLevel(), 2);
+		
+		cycles = this.angerWaitingCycles.get(2);
+		super.advanceCycle(cycles);
+		assertEquals(this.hunter.getAngerLevel(), 3);
 	}
 	
 	@Test
