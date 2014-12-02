@@ -54,7 +54,9 @@ public class LevelConfigurations extends LevelConfigurationsReader {
 				long value = Long.parseLong(XMLReader.getNodeValue(valueNode));
 				angerCycles.add(value);
 			}
-		} catch (NoNodeWithThatNameException ex) { }
+		} catch (NoNodeWithThatNameException ex) {
+			// the angerCycles list will be empty, so there will be no anger increasements
+		}
 		return angerCycles;
 	}
 	

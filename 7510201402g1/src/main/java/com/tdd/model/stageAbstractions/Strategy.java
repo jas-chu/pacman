@@ -104,6 +104,7 @@ public abstract class Strategy {
                 this.element.getStage().getCell(elementPosition).getTargetPosition(direction);
                 unblockedCells++;
             } catch (BlockedCellException | NoExistingCellException error) {
+				// invalid direction, continue
             }
         }
         return (unblockedCells >= bifurcationCells);
