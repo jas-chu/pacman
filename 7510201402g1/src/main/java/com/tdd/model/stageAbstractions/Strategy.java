@@ -43,7 +43,7 @@ public abstract class Strategy {
             this.getPossibleDirections();
             this.directionIndex = 0;
         }
-        if (this.directionIndex <= possibleDirections.size()) {
+        if (this.directionIndex < possibleDirections.size()) {
             this.lastDirection = possibleDirections.get(this.directionIndex);
             return possibleDirections.get(this.directionIndex);
         } else {            
@@ -85,9 +85,6 @@ public abstract class Strategy {
     }
 
     public void getRandomDirection() {
-        if (this.lastDirection != null) {
-            this.possibleDirections.add(this.lastDirection);
-        }
         if (inCellBifurcation() || this.lastDirection == null) {
             generateRandomDirections();
         } else {
@@ -123,7 +120,6 @@ public abstract class Strategy {
             this.possibleDirections.add(this.lastDirection);
             this.possibleDirections.add(this.lastDirection.invert());
         }
-        this.generateRandomDirections();
     }
 
     private ArrayList<Direction> getAllDirections() {

@@ -17,19 +17,19 @@ public class MockStateFactory extends StateFactory {
 	@Override
 	public State createHunter(Enemy givenEnemy) {
 		this.hunterCreations++;
-		return new MockState();
+		return new MockState(givenEnemy);
 	}
 
 	@Override
 	public State createDead(Enemy givenEnemy) {
 		this.deadCreations++;
-		return new MockState();
+		return new MockState(givenEnemy);
 	}
 
 	@Override
 	public State createPrey(Enemy givenEnemy) {
 		this.preyCreations++;
-		return new MockState();
+		return new MockState(givenEnemy);
 	}
 	
 }

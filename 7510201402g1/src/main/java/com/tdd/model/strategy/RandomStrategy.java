@@ -31,9 +31,6 @@ public class RandomStrategy extends Strategy {
         if (inCellBifurcation()) {
             generateRandomDirections();
         } else {
-            if (this.lastDirection != null) {
-                this.possibleDirections.add(this.lastDirection);
-            }
             getNoBifurcationDirections();
         }
     }

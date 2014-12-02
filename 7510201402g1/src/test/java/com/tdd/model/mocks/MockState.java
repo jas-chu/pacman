@@ -2,6 +2,7 @@ package com.tdd.model.mocks;
 
 import com.tdd.model.stageAbstractions.State;
 import com.tdd.model.stageAbstractions.Direction;
+import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.Protagonist;
 
 public class MockState extends State {
@@ -10,9 +11,14 @@ public class MockState extends State {
 	public boolean increaseAngerMethodCalled = false;
 	public boolean beEatenMethodCalled = false;
 	public boolean advanceCycleMethodCalled = false;
+	public boolean turnToPreyMethodCalled = false;
 	
 	public MockState() {
 		super(null);
+	}
+	
+	public MockState(Enemy givenEnemy) {
+		super(givenEnemy);
 	}
 	
 	@Override
@@ -51,5 +57,13 @@ public class MockState extends State {
 	protected void changeState() {
 		// no need for this
 	}
-
+	
+	@Override
+	public void turnToPrey() {
+		this.turnToPreyMethodCalled = true;
+		if (this.enemy != null) {
+			super.turnToPrey();
+		}
+	}
+	
 }
