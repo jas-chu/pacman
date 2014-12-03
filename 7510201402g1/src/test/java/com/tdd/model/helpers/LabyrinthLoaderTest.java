@@ -2,8 +2,10 @@ package com.tdd.model.helpers;
 
 import com.tdd.model.stageAbstractions.Position;
 import javax.management.AttributeNotFoundException;
+import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
+import org.w3c.dom.NodeList;
 
 public class LabyrinthLoaderTest extends ReadingSetUpTest {
 	
@@ -41,7 +43,14 @@ public class LabyrinthLoaderTest extends ReadingSetUpTest {
         Position position = this.loader.getGhostStartPosition();
         assert(expectedPosition.equals(position));
     }
-
+	
+	@Test
+    public void getNodes() {
+		NodeList nodes = this.loader.getNodes();
+		assert(nodes != null);
+		assertEquals(nodes.item(0).getNodeName(),this.constants.getConstantTranslation(XMLConstants.NODE));
+    }
+	
     @Test
     public void getNodeWidth() throws AttributeNotFoundException {
 		Integer width = this.loader.getNodeWidth();

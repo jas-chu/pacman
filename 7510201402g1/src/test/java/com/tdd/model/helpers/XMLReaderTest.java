@@ -1,5 +1,6 @@
 package com.tdd.model.helpers;
 
+import com.tdd.model.exceptions.NoNodeWithThatNameException;
 import com.tdd.model.stageAbstractions.Position;
 import java.util.Map;
 import javax.management.AttributeNotFoundException;
@@ -40,6 +41,17 @@ public class XMLReaderTest extends ReadingSetUpTest {
         NodeList allChildrenNodes = XMLReader.getNodeByName(this.XMLpath, XMLConstants.NODE);
 		for (int i = 0 ; i < allChildrenNodes.getLength() ; ++i)
 			assertEquals(allChildrenNodes.item(i).getNodeName(), this.constants.getConstantTranslation(XMLConstants.NODE));
+    }
+	
+	@Test
+    public void getFirstNodeWithName() {
+		try {
+			Node node = XMLReader.getNodeByName(this.XMLpath, XMLConstants.LABYRINTH).item(0);
+			Node firstNode = XMLReader.getFirstNodeWithName(node, XMLConstants.NODE);
+			assertEquals(firstNode.getNodeName(), this.constants.getConstantTranslation(XMLConstants.NODE));
+		} catch (NoNodeWithThatNameException ex) {
+			fail();
+		}
     }
 	
     @Test

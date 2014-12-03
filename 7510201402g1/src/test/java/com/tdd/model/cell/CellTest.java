@@ -12,7 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public abstract class CellTest {
+public class CellTest {
 	
 	private int cellId;
 	private Position position;
@@ -24,7 +24,7 @@ public abstract class CellTest {
 		this.cellId = 103;
 		this.position = new Position(7, 3);
 		this.protagonist = new MockProtagonist();
-		HashMap<String,Position> neighbours = new HashMap<String,Position>();
+		HashMap<String,Position> neighbours = new HashMap<>();
 		neighbours.put(XMLConstants.DIRECTION_RIGHT, this.position.createPositionAddingX(1));
 		this.cell = new Cell(this.cellId, this.position, neighbours);
 	}
@@ -50,10 +50,16 @@ public abstract class CellTest {
     }
 	
 	@Test
+    public void hasNeighbour() {
+		assert(this.cell.hasNeighbour(XMLConstants.DIRECTION_RIGHT));
+    }
+	
+	@Test
     public void getTargetPosition() {
 		try {
-			this.cell.getTargetPosition(new Direction(XMLConstants.DIRECTION_RIGHT));
-			assert(true);
+			Position targetPosition = this.cell.getTargetPosition(new Direction(XMLConstants.DIRECTION_RIGHT));
+			Position expectedPosition = this.position.createPositionAddingX(1);
+			assert(expectedPosition.equals(targetPosition));
 		} catch (BlockedCellException ex) {
 			fail();
 		}
