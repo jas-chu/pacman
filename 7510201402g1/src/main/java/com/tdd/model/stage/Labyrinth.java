@@ -10,7 +10,8 @@ import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.helpers.LevelCharactersLoader;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.helpers.XMLReader;
-import com.tdd.model.itemBuilding.ItemBuilder;
+import com.tdd.model.itemBuilding.ItemFactory;
+import com.tdd.model.itemBuilding.ItemFactorySearcher;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Consumable;
 import com.tdd.model.stageAbstractions.Direction;
@@ -76,8 +77,9 @@ public class Labyrinth implements Stage {
     }
 
     private synchronized void loadCells(LevelConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
-        NodeList nodes = this.labyrinthLoader.getNodes();
-        ItemBuilder itemBuilder = new ItemBuilder();
+        ItemFactorySearcher itemFactorySearcher = new ItemFactorySearcher();
+		
+		NodeList nodes = this.labyrinthLoader.getNodes();
         this.cells = new ArrayList<>();
         for (int row = 0; row < this.height; row++) {
             List<Cell> mapRow = new ArrayList<>();
@@ -86,10 +88,7 @@ public class Labyrinth implements Stage {
                 Cell createdCell = this.createCell(node);
                 String cellContent = XMLReader.getAttributeValue(node, XMLConstants.CONTENT);
                 if (!cellContent.isEmpty()) {
-                    String translatedCellContent = givenConfigs.getGameConstants().getInvertedItemValueTranslation(cellContent);
-                    Consumable item = itemBuilder.createItem(this, createdCell.getPosition(), translatedCellContent, givenConfigs);
-                    item.addToList(this.staticItems, this.movingItems);
-					createdCell.placeElement((StageElement)item);
+                    this.createItem(givenConfigs, createdCell, cellContent, itemFactorySearcher);
                 }
                 mapRow.add(createdCell);
             }
@@ -104,6 +103,14 @@ public class Labyrinth implements Stage {
 		
 		return new Cell(cellId, cellPosition, neighbours);
     }
+	
+	private synchronized void createItem(LevelConfigurationsReader givenConfigs, Cell containerCell, String cellContent, ItemFactorySearcher itemFactorySearcher) throws NoAvailableFactoryException {
+		String translatedCellContent = givenConfigs.getGameConstants().getInvertedItemValueTranslation(cellContent);
+		ItemFactory factory = itemFactorySearcher.getFactory(translatedCellContent);
+		Consumable item = factory.createItem(this, containerCell.getPosition(), givenConfigs);
+		item.addToList(this.staticItems, this.movingItems);
+		containerCell.placeElement((StageElement)item);
+	}
 
     private synchronized void loadEnemies(LevelConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
         NodeList ghostsNodes = this.gameCharactersLoader.getGhostNodes();
