@@ -4,7 +4,6 @@ import com.tdd.controller.playerController.KeyboardPlayerController;
 import com.tdd.model.stageAbstractions.Cell;
 import com.tdd.model.stageAbstractions.Enemy;
 import com.tdd.model.stageAbstractions.MovingItem;
-import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.model.stageAbstractions.StaticItem;
 import com.tdd.view.abstractions.View;

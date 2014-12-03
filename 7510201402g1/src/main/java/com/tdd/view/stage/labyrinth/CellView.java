@@ -35,7 +35,7 @@ public class CellView extends View {
     }
 	
     private static Map<Integer, String> createResources() {
-        Map<Integer, String> theResources = new HashMap<Integer, String>();
+        Map<Integer, String> theResources = new HashMap<>();
         theResources.put(0, ViewConstants.CLEAN_CELL);
 
         // UN BORDE

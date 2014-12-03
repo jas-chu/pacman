@@ -17,11 +17,11 @@ public class Cell extends Observable {
     public Cell(int givenId, Position givenPosition, Map<String, Position> givenNeighbours) {
         this.id = givenId;
         this.position = new Position(givenPosition);
-        this.elements = new ArrayList<StageElement>();
+        this.elements = new ArrayList<>();
         if (givenNeighbours != null) {
             this.neighbours = givenNeighbours;
         } else {
-            this.neighbours = new HashMap<String, Position>();
+            this.neighbours = new HashMap<>();
         }
     }
 

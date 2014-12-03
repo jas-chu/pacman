@@ -52,9 +52,9 @@ public class Labyrinth implements Stage {
      * @throws com.tdd.model.exceptions.MalformedXMLException
      */
     public Labyrinth(LevelConfigurationsReader givenConfigs) throws MalformedXMLException {
-        this.staticItems = new ArrayList<StaticItem>();
-        this.movingItems = new ArrayList<MovingItem>();
-        this.enemies = new ArrayList<Enemy>();
+        this.staticItems = new ArrayList<>();
+        this.movingItems = new ArrayList<>();
+        this.enemies = new ArrayList<>();
         this.labyrinthLoader = new LabyrinthLoader(givenConfigs.getStagePath());
         this.gameCharactersLoader = new LevelCharactersLoader(givenConfigs.getCharactersPath());
         try {
@@ -79,9 +79,9 @@ public class Labyrinth implements Stage {
         NodeList nodes = this.labyrinthLoader.getNodes();
         CellBuilder cellBuilder = new CellBuilder();
         ItemBuilder itemBuilder = new ItemBuilder();
-        this.cells = new ArrayList<List<Cell>>();
+        this.cells = new ArrayList<>();
         for (int row = 0; row < this.height; row++) {
-            List<Cell> mapRow = new ArrayList<Cell>();
+            List<Cell> mapRow = new ArrayList<>();
             for (int col = 0; col < this.width; col++) {
                 Node node = nodes.item(row * this.width + col);
                 Cell createdCell = cellBuilder.createCell(node);

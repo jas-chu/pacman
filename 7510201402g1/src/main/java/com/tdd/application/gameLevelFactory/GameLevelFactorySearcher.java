@@ -15,7 +15,7 @@ public class GameLevelFactorySearcher {
     private Map<String, GameLevelFactory> availableFactories;
 
     public GameLevelFactorySearcher() {
-        this.availableFactories = new HashMap<String, GameLevelFactory>();
+        this.availableFactories = new HashMap<>();
         this.availableFactories.put(XMLConstants.KEYBOARD_LEVEL, new KeyboardConductedLevelFactory());
         this.availableFactories.put(XMLConstants.XML_LEVEL, new XMLConductedLevelFactory());
         this.availableFactories.put(XMLConstants.NO_PACMAN_LEVEL, new NoPacmanLevelFactory());

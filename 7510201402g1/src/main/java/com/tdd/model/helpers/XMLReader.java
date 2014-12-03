@@ -70,7 +70,7 @@ public class XMLReader extends XMLIO {
         NodeList children = givenNode.getChildNodes();
         String translatedTagName = XMLReader.getTranslation(tagName);
 
-        List<Node> filteredChildren = new ArrayList<Node>();
+        List<Node> filteredChildren = new ArrayList<>();
         for (int i = 0; i < children.getLength(); ++i) {
             Node child = children.item(i);
             if (child.getNodeName().equals(translatedTagName)) {

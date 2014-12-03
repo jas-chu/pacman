@@ -46,7 +46,7 @@ public class LevelConfigurations extends LevelConfigurationsReader {
 	}
 	
 	private List<Long> readAngerCyclesConfiguration(Node levelNode, String tagName) {
-		List<Long> angerCycles = new ArrayList<Long>();
+		List<Long> angerCycles = new ArrayList<>();
 		try {
 			Node angerCyclesNode = XMLReader.getFirstNodeWithName(levelNode, tagName);
 			List<Node> valueNodes = XMLReader.getNodeByName(angerCyclesNode, XMLConstants.VALUE);

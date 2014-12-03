@@ -89,12 +89,12 @@ public abstract class XMLConstants {
 	protected Map<String, String> invertedItemValuesDictionary;
 
     public XMLConstants() {
-        this.translationDictionary = new HashMap<String, String>();
-		this.invertedLevelTypeValuesDictionary = new HashMap<String, String>();
-        this.invertedDirectionValuesDictionary = new HashMap<String, String>();
-        this.invertedStrategyValuesDictionary = new HashMap<String, String>();
-        this.invertedStatusValuesDictionary = new HashMap<String, String>();
-		this.invertedItemValuesDictionary = new HashMap<String, String>();
+        this.translationDictionary = new HashMap<>();
+		this.invertedLevelTypeValuesDictionary = new HashMap<>();
+        this.invertedDirectionValuesDictionary = new HashMap<>();
+        this.invertedStrategyValuesDictionary = new HashMap<>();
+        this.invertedStatusValuesDictionary = new HashMap<>();
+		this.invertedItemValuesDictionary = new HashMap<>();
     }
 
     /**

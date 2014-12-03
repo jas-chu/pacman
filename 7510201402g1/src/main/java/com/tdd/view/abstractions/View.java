@@ -4,7 +4,6 @@ import com.tdd.model.stageAbstractions.Position;
 import com.tdd.model.stageAbstractions.StageElement;
 import com.tdd.view.audio.Sound;
 import com.tdd.view.helpers.ViewConstants;
-import com.tdd.view.manager.ViewManager;
 import com.tdd.view.windowElements.GameContainer;
 import java.awt.Graphics;
 import java.util.Observable;

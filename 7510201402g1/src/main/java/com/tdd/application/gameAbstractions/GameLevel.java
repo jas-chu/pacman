@@ -60,11 +60,11 @@ public abstract class GameLevel {
     }
 
     private void createProtagonistView() {
-        this.viewManager.createProtagonist(this.getProtagonist());
-        this.viewManager.createScore(this.getProtagonist());
+		if (this.viewManager != null) {
+			this.viewManager.createProtagonist(this.getProtagonist());
+			this.viewManager.createScore(this.getProtagonist());
+		}
     }
-
-    protected abstract PlayerController createPlayerController();
 
     public List<Enemy> getEnemies() {
         return this.enemies;

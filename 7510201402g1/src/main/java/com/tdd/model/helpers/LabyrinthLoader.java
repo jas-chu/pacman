@@ -58,7 +58,7 @@ public class LabyrinthLoader {
 	 * @param characterAttributeName
      * @return @throws AttributeNotFoundException
      */
-    public Position getCharacterStartPosition(String characterAttributeName) throws AttributeNotFoundException {
+    private Position getCharacterStartPosition(String characterAttributeName) throws AttributeNotFoundException {
         Position characterPosition = null;
         int characterNodeId = XMLReader.getIntAttributeValue(this.headerNode, characterAttributeName);
         try {

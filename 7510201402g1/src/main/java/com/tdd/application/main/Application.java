@@ -31,7 +31,7 @@ public class Application implements Runnable{
         NodeList levelNodes = XMLReader.getNodeByName(xmlGamePath, XMLConstants.LEVEL);
 
         GameLevelFactorySearcher levelFactorySearcher = new GameLevelFactorySearcher();
-        List<GameLevelFactory> factories = new ArrayList<GameLevelFactory>();
+        List<GameLevelFactory> factories = new ArrayList<>();
 
         for (int i = 0; i < levelNodes.getLength(); ++i) {
             GameLevelFactory levelFactory = levelFactorySearcher.getFactory(levelNodes.item(i), gameConstants);

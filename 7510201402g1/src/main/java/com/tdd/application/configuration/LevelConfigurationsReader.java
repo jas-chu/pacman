@@ -15,7 +15,7 @@ public abstract class LevelConfigurationsReader {
 	protected String XMLSerializationPath = "";
 	
 	// LEVEL PARAMETERS
-	protected List<Long> ghostAngerWaitingCycles = new ArrayList<Long>();
+	protected List<Long> ghostAngerWaitingCycles = new ArrayList<>();
 	protected int ghostDeadWaitingCycles = 10;
 	protected int ghostPreyWaitingCycles = 10;
 	protected int ghostVision = 1;

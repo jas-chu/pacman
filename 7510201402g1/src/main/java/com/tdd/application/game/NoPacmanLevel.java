@@ -27,13 +27,4 @@ public class NoPacmanLevel extends GameLevel {
 		// nope, i won't do that
 	}
 
-    /**
-     *
-     * @return
-     */
-	@Override
-	protected PlayerController createPlayerController() {
-		return null;
-	}
-
 }
