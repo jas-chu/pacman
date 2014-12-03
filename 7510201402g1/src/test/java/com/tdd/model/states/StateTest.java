@@ -19,7 +19,13 @@ public abstract class StateTest {
 	}
 	
 	@Test
-	public void getDirection() {
+	public void turnToPreyTest() {
+		this.state.turnToPrey();
+		assert(this.mockGhost.setAsPreyMethodCalled);
+	}
+	
+	@Test
+	public void getDirectionTest() {
 		Direction direction = new Direction(XMLConstants.DIRECTION_RIGHT);
 		Direction otherDirection = this.state.getDirection(direction);
 		assertEquals(direction.getClass(), otherDirection.getClass());

@@ -32,7 +32,7 @@ public class PreyTest extends PassiveTest {
 	
 	@Test
 	@Override
-	public void getDirection() {
+	public void getDirectionTest() {
 		Direction direction = new Direction(XMLConstants.DIRECTION_RIGHT);
 		Direction otherDirection = this.state.getDirection(direction);
 		Direction expectedDirection = direction.invert();

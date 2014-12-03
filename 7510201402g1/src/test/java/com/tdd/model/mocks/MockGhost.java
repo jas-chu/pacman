@@ -10,6 +10,7 @@ import com.tdd.model.stageAbstractions.Protagonist;
 public class MockGhost extends Enemy {
 
     public boolean turnToPreyMethodCalled = false;
+	public boolean setAsPreyMethodCalled = false;
     public boolean killMethodCalled = false;
     public boolean reviveMethodCalled = false;
     public boolean collideWithProtagonistMethodCalled = false;
@@ -50,6 +51,7 @@ public class MockGhost extends Enemy {
 
     public boolean noMethodWasCalled() {
         return !(this.turnToPreyMethodCalled
+				|| this.setAsPreyMethodCalled
                 || this.killMethodCalled
                 || this.reviveMethodCalled
                 || this.collideWithProtagonistMethodCalled
@@ -86,7 +88,7 @@ public class MockGhost extends Enemy {
 
 	@Override
 	public void setAsPrey() {
-		throw new UnsupportedOperationException("Not supported yet.");
+		this.setAsPreyMethodCalled = true;
 	}
 
 }

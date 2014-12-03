@@ -15,6 +15,13 @@ public class DeadTest extends PassiveTest {
 	
 	@Test
 	@Override
+	public void turnToPreyTest() {
+		this.state.turnToPrey();
+		assert(this.mockGhost.noMethodWasCalled());
+	}
+	
+	@Test
+	@Override
     public void beEaten() {
 		super.beEaten();
 		assertTrue(this.mockGhost.noMethodWasCalled());
