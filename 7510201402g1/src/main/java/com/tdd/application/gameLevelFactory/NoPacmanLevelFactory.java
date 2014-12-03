@@ -5,6 +5,7 @@ import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.application.gameAbstractions.GameLevel;
 import com.tdd.application.gameAbstractions.GameLevelFactory;
 import com.tdd.model.exceptions.MalformedXMLException;
+import com.tdd.model.exceptions.NoLevelConfigurationsException;
 
 public class NoPacmanLevelFactory extends GameLevelFactory {
 	
@@ -25,7 +26,8 @@ public class NoPacmanLevelFactory extends GameLevelFactory {
 	}
 	
 	@Override
-	public GameLevel createLevel() throws MalformedXMLException {
+	public GameLevel createLevel() throws MalformedXMLException, NoLevelConfigurationsException {
+		if (this.configs == null) throw new NoLevelConfigurationsException();
 		return new NoPacmanLevel(this.configs, this.ticksToRun);
 	}
 

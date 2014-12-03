@@ -44,7 +44,6 @@ public abstract class GameLevel {
 		for (Enemy enemy : this.enemies)
 			this.viewManager.createEnemy(enemy);
         this.viewManager.createItemViews(this.staticItems, this.movingItems);
-
     }
 
     public void populateWithProtagonist(Protagonist givenProtagonist, PlayerController givenController) {
@@ -119,11 +118,11 @@ public abstract class GameLevel {
         this.viewManager.updateViews();        
     }
 
-    public void setViewManager(ViewManager viewManager) {
-        if (this.viewManager != null) {
+    public void setViewManager(ViewManager givenViewManager) {
+        if (this.viewManager != null || givenViewManager == null) {
             return;
         }
-        this.viewManager = viewManager;
+        this.viewManager = givenViewManager;
         this.createViews();
     }
 

@@ -2,6 +2,7 @@ package com.tdd.application.gameAbstractions;
 
 import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.model.exceptions.MalformedXMLException;
+import com.tdd.model.exceptions.NoLevelConfigurationsException;
 
 public abstract class GameLevelFactory {
 	
@@ -26,7 +27,8 @@ public abstract class GameLevelFactory {
 	 * Creates a new specific level. Serves as a factory method for the different available levels.
 	 * @return a GameLevel
 	 * @throws MalformedXMLException
+	 * @throws com.tdd.model.exceptions.NoLevelConfigurationsException
 	 */
-	public abstract GameLevel createLevel() throws MalformedXMLException;
+	public abstract GameLevel createLevel() throws MalformedXMLException, NoLevelConfigurationsException;
 
 }

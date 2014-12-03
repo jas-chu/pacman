@@ -16,16 +16,16 @@ public class PacmanGame {
     private ViewManager viewManager;
     private KeyboardPlayerController keyboardController;
 
-    public PacmanGame(List<GameLevelFactory> givenLevelFactories, ViewManager viewManager) {
+    public PacmanGame(List<GameLevelFactory> givenLevelFactories, ViewManager givenViewManager) {
         this.protagonist = new Pacman();
         this.levelFactories = givenLevelFactories;
-        this.viewManager = viewManager;
+        this.viewManager = givenViewManager;
         this.keyboardController = new KeyboardPlayerController();
     }
 
     public void gameLoop() {
         while (this.protagonist.isAlive()) {
-            this.viewManager.addController(keyboardController);
+            if (this.viewManager != null) this.viewManager.addController(keyboardController);
             int i = 0;
             while (i < this.levelFactories.size() && this.protagonist.isAlive()) {
                 try {
@@ -38,11 +38,10 @@ public class PacmanGame {
                     Logger.getLogger(PacmanGame.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 ++i;
-                this.viewManager.reset();
-              
+                if (this.viewManager != null) this.viewManager.reset();
             }
         }
-        this.viewManager.gameOver();
+        if (this.viewManager != null) this.viewManager.gameOver();
     }
 
 }
