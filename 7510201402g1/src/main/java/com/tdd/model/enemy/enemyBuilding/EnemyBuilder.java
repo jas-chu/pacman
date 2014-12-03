@@ -1,7 +1,6 @@
 package com.tdd.model.enemy.enemyBuilding;
 
 import com.tdd.application.configuration.LevelConfigurationsReader;
-import com.tdd.model.directionFactory.DirectionGenerator;
 import com.tdd.model.exceptions.NoAvailableFactoryException;
 import com.tdd.model.states.StateFactory;
 import com.tdd.model.helpers.XMLConstants;
@@ -50,11 +49,10 @@ public class EnemyBuilder {
 		int ghostSpeed = givenConfigs.getEnemiesSpeed();
 
         StrategyFactorySearcher strategyFactorySearcher = new StrategyFactorySearcher(ghostVision, ghostIncrementalVision);
-
         StrategyFactory strategyFactory = strategyFactorySearcher.getFactory(translatePersonality);
+		
         StateFactory stateFactory = new StateFactory(ghostAngerWaitingCycles, ghostDeadWaitingCycles, ghostPreyWaitingCycles);
-        DirectionGenerator directionGenerator = new DirectionGenerator();
-        Direction direction = directionGenerator.createDirection(translateSense);
+        Direction direction = new Direction(translateSense);
         
         Enemy enemy = new Ghost(stage, givenPosition, stateFactory, strategyFactory, ghostPoints, ghostSpeed);
         enemy.setSense(direction);

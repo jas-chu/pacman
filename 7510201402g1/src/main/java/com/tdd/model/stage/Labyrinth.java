@@ -3,7 +3,6 @@ package com.tdd.model.stage;
 import com.tdd.model.exceptions.NoExistingCellException;
 import com.tdd.application.configuration.LevelConfigurationsReader;
 import com.tdd.model.helpers.LabyrinthLoader;
-import com.tdd.model.cell.cellBuilding.CellBuilder;
 import com.tdd.model.enemy.enemyBuilding.EnemyBuilder;
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.exceptions.MalformedXMLException;
@@ -24,6 +23,7 @@ import com.tdd.model.stageAbstractions.Stage;
 import com.tdd.model.stageAbstractions.StageElement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.management.AttributeNotFoundException;
@@ -77,14 +77,13 @@ public class Labyrinth implements Stage {
 
     private synchronized void loadCells(LevelConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {
         NodeList nodes = this.labyrinthLoader.getNodes();
-        CellBuilder cellBuilder = new CellBuilder();
         ItemBuilder itemBuilder = new ItemBuilder();
         this.cells = new ArrayList<>();
         for (int row = 0; row < this.height; row++) {
             List<Cell> mapRow = new ArrayList<>();
             for (int col = 0; col < this.width; col++) {
                 Node node = nodes.item(row * this.width + col);
-                Cell createdCell = cellBuilder.createCell(node);
+                Cell createdCell = this.createCell(node);
                 String cellContent = XMLReader.getAttributeValue(node, XMLConstants.CONTENT);
                 if (!cellContent.isEmpty()) {
                     String translatedCellContent = givenConfigs.getGameConstants().getInvertedItemValueTranslation(cellContent);
@@ -96,6 +95,14 @@ public class Labyrinth implements Stage {
             }
             this.cells.add(mapRow);
         }
+    }
+	
+	private synchronized Cell createCell(Node node) throws AttributeNotFoundException, NoAvailableFactoryException {
+        int cellId = XMLReader.getNodeId(node);
+        Position cellPosition = XMLReader.getNodePosition(node);
+        Map<String,Position> neighbours = XMLReader.getNeighbours(node);
+		
+		return new Cell(cellId, cellPosition, neighbours);
     }
 
     private synchronized void loadEnemies(LevelConfigurationsReader givenConfigs) throws AttributeNotFoundException, NoAvailableFactoryException {

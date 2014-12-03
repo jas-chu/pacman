@@ -1,7 +1,6 @@
 package com.tdd.controller.playerController;
 
 import com.tdd.controller.controllerAbstractions.PlayerController;
-import com.tdd.model.directionFactory.DirectionFactory;
 import com.tdd.model.exceptions.NoMoreMovementsException;
 import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.stageAbstractions.Direction;
@@ -15,16 +14,16 @@ import java.util.Map;
 public class KeyboardPlayerController implements PlayerController, KeyListener {
 
     private final List<Direction> directionsToBeProcessed;
-    private final Map<Integer, DirectionFactory> directionsDictionary;
+    private final Map<Integer, String> directionsDictionary;
     private Direction lastDirection = null;
 
     public KeyboardPlayerController() {
         this.directionsToBeProcessed = new ArrayList<>();
         this.directionsDictionary = new HashMap<>();
-        this.directionsDictionary.put(KeyEvent.VK_RIGHT, new DirectionFactory(XMLConstants.DIRECTION_RIGHT));
-        this.directionsDictionary.put(KeyEvent.VK_LEFT, new DirectionFactory(XMLConstants.DIRECTION_LEFT));
-        this.directionsDictionary.put(KeyEvent.VK_UP, new DirectionFactory(XMLConstants.DIRECTION_UP));
-        this.directionsDictionary.put(KeyEvent.VK_DOWN, new DirectionFactory(XMLConstants.DIRECTION_DOWN));
+        this.directionsDictionary.put(KeyEvent.VK_RIGHT, XMLConstants.DIRECTION_RIGHT);
+        this.directionsDictionary.put(KeyEvent.VK_LEFT, XMLConstants.DIRECTION_LEFT);
+        this.directionsDictionary.put(KeyEvent.VK_UP, XMLConstants.DIRECTION_UP);
+        this.directionsDictionary.put(KeyEvent.VK_DOWN, XMLConstants.DIRECTION_DOWN);
     }
 
     @Override
@@ -34,11 +33,11 @@ public class KeyboardPlayerController implements PlayerController, KeyListener {
 
     @Override
     public synchronized void keyPressed(KeyEvent e) {
-        DirectionFactory factory = this.directionsDictionary.get(e.getKeyCode());
-        if (factory == null) {
+        String directionName = this.directionsDictionary.get(e.getKeyCode());
+        if (directionName == null) {
             return;
         }
-        Direction direction = factory.createDirection();
+        Direction direction = new Direction(directionName);
 		if (this.lastDirection == null || 
 				   !direction.toString().equals(this.lastDirection.toString())) {
 			this.directionsToBeProcessed.add(direction);

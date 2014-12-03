@@ -2,6 +2,7 @@ package com.tdd.application.gameAbstractions;
 
 import com.tdd.controller.playerController.KeyboardPlayerController;
 import com.tdd.model.exceptions.MalformedXMLException;
+import com.tdd.model.exceptions.NoLevelConfigurationsException;
 import com.tdd.model.stage.Pacman;
 import com.tdd.model.stageAbstractions.Protagonist;
 import com.tdd.view.manager.ViewManager;
@@ -34,7 +35,7 @@ public class PacmanGame {
                     level.setViewManager(this.viewManager);
                     level.populateWithProtagonist(this.protagonist, this.keyboardController);
                     level.levelLoop();
-                } catch (MalformedXMLException ex) {
+                } catch (MalformedXMLException | NoLevelConfigurationsException ex) {
                     Logger.getLogger(PacmanGame.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 ++i;
