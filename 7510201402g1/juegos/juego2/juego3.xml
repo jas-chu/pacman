@@ -1,6 +1,6 @@
 <juego>
 	<nivel tipo="conTeclado">
-		<escenario>./juegos/juego2/LaberintoNivel3.xml</escenario>
+		<escenario>./juegos/juego2/LaberintoNivel2.xml</escenario>
 		<personajes>./juegos/juego2/PersonajesNivel1.xml</personajes>
 		<ciclosFuria>
 			<valor>20</valor>

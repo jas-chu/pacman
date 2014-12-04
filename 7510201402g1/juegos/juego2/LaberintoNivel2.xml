@@ -52,8 +52,8 @@
     <nodo id="0302" fila="03" columna="02" contiene=""       izquierda=""     derecha=""     arriba="0202" abajo="0402" />
     <nodo id="0303" fila="03" columna="03" contiene="bolita" izquierda=""     derecha="0304" arriba=""     abajo="0403" />
     <nodo id="0304" fila="03" columna="04" contiene="bolita" izquierda="0303" derecha="0305" arriba=""     abajo="" />
-    <nodo id="0305" fila="03" columna="05" contiene="bolita" izquierda="0304" derecha=""     arriba="0205" abajo="0405" />
-    <nodo id="0306" fila="03" columna="06" contiene=""       izquierda=""     derecha=""     arriba="0206" abajo="0406" />
+    <nodo id="0305" fila="03" columna="05" contiene="fruta" izquierda="0304" derecha=""     arriba="0205" abajo="0405" />
+    <nodo id="0306" fila="03" columna="06" contiene=""      izquierda=""     derecha=""     arriba="0206" abajo="0406" />
     <nodo id="0307" fila="03" columna="07" contiene="bolita" izquierda=""     derecha=""     arriba="0207" abajo="0407" />
     <nodo id="0308" fila="03" columna="08" contiene=""       izquierda=""     derecha=""     arriba="0208" abajo="0408" />
     <nodo id="0309" fila="03" columna="09" contiene="bolita" izquierda=""     derecha="0310" arriba="0209" abajo="0409" />
@@ -134,7 +134,7 @@
     <nodo id="0804" fila="08" columna="04" contiene=""       izquierda="0803" derecha="0805" arriba=""     abajo="" />
     <nodo id="0805" fila="08" columna="05" contiene=""       izquierda="0804" derecha="0806" arriba=""     abajo="" />
     <nodo id="0806" fila="08" columna="06" contiene=""       izquierda="0805" derecha=""     arriba=""     abajo="0906" />
-    <nodo id="0807" fila="08" columna="07" contiene="bolita" izquierda=""     derecha=""     arriba="0707" abajo="0907" />
+    <nodo id="0807" fila="08" columna="07" contiene="fruta"  izquierda=""     derecha=""     arriba="0707" abajo="0907" />
     <nodo id="0808" fila="08" columna="08" contiene=""       izquierda=""     derecha="0809" arriba=""     abajo="0908" />
     <nodo id="0809" fila="08" columna="09" contiene=""       izquierda="0808" derecha="0810" arriba=""     abajo="" />
     <nodo id="0810" fila="08" columna="10" contiene=""       izquierda="0809" derecha="0811" arriba=""     abajo="" />
