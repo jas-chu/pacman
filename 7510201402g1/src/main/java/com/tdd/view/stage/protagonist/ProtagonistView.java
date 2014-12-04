@@ -32,10 +32,5 @@ public class ProtagonistView extends View {
 		this.img = this.factory.getImage(protagonist.getSense().toString());
 		super.update(o, arg);
     }
-	
-	@Override
-	protected void otherUpdates() {
-		this.audio.playSound();
-	}
 
 }

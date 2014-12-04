@@ -24,15 +24,13 @@ public class FruitView extends ItemView {
 	}
 	
     @Override
-    public void update(Observable observable, Object obj) {        
-        Fruit fruit = (Fruit) observable;
-        if (fruit.isConsumed()) {
-            this.setVisible(false);
-            //this.audio.playSound();
-        } else {
-            this.setVisible(true);
-			super.update(observable, obj);
-        }
-    }
+	protected void consumedUpdate(Observable o, Object arg) {
+		this.setVisible(false);
+	}
+	
+	@Override
+	protected void notConsumedUpdate(Observable o, Object arg) {
+		this.setVisible(true);
+	}
 
 }

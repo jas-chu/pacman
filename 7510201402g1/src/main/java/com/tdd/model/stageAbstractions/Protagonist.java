@@ -20,19 +20,19 @@ public abstract class Protagonist extends MovingElement {
         this.lastDirection = null;
     }
 
-    public void placeOnStage(Stage givenStage, Position givenPosition) {
+    public synchronized void placeOnStage(Stage givenStage, Position givenPosition) {
         this.stage = givenStage;
         this.setPosition(givenPosition);
         this.onStage = true;
     }
 
-    public void removeFromStage() {
+    public synchronized void removeFromStage() {
         this.stage = null;
         this.position = null;
         this.onStage = false;
     }
 
-    public boolean isOnStage() {
+    public synchronized boolean isOnStage() {
         return this.onStage;
     }
 
@@ -44,12 +44,12 @@ public abstract class Protagonist extends MovingElement {
 
     public abstract int getLives();
 
-    public void setController(PlayerController givenController) {
+    public synchronized void setController(PlayerController givenController) {
         this.controller = givenController;
     }
 
     @Override
-    protected void moveOneTime() {
+    protected synchronized void moveOneTime() {
 
         if (!(this.isOnStage()) || this.controller == null) {
             return;
@@ -69,40 +69,40 @@ public abstract class Protagonist extends MovingElement {
 
     }
 
-    public Integer getScore() {
+    public synchronized Integer getScore() {
         return this.score;
     }
     
-    public Direction getLastDirection(){
+    public synchronized Direction getLastDirection(){
         return this.lastDirection;
     }
 
-    public void awardPoints(int awardingPoints) {
+    public synchronized void awardPoints(int awardingPoints) {
         this.score += awardingPoints;
     }
 
     // COLLISIONS
     @Override
-    public void collideWithElement(StageElement anotherElement) {
+    public synchronized void collideWithElement(StageElement anotherElement) {
         if (this.isOnStage()) {
             anotherElement.collideWithProtagonist(this);
         }
     }
 
     @Override
-    public void collideWithProtagonist(Protagonist givenProtagonist) {
+    public synchronized void collideWithProtagonist(Protagonist givenProtagonist) {
         // does nothing, allows functionality extension.
     }
 
     @Override
-    public void collideWithEnemy(Enemy givenEnemy) {
+    public synchronized void collideWithEnemy(Enemy givenEnemy) {
         if (this.isOnStage()) {
             givenEnemy.collideWithProtagonist(this);
         }
     }
 
     @Override
-    public void collideWithConsumable(Consumable givenConsumable) {
+    public synchronized void collideWithConsumable(Consumable givenConsumable) {
         if (this.isOnStage()) {
             this.awardPoints(givenConsumable.consume());
         }

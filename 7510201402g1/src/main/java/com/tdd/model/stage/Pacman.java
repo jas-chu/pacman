@@ -12,13 +12,13 @@ public class Pacman extends Protagonist {
     }
 
     @Override
-    public void kill() {
+    public synchronized void kill() {
         (this.lives)--;
         this.revive();
     }
 
     @Override
-    public void revive() {
+    public synchronized void revive() {
         if (this.lives <= 0) {
             return;
         }
@@ -28,12 +28,12 @@ public class Pacman extends Protagonist {
     }
 
     @Override
-    public boolean isAlive() {
+    public synchronized boolean isAlive() {
         return (this.lives > 0);
     }
 
 	@Override
-    public int getLives() {
+    public synchronized int getLives() {
         return this.lives;
     }
     

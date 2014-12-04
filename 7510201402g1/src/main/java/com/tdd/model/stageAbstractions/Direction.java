@@ -3,6 +3,7 @@ package com.tdd.model.stageAbstractions;
 import com.tdd.model.helpers.XMLConstants;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class Direction {
 	
@@ -55,6 +56,18 @@ public class Direction {
 			return new Direction(invertedDirection);
 		}
 		return new Direction(this.direction);
+	}
+	
+	@Override
+	public boolean equals(Object other){
+		if (super.equals(other)) return true;
+		
+		if (!(other instanceof Direction)) return false;
+		return this.equals((Direction)other);
+	}
+	
+	private Boolean equals(Direction otherDirection) {
+		return (this.direction.equals(otherDirection.toString()));
 	}
 	
 	@Override

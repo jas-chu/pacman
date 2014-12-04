@@ -14,20 +14,20 @@ public abstract class MovedByStrategy extends MovingElement {
         this.strategy = this.strategyFactory.getStrategy(this);
     }
 
-    public Strategy getStrategy() {
+    public synchronized Strategy getStrategy() {
         return this.strategy;
     }
 
-    public void advanceMovementCycle() {
+    public synchronized void advanceMovementCycle() {
         this.strategy.advanceCycle();
     }
 
-    protected Direction getNextDirection() {
+    protected synchronized Direction getNextDirection() {
         return this.strategy.getDirection();
     }
 
     @Override
-    public void moveOneTime() {
+    public synchronized void moveOneTime() {
         int i = Direction.getNumberOfPossibleDirections();
         while (i > 0) {
             Direction direction = this.getNextDirection();                        
@@ -36,8 +36,7 @@ public abstract class MovedByStrategy extends MovingElement {
                 this.sense = direction;                
                 this.strategy.setLastDirection(direction);                
                 i = 0;
-            } catch (BlockedCellException | NoExistingCellException error) {                
-                this.strategy.nextDirection();
+            } catch (BlockedCellException | NoExistingCellException error) {
                 i--; // must look another way
             }
         }

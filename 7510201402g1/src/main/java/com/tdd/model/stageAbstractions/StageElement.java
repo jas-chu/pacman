@@ -12,31 +12,31 @@ public abstract class StageElement extends Observable implements Collidable {
 		if (givenPosition != null) this.position = new Position(givenPosition);
 	}
 	       
-	public Stage getStage(){
+	public synchronized Stage getStage(){
 		return this.stage;
 	}
         
-	public Position getPosition() {
+	public synchronized Position getPosition() {
 		return this.position;
 	}
 	
-	public void setPosition(Position givenPosition) {
+	public synchronized void setPosition(Position givenPosition) {
 		this.position = new Position(givenPosition);
 	}
 	
-	public boolean isInArea(Area area) {
+	public synchronized boolean isInArea(Area area) {
 		if (this.position == null) return false;
 		return area.positionIsWithinArea(this.position);
 	}
 	
-	public Protagonist getProtagonist(){
+	public synchronized Protagonist getProtagonist(){
 		if (this.stage == null) return null;
 		return this.stage.getProtagonist();
 	}
 
 	public abstract String getMapSerialization();
 	
-	public void changeAndNotify() {
+	public synchronized void changeAndNotify() {
 		this.setChanged();
 		this.notifyObservers();
 	}

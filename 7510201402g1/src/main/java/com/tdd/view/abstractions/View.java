@@ -89,13 +89,16 @@ public abstract class View implements Observer {
 		
 		Position lastPosition = this.getViewPosition();
 		Position newPosition = element.getPosition();
+		this.setViewPosition(newPosition.getX(), newPosition.getY());
+		
 		if (!newPosition.equals(lastPosition)){
 			this.otherUpdates();
 			this.container.orderCellRepaint(lastPosition);
 		}
-		this.setViewPosition(newPosition.getX(), newPosition.getY());
-		this.orderRepaint();
-		this.container.orderCellRepaint(newPosition);
+		if (this.isVisible()) {
+			this.orderRepaint();
+			this.container.orderCellRepaint(newPosition);
+		}
     }
 	
 	protected void otherUpdates() { }

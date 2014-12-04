@@ -33,57 +33,57 @@ public class Ghost extends Enemy {
     }
 
     @Override
-    public void kill() {
+    public synchronized void kill() {
         this.state = this.stateFactory.createDead(this);
         this.stage.placeEnemyAtHome(this);
         this.strategy = this.deadStrategyFactory.getStrategy(this);
     }
 
     @Override
-    public void turnToPrey() {
+    public synchronized void turnToPrey() {
         this.state.turnToPrey();
     }
 	
 	@Override
-    public void setAsPrey() {
+    public synchronized void setAsPrey() {
         this.state = this.stateFactory.createPrey(this);
     }
 
     @Override
-    public void revive() {
+    public synchronized void revive() {
         this.state = this.stateFactory.createHunter(this);
         this.strategy = this.strategyFactory.getStrategy(this);
     }
 
     @Override
-    public State getState() {
+    public synchronized State getState() {
         return this.state;
     }
 
     @Override
-    protected Direction getNextDirection() {
+    protected synchronized Direction getNextDirection() {
         Direction firstDirection = super.getNextDirection();
         return this.state.getDirection(firstDirection);
     }
 
     @Override
-    public void move() {
+    public synchronized void move() {
         super.move();
         this.advanceGameCycle();
     }
 
-    private void advanceGameCycle() {
+    private synchronized void advanceGameCycle() {
         this.state.advanceCycle();
     }
 
     @Override
-    public Integer getId() {
+    public synchronized Integer getId() {
         return this.id;
     }
 
     // COLLISIONS
     @Override
-    public void collideWithProtagonist(Protagonist givenProtagonist) {        
+    public synchronized void collideWithProtagonist(Protagonist givenProtagonist) {        
         this.state.collideWithProtagonist(givenProtagonist);
     }
     

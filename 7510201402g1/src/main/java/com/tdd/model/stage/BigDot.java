@@ -12,7 +12,7 @@ public class BigDot extends StaticItem {
     }
 
     @Override
-    public int consume() {
+    public synchronized int consume() {
 		this.stage.turnEnemiesToPrey();
         return super.consume();
     }

@@ -27,9 +27,17 @@ public abstract class ItemView extends View {
     public void update(Observable o, Object arg) {
 		Consumable item = (Consumable) o;
 		if (item.isConsumed()) {
-			this.setVisible(false);
-			o.deleteObserver(this);
+			this.consumedUpdate(o, arg);
+		} else {
+			this.notConsumedUpdate(o, arg);
 		}
 		super.update(o, arg);
     }
+	
+	protected void consumedUpdate(Observable o, Object arg) {
+		this.setVisible(false);
+		o.deleteObserver(this);
+	}
+	
+	protected void notConsumedUpdate(Observable o, Object arg) { }
 }

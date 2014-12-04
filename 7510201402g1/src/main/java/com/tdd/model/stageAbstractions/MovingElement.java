@@ -13,7 +13,7 @@ public abstract class MovingElement extends StageElement {
         this.sense = new Direction(XMLConstants.DIRECTION_RIGHT);
     }
 
-    public void move() {
+    public synchronized void move() {
         for (Integer i = 0; i < this.getSpeed(); ++i) {
             this.moveOneTime();
         }
@@ -22,19 +22,19 @@ public abstract class MovingElement extends StageElement {
 
     protected abstract void moveOneTime();
 
-    public void setSense(Direction sense) {
+    public synchronized void setSense(Direction sense) {
         this.sense = sense;
     }
 
-    public Direction getSense() {
+    public synchronized Direction getSense() {
         return this.sense;
     }
 
-    public void setSpeed(Integer givenSpeed) {
+    public synchronized void setSpeed(Integer givenSpeed) {
         this.speed = givenSpeed;
     }
 
-    public Integer getSpeed() {
+    public synchronized Integer getSpeed() {
         return this.speed;
     }
 

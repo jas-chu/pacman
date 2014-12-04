@@ -93,18 +93,17 @@ public abstract class Strategy {
     }
 
     protected boolean inCellBifurcation() {
-        int unblockedCells = 0;
-        List<Direction> directions = getAllDirections();
+        List<Direction> directions = getBifurcationDirections();
         Position elementPosition = this.element.getPosition();
         for (Direction direction : directions) {
             try {
                 this.element.getStage().getCell(elementPosition).getTargetPosition(direction);
-                unblockedCells++;
-            } catch (BlockedCellException | NoExistingCellException error) {
+				return true;
+            } catch (BlockedCellException | NoExistingCellException ex) {
 				// invalid direction, continue
             }
         }
-        return (unblockedCells >= bifurcationCells);
+        return false;
     }
 
     protected void generateRandomDirections() {
@@ -114,6 +113,15 @@ public abstract class Strategy {
             this.possibleDirections.add(directions.remove(index));
         }
     }
+	
+	protected List<Direction> getBifurcationDirections() {
+		List<Direction> directions = this.getAllDirections();
+		if (this.lastDirection != null) {
+            directions.remove(this.lastDirection);
+            directions.remove(this.lastDirection.invert());
+        }
+		return directions;
+	}
 
     protected void getNoBifurcationDirections() {
         if (this.lastDirection != null) {

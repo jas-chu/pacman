@@ -20,7 +20,7 @@ public class RandomStrategy extends Strategy {
         this.directionIndex++;
         if (this.directionIndex <= possibleDirections.size()) {
             this.lastDirection = possibleDirections.get(this.directionIndex - 1);
-            return possibleDirections.get(this.directionIndex - 1);
+            return this.lastDirection;
         } else {
             return new Direction(XMLConstants.DIRECTION_RIGHT);
         }

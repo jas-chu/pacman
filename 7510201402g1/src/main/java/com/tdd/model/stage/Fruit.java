@@ -21,7 +21,7 @@ public class Fruit extends MovingItem {
     }
 
     @Override
-    public int consume() {
+    public synchronized int consume() {
         if (this.isHidden()) {
             return this.hiddenAwardingPoints;
         }
@@ -31,12 +31,12 @@ public class Fruit extends MovingItem {
     }
 
     @Override
-    public boolean isConsumed() {
+    public synchronized boolean isConsumed() {
         return this.isHidden();
     }
 
     @Override
-    public void advanceMovementCycle() {
+    public synchronized void advanceMovementCycle() {
         super.advanceMovementCycle();
         if (this.isHidden()) {
             (this.hiddenCountedCycles)++;
@@ -46,15 +46,15 @@ public class Fruit extends MovingItem {
         }
     }
 
-    public boolean isHidden() {
+    public synchronized boolean isHidden() {
         return this.hidden;
     }
 
-    public void show() {
+    public synchronized void show() {
         this.hidden = false;
     }
 
-    public void hide() {
+    public synchronized void hide() {
         this.hidden = true;
         this.hiddenCountedCycles = 0;
     }

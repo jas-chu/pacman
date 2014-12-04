@@ -20,23 +20,23 @@ public abstract class Enemy extends MovedByStrategy {
 	public abstract Integer getId();
 	public abstract State getState();
 	
-	public int getAwardingPoints() {
+	public synchronized int getAwardingPoints() {
 		return this.awardingPoints;
 	}
 	
     // COLLISIONS	
     @Override
-    public void collideWithElement(StageElement anotherElement) {
+    public synchronized void collideWithElement(StageElement anotherElement) {
         anotherElement.collideWithEnemy(this);
     }
 
     @Override
-    public void collideWithConsumable(Consumable givenConsumable) {
+    public synchronized void collideWithConsumable(Consumable givenConsumable) {
         // does nothing, allows functionality extension.
     }
 
     @Override
-    public void collideWithEnemy(Enemy givenEnemy) {
+    public synchronized void collideWithEnemy(Enemy givenEnemy) {
         // does nothing, allows functionality extension.
     }
 

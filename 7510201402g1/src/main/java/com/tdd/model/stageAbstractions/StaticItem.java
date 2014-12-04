@@ -14,7 +14,7 @@ public abstract class StaticItem extends StageElement implements Consumable {
     }
 
     @Override
-    public int consume() {
+    public synchronized int consume() {
         this.consumed = true;
         this.stage.removeStaticItem(this);
         this.changeAndNotify();
@@ -22,23 +22,23 @@ public abstract class StaticItem extends StageElement implements Consumable {
     }
 
     @Override
-    public boolean isConsumed() {
+    public synchronized boolean isConsumed() {
         return this.consumed;
     }
 
     @Override
-    public void addToList(List<StaticItem> staticItems, List<MovingItem> movingItems) {
+    public synchronized void addToList(List<StaticItem> staticItems, List<MovingItem> movingItems) {
         staticItems.add(this);
     }
 
 	// COLLISIONS
     @Override
-    public void collideWithElement(StageElement anotherElement) {
+    public synchronized void collideWithElement(StageElement anotherElement) {
         anotherElement.collideWithConsumable(this);
     }
 
     @Override
-    public void collideWithProtagonist(Protagonist givenProtagonist) {
+    public synchronized void collideWithProtagonist(Protagonist givenProtagonist) {
         int points = this.consume();
         if (givenProtagonist != null) {
             givenProtagonist.awardPoints(points);
@@ -46,12 +46,12 @@ public abstract class StaticItem extends StageElement implements Consumable {
     }
 
     @Override
-    public void collideWithConsumable(Consumable givenConsumable) {
+    public synchronized void collideWithConsumable(Consumable givenConsumable) {
         // does nothing, allows functionality extension.
     }
 
     @Override
-    public void collideWithEnemy(Enemy givenEnemy) {
+    public synchronized void collideWithEnemy(Enemy givenEnemy) {
         givenEnemy.collideWithConsumable(this);
     }
 
