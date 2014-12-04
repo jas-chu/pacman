@@ -3,19 +3,18 @@ package com.tdd.model.stageAbstractions;
 import com.tdd.model.helpers.XMLConstants;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class Direction {
 	
-	private interface Inversion {
-		Position invert(Position givenPosition);
+	private interface PositionCalculation {
+		Position calculate(Position givenPosition);
 	}
 	
-	private static Map<String,Inversion> POSITIONS_MAP = initPositionsMap();
+	private static Map<String,PositionCalculation> POSITIONS_MAP = initPositionsMap();
 	private static Map<String,String> INVERSIONS_MAP = initInversionsMap();
 	
-	private static Map<String,Inversion> initPositionsMap() {
-		Map<String,Inversion> map = new HashMap<>();
+	private static Map<String,PositionCalculation> initPositionsMap() {
+		Map<String,PositionCalculation> map = new HashMap<>();
 		map.put(XMLConstants.DIRECTION_RIGHT, Position::createRightAdjacentPosition);
 		map.put(XMLConstants.DIRECTION_LEFT, Position::createLeftAdjacentPosition);
 		map.put(XMLConstants.DIRECTION_UP, Position::createUpAdjacentPosition);
@@ -44,8 +43,8 @@ public class Direction {
 	
 	public Position getNewPosition(Position position) {
 		if (Direction.POSITIONS_MAP.containsKey(this.direction)) {
-			Inversion inversion = Direction.POSITIONS_MAP.get(this.direction);
-			return inversion.invert(position);
+			PositionCalculation calculation = Direction.POSITIONS_MAP.get(this.direction);
+			return calculation.calculate(position);
 		}
 		return position;
 	}

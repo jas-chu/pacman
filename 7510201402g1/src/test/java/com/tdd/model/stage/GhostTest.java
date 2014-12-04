@@ -5,37 +5,39 @@ import com.tdd.model.helpers.XMLConstants;
 import com.tdd.model.mocks.MockProtagonist;
 import com.tdd.model.mocks.MockState;
 import com.tdd.model.mocks.MockStrategy;
-import com.tdd.model.mocks.MockStage;
 import com.tdd.model.mocks.MockStateFactory;
 import com.tdd.model.mocks.MockStrategyFactory;
-import com.tdd.model.stageAbstractions.Position;
+import com.tdd.model.stageAbstractions.StageElement;
 import com.tdd.model.stageAbstractions.StrategyFactory;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GhostTest {
-
-    private Position position;
+public class GhostTest extends StageElementTest {
+	
     private MockStateFactory factory;
     private MockState state;
     private MockStrategy strategy;
-    private MockStage stage;
     private Ghost ghost;
     private MockProtagonist protagonist;
     private StrategyFactory strategyFactory;
 
     @Before
+	@Override
     public void setUp() {
-        this.position = new Position(0, 0);
         this.factory = new MockStateFactory();
 		this.strategyFactory = new MockStrategyFactory(XMLConstants.STRATEGY_NORMAL_SEARCHER);
-        this.stage = new MockStage();
-        this.ghost = new Ghost(this.stage, this.position, this.factory, this.strategyFactory, 50, 1);
+		super.setUp();
+		this.ghost = (Ghost) this.element;
         this.state = (MockState) ghost.getState();
 		this.strategy = (MockStrategy) ghost.getStrategy();
         this.protagonist = new MockProtagonist();
     }
+	
+	@Override
+	protected StageElement createElement() {
+		return new Ghost(this.stage, this.position, this.factory, this.strategyFactory, 50, 1);
+	}
 
     @Test
     public void createdAsHunter() {

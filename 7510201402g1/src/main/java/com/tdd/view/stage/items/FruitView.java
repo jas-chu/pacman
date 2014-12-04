@@ -1,6 +1,5 @@
 package com.tdd.view.stage.items;
 
-import com.tdd.model.stage.Fruit;
 import com.tdd.model.stageAbstractions.MovingItem;
 import com.tdd.view.windowElements.GameContainer;
 import java.util.Observable;

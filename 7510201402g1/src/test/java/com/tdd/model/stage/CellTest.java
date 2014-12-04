@@ -1,4 +1,4 @@
-package com.tdd.model.cell;
+package com.tdd.model.stage;
 
 import com.tdd.model.exceptions.BlockedCellException;
 import com.tdd.model.helpers.XMLConstants;

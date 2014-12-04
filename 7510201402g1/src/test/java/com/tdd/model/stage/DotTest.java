@@ -1,14 +1,12 @@
 package com.tdd.model.stage;
 
-import org.junit.Before;
+import com.tdd.model.stageAbstractions.StageElement;
 
 public class DotTest extends ItemTest {
 	
-	@Before
 	@Override
-	public void setUp() {
-		super.setUp();
-		this.item = new Dot(this.stage, this.position, 5);
+	protected StageElement createElement() {
+		return new Dot(this.stage, this.position, 5);
 	}
 	
 }

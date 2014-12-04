@@ -4,27 +4,29 @@ import com.tdd.model.mocks.MockStaticItem;
 import com.tdd.model.mocks.MockController;
 import com.tdd.model.mocks.MockGhost;
 import com.tdd.model.mocks.MockProtagonist;
-import com.tdd.model.mocks.MockStage;
-import com.tdd.model.stageAbstractions.Position;
+import com.tdd.model.stageAbstractions.StageElement;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class PacmanTest {
+public class PacmanTest extends StageElementTest {
 	
-	private Position position;
-	private MockStage stage;
 	private MockController controller;
 	private Pacman pacman;
 
 	@Before
+	@Override
 	public void setUp() {
-		this.position = new Position(0, 0);
-		this.stage = new MockStage();
+		super.setUp();
 		this.controller = new MockController();
-		this.pacman = new Pacman();
+		this.pacman = (Pacman)this.element;
 		this.pacman.placeOnStage(this.stage, this.position);
 		this.pacman.setController(this.controller);
+	}
+	
+	@Override
+	protected StageElement createElement() {
+		return new Pacman();
 	}
 	
 	@Test

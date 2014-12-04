@@ -1,23 +1,21 @@
 package com.tdd.model.stage;
 
+import com.tdd.model.stageAbstractions.StageElement;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Before;
 
 public class BigDotTest extends ItemTest {
-	
-	@Before
-	@Override
-	public void setUp() {
-		super.setUp();
-		this.item = new BigDot(this.stage, this.position, 15);
-	}
 	
 	@Test
 	@Override
 	public void consume() {
 		super.consume();
 		assertTrue(this.stage.turnEnemiesToPreyMethodCalled);
+	}
+
+	@Override
+	protected StageElement createElement() {
+		return new BigDot(this.stage, this.position, 15);
 	}
 	
 }
